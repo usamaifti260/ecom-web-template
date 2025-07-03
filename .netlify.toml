@@ -5,6 +5,14 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
+  NODE_ENV = "production"
+
+# Disable Next.js plugin since we're doing static export
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  
+  [plugins.inputs]
+    disable = true
 
 [[headers]]
   for = "/*"
