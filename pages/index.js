@@ -35,7 +35,7 @@ export async function getStaticProps() {
     console.log('Fetching products for homepage...');
     
     // Fetch products at build time - using local JSON for restaurant menu
-    const schemaSlug = 'forkandknife';
+    const schemaSlug = 'forkandknifemenu';
     const products = await fetchClientProducts(schemaSlug);
     
     // Client info from environment variables

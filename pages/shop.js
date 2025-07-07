@@ -28,7 +28,7 @@ export async function getStaticProps() {
     console.log('Fetching products for shop page...');
     
     // Fetch products at build time - specify the schema for glasses
-    const schemaSlug = 'forkandknife';
+    const schemaSlug = 'forkandknifemenu';
     const products = await fetchClientProducts(schemaSlug);
     
     // Client info from environment variables
