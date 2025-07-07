@@ -347,6 +347,7 @@ const Products = ({ products = [] }) => {
 
           {/* Pizza Size Selection */}
           {isPizza && (
+            console.log("Inside Pizza Card"),
             <div className="mb-3">
               <div className="flex flex-wrap gap-1 md:gap-2">
                 {product.sizes.map((size) => {
