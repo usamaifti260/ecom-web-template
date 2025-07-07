@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Products from '@/components/Products';
+import Reviews from '@/components/Reviews';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -11,8 +12,8 @@ export default function Home({ products, clientInfo }) {
   return (
     <>
       <Head>
-        <title>{`${clientInfo?.businessName || 'VisionCraft'} - Premium Eyewear Collection`}</title>
-        <meta name="description" content="Discover our premium collection of eyewear designed to enhance your vision and elevate your style. Shop sunglasses, prescription glasses, and more." />
+        <title>{`${clientInfo?.businessName || 'Fork & Knife'} - Fast Food Restaurant`}</title>
+        <meta name="description" content="Delicious fast food delivered to your door! Pizza, burgers, shawarma, and more. Free home delivery on orders over Rs. 1000." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -21,7 +22,7 @@ export default function Home({ products, clientInfo }) {
         <Navbar />
         <Hero />
         <Products products={products} />
-        <About />
+        <Reviews />
         <Contact />
         <Footer />
       </div>
@@ -33,18 +34,17 @@ export async function getStaticProps() {
   try {
     console.log('Fetching products for homepage...');
     
-    // Fetch products at build time - specify the schema for glasses
-    const schemaSlug = 'glass-store-schema';
-    const products = await fetchClientProducts(schemaSlug);
+    // Fetch products at build time - using local JSON for restaurant menu
+    const products = await fetchClientProducts();
     
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'VisionCraft',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium eyewear designed to enhance your vision and elevate your style',
-      contact: process.env.BUSINESS_CONTACT || null
+      businessName: process.env.BUSINESS_NAME || 'Fork & Knife Fast Food',
+      description: process.env.BUSINESS_DESCRIPTION || 'Delicious fast food delivered to your door! Pizza, burgers, shawarma, and more.',
+      contact: process.env.BUSINESS_CONTACT || '0304-4481181'
     };
 
-    console.log(`Homepage: Successfully fetched ${products.length} products from schema: ${schemaSlug}`);
+    console.log(`Homepage: Successfully fetched ${products.length} products from local menu`);
 
     return {
       props: {
@@ -64,10 +64,10 @@ export async function getStaticProps() {
       props: {
         products: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'VisionCraft',
+          businessName: process.env.BUSINESS_NAME || 'Fork & Knife Fast Food',
           description: isDevelopment 
             ? 'Development mode - check your data/products.json file' 
-            : 'Product catalog temporarily unavailable'
+            : 'Menu temporarily unavailable'
         }
       },
       // Pure SSG - no revalidation

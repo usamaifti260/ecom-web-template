@@ -4,6 +4,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: ''
   });
@@ -23,81 +24,100 @@ const Contact = () => {
     setFormData({
       name: '',
       email: '',
+      phone: '',
       subject: '',
       message: ''
     });
   };
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-4">
+    <section className="py-16 bg-gradient-to-br from-gray-50 to-white" id="contact">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-sm font-semibold text-[#FF0000] uppercase tracking-wide mb-4">
             Get In Touch
           </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Contact VisionCraft
+          <h3 className="text-4xl md:text-5xl font-bold text-[#1F1F1F] mb-4">
+            Contact <span className="text-[#FFCC00]">Fork</span> & <span className="text-[#FF0000]">Knife</span>
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions about our products? Need help with your order? We're here to help you find the perfect eyewear solution.
+            Have questions about our menu? Want to place a special order? We're here to serve you the best fast food experience in town.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="space-y-6">
-            <div className="glass-card p-6 text-center">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Phone */}
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#FF0000] to-[#F44336] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Call Us Now</h4>
+              <div className="text-center space-y-2">
+                <p className="text-2xl font-bold text-[#FF0000]">0304-4481181</p>
+                <p className="text-gray-600">Available 24/7 for orders</p>
+                <div className="text-sm text-gray-500">
+                  <p>🕐 Mon-Sun: 11:00 AM - 11:00 PM</p>
+                  <p>🚚 Delivery until 10:30 PM</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#FFCC00] to-[#FFA726] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-[#1F1F1F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Visit Our Store</h4>
-              <p className="text-gray-600">
-                123 Vision Street<br />
-                Eyewear District<br />
-                New York, NY 10001
-              </p>
-            </div>
-
-            <div className="glass-card p-6 text-center">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Visit Our Restaurant</h4>
+              <div className="text-center space-y-2">
+                <p className="text-gray-700 font-medium">
+                  Main Branch<br />
+                  Ali Chowk, D-Block, Tajpura Scheme Lahore<br />
+                </p>
+                <p className="text-sm text-gray-500">
+                  🅿️ Free parking available
+                </p>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h4>
-              <p className="text-gray-600">
-                +1 (555) 123-4567<br />
-                Mon-Fri: 9AM-6PM<br />
-                Sat: 10AM-4PM
-              </p>
             </div>
 
-            <div className="glass-card p-6 text-center">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Email */}
+            {/* <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#FFA726] to-[#FFB300] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-[#1F1F1F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h4>
-              <p className="text-gray-600">
-                info@visioncraft.com<br />
-                support@visioncraft.com<br />
-                sales@visioncraft.com
-              </p>
-            </div>
+              <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Email Us</h4>
+              <div className="text-center space-y-2">
+                <p className="text-gray-700">
+                  orders@forkandknife.com<br />
+                  info@forkandknife.com<br />
+                  support@forkandknife.com
+                </p>
+                <p className="text-sm text-gray-500">
+                  📧 We reply within 2 hours
+                </p>
+              </div>
+            </div> */}
+
+          
           </div>
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="glass-card p-8">
-              <h4 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h4>
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100">
+              <h4 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h4>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -107,12 +127,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF0000] focus:border-[#FF0000] transition-colors"
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -122,14 +142,29 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF0000] focus:border-[#FF0000] transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF0000] focus:border-[#FF0000] transition-colors"
+                    placeholder="03XX-XXXXXXX"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">
                     Subject *
                   </label>
                   <select
@@ -138,20 +173,21 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF0000] focus:border-[#FF0000] transition-colors"
                   >
                     <option value="">Select a subject</option>
+                    <option value="order">Order Inquiry</option>
+                    <option value="menu">Menu Questions</option>
+                    <option value="delivery">Delivery Support</option>
+                    <option value="catering">Catering Services</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="complaint">Complaint</option>
                     <option value="general">General Inquiry</option>
-                    <option value="product">Product Question</option>
-                    <option value="order">Order Support</option>
-                    <option value="return">Returns & Exchanges</option>
-                    <option value="prescription">Prescription Help</option>
-                    <option value="technical">Technical Support</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -161,7 +197,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF0000] focus:border-[#FF0000] transition-colors resize-none"
                     placeholder="Tell us how we can help you..."
                   ></textarea>
                 </div>
@@ -169,46 +205,19 @@ const Contact = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
-                    className="btn-primary flex-1 py-3 text-lg font-semibold"
+                    className="flex-1 bg-[#FF0000] hover:bg-[#F44336] text-white py-3 px-6 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105"
                   >
                     Send Message
                   </button>
                   <button
                     type="button"
-                    className="btn-outline flex-1 py-3 text-lg font-semibold"
-                    onClick={() => setFormData({ name: '', email: '', subject: '', message: '' })}
+                    className="flex-1 bg-transparent border-2 border-[#FFCC00] text-[#FFCC00] hover:bg-[#FFCC00] hover:text-[#1F1F1F] py-3 px-6 rounded-lg font-semibold text-lg transition-all duration-200"
+                    onClick={() => setFormData({ name: '', email: '', phone: '', subject: '', message: '' })}
                   >
                     Clear Form
                   </button>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div className="mt-16">
-          <div className="text-center mb-8">
-            <h4 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h4>
-            <p className="text-gray-600">Quick answers to common questions</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="glass-card p-6">
-              <h5 className="font-semibold text-gray-900 mb-2">How do I know my prescription is current?</h5>
-              <p className="text-gray-600 text-sm">We recommend having your eyes examined every 1-2 years. Your prescription should be no older than 2 years for optimal vision correction.</p>
-            </div>
-            <div className="glass-card p-6">
-              <h5 className="font-semibold text-gray-900 mb-2">What's your return policy?</h5>
-              <p className="text-gray-600 text-sm">We offer a 30-day return policy for all frames. If you're not completely satisfied, return them for a full refund or exchange.</p>
-            </div>
-            <div className="glass-card p-6">
-              <h5 className="font-semibold text-gray-900 mb-2">Do you offer prescription lenses?</h5>
-              <p className="text-gray-600 text-sm">Yes! We offer single vision, progressive, and specialty lenses. Upload your prescription during checkout or visit our store.</p>
-            </div>
-            <div className="glass-card p-6">
-              <h5 className="font-semibold text-gray-900 mb-2">How long does shipping take?</h5>
-              <p className="text-gray-600 text-sm">Standard shipping takes 5-7 business days. Express shipping (2-3 days) and overnight options are available at checkout.</p>
             </div>
           </div>
         </div>

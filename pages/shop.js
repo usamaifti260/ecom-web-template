@@ -16,20 +16,6 @@ export default function ShopPage({ products, clientInfo }) {
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        
-        {/* Shop Header */}
-        <section className="bg-gradient-to-br from-primary-50 to-primary-100 py-16">
-          <div className="container-custom text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Shop Our Collection
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover the perfect eyewear for your style and vision needs. 
-              From classic designs to modern innovations, find your ideal pair today.
-            </p>
-          </div>
-        </section>
-
         <Products products={products} />
         <Footer />
       </div>
