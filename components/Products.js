@@ -155,7 +155,7 @@ const Products = ({ products = [] }) => {
   const getProductsByCategory = () => {
     const categories = {};
 
-    // Then group by actual categories
+    // First group products by category
     products.forEach(product => {
       if (!categories[product.category]) {
         categories[product.category] = [];
@@ -163,7 +163,52 @@ const Products = ({ products = [] }) => {
       categories[product.category].push(product);
     });
     
-    return categories;
+    // Define the desired order
+    const categoryOrder = [
+      'Deals',
+      'Burgers', 
+      'Burger', // Handle both singular and plural
+      'Shawarma',
+      'Pizzas',
+      'Pizza', // Handle both singular and plural
+      'Paratha Rolls',
+      'Fried Chicken',
+      'Chicken', // Handle alternative naming
+      'Fries',
+      'Sandwiches',
+      'Sandwich' // Handle both singular and plural
+    ];
+    
+    // Create ordered categories object
+    const orderedCategories = {};
+    
+    // First add categories in the specified order
+    categoryOrder.forEach(categoryName => {
+      if (categories[categoryName]) {
+        // Sort products by createdAt (earliest first)
+        const sortedProducts = categories[categoryName].sort((a, b) => {
+          const dateA = new Date(a.createdAt || 0);
+          const dateB = new Date(b.createdAt || 0);
+          return dateA - dateB;
+        });
+        orderedCategories[categoryName] = sortedProducts;
+      }
+    });
+    
+    // Then add any remaining categories not in the specified order
+    Object.keys(categories).forEach(categoryName => {
+      if (!categoryOrder.includes(categoryName)) {
+        // Sort products by createdAt (earliest first)
+        const sortedProducts = categories[categoryName].sort((a, b) => {
+          const dateA = new Date(a.createdAt || 0);
+          const dateB = new Date(b.createdAt || 0);
+          return dateA - dateB;
+        });
+        orderedCategories[categoryName] = sortedProducts;
+      }
+    });
+    
+    return orderedCategories;
   };
 
   const categorizedProducts = getProductsByCategory();
@@ -304,6 +349,7 @@ const Products = ({ products = [] }) => {
     const currentPrice = getCurrentPrice(product);
     const currentOriginalPrice = getCurrentOriginalPrice(product);
     const showingDealDetails = showingDetails[product.id];
+
     
     return (
       <div className={`${theme.cardBg} ${theme.cardBorder} border rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden`}>
@@ -354,8 +400,9 @@ const Products = ({ products = [] }) => {
             </div>
           )}
 
+
           {/* Pizza Size Selection */}
-          {isPizza && (
+          {isPizza && product.sizes && (
             <div className="mb-3">
               <div className="flex flex-wrap gap-1 md:gap-2">
                 {product.sizes.map((size) => {
@@ -381,7 +428,7 @@ const Products = ({ products = [] }) => {
                 })}
               </div>
             </div>
-          )}
+           )} 
 
           {/* Price */}
           <div className="flex items-center justify-between mb-2 md:mb-4">
