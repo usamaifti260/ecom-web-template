@@ -64,19 +64,28 @@ const Products = ({ products = [] }) => {
     }));
   };
 
-  // Check if product has sizes (more flexible check)
-  const hasProductSizes = (product) => {
-    const isPizzaCategory = product.category && (
+  // Check if product is a pizza (category-based check)
+  const isPizzaProduct = (product) => {
+    return product.category && (
       product.category.toLowerCase().includes('pizza') ||
       product.category.toLowerCase() === 'pizzas' ||
       product.category.toLowerCase() === 'pizza'
     );
-    return isPizzaCategory && product.sizes && Array.isArray(product.sizes) && product.sizes.length > 0;
+  };
+
+  // Check if product has sizes available
+  const hasProductSizes = (product) => {
+    return product.sizes && Array.isArray(product.sizes) && product.sizes.length > 0;
+  };
+
+  // Check if product should show size selection (only pizzas with sizes)
+  const shouldShowSizeSelection = (product) => {
+    return isPizzaProduct(product) && hasProductSizes(product);
   };
 
   // Get current price based on selected size
   const getCurrentPrice = (product) => {
-    if (hasProductSizes(product)) {
+    if (shouldShowSizeSelection(product)) {
       const selectedSize = getSelectedSize(product.id);
       if (selectedSize) {
         return getSizePricing(product.price, selectedSize);
@@ -89,7 +98,7 @@ const Products = ({ products = [] }) => {
 
   // Get current original price based on selected size
   const getCurrentOriginalPrice = (product) => {
-    if (hasProductSizes(product) && product.originalPrice) {
+    if (shouldShowSizeSelection(product) && product.originalPrice) {
       const selectedSize = getSelectedSize(product.id);
       if (selectedSize) {
         return getSizePricing(product.originalPrice, selectedSize);
@@ -103,7 +112,7 @@ const Products = ({ products = [] }) => {
   // Helper function to handle add to cart
   const handleAddToCart = async (product) => {
     // For pizzas, ensure a size is selected
-    if (hasProductSizes(product)) {
+    if (shouldShowSizeSelection(product)) {
       const selectedSize = getSelectedSize(product.id);
       if (!selectedSize) {
         // Auto-select small size if none selected
@@ -289,7 +298,7 @@ const Products = ({ products = [] }) => {
 
   // Render product card with pizza size selection
   const renderProductCard = (product, theme) => {
-    const isPizza = hasProductSizes(product);
+    const isPizza = shouldShowSizeSelection(product);
     const isDeal = product.category === 'Deals';
     const selectedSize = isPizza ? getSelectedSize(product.id) : null;
     const currentPrice = getCurrentPrice(product);
@@ -347,7 +356,6 @@ const Products = ({ products = [] }) => {
 
           {/* Pizza Size Selection */}
           {isPizza && (
-            console.log("Inside Pizza Card"),
             <div className="mb-3">
               <div className="flex flex-wrap gap-1 md:gap-2">
                 {product.sizes.map((size) => {
