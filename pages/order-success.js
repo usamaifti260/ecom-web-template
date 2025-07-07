@@ -37,9 +37,10 @@ export default function OrderSuccessPage() {
   }, [orderId, router]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-PK', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'PKR',
+      minimumFractionDigits: 0
     }).format(price);
   };
 
@@ -55,12 +56,14 @@ export default function OrderSuccessPage() {
 
   const getEstimatedDelivery = () => {
     const orderDate = new Date(orderData.processedAt);
-    const deliveryDate = new Date(orderDate.getTime() + (5 * 24 * 60 * 60 * 1000)); // 5 days from order
+    const deliveryDate = new Date(orderDate.getTime() + (60 * 60 * 1000)); // 1 hour from order
     return deliveryDate.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
   };
 
@@ -68,7 +71,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Confirmation - VisionCraft</title>
+          <title>Order Confirmation - Fork & Knife Fast Food</title>
           <meta name="description" content="Order confirmation" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -76,7 +79,7 @@ export default function OrderSuccessPage() {
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF0000] mx-auto mb-4"></div>
             <p className="text-gray-600">Loading order details...</p>
           </div>
         </div>
@@ -88,7 +91,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Not Found - VisionCraft</title>
+          <title>Order Not Found - Fork & Knife Fast Food</title>
           <meta name="description" content="Order not found" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -97,13 +100,13 @@ export default function OrderSuccessPage() {
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
             <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-12 h-12 text-[#FF0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Order Not Found</h1>
             <p className="text-gray-600 mb-6">The order you're looking for could not be found.</p>
-            <Link href="/shop" className="btn-primary px-6 py-3">
+            <Link href="/shop" className="bg-[#FF0000] hover:bg-[#CC0000] text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
               Continue Shopping
             </Link>
           </div>
@@ -122,7 +125,7 @@ export default function OrderSuccessPage() {
       </Head>
 
       <div className="min-h-screen bg-gray-50">
-        <div className="container-custom py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Success Header */}
           <div className="text-center mb-8">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -132,18 +135,18 @@ export default function OrderSuccessPage() {
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmed!</h1>
             <p className="text-lg text-gray-600 mb-4">
-              Thank you for your purchase. Your order has been successfully placed.
+              Thank you for ordering from Fork & Knife! Your delicious meal is being prepared.
             </p>
-            <div className="bg-primary-50 border border-primary-200 rounded-lg p-4 inline-block">
-              <p className="text-sm text-primary-800">
+            <div className="bg-[#FFCC00] bg-opacity-20 border border-[#FFCC00] rounded-lg p-4 inline-block">
+              <p className="text-sm text-gray-800">
                 <strong>Order ID:</strong> {orderData.orderId}
               </p>
               {orderData.backendOrderNumber && (
-                <p className="text-sm text-primary-800 mt-1">
-                  <strong>Backend Order #:</strong> {orderData.backendOrderNumber}
+                <p className="text-sm text-gray-800 mt-1">
+                  <strong>Restaurant Order #:</strong> {orderData.backendOrderNumber}
                 </p>
               )}
-              <p className="text-sm text-primary-700 mt-1">
+              <p className="text-sm text-gray-700 mt-1">
                 Order placed on {formatDate(orderData.processedAt)}
               </p>
             </div>
@@ -157,14 +160,14 @@ export default function OrderSuccessPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-[#FF0000] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-[#FF0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Shipping Address</p>
+                      <p className="font-medium text-gray-900">Delivery Address</p>
                       <p className="text-sm text-gray-600 mt-1">
                         {orderData.customer.firstName} {orderData.customer.lastName}<br />
                         {orderData.customer.address}<br />
@@ -175,9 +178,9 @@ export default function OrderSuccessPage() {
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a4 4 0 118 0v4m-4 12v-6m-6 6h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                    <div className="w-8 h-8 bg-[#FFCC00] bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-[#FFCC00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
@@ -186,15 +189,15 @@ export default function OrderSuccessPage() {
                         {getEstimatedDelivery()}
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Standard shipping (5-7 business days)
+                        Fast delivery within 45-60 minutes
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
                     <div>
@@ -224,7 +227,7 @@ export default function OrderSuccessPage() {
                   </div>
                   {orderData.customer.notes && (
                     <div>
-                      <p className="text-sm font-medium text-gray-700">Order Notes</p>
+                      <p className="text-sm font-medium text-gray-700">Special Instructions</p>
                       <p className="text-sm text-gray-600">{orderData.customer.notes}</p>
                     </div>
                   )}
@@ -232,34 +235,34 @@ export default function OrderSuccessPage() {
               </div>
 
               {/* What's Next */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 mb-4">What happens next?</h3>
+              <div className="bg-[#FF0000] bg-opacity-5 border border-[#FF0000] border-opacity-20 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-[#FF0000] mb-4">What happens next?</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-[#FF0000] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <span className="text-xs font-bold text-white">1</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-blue-900">Order Processing</p>
-                      <p className="text-xs text-blue-700">We'll prepare your glasses with care</p>
+                      <p className="text-sm font-medium text-gray-900">Order Confirmed</p>
+                      <p className="text-xs text-gray-700">Your order has been received and is being prepared</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-white">2</span>
+                    <div className="w-6 h-6 bg-[#FFCC00] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold text-black">2</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-blue-900">Shipping</p>
-                      <p className="text-xs text-blue-700">Your order will be shipped within 1-2 business days</p>
+                      <p className="text-sm font-medium text-gray-900">Cooking in Progress</p>
+                      <p className="text-xs text-gray-700">Our chefs are preparing your fresh meal</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <span className="text-xs font-bold text-white">3</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-blue-900">Delivery & Payment</p>
-                      <p className="text-xs text-blue-700">Pay the delivery person when you receive your order</p>
+                      <p className="text-sm font-medium text-gray-900">Out for Delivery</p>
+                      <p className="text-xs text-gray-700">Your hot meal is on its way to you</p>
                     </div>
                   </div>
                 </div>
@@ -273,7 +276,7 @@ export default function OrderSuccessPage() {
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {orderData.items.map((item, index) => (
-                  <div key={`${item.id}-${item.selectedColor}-${index}`} className="flex items-center space-x-4">
+                  <div key={`${item.id}-${item.selectedSize || item.selectedColor}-${index}`} className="flex items-center space-x-4">
                     <div className="relative w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={item.image}
@@ -285,10 +288,29 @@ export default function OrderSuccessPage() {
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-medium text-gray-900 truncate">
                         {item.name}
+                        {item.selectedSize && ` (${item.selectedSize})`}
                       </h4>
-                      <p className="text-xs text-gray-500">
-                        {item.selectedColor && `Color: ${item.selectedColor}`}
-                      </p>
+                      {item.selectedColor && (
+                        <p className="text-xs text-gray-500">
+                          Color: {item.selectedColor}
+                        </p>
+                      )}
+                      {item.features && item.features.length > 0 && (
+                        <div className="mt-1">
+                          <p className="text-xs text-[#FFCC00] font-medium">🎯 Includes:</p>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {item.features.slice(0, 2).map((feature, idx) => (
+                              <div key={idx} className="flex items-center">
+                                <span className="text-[#FFCC00] mr-1">✓</span>
+                                {feature}
+                              </div>
+                            ))}
+                            {item.features.length > 2 && (
+                              <span className="text-gray-400">+{item.features.length - 2} more</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
                       <p className="text-xs text-gray-500">
                         Quantity: {item.quantity}
                       </p>
@@ -326,7 +348,7 @@ export default function OrderSuccessPage() {
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
+                  <span className="text-gray-600">Delivery</span>
                   <span className="font-medium text-green-600">FREE</span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
@@ -339,12 +361,12 @@ export default function OrderSuccessPage() {
 
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
-                <Link href="/shop" className="w-full btn-primary block text-center py-3">
-                  Continue Shopping
+                <Link href="/shop" className="w-full bg-[#FF0000] hover:bg-[#CC0000] text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
+                  Order More Food
                 </Link>
                 <button 
                   onClick={() => window.print()}
-                  className="w-full btn-outline py-3"
+                  className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-lg font-medium transition-colors duration-200"
                 >
                   Print Order Details
                 </button>

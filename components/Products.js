@@ -333,7 +333,7 @@ const Products = ({ products = [] }) => {
             <div className="mb-3">
               <div className="flex flex-wrap gap-1 md:gap-2">
                 {product.sizes.map((size) => {
-                  const isSelected = selectedSize === size || (!selectedSize && size === product.sizes[0]);
+                  const isSelected = selectedSize === size/* || (!selectedSize && size === product.sizes[0] )*/;
                   const sizePrice = getSizePricing(product.price, size);
                   
                   return (
