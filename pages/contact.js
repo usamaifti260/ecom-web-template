@@ -7,8 +7,8 @@ export default function ContactPage() {
   return (
     <>
       <Head>
-        <title>Contact Us - VisionCraft</title>
-        <meta name="description" content="Get in touch with VisionCraft. We're here to help you find the perfect eyewear solution. Contact us for product questions, orders, and support." />
+        <title>Fork & Knife Fast Food</title>
+        <meta name="description" content="Get in touch with Fork & Knife Fast Food. We're here to help you find the perfect fast food solution. Contact us for product questions, orders, and support." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

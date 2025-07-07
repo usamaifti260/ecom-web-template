@@ -115,7 +115,7 @@ export default function OrderSuccessPage() {
   return (
     <>
       <Head>
-        <title>Order Confirmation - VisionCraft</title>
+        <title>Order Confirmation - Fork & Knife Fast Food</title>
         <meta name="description" content="Your order has been confirmed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

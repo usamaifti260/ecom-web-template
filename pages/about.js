@@ -7,8 +7,8 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>About Us - VisionCraft</title>
-        <meta name="description" content="Learn about VisionCraft's mission to provide premium eyewear that enhances your vision and elevates your style. Crafting perfect vision since 2010." />
+        <title>About Us - Fork & Knife Fast Food</title>
+        <meta name="description" content="Learn about Fork & Knife Fast Food's mission to provide delicious fast food that satisfies your taste. Crafting perfect food since 2025." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -8,8 +8,8 @@ export default function ShopPage({ products, clientInfo }) {
   return (
     <>
       <Head>
-        <title>Shop - VisionCraft Eyewear Collection</title>
-        <meta name="description" content="Browse our complete collection of premium eyewear. Find the perfect glasses for your style and vision needs." />
+        <title>Shop - Fork & Knife Fast Food</title>
+        <meta name="description" content="Browse our complete collection of delicious fast food. Find the perfect food for your taste." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -28,13 +28,13 @@ export async function getStaticProps() {
     console.log('Fetching products for shop page...');
     
     // Fetch products at build time - specify the schema for glasses
-    const schemaSlug = 'glass-store-schema';
+    const schemaSlug = 'forkandknife';
     const products = await fetchClientProducts(schemaSlug);
     
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'VisionCraft',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium eyewear designed to enhance your vision and elevate your style',
+      businessName: process.env.BUSINESS_NAME || 'Fork & Knife Fast Food',
+      description: process.env.BUSINESS_DESCRIPTION || 'Delicious fast food delivered to your door! Pizza, burgers, shawarma, and more.',
       contact: process.env.BUSINESS_CONTACT || null
     };
 
@@ -58,7 +58,7 @@ export async function getStaticProps() {
       props: {
         products: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'VisionCraft',
+          businessName: process.env.BUSINESS_NAME || 'Fork & Knife Fast Food',
           description: isDevelopment 
             ? 'Development mode - check your data/products.json file' 
             : 'Product catalog temporarily unavailable'
