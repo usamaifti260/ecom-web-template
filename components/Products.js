@@ -83,7 +83,7 @@ const Products = ({ products = [], categories = [] }) => {
         <div className="relative h-48 sm:h-64 md:h-72 overflow-hidden cursor-pointer">
           {product.onSale && (
             <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold z-10">
-                {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                {product.salepercentage/* || Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)*/}% OFF
               </div>
             )}
           {product.isNew && (
