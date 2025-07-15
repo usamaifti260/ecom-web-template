@@ -6,12 +6,25 @@ import { useNotification } from '@/lib/NotificationContext';
 
 export default function OrderFailedPage() {
   const router = useRouter();
-  const { reason } = router.query;
   const { showInfoNotification } = useNotification();
   
+  const [reason, setReason] = useState(null);
   const [errorReason, setErrorReason] = useState('unknown');
   const [retryCount, setRetryCount] = useState(0);
   const [failedOrderData, setFailedOrderData] = useState(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure component is mounted before accessing router
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !router.isReady) return;
+    
+    const { reason: queryReason } = router.query;
+    setReason(queryReason);
+  }, [mounted, router.isReady, router.query]);
 
   useEffect(() => {
     if (reason) {
@@ -19,12 +32,14 @@ export default function OrderFailedPage() {
     }
     
     // Load failed order data if available
-    const lastFailedOrder = localStorage.getItem('lastFailedOrder');
-    if (lastFailedOrder) {
-      try {
-        setFailedOrderData(JSON.parse(lastFailedOrder));
-      } catch (error) {
-        console.error('Error parsing failed order data:', error);
+    if (typeof window !== 'undefined') {
+      const lastFailedOrder = localStorage.getItem('lastFailedOrder');
+      if (lastFailedOrder) {
+        try {
+          setFailedOrderData(JSON.parse(lastFailedOrder));
+        } catch (error) {
+          console.error('Error parsing failed order data:', error);
+        }
       }
     }
   }, [reason]);

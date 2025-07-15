@@ -6,33 +6,46 @@ import Link from 'next/link';
 
 export default function OrderSuccessPage() {
   const router = useRouter();
-  const { orderId } = router.query;
+  const [orderId, setOrderId] = useState(null);
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure component is mounted before accessing router
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (orderId) {
-      // Load order data from localStorage
-      try {
-        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-        const order = orders.find(o => o.orderId === orderId);
-        
-        if (order) {
-          setOrderData(order);
-        } else {
-          // Redirect to shop if order not found
-          setTimeout(() => {
-            router.push('/shop');
-          }, 3000);
-        }
-      } catch (error) {
-        console.error('Error loading order data:', error);
+    if (!mounted || !router.isReady) return;
+    
+    const { orderId: queryOrderId } = router.query;
+    setOrderId(queryOrderId);
+  }, [mounted, router.isReady, router.query]);
+
+  useEffect(() => {
+    if (!orderId) return;
+    
+    // Load order data from localStorage
+    try {
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const order = orders.find(o => o.orderId === orderId);
+      
+      if (order) {
+        setOrderData(order);
+      } else {
+        // Redirect to shop if order not found
         setTimeout(() => {
           router.push('/shop');
         }, 3000);
-      } finally {
-        setLoading(false);
       }
+    } catch (error) {
+      console.error('Error loading order data:', error);
+      setTimeout(() => {
+        router.push('/shop');
+      }, 3000);
+    } finally {
+      setLoading(false);
     }
   }, [orderId, router]);
 
@@ -65,7 +78,8 @@ export default function OrderSuccessPage() {
     });
   };
 
-  if (loading) {
+  // Show loading state while mounting or loading order data
+  if (!mounted || loading) {
     return (
       <>
         <Head>
