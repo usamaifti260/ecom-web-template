@@ -4,6 +4,7 @@ import { CartProvider } from '@/lib/CartContext';
 import { NotificationProvider } from '@/lib/NotificationContext';
 import Cart from '@/components/Cart';
 import Notification from '@/components/Notification';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
         <Cart />
         <Notification />
+        <FloatingWhatsApp />
       </NotificationProvider>
     </CartProvider>
   );

@@ -35,8 +35,11 @@ const Footer = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Stay Updated with Latest Collections
             </h3>
-            <p className="text-yellow-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-yellow-100 mb-2 max-w-2xl mx-auto">
               Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and fashion tips.
+            </p>
+            <p className="text-yellow-100 mb-8 max-w-2xl mx-auto font-semibold">
+              ✨ Plus, enjoy our 7-day return and exchange policy on all purchases!
             </p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
               <input
@@ -87,7 +90,7 @@ const Footer = () => {
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Fast Nationwide Delivery</span>
+                  <span className="text-gray-300 text-sm">7-Day Return Policy</span>
                 </div>
               </div>
             </div>
@@ -122,20 +125,26 @@ const Footer = () => {
                   <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="text-gray-300">0304-4481181</span>
+                  <span className="text-gray-300">0306-0007061</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-gray-300">info@hathkariofficial.com</span>
+                  <span className="text-gray-300">ayeshanaeem89299@gmail.com</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <svg className="w-5 h-5 text-yellow-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-gray-300">Karachi, Pakistan</span>
+                  <span className="text-gray-300">Lahore, Pakistan</span>
+                </div>
+                <div className="flex items-center space-x-3 mt-4 p-3 bg-gray-800 rounded-lg">
+                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span className="text-green-400 font-semibold text-sm">7-Day Return & Exchange</span>
                 </div>
               </div>
             </div>
@@ -184,7 +193,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a 
-                  href="#" 
+                  href="https://wa.me/923060007061" 
                   className="bg-gray-800 hover:bg-yellow-600 p-3 rounded-full transition-colors duration-200"
                   aria-label="WhatsApp"
                 >

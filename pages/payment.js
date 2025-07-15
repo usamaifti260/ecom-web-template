@@ -318,6 +318,42 @@ export default function PaymentPage() {
                 </div>
               </div>
 
+              {/* Return Policy Section */}
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <span className="text-2xl mr-2">🔄</span>
+                  Return & Exchange Policy
+                </h3>
+                <div className="space-y-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-green-800 mb-2">7-Day Return Policy</p>
+                        <ul className="text-sm text-green-700 space-y-1">
+                          <li>• Easy returns & exchanges within 7 days of purchase</li>
+                          <li>• Items must be in original condition with tags</li>
+                          <li>• Free return pickup for defective items</li>
+                          <li>• Full refund or exchange as per your preference</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-gray-600">
+                      Questions about returns? 
+                      <a href="tel:0306-0007061" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
+                        Call us at 0306-0007061
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Delivery Information */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
                 <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
@@ -412,6 +448,21 @@ export default function PaymentPage() {
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
                     <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Satisfaction Guarantee */}
+              <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-blue-800">Satisfaction Guarantee</p>
+                    <p className="text-sm text-blue-700">Not happy? Return within 7 days for full refund!</p>
                   </div>
                 </div>
               </div>

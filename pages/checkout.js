@@ -266,7 +266,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.phone ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="0304-4481181"
+                        placeholder="0306-0007061"
                       />
                       {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
@@ -488,6 +488,21 @@ export default function CheckoutPage() {
                   <div>
                     <p className="font-semibold">Cash on Delivery</p>
                     <p className="text-sm opacity-90">Pay when you receive your order</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Return Policy Info */}
+              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-green-800">7-Day Return Policy</p>
+                    <p className="text-sm text-green-700">Shop with confidence! Easy returns & exchanges within 7 days.</p>
                   </div>
                 </div>
               </div>
