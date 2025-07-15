@@ -53,9 +53,9 @@ export default function CheckoutPage() {
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
-      removeItem(item.id, item.selectedColor);
+      removeItem(item.id, item.selectedSize);
     } else {
-      updateQuantity(item.id, item.selectedColor, newQuantity);
+      updateQuantity(item.id, item.selectedSize, newQuantity);
     }
   };
 
@@ -101,9 +101,9 @@ export default function CheckoutPage() {
     setIsProcessing(true);
     
     try {
-      // Calculate delivery fee
-      const deliveryFee = totalPrice >= 1000 ? 0 : 150;
-      const finalTotal = totalPrice + deliveryFee;
+      // Calculate shipping fee
+      const shippingFee = totalPrice >= 3000 ? 0 : 200;
+      const finalTotal = totalPrice + shippingFee;
       
       // Prepare order data
       const orderData = {
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
         items: items,
         summary: {
           subtotal: totalPrice,
-          deliveryFee: deliveryFee,
+          shippingFee: shippingFee,
           total: finalTotal,
           itemCount
         },
@@ -140,21 +140,21 @@ export default function CheckoutPage() {
     return (
       <>
         <Head>
-          <title>Checkout - Fork & Knife Fast Food</title>
-          <meta name="description" content="Complete your food order" />
+          <title>Checkout - Hathkari Official</title>
+          <meta name="description" content="Complete your clothing order" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <div className="min-h-screen bg-gradient-to-br from-[#1F1F1F] to-[#2E2E2E] flex items-center justify-center">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-32 h-32 bg-gradient-to-br from-[#FF0000] to-[#F44336] rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-6xl">🍽️</span>
+            <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-6xl">👗</span>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-3">Your cart is empty</h1>
-            <p className="text-[#C0C0C0] mb-6">Add some delicious food to your cart before checking out.</p>
-            <Link href="/shop" className="bg-gradient-to-r from-[#FF0000] to-[#F44336] text-white px-8 py-3 rounded-lg font-semibold hover:from-[#F44336] hover:to-[#FF0000] transition-all duration-300">
-              🍕 Browse Menu
+            <h1 className="text-3xl font-bold text-gray-800 mb-3">Your cart is empty</h1>
+            <p className="text-gray-600 mb-6">Add some beautiful clothes to your cart before checking out.</p>
+            <Link href="/shop" className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
+              ✨ Browse Collection
             </Link>
           </div>
         </div>
@@ -165,42 +165,42 @@ export default function CheckoutPage() {
   return (
     <>
       <Head>
-        <title>Checkout - Fork & Knife Fast Food</title>
-        <meta name="description" content="Complete your food order" />
+        <title>Checkout - Hathkari Official</title>
+        <meta name="description" content="Complete your clothing order" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-[#1F1F1F] to-[#2E2E2E]">
+      <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
-            <nav className="flex items-center space-x-2 text-sm text-[#C0C0C0] mb-4">
-              <Link href="/shop" className="hover:text-[#FFCC00] transition-colors">🍕 Menu</Link>
+            <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+              <Link href="/shop" className="hover:text-yellow-600 transition-colors">👗 Shop</Link>
               <span>→</span>
-              <span className="text-[#FFCC00] font-medium">Checkout</span>
+              <span className="text-yellow-600 font-medium">Checkout</span>
             </nav>
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-2">
-                <span className="text-[#FFCC00]">FORK</span> & <span className="text-[#FF0000]">KNIFE</span>
+              <h1 className="text-4xl font-bold text-gray-800 mb-2">
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">HATHKARI</span> <span className="text-gray-800">OFFICIAL</span>
               </h1>
-              <p className="text-[#C0C0C0]">Complete your delicious order</p>
+              <p className="text-gray-600">Complete your beautiful order</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Checkout Form */}
-            <div className="bg-gradient-to-br from-[#2E2E2E] to-[#333333] rounded-2xl shadow-2xl p-8 border border-gray-600">
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Customer Information */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
                     <span className="text-2xl mr-2">👤</span>
                     Customer Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
                         First Name *
                       </label>
                       <input
@@ -209,15 +209,15 @@ export default function CheckoutPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                          errors.firstName ? 'border-red-500' : 'border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                          errors.firstName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="John"
+                        placeholder="Fatima"
                       />
-                      {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
+                      {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
                         Last Name *
                       </label>
                       <input
@@ -226,17 +226,17 @@ export default function CheckoutPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                          errors.lastName ? 'border-red-500' : 'border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                          errors.lastName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="Doe"
+                        placeholder="Khan"
                       />
-                      {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
+                      {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                         Email Address *
                       </label>
                       <input
@@ -245,15 +245,15 @@ export default function CheckoutPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                          errors.email ? 'border-red-500' : 'border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                          errors.email ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="john@example.com"
+                        placeholder="fatima@example.com"
                       />
-                      {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                         Phone Number *
                       </label>
                       <input
@@ -262,25 +262,25 @@ export default function CheckoutPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                          errors.phone ? 'border-red-500' : 'border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                          errors.phone ? 'border-red-500' : 'border-gray-300'
                         }`}
                         placeholder="0304-4481181"
                       />
-                      {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
+                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
                   </div>
                 </div>
 
                 {/* Delivery Address */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
                     <span className="text-2xl mr-2">🚚</span>
                     Delivery Address
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <label htmlFor="address" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                      <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
                         Street Address *
                       </label>
                       <input
@@ -289,16 +289,16 @@ export default function CheckoutPage() {
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                          errors.address ? 'border-red-500' : 'border-gray-600'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                          errors.address ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="123 Food Street"
+                        placeholder="123 Fashion Street"
                       />
-                      {errors.address && <p className="text-red-400 text-xs mt-1">{errors.address}</p>}
+                      {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <label htmlFor="city" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                        <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
                           City *
                         </label>
                         <input
@@ -307,15 +307,15 @@ export default function CheckoutPage() {
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                            errors.city ? 'border-red-500' : 'border-gray-600'
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                            errors.city ? 'border-red-500' : 'border-gray-300'
                           }`}
                           placeholder="Lahore"
                         />
-                        {errors.city && <p className="text-red-400 text-xs mt-1">{errors.city}</p>}
+                        {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
                       </div>
                       <div>
-                        <label htmlFor="area" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                        <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-1">
                           Area *
                         </label>
                         <input
@@ -324,15 +324,15 @@ export default function CheckoutPage() {
                           name="area"
                           value={formData.area}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-[#1F1F1F] border rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200 ${
-                            errors.area ? 'border-red-500' : 'border-gray-600'
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
+                            errors.area ? 'border-red-500' : 'border-gray-300'
                           }`}
                           placeholder="Model Town"
                         />
-                        {errors.area && <p className="text-red-400 text-xs mt-1">{errors.area}</p>}
+                        {errors.area && <p className="text-red-500 text-xs mt-1">{errors.area}</p>}
                       </div>
                       <div>
-                        <label htmlFor="zipCode" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                        <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
                           ZIP Code
                         </label>
                         <input
@@ -341,7 +341,7 @@ export default function CheckoutPage() {
                           name="zipCode"
                           value={formData.zipCode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-[#1F1F1F] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200"
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
                           placeholder="54000"
                         />
                       </div>
@@ -351,12 +351,12 @@ export default function CheckoutPage() {
 
                 {/* Additional Information */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-4 flex items-center">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
                     <span className="text-2xl mr-2">📝</span>
                     Additional Information
                   </h3>
                   <div>
-                    <label htmlFor="notes" className="block text-sm font-medium text-[#C0C0C0] mb-1">
+                    <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
                       Order Notes (Optional)
                     </label>
                     <textarea
@@ -365,8 +365,8 @@ export default function CheckoutPage() {
                       value={formData.notes}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 bg-[#1F1F1F] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFCC00] focus:border-[#FFCC00] transition-all duration-200"
-                      placeholder="Any special instructions for your order... (e.g., extra spicy, no onions, etc.)"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
+                      placeholder="Any special instructions for your order... (e.g., size preferences, color notes, etc.)"
                     />
                   </div>
                 </div>
@@ -378,8 +378,8 @@ export default function CheckoutPage() {
                     disabled={isProcessing}
                     className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${
                       isProcessing
-                        ? 'bg-gray-600 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-[#FF0000] to-[#F44336] hover:from-[#F44336] hover:to-[#FF0000] transform hover:scale-105'
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                     } text-white`}
                   >
                     {isProcessing ? (
@@ -399,18 +399,18 @@ export default function CheckoutPage() {
             </div>
 
             {/* Order Summary */}
-            <div className="bg-gradient-to-br from-[#2E2E2E] to-[#333333] rounded-2xl shadow-2xl p-8 border border-gray-600 h-fit">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                <span className="text-2xl mr-2">🛒</span>
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-fit">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <span className="text-2xl mr-2">🛍️</span>
                 Order Summary
               </h3>
               
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {items.map((item, index) => (
-                  <div key={`${item.id}-${item.selectedColor}-${index}`} className="bg-[#1F1F1F] rounded-lg p-4 border border-gray-600">
+                  <div key={`${item.id}-${item.selectedSize}-${index}`} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                     <div className="flex items-center space-x-4">
-                      <div className="relative w-16 h-16 bg-gradient-to-br from-[#FF0000] to-[#F44336] rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="relative w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -419,49 +419,32 @@ export default function CheckoutPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-medium text-white truncate">
+                        <h4 className="text-sm font-medium text-gray-800 truncate">
                           {item.name}
                         </h4>
-                        <p className="text-xs text-[#C0C0C0] mb-2">
-                          {item.category}
+                        <p className="text-xs text-gray-600 mb-2">
+                          {item.category} {item.selectedSize && `• ${item.selectedSize}`}
                         </p>
                         
-                        {/* Deal Features - Only show for deals */}
-                        {item.category === 'Deals' && item.features && (
-                          <div className="mt-2 mb-2">
-                            <div className="bg-[#2E2E2E] rounded-md p-2 border border-gray-600">
-                              <p className="text-xs font-medium text-[#FFCC00] mb-1">🎯 Includes:</p>
-                              <ul className="space-y-0.5">
-                                {item.features.map((feature, featureIndex) => (
-                                  <li key={featureIndex} className="text-xs text-[#C0C0C0] flex items-center">
-                                    <span className="text-[#FFCC00] mr-1 text-xs">✓</span>
-                                    {feature}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        )}
-                        
-                        <p className="text-sm font-semibold text-[#FFCC00]">
+                        <p className="text-sm font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
                           {formatPrice(item.price)}
                         </p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                          className="w-8 h-8 flex items-center justify-center border border-gray-600 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-200 text-white"
+                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-gray-100 hover:border-gray-400 transition-all duration-200 text-gray-600"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                           </svg>
                         </button>
-                        <span className="w-8 text-center text-sm font-medium text-white">
+                        <span className="w-8 text-center text-sm font-medium text-gray-800">
                           {item.quantity}
                         </span>
                         <button
                           onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                          className="w-8 h-8 flex items-center justify-center border border-gray-600 rounded-lg hover:bg-[#FFCC00] hover:border-[#FFCC00] transition-all duration-200 text-white hover:text-[#1F1F1F]"
+                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-yellow-500 hover:border-yellow-500 transition-all duration-200 text-gray-600 hover:text-white"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -474,29 +457,29 @@ export default function CheckoutPage() {
               </div>
 
               {/* Totals */}
-              <div className="border-t border-gray-600 pt-4 space-y-2">
+              <div className="border-t border-gray-200 pt-4 space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#C0C0C0]">Subtotal ({itemCount} items)</span>
-                  <span className="font-medium text-white">{formatPrice(totalPrice)}</span>
+                  <span className="text-gray-600">Subtotal ({itemCount} items)</span>
+                  <span className="font-medium text-gray-800">{formatPrice(totalPrice)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#C0C0C0]">Delivery Fee</span>
-                  <span className="font-medium text-[#FFCC00]">
-                    {totalPrice >= 1000 ? 'FREE' : 'Rs. 150'}
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium text-green-600">
+                    {totalPrice >= 3000 ? 'FREE' : 'Rs. 200'}
                   </span>
                 </div>
-                <div className="border-t border-gray-600 pt-2">
+                <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
-                    <span className="text-base font-semibold text-white">Total</span>
-                    <span className="text-base font-semibold text-[#FFCC00]">
-                      {formatPrice(totalPrice >= 1000 ? totalPrice : totalPrice + 150)}
+                    <span className="text-base font-semibold text-gray-800">Total</span>
+                    <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+                      {formatPrice(totalPrice >= 3000 ? totalPrice : totalPrice + 200)}
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Payment Method */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-[#FF0000] to-[#F44336] rounded-lg">
+              <div className="mt-6 p-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg">
                 <div className="flex items-center space-x-3 text-white">
                   <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                     <span className="text-lg">💰</span>
@@ -508,11 +491,11 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Free Delivery Info */}
-              {totalPrice < 1000 && (
-                <div className="mt-4 p-3 bg-[#FFCC00] bg-opacity-10 border border-[#FFCC00] rounded-lg">
-                  <p className="text-[#FFCC00] text-sm text-center">
-                    🚚 Add Rs. {(1000 - totalPrice).toFixed(0)} more for FREE delivery!
+              {/* Free Shipping Info */}
+              {totalPrice < 3000 && (
+                <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-700 text-sm text-center">
+                    🚚 Add Rs. {(3000 - totalPrice).toFixed(0)} more for FREE shipping!
                   </p>
                 </div>
               )}
@@ -520,6 +503,6 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
-          </>
-    );
-  } 
+    </>
+  );
+} 

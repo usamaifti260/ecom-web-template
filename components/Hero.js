@@ -1,242 +1,166 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  const foodItems = [
-    { emoji: '🍔', name: 'Burgers', price: 'From Rs. 250', color: '#FF0000' },
-    { emoji: '🍕', name: 'Pizza', price: 'From Rs. 800', color: '#FFCC00' },
-    { emoji: '🌯', name: 'Shawarma', price: 'From Rs. 200', color: '#FFA726' },
-    { emoji: '🍟', name: 'Fries', price: 'From Rs. 150', color: '#F44336' },
-    { emoji: '🥤', name: 'Drinks', price: 'From Rs. 100', color: '#FF0000' },
-    { emoji: '🍗', name: 'Chicken', price: 'From Rs. 300', color: '#FFCC00' }
+  // Banner images for clothing store
+  const bannerImages = [
+    {
+      id: 1,
+      image: 'https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      title: 'Elegant Eastern Wear',
+      subtitle: 'Discover timeless beauty in our premium collection',
+      category: '3 Piece Collection',
+      offer: 'Up to 30% Off'
+    },
+    {
+      id: 2,
+      image: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      title: 'Stunning Co-ord Sets',
+      subtitle: 'Perfect harmony of style and comfort',
+      category: 'Co-ord Collection',
+      offer: 'New Arrivals'
+    },
+    {
+      id: 3,
+      image: 'https://res.cloudinary.com/do8tgpf80/image/upload/v1752430158/Hathkari_Banner_Img_yp1qkz.jpg',
+      title: 'Graceful Kameez Shalwar',
+      subtitle: 'Traditional elegance meets modern design',
+      category: 'Kameez Shalwar 3 Piece',
+      offer: 'Limited Edition'
+    }
   ];
 
   useEffect(() => {
     setIsVisible(true);
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % foodItems.length);
-    }, 3000);
+      setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+    }, 9000); // Change slide every 9 seconds
     return () => clearInterval(interval);
   }, []);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
-    <section className="relative bg-gradient-to-br from-[#1F1F1F] via-[#2E2E2E] to-[#1F1F1F] text-white min-h-screen flex items-center overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Food Icons */}
-        <div className="absolute top-20 left-10 text-4xl animate-bounce" style={{ animationDelay: '0s' }}>🍔</div>
-        <div className="absolute top-40 right-20 text-3xl animate-bounce" style={{ animationDelay: '1s' }}>🍕</div>
-        <div className="absolute bottom-40 left-20 text-3xl animate-bounce" style={{ animationDelay: '2s' }}>🌯</div>
-        <div className="absolute bottom-20 right-10 text-4xl animate-bounce" style={{ animationDelay: '0.5s' }}>🍟</div>
-        <div className="absolute top-60 left-1/4 text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>🥤</div>
-        <div className="absolute top-80 right-1/3 text-3xl animate-bounce" style={{ animationDelay: '2.5s' }}>🍗</div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#FF0000] opacity-10 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-[#FFCC00] opacity-10 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/6 w-16 h-16 bg-[#FFA726] opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
-        <div className="absolute bottom-1/3 right-1/6 w-20 h-20 bg-[#F44336] opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className={`space-y-8 transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            {/* Main Headline with Animation */}
-            <div className="space-y-6">
-              <div className="relative">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-tight">
-                  <span className="text-[#FFCC00] drop-shadow-lg animate-pulse">FORK</span>
-                  <span className="text-white"> & </span>
-                  <span className="text-[#FF0000] drop-shadow-lg animate-pulse" style={{ animationDelay: '0.5s' }}>KNIFE</span>
-                </h1>
-                {/* Decorative underline */}
-                <div className="absolute -bottom-2 left-0 w-full h-2 bg-gradient-to-r from-[#FFCC00] via-[#FF0000] to-[#FFA726] rounded-full animate-pulse"></div>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#C0C0C0] animate-fade-in">
-                Fast Food Restaurant
-              </h2>
-              <div className="flex items-center space-x-2 text-[#FFA726] font-semibold text-lg">
-                <span className="animate-ping w-3 h-3 bg-[#FF0000] rounded-full"></span>
-                <span>Now Open & Delivering!</span>
-              </div>
+    <section className="relative h-screen bg-white overflow-hidden">
+      {/* Banner Slider */}
+      <div className="relative h-full">
+        {bannerImages.map((banner, index) => (
+          <div
+            key={banner.id}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentSlide 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-105'
+            }`}
+          >
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${banner.image})` }}
+            >
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
 
-            {/* Enhanced Description */}
-            <div className="space-y-4">
-              <p className="text-xl md:text-2xl text-[#C0C0C0] leading-relaxed">
-                🔥 <span className="text-[#FFCC00] font-bold">Sizzling Hot</span> delicious fast food delivered to your door!
-              </p>
-              <p className="text-lg text-[#C0C0C0]">
-                Pizza, burgers, shawarma, and more freshly prepared with love.
-                <span className="text-[#FFCC00] font-bold block mt-2">
-                  🚚 FREE DELIVERY on orders over Rs. 1000
-                </span>
-              </p>
+            {/* Content */}
+            <div className="relative z-10 h-full flex items-center">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="max-w-xl lg:max-w-2xl">
+                  <div className={`space-y-4 sm:space-y-6 transition-all duration-1000 delay-300 ${
+                    index === currentSlide 
+                      ? 'transform translate-x-0 opacity-100' 
+                      : 'transform -translate-x-10 opacity-0'
+                  }`}>
+                    {/* Category Badge */}
+                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-full font-medium text-xs sm:text-sm shadow-lg animate-pulse">
+                      <span className="mr-1 sm:mr-2">✨</span>
+                      {banner.category}
             </div>
 
-            {/* Enhanced Features Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: '⚡', text: 'Lightning Fast', color: '#FF0000' },
-                { icon: '🌟', text: 'Premium Quality', color: '#FFCC00' },
-                { icon: '🎯', text: 'Always Fresh', color: '#FFA726' },
-                { icon: '💰', text: 'Great Value', color: '#F44336' }
-              ].map((feature, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 bg-[#2E2E2E] rounded-lg border border-[#C0C0C0] border-opacity-20 hover:border-opacity-40 transition-all duration-300 transform hover:scale-105">
-                  <span className="text-2xl">{feature.icon}</span>
-                  <span className="text-[#C0C0C0] font-medium">{feature.text}</span>
-                </div>
-              ))}
-            </div>
+                    {/* Main Title */}
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
+                      {banner.title}
+                    </h1>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    {/* Subtitle */}
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed">
+                      {banner.subtitle}
+                    </p>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
               <Link 
                 href="/shop"
-                className="group relative bg-gradient-to-r from-[#FF0000] to-[#F44336] hover:from-[#F44336] hover:to-[#FF0000] text-white px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 text-center shadow-2xl overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center space-x-2">
-                  <span>🛒 Order Now</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FFCC00] to-[#FFA726] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        className="group bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center space-x-2"
+                      >
+                        <span>Shop Now</span>
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
               </Link>
               <Link 
-                href="/contact"
-                className="group bg-transparent border-3 border-[#FFCC00] text-[#FFCC00] hover:bg-[#FFCC00] hover:text-[#1F1F1F] px-10 py-5 rounded-xl font-bold text-xl transition-all duration-300 transform hover:scale-105 text-center shadow-xl"
-              >
-                <span className="flex items-center justify-center space-x-2">
-                  <span>📞 Contact Us</span>
-                </span>
+                        href="/about"
+                        className="group bg-white bg-opacity-20 backdrop-blur-sm border-2 border-white border-opacity-50 text-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center space-x-2"
+                      >
+                        <span>Learn More</span>
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
               </Link>
             </div>
-
-            {/* Enhanced Contact Info */}
-            <div className="pt-8 border-t border-[#C0C0C0] border-opacity-30">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-6">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-[#F44336] rounded-full flex items-center justify-center animate-pulse">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[#C0C0C0] text-sm">Call us now</div>
-                    <div className="text-[#FFCC00] font-bold text-xl">0304-4481181</div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-[#FFCC00] rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-[#1F1F1F]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[#C0C0C0] text-sm">Delivery Time</div>
-                    <div className="text-[#FFCC00] font-bold text-xl">30-45 min</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right Content - Enhanced Visual */}
-          <div className={`relative transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            {/* Main Visual Card */}
-            <div className="relative">
-              {/* Animated Background Circles */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#FF0000] via-[#FFCC00] to-[#FFA726] rounded-3xl opacity-20 animate-pulse blur-xl"></div>
-              <div className="absolute -inset-2 bg-gradient-to-br from-[#F44336] to-[#FF0000] rounded-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-              
-              {/* Main Content Card */}
-              <div className="relative bg-gradient-to-br from-[#2E2E2E] to-[#1F1F1F] rounded-3xl p-8 shadow-2xl border border-[#C0C0C0] border-opacity-30 backdrop-blur-sm">
-                {/* Special Offer Header */}
-                <div className="text-center space-y-6 mb-8">
-                  <div className="inline-block bg-gradient-to-r from-[#FFA726] to-[#FFCC00] text-[#1F1F1F] px-8 py-3 rounded-full font-black text-xl shadow-lg animate-bounce">
-                    🎉 SPECIAL OFFER! 🎉
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h3 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FFCC00] to-[#FF0000]">
-                      FREE DELIVERY
-                    </h3>
-                    <p className="text-2xl text-[#C0C0C0]">
-                      On orders over <span className="text-[#FF0000] font-bold text-3xl">Rs. 1000</span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Rotating Food Items Display */}
-                <div className="relative h-64 bg-[#1F1F1F] rounded-2xl overflow-hidden mb-6 border border-[#C0C0C0] border-opacity-20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#FF0000] to-[#F44336] opacity-10"></div>
-                  <div className="relative z-10 flex items-center justify-center h-full">
-                    <div className="text-center space-y-4 transition-all duration-500 transform">
-                      <div className="text-8xl animate-bounce">
-                        {foodItems[currentSlide].emoji}
-                      </div>
-                      <div className="space-y-2">
-                        <h4 className="text-2xl font-bold text-[#FFCC00]">
-                          {foodItems[currentSlide].name}
-                        </h4>
-                        <p className="text-[#C0C0C0] text-lg">
-                          {foodItems[currentSlide].price}
-                        </p>
-                      </div>
-                    </div>
+        ))}
                   </div>
                   
                   {/* Slide Indicators */}
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                    {foodItems.map((_, index) => (
-                      <div
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 sm:space-x-3">
+        {bannerImages.map((_, index) => (
+          <button
                         key={index}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                          index === currentSlide ? 'bg-[#FFCC00] scale-125' : 'bg-[#C0C0C0] opacity-50'
+            onClick={() => goToSlide(index)}
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-yellow-500 scale-125 shadow-lg' 
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                         }`}
                       />
                     ))}
-                  </div>
                 </div>
 
-                {/* Quick Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-[#1F1F1F] p-4 rounded-xl border border-[#FF0000] border-opacity-30 text-center">
-                    <div className="text-[#FF0000] text-2xl font-bold">500+</div>
-                    <div className="text-[#C0C0C0] text-sm">Happy Customers</div>
-                  </div>
-                  <div className="bg-[#1F1F1F] p-4 rounded-xl border border-[#FFCC00] border-opacity-30 text-center">
-                    <div className="text-[#FFCC00] text-2xl font-bold">4.8★</div>
-                    <div className="text-[#C0C0C0] text-sm">Average Rating</div>
-                  </div>
-                  <div className="bg-[#1F1F1F] p-4 rounded-xl border border-[#FFA726] border-opacity-30 text-center">
-                    <div className="text-[#FFA726] text-2xl font-bold">30min</div>
-                    <div className="text-[#C0C0C0] text-sm">Avg Delivery</div>
-                  </div>
-                  <div className="bg-[#1F1F1F] p-4 rounded-xl border border-[#F44336] border-opacity-30 text-center">
-                    <div className="text-[#F44336] text-2xl font-bold">24/7</div>
-                    <div className="text-[#C0C0C0] text-sm">Service</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-6 sm:bottom-8 right-6 sm:right-8 z-20 animate-bounce">
+        <div className="flex flex-col items-center space-y-1 sm:space-y-2 text-white">
+          <span className="text-xs sm:text-sm font-medium">Scroll Down</span>
+          <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 1s ease-out 0.5s both;
-        }
-      `}</style>
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 right-20 w-24 h-24 sm:w-32 sm:h-32 bg-yellow-400 bg-opacity-10 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-40 left-20 w-16 h-16 sm:w-24 sm:h-24 bg-white bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 right-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-yellow-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+      </div>
     </section>
   );
 };

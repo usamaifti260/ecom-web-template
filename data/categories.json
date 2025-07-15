@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "categoryname": "1 Piece",
+    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2153_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+  },
+  {
+    "id": "2", 
+    "categoryname": "2 Piece",
+    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2152_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+  },
+  {
+    "id": "3",
+    "categoryname": "3 Piece", 
+    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2154_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+  },
+  {
+    "id": "4",
+    "categoryname": "Co-ord Set",
+    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/5/25-2151_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+  },
+  {
+    "id": "5",
+    "categoryname": "Kameez Shalwar 3 Piece",
+    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2155_2_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+  }
+] 

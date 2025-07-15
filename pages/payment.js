@@ -39,7 +39,7 @@ export default function PaymentPage() {
   const generateOrderId = () => {
     const timestamp = Date.now().toString(36);
     const randomStr = Math.random().toString(36).substr(2, 5);
-    return `FK-${timestamp}-${randomStr}`.toUpperCase();
+    return `HO-${timestamp}-${randomStr}`.toUpperCase();
   };
 
   const handlePlaceOrder = async () => {
@@ -70,10 +70,10 @@ export default function PaymentPage() {
         description: item.description || item.name,
         price: item.price,
         quantity: item.quantity,
-        category: item.category || 'Fast Food',
+        category: item.category || 'Clothing',
         features: item.features || [],
         image: item.image || '',
-        brand: item.brand || 'Fork & Knife Fast Food',
+        brand: item.brand || 'Hathkari Official',
         rating: item.rating || 0,
         reviews: item.reviews || 0,
         inStock: item.inStock || true,
@@ -82,8 +82,8 @@ export default function PaymentPage() {
 
       // Calculate totals according to backend expectations
       const subtotal = orderData.summary.subtotal;
-      const shipping = orderData.summary.deliveryFee || 0;
-      const tax = 0; // No tax for restaurant
+      const shipping = orderData.summary.shippingFee || 0;
+      const tax = 0; // No tax for clothing store
       const discount = 0; // No discounts
       const total = subtotal + shipping;
 
@@ -119,7 +119,7 @@ export default function PaymentPage() {
       console.log('Submitting order to backend:', orderPayload);
       
       // Replace with your actual siteId
-      const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'forkandknife';
+      const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'hathkariofficial';
       
       const response = await axios.post(
         `https://web-portal-backend-production.up.railway.app/api/orders/submit/${siteId}`, 
@@ -212,16 +212,16 @@ export default function PaymentPage() {
     return (
       <>
         <Head>
-          <title>Payment - Fork & Knife Fast Food</title>
+          <title>Payment - Hathkari Official</title>
           <meta name="description" content="Complete your payment" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <div className="min-h-screen bg-gradient-to-br from-[#1F1F1F] to-[#2E2E2E] flex items-center justify-center">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FFCC00] mx-auto mb-4"></div>
-            <p className="text-[#C0C0C0]">Loading order details...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading order details...</p>
           </div>
         </div>
       </>
@@ -231,43 +231,43 @@ export default function PaymentPage() {
   return (
     <>
       <Head>
-        <title>Payment - Fork & Knife Fast Food</title>
+        <title>Payment - Hathkari Official</title>
         <meta name="description" content="Complete your payment" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-[#1F1F1F] to-[#2E2E2E]">
+      <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
-            <nav className="flex items-center space-x-2 text-sm text-[#C0C0C0] mb-4">
-              <Link href="/shop" className="hover:text-[#FFCC00] transition-colors">🍕 Menu</Link>
+            <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+              <Link href="/shop" className="hover:text-yellow-600 transition-colors">👗 Shop</Link>
               <span>→</span>
-              <Link href="/checkout" className="hover:text-[#FFCC00] transition-colors">Checkout</Link>
+              <Link href="/checkout" className="hover:text-yellow-600 transition-colors">Checkout</Link>
               <span>→</span>
-              <span className="text-[#FFCC00] font-medium">Payment</span>
+              <span className="text-yellow-600 font-medium">Payment</span>
             </nav>
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-2">
-                <span className="text-[#FFCC00]">FORK</span> & <span className="text-[#FF0000]">KNIFE</span>
+              <h1 className="text-4xl font-bold text-gray-800 mb-2">
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">HATHKARI</span> <span className="text-gray-800">OFFICIAL</span>
               </h1>
-              <p className="text-[#C0C0C0]">Review and confirm your delicious order</p>
+              <p className="text-gray-600">Review and confirm your beautiful order</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Payment Method */}
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-[#2E2E2E] to-[#333333] rounded-2xl shadow-2xl p-8 border border-gray-600">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
                   <span className="text-2xl mr-2">💳</span>
                   Payment Method
                 </h3>
                 
                 <div className="space-y-4">
                   {/* Cash on Delivery */}
-                  <div className="border border-[#FFCC00] rounded-lg p-4 bg-gradient-to-r from-[#FF0000] to-[#F44336]">
+                  <div className="border border-yellow-400 rounded-lg p-4 bg-gradient-to-r from-yellow-400 to-yellow-600">
                     <label className="flex items-start space-x-3 cursor-pointer">
                       <input
                         type="radio"
@@ -275,7 +275,7 @@ export default function PaymentPage() {
                         value="COD"
                         checked={paymentMethod === 'COD'}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="mt-1 w-4 h-4 text-[#FFCC00] border-white focus:ring-[#FFCC00]"
+                        className="mt-1 w-4 h-4 text-yellow-600 border-white focus:ring-yellow-500"
                       />
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
@@ -292,9 +292,9 @@ export default function PaymentPage() {
                             How it works:
                           </p>
                           <ul className="text-sm text-white opacity-90 mt-1 space-y-1">
-                            <li>• Your delicious food will be prepared fresh</li>
+                            <li>• Your beautiful clothes will be carefully packaged</li>
                             <li>• Pay the delivery person when your order arrives</li>
-                            <li>• Inspect your food before payment</li>
+                            <li>• Inspect your items before payment</li>
                             <li>• Cash payment only at delivery</li>
                           </ul>
                         </div>
@@ -303,14 +303,14 @@ export default function PaymentPage() {
                   </div>
 
                   {/* Future payment methods can be added here */}
-                  <div className="border border-gray-600 rounded-lg p-4 opacity-50 bg-[#1F1F1F]">
+                  <div className="border border-gray-300 rounded-lg p-4 opacity-50 bg-gray-50">
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
                         <span className="text-lg">💳</span>
                       </div>
                       <div>
-                        <p className="font-medium text-gray-400">Credit/Debit Card</p>
-                        <p className="text-sm text-gray-500">Coming soon</p>
+                        <p className="font-medium text-gray-500">Credit/Debit Card</p>
+                        <p className="text-sm text-gray-400">Coming soon</p>
                       </div>
                     </div>
                   </div>
@@ -318,37 +318,37 @@ export default function PaymentPage() {
               </div>
 
               {/* Delivery Information */}
-              <div className="bg-gradient-to-br from-[#2E2E2E] to-[#333333] rounded-2xl shadow-2xl p-8 border border-gray-600">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
                   <span className="text-2xl mr-2">🚚</span>
                   Delivery Information
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm font-medium text-[#FFCC00]">Customer</p>
-                    <p className="text-sm text-white">
+                    <p className="text-sm font-medium text-yellow-600">Customer</p>
+                    <p className="text-sm text-gray-800">
                       {orderData.customer.firstName} {orderData.customer.lastName}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#FFCC00]">Email</p>
-                    <p className="text-sm text-white">{orderData.customer.email}</p>
+                    <p className="text-sm font-medium text-yellow-600">Email</p>
+                    <p className="text-sm text-gray-800">{orderData.customer.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#FFCC00]">Phone</p>
-                    <p className="text-sm text-white">{orderData.customer.phone}</p>
+                    <p className="text-sm font-medium text-yellow-600">Phone</p>
+                    <p className="text-sm text-gray-800">{orderData.customer.phone}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#FFCC00]">Delivery Address</p>
-                    <p className="text-sm text-white">
+                    <p className="text-sm font-medium text-yellow-600">Delivery Address</p>
+                    <p className="text-sm text-gray-800">
                       {orderData.customer.address}<br />
                       {orderData.customer.city}, {orderData.customer.area} {orderData.customer.zipCode}
                     </p>
                   </div>
                   {orderData.customer.notes && (
                     <div>
-                      <p className="text-sm font-medium text-[#FFCC00]">Order Notes</p>
-                      <p className="text-sm text-white">{orderData.customer.notes}</p>
+                      <p className="text-sm font-medium text-yellow-600">Order Notes</p>
+                      <p className="text-sm text-gray-800">{orderData.customer.notes}</p>
                     </div>
                   )}
                 </div>
@@ -356,17 +356,17 @@ export default function PaymentPage() {
             </div>
 
             {/* Order Summary */}
-            <div className="bg-gradient-to-br from-[#2E2E2E] to-[#333333] rounded-2xl shadow-2xl p-8 border border-gray-600 h-fit">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                <span className="text-2xl mr-2">🛒</span>
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-fit">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <span className="text-2xl mr-2">🛍️</span>
                 Order Summary
               </h3>
               
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {orderData.items.map((item, index) => (
-                  <div key={`${item.id}-${item.selectedColor}-${index}`} className="flex items-center space-x-4 bg-[#1F1F1F] rounded-lg p-4 border border-gray-600">
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-[#FF0000] to-[#F44336] rounded-lg overflow-hidden flex-shrink-0">
+                  <div key={`${item.id}-${item.selectedSize}-${index}`} className="flex items-center space-x-4 bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div className="relative w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -375,36 +375,19 @@ export default function PaymentPage() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium text-white truncate">
+                      <h4 className="text-sm font-medium text-gray-800 truncate">
                         {item.name}
                       </h4>
-                      <p className="text-xs text-[#C0C0C0]">
-                        {item.category}
+                      <p className="text-xs text-gray-600">
+                        {item.category} {item.selectedSize && `• ${item.selectedSize}`}
                       </p>
                       
-                      {/* Deal Features - Only show for deals */}
-                      {item.category === 'Deals' && item.features && (
-                        <div className="mt-1 mb-1">
-                          <div className="bg-[#2E2E2E] rounded-md p-2 border border-gray-600">
-                            <p className="text-xs font-medium text-[#FFCC00] mb-1">🎯 Includes:</p>
-                            <ul className="space-y-0.5">
-                              {item.features.map((feature, featureIndex) => (
-                                <li key={featureIndex} className="text-xs text-[#C0C0C0] flex items-center">
-                                  <span className="text-[#FFCC00] mr-1 text-xs">✓</span>
-                                  {feature}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      )}
-                      
-                      <p className="text-xs text-[#C0C0C0]">
+                      <p className="text-xs text-gray-600">
                         Quantity: {item.quantity}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold text-[#FFCC00]">
+                      <p className="text-sm font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
@@ -413,21 +396,21 @@ export default function PaymentPage() {
               </div>
 
               {/* Totals */}
-              <div className="border-t border-gray-600 pt-4 space-y-2">
+              <div className="border-t border-gray-200 pt-4 space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#C0C0C0]">Subtotal ({orderData.summary.itemCount} items)</span>
-                  <span className="font-medium text-white">{formatPrice(orderData.summary.subtotal)}</span>
+                  <span className="text-gray-600">Subtotal ({orderData.summary.itemCount} items)</span>
+                  <span className="font-medium text-gray-800">{formatPrice(orderData.summary.subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-[#C0C0C0]">Delivery Fee</span>
-                  <span className="font-medium text-[#FFCC00]">
-                    {orderData.summary.deliveryFee === 0 ? 'FREE' : formatPrice(orderData.summary.deliveryFee)}
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium text-green-600">
+                    {orderData.summary.shippingFee === 0 ? 'FREE' : formatPrice(orderData.summary.shippingFee)}
                   </span>
                 </div>
-                <div className="border-t border-gray-600 pt-2">
+                <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
-                    <span className="text-base font-semibold text-white">Total</span>
-                    <span className="text-base font-semibold text-[#FFCC00]">{formatPrice(orderData.summary.total)}</span>
+                    <span className="text-base font-semibold text-gray-800">Total</span>
+                    <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
                   </div>
                 </div>
               </div>
@@ -439,8 +422,8 @@ export default function PaymentPage() {
                   disabled={isProcessing}
                   className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${
                     isProcessing
-                      ? 'bg-gray-600 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#FF0000] to-[#F44336] hover:from-[#F44336] hover:to-[#FF0000] transform hover:scale-105'
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                   } text-white`}
                 >
                   {isProcessing ? (
@@ -452,11 +435,11 @@ export default function PaymentPage() {
                       Placing Order...
                     </div>
                   ) : (
-                    '🍕 Place Order'
+                    '👗 Place Order'
                   )}
                 </button>
                 
-                <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-[#C0C0C0]">
+                <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-gray-600">
                   <span className="text-lg">🔒</span>
                   <span>Your order is secure and protected</span>
                 </div>

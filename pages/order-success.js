@@ -56,14 +56,12 @@ export default function OrderSuccessPage() {
 
   const getEstimatedDelivery = () => {
     const orderDate = new Date(orderData.processedAt);
-    const deliveryDate = new Date(orderDate.getTime() + (60 * 60 * 1000)); // 1 hour from order
+    const deliveryDate = new Date(orderDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 days from order
     return deliveryDate.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      day: 'numeric'
     });
   };
 
@@ -71,7 +69,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Confirmation - Fork & Knife Fast Food</title>
+          <title>Order Confirmation - Hathkari Official</title>
           <meta name="description" content="Order confirmation" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -79,7 +77,7 @@ export default function OrderSuccessPage() {
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF0000] mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading order details...</p>
           </div>
         </div>
@@ -91,7 +89,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Not Found - Fork & Knife Fast Food</title>
+          <title>Order Not Found - Hathkari Official</title>
           <meta name="description" content="Order not found" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -100,13 +98,13 @@ export default function OrderSuccessPage() {
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
             <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-12 h-12 text-[#FF0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Order Not Found</h1>
             <p className="text-gray-600 mb-6">The order you're looking for could not be found.</p>
-            <Link href="/shop" className="bg-[#FF0000] hover:bg-[#CC0000] text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+            <Link href="/shop" className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
               Continue Shopping
             </Link>
           </div>
@@ -118,7 +116,7 @@ export default function OrderSuccessPage() {
   return (
     <>
       <Head>
-        <title>Order Confirmation - Fork & Knife Fast Food</title>
+        <title>Order Confirmation - Hathkari Official</title>
         <meta name="description" content="Your order has been confirmed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -135,15 +133,15 @@ export default function OrderSuccessPage() {
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmed!</h1>
             <p className="text-lg text-gray-600 mb-4">
-              Thank you for ordering from Fork & Knife! Your delicious meal is being prepared.
+              Thank you for shopping with Hathkari Official! Your beautiful order is being processed.
             </p>
-            <div className="bg-[#FFCC00] bg-opacity-20 border border-[#FFCC00] rounded-lg p-4 inline-block">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 inline-block">
               <p className="text-sm text-gray-800">
                 <strong>Order ID:</strong> {orderData.orderId}
               </p>
               {orderData.backendOrderNumber && (
                 <p className="text-sm text-gray-800 mt-1">
-                  <strong>Restaurant Order #:</strong> {orderData.backendOrderNumber}
+                  <strong>Store Order #:</strong> {orderData.backendOrderNumber}
                 </p>
               )}
               <p className="text-sm text-gray-700 mt-1">
@@ -160,8 +158,8 @@ export default function OrderSuccessPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-[#FF0000] bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-[#FF0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -171,15 +169,14 @@ export default function OrderSuccessPage() {
                       <p className="text-sm text-gray-600 mt-1">
                         {orderData.customer.firstName} {orderData.customer.lastName}<br />
                         {orderData.customer.address}<br />
-                        {orderData.customer.city}, {orderData.customer.state} {orderData.customer.zipCode}<br />
-                        {orderData.customer.country}
+                        {orderData.customer.city}, {orderData.customer.area} {orderData.customer.zipCode}
                       </p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-[#FFCC00] bg-opacity-20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-[#FFCC00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -189,7 +186,7 @@ export default function OrderSuccessPage() {
                         {getEstimatedDelivery()}
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Fast delivery within 45-60 minutes
+                        Standard delivery within 2-3 business days
                       </p>
                     </div>
                   </div>
@@ -235,25 +232,25 @@ export default function OrderSuccessPage() {
               </div>
 
               {/* What's Next */}
-              <div className="bg-[#FF0000] bg-opacity-5 border border-[#FF0000] border-opacity-20 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-[#FF0000] mb-4">What happens next?</h3>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-yellow-800 mb-4">What happens next?</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-[#FF0000] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <span className="text-xs font-bold text-white">1</span>
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Order Confirmed</p>
-                      <p className="text-xs text-gray-700">Your order has been received and is being prepared</p>
+                      <p className="text-xs text-gray-700">Your order has been received and is being processed</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-[#FFCC00] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <span className="text-xs font-bold text-black">2</span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">Cooking in Progress</p>
-                      <p className="text-xs text-gray-700">Our chefs are preparing your fresh meal</p>
+                      <p className="text-sm font-medium text-gray-900">Packaging in Progress</p>
+                      <p className="text-xs text-gray-700">Your beautiful items are being carefully packaged</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
@@ -262,7 +259,7 @@ export default function OrderSuccessPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">Out for Delivery</p>
-                      <p className="text-xs text-gray-700">Your hot meal is on its way to you</p>
+                      <p className="text-xs text-gray-700">Your order is on its way to you</p>
                     </div>
                   </div>
                 </div>
@@ -294,22 +291,6 @@ export default function OrderSuccessPage() {
                         <p className="text-xs text-gray-500">
                           Color: {item.selectedColor}
                         </p>
-                      )}
-                      {item.features && item.features.length > 0 && (
-                        <div className="mt-1">
-                          <p className="text-xs text-[#FFCC00] font-medium">🎯 Includes:</p>
-                          <div className="text-xs text-gray-500 mt-1">
-                            {item.features.slice(0, 2).map((feature, idx) => (
-                              <div key={idx} className="flex items-center">
-                                <span className="text-[#FFCC00] mr-1">✓</span>
-                                {feature}
-                              </div>
-                            ))}
-                            {item.features.length > 2 && (
-                              <span className="text-gray-400">+{item.features.length - 2} more</span>
-                            )}
-                          </div>
-                        </div>
                       )}
                       <p className="text-xs text-gray-500">
                         Quantity: {item.quantity}
@@ -348,8 +329,10 @@ export default function OrderSuccessPage() {
                   </div>
                 )}
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Delivery</span>
-                  <span className="font-medium text-green-600">FREE</span>
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium text-green-600">
+                    {orderData.summary.shippingFee === 0 ? 'FREE' : formatPrice(orderData.summary.shippingFee)}
+                  </span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
@@ -361,8 +344,8 @@ export default function OrderSuccessPage() {
 
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
-                <Link href="/shop" className="w-full bg-[#FF0000] hover:bg-[#CC0000] text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
-                  Order More Food
+                <Link href="/shop" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
+                  Shop More Items
                 </Link>
                 <button 
                   onClick={() => window.print()}
