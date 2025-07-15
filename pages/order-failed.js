@@ -139,22 +139,55 @@ export default function OrderFailedPage() {
   };
 
   const handleRetryOrder = () => {
+    if (!mounted) return;
+    
     setRetryCount(prev => prev + 1);
-    showInfoNotification('Redirecting to checkout...');
+    if (showInfoNotification) {
+      showInfoNotification('Redirecting to checkout...');
+    }
     
     // Add a small delay to show the notification
     setTimeout(() => {
-      router.push('/checkout');
+      if (router.isReady) {
+        router.push('/checkout');
+      }
     }, 1000);
   };
 
   const handleContactSupport = () => {
-    showInfoNotification('Redirecting to contact page...');
+    if (!mounted) return;
+    
+    if (showInfoNotification) {
+      showInfoNotification('Redirecting to contact page...');
+    }
     
     setTimeout(() => {
-      router.push('/contact');
+      if (router.isReady) {
+        router.push('/contact');
+      }
     }, 1000);
   };
+
+  // Don't render anything until component is mounted
+  if (!mounted) {
+    return (
+      <>
+        <Head>
+          <title>Order Failed - Hathkari Official</title>
+          <meta name="description" content="Order processing failed" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading...</p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   const errorDetails = getErrorDetails(errorReason);
 
