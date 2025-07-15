@@ -1,7 +1,7 @@
 import { useCart } from '@/lib/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const Cart = () => {
@@ -20,7 +20,13 @@ const Cart = () => {
 
   const [isAnimating, setIsAnimating] = useState(false);
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  // Ensure component is mounted before accessing router
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const formatPrice = (price) => {
     return `Rs. ${price.toFixed(0)}`;
@@ -35,6 +41,8 @@ const Cart = () => {
   };
 
   const handleCheckout = async () => {
+    if (!mounted || !router.isReady) return;
+    
     setIsCheckoutLoading(true);
     
     // Add a small delay to show the loading animation
@@ -57,6 +65,11 @@ const Cart = () => {
       setIsAnimating(false);
     }, 300);
   };
+
+  // Don't render cart during SSG
+  if (!mounted) {
+    return null;
+  }
 
   if (!isOpen) return null;
 
