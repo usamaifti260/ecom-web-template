@@ -11,11 +11,11 @@ const Navbar = () => {
   };
 
   const categories = [
-    { name: '1 Piece', href: '/category/1piece' },
-    { name: '2 Piece', href: '/category/2piece' },
-    { name: '3 Piece', href: '/category/3piece' },
-    { name: 'Co-ord Set', href: '/category/coord' },
-    { name: 'Kameez Shalwar 3 Piece', href: '/category/kameez-shalwar' }
+    { name: 'Living Room', href: '/category/living-room' },
+    { name: 'Bedroom', href: '/category/bedroom' },
+    { name: 'Office', href: '/category/office' },
+    { name: 'Dining Room', href: '/category/dining-room' },
+    { name: 'Outdoor', href: '/category/outdoor' }
   ];
 
   return (
@@ -27,7 +27,7 @@ const Navbar = () => {
             {/* Mobile Menu Button - Left side */}
             <button
               onClick={toggleMenu}
-              className="md:hidden text-gray-700 hover:text-yellow-600 transition-colors duration-300"
+              className="md:hidden text-gray-700 hover:text-amber-600 transition-colors duration-300"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -37,17 +37,17 @@ const Navbar = () => {
             {/* Brand Name - Center */}
             <Link href="/" className="flex items-center justify-center flex-1 md:flex-none">
               <div className="text-lg sm:text-xl md:text-3xl font-bold tracking-wide">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-400">
-                  HATHKARI
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400">
+                  COMFORT
                 </span>
-                <span className="text-gray-800 ml-1 sm:ml-2 font-light">OFFICIAL</span>
+                <span className="text-gray-800 ml-1 sm:ml-2 font-light">SOFA</span>
               </div>
             </Link>
 
             {/* Cart Button - Right side */}
             <button
               onClick={toggleCart}
-              className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-1 sm:space-x-2"
+              className="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-1 sm:space-x-2"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
@@ -69,7 +69,7 @@ const Navbar = () => {
           <div className="flex justify-center items-center space-x-8 py-3 overflow-x-scroll lg:overflow-x-hidden">
             <Link 
               href="/" 
-              className="text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
+              className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
             >
               Home
             </Link>
@@ -77,20 +77,20 @@ const Navbar = () => {
               <Link
                 key={category.name}
                 href={category.href}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white whitespace-nowrap"
+                className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white whitespace-nowrap"
               >
                 {category.name}
               </Link>
             ))}
             <Link 
               href="/about" 
-              className="text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
+              className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className="text-gray-700 hover:text-yellow-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
+              className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
             >
               Contact
             </Link>
@@ -111,10 +111,10 @@ const Navbar = () => {
           {/* Mobile Menu Header */}
           <div className="flex justify-between items-center p-6 border-b border-gray-200">
             <div className="text-xl font-bold">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-400">
-                HATHKARI
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-400">
+                COMFORT
               </span>
-              <span className="text-gray-800 ml-2">OFFICIAL</span>
+              <span className="text-gray-800 ml-2">SOFA</span>
             </div>
             <button
               onClick={toggleMenu}
@@ -130,7 +130,7 @@ const Navbar = () => {
           <div className="py-6 px-6 space-y-2">
             <Link 
               href="/" 
-              className="block px-4 py-3 text-gray-700 hover:text-yellow-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
+              className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
@@ -145,7 +145,7 @@ const Navbar = () => {
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="block px-4 py-3 text-gray-700 hover:text-yellow-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                  className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {category.name}
@@ -155,14 +155,14 @@ const Navbar = () => {
 
             <Link 
               href="/about" 
-              className="block px-4 py-3 text-gray-700 hover:text-yellow-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
+              className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className="block px-4 py-3 text-gray-700 hover:text-yellow-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
+              className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact

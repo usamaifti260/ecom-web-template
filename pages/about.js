@@ -7,8 +7,8 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>About Us - Fork & Knife Fast Food</title>
-        <meta name="description" content="Learn about Fork & Knife Fast Food's mission to provide delicious fast food that satisfies your taste. Crafting perfect food since 2025." />
+        <title>About Us - Comfort Sofa</title>
+        <meta name="description" content="Learn about Comfort Sofa's mission to provide premium furniture that transforms your living space. Crafting comfort since 2025." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

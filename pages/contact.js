@@ -7,8 +7,8 @@ export default function ContactPage() {
   return (
     <>
       <Head>
-        <title>Fork & Knife Fast Food</title>
-        <meta name="description" content="Get in touch with Fork & Knife Fast Food. We're here to help you find the perfect fast food solution. Contact us for product questions, orders, and support." />
+        <title>Contact Us - Comfort Sofa</title>
+        <meta name="description" content="Get in touch with Comfort Sofa. We're here to help you find the perfect furniture solution. Contact us for product questions, orders, and support." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

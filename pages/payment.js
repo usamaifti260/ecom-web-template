@@ -71,14 +71,15 @@ export default function PaymentPage() {
         description: item.description || item.name,
         price: item.price,
         quantity: item.quantity,
-        category: item.category || 'Clothing',
+        category: item.category || '',
         features: item.features || [],
         image: item.image || '',
-        brand: item.brand || 'Hathkari Official',
+        brand: item.brand || 'Comfort Sofa',
         rating: item.rating || 0,
         reviews: item.reviews || 0,
         inStock: item.inStock || true,
-        bestseller: item.bestseller || false
+        bestseller: item.bestseller || false,
+        selectedSize: item.selectedSize || null,
       }));
 
       // Calculate totals according to backend expectations
@@ -120,7 +121,7 @@ export default function PaymentPage() {
       console.log('Submitting order to backend:', orderPayload);
       
       // Replace with your actual siteId
-      const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'hathkariofficial';
+      const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'comfortsofa';
       
       const response = await axios.post(
         `https://web-portal-backend-production.up.railway.app/api/orders/submit/${siteId}`, 
@@ -213,7 +214,7 @@ export default function PaymentPage() {
     return (
       <>
         <Head>
-          <title>Payment - Hathkari Official</title>
+          <title>Payment - Comfort Sofa</title>
           <meta name="description" content="Complete your payment" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -232,7 +233,7 @@ export default function PaymentPage() {
   return (
     <>
       <Head>
-        <title>Payment - Hathkari Official</title>
+        <title>Payment - Comfort Sofa</title>
         <meta name="description" content="Complete your payment" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -243,7 +244,7 @@ export default function PaymentPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href="/shop" className="hover:text-yellow-600 transition-colors">👗 Shop</Link>
+              <Link href="/shop" className="hover:text-yellow-600 transition-colors">🛋️ Shop</Link>
               <span>→</span>
               <Link href="/checkout" className="hover:text-yellow-600 transition-colors">Checkout</Link>
               <span>→</span>
@@ -251,7 +252,7 @@ export default function PaymentPage() {
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">HATHKARI</span> <span className="text-gray-800">OFFICIAL</span>
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">COMFORT</span> <span className="text-gray-800">SOFA</span>
               </h1>
               <p className="text-gray-600">Review and confirm your beautiful order</p>
             </div>
@@ -346,8 +347,8 @@ export default function PaymentPage() {
                   <div className="text-center">
                     <p className="text-sm text-gray-600">
                       Questions about returns? 
-                      <a href="tel:0306-0007061" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
-                        Call us at 0306-0007061
+                      <a href="tel:0302-8829260" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
+                        Call us at 0302-8829260
                       </a>
                     </p>
                   </div>

@@ -174,7 +174,7 @@ export default function OrderFailedPage() {
     return (
       <>
         <Head>
-          <title>Order Failed - Hathkari Official</title>
+          <title>Order Failed - Comfort Sofa</title>
           <meta name="description" content="Order processing failed" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -195,7 +195,7 @@ export default function OrderFailedPage() {
   return (
     <>
       <Head>
-        <title>Order Failed - Hathkari Official</title>
+        <title>Order Failed - Comfort Sofa</title>
         <meta name="description" content="Order processing failed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -320,7 +320,7 @@ export default function OrderFailedPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email Support</p>
-                    <p className="text-sm text-gray-700">support@hathkariofficial.com</p>
+                    <p className="text-sm text-gray-700">support@comfortsofa.com</p>
                     <p className="text-xs text-gray-600">Response within 24 hours</p>
                   </div>
                 </div>

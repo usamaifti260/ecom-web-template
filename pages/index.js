@@ -12,9 +12,9 @@ export default function Home({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>{`${clientInfo?.businessName || 'Hathkari Official'} - Women's Eastern Wear`}</title>
-        <meta name="description" content="Discover elegant eastern wear at Hathkari Official. Premium collection of 1 Piece, 2 Piece, 3 Piece, Co-ord Sets, and Kameez Shalwar. Shop authentic women's clothing with modern designs." />
-        <meta name="keywords" content="eastern wear, women clothing, 1 piece, 2 piece, 3 piece, co-ord set, kameez shalwar, hathkari official, pakistani clothes" />
+        <title>{`${clientInfo?.businessName || 'Comfort Sofa'} - Premium Furniture & Sofas`}</title>
+        <meta name="description" content="Discover luxury furniture at Comfort Sofa. Premium collection of Living Room, Bedroom, Office, Dining Room, and Outdoor furniture. Shop authentic furniture with modern designs and superior comfort." />
+        <meta name="keywords" content="furniture, sofas, living room, bedroom, office furniture, dining room, outdoor furniture, comfort sofa, luxury furniture, modern furniture" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -35,8 +35,9 @@ export async function getStaticProps() {
     console.log('Fetching products and categories for homepage...');
     
     // Fetch products and categories at build time
-    const productsSchemaSlug = 'hathkariproductsSchema';
-    const categoriesSchemaSlug = 'hathkaricategoriesschema';
+    const productsSchemaSlug = 'comfortsofaproductsschema';
+    const categoriesSchemaSlug = 'comfortsofacategoriesschema';
+
     
     const [products, categories] = await Promise.all([
       fetchClientProducts(productsSchemaSlug),
@@ -45,9 +46,9 @@ export async function getStaticProps() {
     
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'Hathkari Official',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Eastern Wear for Women - Elegant designs, authentic quality, modern style.',
-      contact: process.env.BUSINESS_CONTACT || '0304-4481181'
+      businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
+      description: process.env.BUSINESS_DESCRIPTION || 'Premium Furniture & Sofas - Luxury designs, superior comfort, modern style.',
+      contact: process.env.BUSINESS_CONTACT || '0302-8829260'
     };
 
     console.log(`Homepage: Successfully fetched ${products.length} products and ${categories.length} categories`);
@@ -72,7 +73,7 @@ export async function getStaticProps() {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'Hathkari Official',
+          businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
           description: isDevelopment 
             ? 'Development mode - check your data/products.json and data/categories.json files' 
             : 'Product catalog temporarily unavailable'

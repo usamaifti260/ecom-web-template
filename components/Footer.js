@@ -4,11 +4,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const categories = [
-    { name: '1 Piece', href: '/category/1piece' },
-    { name: '2 Piece', href: '/category/2piece' },
-    { name: '3 Piece', href: '/category/3piece' },
-    { name: 'Co-ord Set', href: '/category/coord' },
-    { name: 'Kameez Shalwar', href: '/category/kameez-shalwar' }
+    { name: 'Living Room', href: '/category/living-room' },
+    { name: 'Bedroom', href: '/category/bedroom' },
+    { name: 'Office', href: '/category/office' },
+    { name: 'Dining Room', href: '/category/dining-room' },
+    { name: 'Outdoor', href: '/category/outdoor' }
   ];
 
   const quickLinks = [
@@ -36,7 +36,7 @@ const Footer = () => {
               Stay Updated with Latest Collections
             </h3>
             <p className="text-yellow-100 mb-2 max-w-2xl mx-auto">
-              Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and fashion tips.
+              Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and furniture design tips.
             </p>
             <p className="text-yellow-100 mb-8 max-w-2xl mx-auto font-semibold">
               ✨ Plus, enjoy our 7-day return and exchange policy on all purchases!
@@ -64,12 +64,12 @@ const Footer = () => {
             <div className="mb-6">
               <div className="text-2xl font-bold tracking-wide mb-4">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-300">
-                  HATHKARI
+                  COMFORT
                 </span>
-                <span className="text-white ml-2 font-light">OFFICIAL</span>
+                <span className="text-white ml-2 font-light">SOFA</span>
               </div>
               <p className="text-gray-300 leading-relaxed mb-6">
-                Premium Eastern Wear for Women. Discover elegant designs, authentic quality, and modern style that celebrates tradition with contemporary flair.
+                Premium Furniture & Sofas. Discover elegant designs, superior quality, and modern style that transforms your home with contemporary comfort.
               </p>
               
               {/* Trust Indicators */}
@@ -78,13 +78,13 @@ const Footer = () => {
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Authentic Pakistani Designs</span>
+                  <span className="text-gray-300 text-sm">Modern Furniture Designs</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Premium Quality Fabrics</span>
+                  <span className="text-gray-300 text-sm">Premium Quality Materials</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,13 +125,13 @@ const Footer = () => {
                   <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="text-gray-300">0306-0007061</span>
+                  <span className="text-gray-300">0302-8829260</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-gray-300">ayeshanaeem89299@gmail.com</span>
+                  <span className="text-gray-300">support@comfortsofa.com</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <svg className="w-5 h-5 text-yellow-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +193,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a 
-                  href="https://wa.me/923060007061" 
+                  href="https://wa.me/923028829260" 
                   className="bg-gray-800 hover:bg-yellow-600 p-3 rounded-full transition-colors duration-200"
                   aria-label="WhatsApp"
                 >
@@ -229,7 +229,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} Hathkari Official. All rights reserved.
+              © {currentYear} Comfort Sofa. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
               <Link href="/privacy-policy" className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">

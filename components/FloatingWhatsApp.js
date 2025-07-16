@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 const FloatingWhatsApp = () => {
-  const whatsappNumber = '923060007061'; // Updated phone number
-  const message = 'Hi! I need help with Hathkari Official clothing collection.';
+  const whatsappNumber = '923028829260'; // Updated phone number
+  const message = 'Hi! I need help with Comfort Sofa furniture collection.';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (

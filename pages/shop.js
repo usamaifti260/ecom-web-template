@@ -8,8 +8,8 @@ export default function ShopPage({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>Shop - Hathkari Official</title>
-        <meta name="description" content="Browse our complete collection of elegant eastern wear. Find the perfect outfit for every occasion." />
+        <title>Shop - Comfort Sofa</title>
+        <meta name="description" content="Browse our complete collection of premium furniture. Find the perfect sofa and furniture pieces for every room in your home." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -28,8 +28,8 @@ export async function getStaticProps() {
     console.log('Fetching products and categories for shop page...');
     
     // Fetch products and categories at build time
-    const productsSchemaSlug = 'hathkariproductsSchema';
-    const categoriesSchemaSlug = 'hathkaricategoriesschema';
+    const productsSchemaSlug = 'comfortsofaproductsschema';
+    const categoriesSchemaSlug = 'comfortsofacategoriesschema';
     
     const [products, categories] = await Promise.all([
       fetchClientProducts(productsSchemaSlug),
@@ -38,8 +38,8 @@ export async function getStaticProps() {
     
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'Hathkari Official',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Eastern Wear for Women - Elegant designs, authentic quality, modern style.',
+      businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
+      description: process.env.BUSINESS_DESCRIPTION || 'Premium Furniture & Sofas - Luxury designs, superior comfort, modern style.',
       contact: process.env.BUSINESS_CONTACT || '0304-4481181'
     };
 
@@ -65,7 +65,7 @@ export async function getStaticProps() {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'Hathkari Official',
+          businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
           description: isDevelopment 
             ? 'Development mode - check your data/products.json and data/categories.json files' 
             : 'Product catalog temporarily unavailable'

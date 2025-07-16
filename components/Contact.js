@@ -39,11 +39,11 @@ const Contact = () => {
             Get In Touch
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Contact <span className="text-yellow-600">Hathkari</span> Official
+            Contact <span className="text-yellow-600">Comfort</span> Sofa
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions about our collection? Need help with sizing? Want to place a custom order? 
-            We're here to help you find the perfect eastern wear that makes you feel beautiful and confident.
+            Have questions about our furniture collection? Need help with sizing or custom orders? 
+            We're here to help you find the perfect furniture pieces that transform your home into a comfortable haven.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ const Contact = () => {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Call Us Now</h4>
               <div className="text-center space-y-2">
-                <p className="text-2xl font-bold text-yellow-600">0306-0007061</p>
+                <p className="text-2xl font-bold text-yellow-600">0302-8829260</p>
                 <p className="text-gray-600">Available for inquiries & orders</p>
                 <div className="text-sm text-gray-500">
                   <p>📞 Mon-Sat: 10:00 AM - 8:00 PM</p>
@@ -77,7 +77,7 @@ const Contact = () => {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Email Us</h4>
               <div className="text-center space-y-2">
-                <p className="text-lg font-bold text-yellow-600">ayeshanaeem89299@gmail.com</p>
+                <p className="text-lg font-bold text-yellow-600">support@comfortsofa.com</p>
                 <p className="text-gray-600">For orders, inquiries & support</p>
                 <div className="text-sm text-gray-500">
                   <p>📧 We reply within 24 hours</p>
@@ -97,7 +97,7 @@ const Contact = () => {
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Visit Our Studio</h4>
               <div className="text-center space-y-2">
                 <p className="text-gray-700 font-medium">
-                  Hathkari Official Studio<br />
+                  Comfort Sofa Showroom<br />
                   Lahore, Pakistan<br />
                 </p>
                 <p className="text-sm text-gray-500">
@@ -174,9 +174,9 @@ const Contact = () => {
                   >
                     <option value="">Select a subject</option>
                     <option value="order">Order Inquiry</option>
-                    <option value="sizing">Size Guide Help</option>
-                    <option value="custom">Custom Order Request</option>
-                    <option value="collection">Collection Questions</option>
+                    <option value="sizing">Furniture Sizing Help</option>
+                    <option value="custom">Custom Furniture Request</option>
+                    <option value="collection">Furniture Collection Questions</option>
                     <option value="return">Return & Exchange (7 Days)</option>
                     <option value="wholesale">Wholesale Inquiry</option>
                     <option value="general">General Inquiry</option>
@@ -195,7 +195,7 @@ const Contact = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-colors resize-none"
-                    placeholder="Tell us about your requirements, preferred styles, sizes, or any questions you have..."
+                    placeholder="Tell us about your furniture requirements, preferred styles, room dimensions, or any questions you have..."
                   ></textarea>
                 </div>
 
@@ -225,24 +225,24 @@ const Contact = () => {
             💌 We'd Love to Hear From You!
           </h3>
           <p className="text-lg mb-6 opacity-90 max-w-3xl mx-auto">
-            Whether you're looking for the perfect outfit for a special occasion, need help with sizing, 
+            Whether you're looking for the perfect furniture for your home, need help with sizing, 
             or want to learn more about our latest collections, our team is here to assist you. 
-            At Hathkari Official, every customer is special to us.
+            At Comfort Sofa, every customer is special to us.
             <br /><br />
             <span className="font-semibold">✨ Enjoy peace of mind with our 7-day return and exchange policy!</span> 
-            Shop confidently knowing you can return or exchange any item within 7 days of purchase.
+            Shop confidently knowing you can return or exchange any furniture within 7 days of purchase.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://wa.me/923060007061"
+              href="https://wa.me/923028829260"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-yellow-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center space-x-2"
             >
-              <span>💬 WhatsApp: 0306-0007061</span>
+              <span>💬 WhatsApp: 0302-8829260</span>
             </a>
             <a 
-              href="mailto:ayeshanaeem89299@gmail.com"
+              href="mailto:support@comfortsofa.com"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-yellow-600 px-8 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2"
             >
               <span>📧 Email Us</span>

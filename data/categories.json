@@ -1,27 +1,27 @@
 [
   {
     "id": "1",
-    "categoryname": "1 Piece",
-    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2153_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+    "categoryname": "Living Room",
+    "categorythumbnail": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "2", 
-    "categoryname": "2 Piece",
-    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2152_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+    "categoryname": "Bedroom",
+    "categorythumbnail": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "3",
-    "categoryname": "3 Piece", 
-    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2154_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+    "categoryname": "Office", 
+    "categorythumbnail": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "4",
-    "categoryname": "Co-ord Set",
-    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/5/25-2151_1_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+    "categoryname": "Dining Room",
+    "categorythumbnail": "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "5",
-    "categoryname": "Kameez Shalwar 3 Piece",
-    "categorythumbnail": "https://www.junaidjamshed.com/media/catalog/product/2/1/2155_2_.jpg?width=436&height=560&canvas=436,560&optimize=medium&bg-color=255,255,255&fit=bounds"
+    "categoryname": "Outdoor",
+    "categorythumbnail": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
   }
 ] 

@@ -5,30 +5,30 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Banner images for clothing store
+  // Banner images for sofa store
   const bannerImages = [
     {
       id: 1,
-      image: 'https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
-      title: 'Elegant Eastern Wear',
-      subtitle: 'Discover timeless beauty in our premium collection',
-      category: '3 Piece Collection',
-      offer: 'Up to 30% Off'
+      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      title: 'Luxury Living Room Sets',
+      subtitle: 'Transform your space with premium comfort and style',
+      category: 'Living Room Collection',
+      offer: 'Up to 40% Off'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
-      title: 'Stunning Co-ord Sets',
-      subtitle: 'Perfect harmony of style and comfort',
-      category: 'Co-ord Collection',
+      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      title: 'Modern Office Furniture',
+      subtitle: 'Productive workspace with ergonomic design',
+      category: 'Office Collection',
       offer: 'New Arrivals'
     },
     {
       id: 3,
-      image: 'https://res.cloudinary.com/do8tgpf80/image/upload/v1752430158/Hathkari_Banner_Img_yp1qkz.jpg',
-      title: 'Graceful Kameez Shalwar',
-      subtitle: 'Traditional elegance meets modern design',
-      category: 'Kameez Shalwar 3 Piece',
+      image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      title: 'Cozy Bedroom Sets',
+      subtitle: 'Create your perfect sanctuary for rest and relaxation',
+      category: 'Bedroom Collection',
       offer: 'Limited Edition'
     }
   ];
@@ -86,8 +86,8 @@ const Hero = () => {
                       : 'transform -translate-x-10 opacity-0'
                   }`}>
                     {/* Category Badge */}
-                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-full font-medium text-xs sm:text-sm shadow-lg animate-pulse">
-                      <span className="mr-1 sm:mr-2">✨</span>
+                    <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full font-medium text-xs sm:text-sm shadow-lg animate-pulse">
+                      <span className="mr-1 sm:mr-2">🛋️</span>
                       {banner.category}
             </div>
 
@@ -105,7 +105,7 @@ const Hero = () => {
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
               <Link 
                 href="/shop"
-                        className="group bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center space-x-2"
+                        className="group bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center justify-center space-x-2"
                       >
                         <span>Shop Now</span>
                         <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ const Hero = () => {
             onClick={() => goToSlide(index)}
             className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentSlide 
-                ? 'bg-yellow-500 scale-125 shadow-lg' 
+                ? 'bg-amber-500 scale-125 shadow-lg' 
                 : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                         }`}
                       />
@@ -157,9 +157,9 @@ const Hero = () => {
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-20 w-24 h-24 sm:w-32 sm:h-32 bg-yellow-400 bg-opacity-10 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 sm:w-32 sm:h-32 bg-amber-400 bg-opacity-10 rounded-full animate-pulse"></div>
         <div className="absolute bottom-40 left-20 w-16 h-16 sm:w-24 sm:h-24 bg-white bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 right-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-yellow-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+        <div className="absolute top-1/2 right-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-amber-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
       </div>
     </section>
   );

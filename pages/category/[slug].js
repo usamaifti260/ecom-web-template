@@ -121,11 +121,11 @@ export default function CategoryPage({ products, category, allCategories }) {
   // Get category display name
   const getCategoryDisplayName = (slug) => {
     const categoryMap = {
-      '1piece': '1 Piece',
-      '2piece': '2 Piece',
-      '3piece': '3 Piece',
-      'coord': 'Co-ord Set',
-      'kameez-shalwar': 'Kameez Shalwar 3 Piece',
+      'living-room': 'Living Room',
+      'bedroom': 'Bedroom',
+      'office': 'Office',
+      'dining-room': 'Dining Room',
+      'outdoor': 'Outdoor',
       'new-arrivals': 'New Arrivals',
       'on-sale': 'On Sale'
     };
@@ -227,9 +227,9 @@ export default function CategoryPage({ products, category, allCategories }) {
   return (
     <>
       <Head>
-        <title>{categoryDisplayName} - Hathkari Official</title>
-        <meta name="description" content={`Browse our ${categoryDisplayName.toLowerCase()} collection. Premium eastern wear for women with elegant designs and authentic quality.`} />
-        <meta name="keywords" content={`${categoryDisplayName}, eastern wear, women clothing, hathkari official, pakistani clothes`} />
+        <title>{categoryDisplayName} - Comfort Sofa</title>
+        <meta name="description" content={`Browse our ${categoryDisplayName.toLowerCase()} furniture collection. Premium furniture and sofas with elegant designs and superior quality.`} />
+        <meta name="keywords" content={`${categoryDisplayName}, furniture, sofas, comfort sofa, home furniture, premium furniture`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -318,11 +318,11 @@ export default function CategoryPage({ products, category, allCategories }) {
           ) : (
             <div className="text-center py-16">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-4xl">👗</span>
+                <span className="text-4xl">🛋️</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">No Products Found</h3>
               <p className="text-gray-600 text-lg mb-8">
-                We couldn't find any products in this category.
+                We couldn't find any furniture in this category.
               </p>
               <Link 
                 href="/shop"
@@ -349,7 +349,7 @@ export default function CategoryPage({ products, category, allCategories }) {
 
 export async function getStaticPaths() {
   try {
-    const products = await fetchClientProducts('hathkariclothing');
+    const products = await fetchClientProducts('comfortsofaproductsschema');
     
     // Get unique categories
     const categories = [...new Set(products.map(product => product.category))];
@@ -357,11 +357,6 @@ export async function getStaticPaths() {
     // Create category slugs
     const categoryPaths = categories.map(category => {
       let slug = category.toLowerCase().replace(/\s+/g, '-');
-      if (slug === '1-piece') slug = '1piece';
-      if (slug === '2-piece') slug = '2piece';
-      if (slug === '3-piece') slug = '3piece';
-      if (slug === 'co-ord-set') slug = 'coord';
-      if (slug === 'kameez-shalwar-3-piece') slug = 'kameez-shalwar';
       
       return {
         params: { slug }
@@ -389,7 +384,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const allProducts = await fetchClientProducts('hathkariclothing');
+    const allProducts = await fetchClientProducts('comfortsofaproductsschema');
     const { slug } = params;
     
     let products = [];
@@ -403,11 +398,11 @@ export async function getStaticProps({ params }) {
     } else {
       // Map slug to category name
       const categoryMap = {
-        '1piece': '1 Piece',
-        '2piece': '2 Piece',
-        '3piece': '3 Piece',
-        'coord': 'Co-ord Set',
-        'kameez-shalwar': 'Kameez Shalwar 3 Piece'
+        'living-room': 'Living Room',
+        'bedroom': 'Bedroom',
+        'office': 'Office',
+        'dining-room': 'Dining Room',
+        'outdoor': 'Outdoor'
       };
       
       const categoryName = categoryMap[slug];
@@ -419,11 +414,6 @@ export async function getStaticProps({ params }) {
     // Get all categories for navigation
     const allCategories = [...new Set(allProducts.map(product => product.category))].map(cat => {
       let slug = cat.toLowerCase().replace(/\s+/g, '-');
-      if (slug === '1-piece') slug = '1piece';
-      if (slug === '2-piece') slug = '2piece';
-      if (slug === '3-piece') slug = '3piece';
-      if (slug === 'co-ord-set') slug = 'coord';
-      if (slug === 'kameez-shalwar-3-piece') slug = 'kameez-shalwar';
       
       return {
         name: cat,

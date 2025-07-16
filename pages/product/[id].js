@@ -93,9 +93,9 @@ export default function ProductDetail({ product, relatedProducts }) {
   return (
     <>
       <Head>
-        <title>{product.name} - Hathkari Official</title>
+        <title>{product.name} - Comfort Sofa</title>
         <meta name="description" content={product.description} />
-        <meta name="keywords" content={`${product.category}, ${product.brand}, eastern wear, women clothing, ${product.name}`} />
+        <meta name="keywords" content={`${product.category}, ${product.brand}, furniture, sofas, home furniture, ${product.name}`} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.image} />
@@ -381,7 +381,7 @@ export default function ProductDetail({ product, relatedProducts }) {
 
 export async function getStaticPaths() {
   try {
-    const products = await fetchClientProducts('hathkariclothing');
+    const products = await fetchClientProducts('comfortsofaproductsschema');
     
     const paths = products.map((product) => ({
       params: { id: product.id.toString() }
@@ -402,7 +402,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const products = await fetchClientProducts('hathkariclothing');
+    const products = await fetchClientProducts('comfortsofaproductsschema');
     const product = products.find(p => p.id.toString() === params.id);
     
     if (!product) {

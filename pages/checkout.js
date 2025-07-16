@@ -141,8 +141,8 @@ export default function CheckoutPage() {
     return (
       <>
         <Head>
-          <title>Checkout - Hathkari Official</title>
-          <meta name="description" content="Complete your clothing order" />
+          <title>Checkout - Comfort Sofa</title>
+          <meta name="description" content="Complete your furniture order" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -150,12 +150,12 @@ export default function CheckoutPage() {
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
             <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-6xl">👗</span>
+              <span className="text-6xl">🛋️</span>
             </div>
             <h1 className="text-3xl font-bold text-gray-800 mb-3">Your cart is empty</h1>
-            <p className="text-gray-600 mb-6">Add some beautiful clothes to your cart before checking out.</p>
+            <p className="text-gray-600 mb-6">Add some beautiful furniture to your cart before checking out.</p>
             <Link href="/shop" className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
-              ✨ Browse Collection
+              🛋️ Browse Collection
             </Link>
           </div>
         </div>
@@ -166,8 +166,8 @@ export default function CheckoutPage() {
   return (
     <>
       <Head>
-        <title>Checkout - Hathkari Official</title>
-        <meta name="description" content="Complete your clothing order" />
+        <title>Checkout - Comfort Sofa</title>
+        <meta name="description" content="Complete your furniture order" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -177,13 +177,13 @@ export default function CheckoutPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href="/shop" className="hover:text-yellow-600 transition-colors">👗 Shop</Link>
+              <Link href="/shop" className="hover:text-yellow-600 transition-colors">🛋️ Shop</Link>
               <span>→</span>
               <span className="text-yellow-600 font-medium">Checkout</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">HATHKARI</span> <span className="text-gray-800">OFFICIAL</span>
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">COMFORT</span> <span className="text-gray-800">SOFA</span>
               </h1>
               <p className="text-gray-600">Complete your beautiful order</p>
             </div>
