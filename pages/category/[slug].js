@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { fetchClientProducts } from '@/lib/fetchProducts';
+import { fetchClientProducts, fetchClientCategories } from '@/lib/fetchProducts';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
 import Navbar from '@/components/Navbar';
@@ -120,16 +120,20 @@ export default function CategoryPage({ products, category, allCategories }) {
 
   // Get category display name
   const getCategoryDisplayName = (slug) => {
-    const categoryMap = {
-      'living-room': 'Living Room',
-      'bedroom': 'Bedroom',
-      'office': 'Office',
-      'dining-room': 'Dining Room',
-      'outdoor': 'Outdoor',
-      'new-arrivals': 'New Arrivals',
-      'on-sale': 'On Sale'
-    };
-    return categoryMap[slug] || slug.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    // Handle special categories
+    if (slug === 'new-arrivals') return 'New Arrivals';
+    if (slug === 'on-sale') return 'On Sale';
+    
+    // For regular categories, find the proper name from allCategories
+    const foundCategory = allCategories.find(cat => cat.slug === slug);
+    if (foundCategory) {
+      return foundCategory.name;
+    }
+    
+    // Fallback: convert slug to title case
+    return slug.split('-').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
   };
 
   const categoryDisplayName = getCategoryDisplayName(category);
@@ -349,15 +353,22 @@ export default function CategoryPage({ products, category, allCategories }) {
 
 export async function getStaticPaths() {
   try {
-    const products = await fetchClientProducts('comfortsofaproductsschema');
+    // Fetch both products and categories to get all possible paths
+    const [products, categories] = await Promise.all([
+      fetchClientProducts('comfortsofaproductsschema'),
+      fetchClientCategories('comfortsofacategoriesschema')
+    ]);
     
-    // Get unique categories
-    const categories = [...new Set(products.map(product => product.category))];
+    // Get categories from both sources to ensure we don't miss any
+    const productCategories = [...new Set(products.map(product => product.category))];
+    const dashboardCategories = categories.map(cat => cat.categoryname);
+    
+    // Combine and deduplicate categories
+    const allCategories = [...new Set([...productCategories, ...dashboardCategories])];
     
     // Create category slugs
-    const categoryPaths = categories.map(category => {
+    const categoryPaths = allCategories.map(category => {
       let slug = category.toLowerCase().replace(/\s+/g, '-');
-      
       return {
         params: { slug }
       };
@@ -371,20 +382,28 @@ export async function getStaticPaths() {
 
     return {
       paths: [...categoryPaths, ...specialPaths],
-      fallback: false
+      fallback: false // Enable fallback for new categories added after build
     };
   } catch (error) {
     console.error('Error generating static paths:', error);
     return {
-      paths: [],
-      fallback: false
+      paths: [
+        { params: { slug: 'new-arrivals' } },
+        { params: { slug: 'on-sale' } }
+      ],
+      fallback: false // Still enable fallback even if fetching fails
     };
   }
 }
 
 export async function getStaticProps({ params }) {
   try {
-    const allProducts = await fetchClientProducts('comfortsofaproductsschema');
+    // Fetch both products and categories
+    const [allProducts, allCategories] = await Promise.all([
+      fetchClientProducts('comfortsofaproductsschema'),
+      fetchClientCategories('comfortsofacategoriesschema')
+    ]);
+    
     const { slug } = params;
     
     let products = [];
@@ -396,42 +415,47 @@ export async function getStaticProps({ params }) {
     } else if (slug === 'on-sale') {
       products = allProducts.filter(product => product.onSale);
     } else {
-      // Map slug to category name
-      const categoryMap = {
-        'living-room': 'Living Room',
-        'bedroom': 'Bedroom',
-        'office': 'Office',
-        'dining-room': 'Dining Room',
-        'outdoor': 'Outdoor'
+      // Dynamic category matching: convert slug back to category name
+      const slugToCategoryName = (slug) => {
+        // First, try to find exact match from dashboard categories
+        const dashboardCategory = allCategories.find(cat => 
+          cat.categoryname.toLowerCase().replace(/\s+/g, '-') === slug
+        );
+        
+        if (dashboardCategory) {
+          return dashboardCategory.categoryname;
+        }
+        
+        // Fallback: convert slug to title case for backward compatibility
+        return slug.split('-').map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
       };
       
-      const categoryName = categoryMap[slug];
-      if (categoryName) {
-        products = allProducts.filter(product => product.category === categoryName);
-      }
+      const categoryName = slugToCategoryName(slug);
+      products = allProducts.filter(product => 
+        product.category.toLowerCase() === categoryName.toLowerCase()
+      );
     }
 
-    // Get all categories for navigation
-    const allCategories = [...new Set(allProducts.map(product => product.category))].map(cat => {
+    // Get all categories for navigation (from both products and dashboard)
+    const productCategories = [...new Set(allProducts.map(product => product.category))];
+    const dashboardCategoryNames = allCategories.map(cat => cat.categoryname);
+    const combinedCategories = [...new Set([...productCategories, ...dashboardCategoryNames])];
+    
+    const categoriesForNavigation = combinedCategories.map(cat => {
       let slug = cat.toLowerCase().replace(/\s+/g, '-');
-      
       return {
         name: cat,
         slug: slug
       };
     });
 
-    if (products.length === 0 && !['new-arrivals', 'on-sale'].includes(slug)) {
-      return {
-        notFound: true
-      };
-    }
-
     return {
       props: {
         products,
         category,
-        allCategories
+        allCategories: categoriesForNavigation
       }
     };
   } catch (error) {
