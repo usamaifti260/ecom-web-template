@@ -294,7 +294,7 @@ export default function PaymentPage() {
                             How it works:
                           </p>
                           <ul className="text-sm text-white opacity-90 mt-1 space-y-1">
-                            <li>• Your beautiful clothes will be carefully packaged</li>
+                            <li>• Your orders items will be carefully packaged</li>
                             <li>• Pay the delivery person when your order arrives</li>
                             <li>• Inspect your items before payment</li>
                             <li>• Cash payment only at delivery</li>
