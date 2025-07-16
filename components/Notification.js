@@ -1,6 +1,7 @@
 import { useNotification } from '@/lib/NotificationContext';
 import { useCart } from '@/lib/CartContext';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const Notification = () => {
@@ -10,6 +11,11 @@ const Notification = () => {
   const handleViewCart = (notificationId) => {
     removeNotification(notificationId);
     toggleCart();
+  };
+
+  const handleViewWishlist = (notificationId) => {
+    removeNotification(notificationId);
+    // Navigate to wishlist page will be handled by Link component
   };
 
   const formatPrice = (price) => {
@@ -23,9 +29,17 @@ const Notification = () => {
     switch (type) {
       case 'cart':
         return (
-          <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+            </svg>
+          </div>
+        );
+      case 'wishlist':
+        return (
+          <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 text-white" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
         );
@@ -66,6 +80,7 @@ const Notification = () => {
           notification={notification}
           onRemove={removeNotification}
           onViewCart={handleViewCart}
+          onViewWishlist={handleViewWishlist}
           formatPrice={formatPrice}
           getNotificationIcon={getNotificationIcon}
         />
@@ -74,7 +89,7 @@ const Notification = () => {
   );
 };
 
-const NotificationItem = ({ notification, onRemove, onViewCart, formatPrice, getNotificationIcon }) => {
+const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, formatPrice, getNotificationIcon }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
 
@@ -136,8 +151,8 @@ const NotificationItem = ({ notification, onRemove, onViewCart, formatPrice, get
               </button>
             </div>
 
-            {/* Product details for cart notifications */}
-            {notification.type === 'cart' && notification.product && (
+            {/* Product details for cart and wishlist notifications */}
+            {(notification.type === 'cart' || notification.type === 'wishlist') && notification.product && (
               <div className="mt-3 flex items-center space-x-3">
                 <div className="relative w-12 h-12 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                   <Image
@@ -153,10 +168,11 @@ const NotificationItem = ({ notification, onRemove, onViewCart, formatPrice, get
                   </p>
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-gray-600">
+                      {notification.product.selectedSize && `Size: ${notification.product.selectedSize}`}
                       {notification.product.selectedColor && `Color: ${notification.product.selectedColor}`}
                     </p>
                     <p className="text-sm font-semibold text-gray-900">
-                      {formatPrice(notification.product.price)}
+                      Rs. {notification.product.price.toLocaleString()}
                     </p>
                   </div>
                 </div>
@@ -168,10 +184,19 @@ const NotificationItem = ({ notification, onRemove, onViewCart, formatPrice, get
               {notification.type === 'cart' && (
                 <button
                   onClick={handleViewCart}
-                  className="flex-1 bg-primary-600 hover:bg-primary-700 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                  className="flex-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
                 >
                   View Cart
                 </button>
+              )}
+              {notification.type === 'wishlist' && (
+                <Link
+                  href="/wishlist"
+                  onClick={() => onViewWishlist(notification.id)}
+                  className="flex-1 bg-red-500 hover:bg-red-600 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 text-center"
+                >
+                  View Wishlist
+                </Link>
               )}
               <button
                 onClick={handleRemove}

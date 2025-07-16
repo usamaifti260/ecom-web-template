@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/lib/CartContext';
+import { useWishlist } from '@/lib/WishlistContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount, toggleCart } = useCart();
+  const { wishlistCount } = useWishlist();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,21 +46,39 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* Cart Button - Right side */}
-            <button
-              onClick={toggleCart}
-              className="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-1 sm:space-x-2"
-            >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
-              </svg>
-              <span className="hidden sm:inline font-medium text-sm sm:text-base">Cart</span>
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold animate-pulse">
-                  {itemCount}
-                </span>
-              )}
-            </button>
+            {/* Action Buttons - Right side */}
+            <div className="flex items-center space-x-2">
+              {/* Wishlist Button */}
+              <Link
+                href="/wishlist"
+                className="relative text-gray-700 hover:text-amber-600 transition-colors duration-300 p-2"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Cart Button */}
+              <button
+                onClick={toggleCart}
+                className="relative bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-1 sm:space-x-2"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                </svg>
+                <span className="hidden sm:inline font-medium text-sm sm:text-base">Cart</span>
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold animate-pulse">
+                    {itemCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -82,6 +102,17 @@ const Navbar = () => {
                 {category.name}
               </Link>
             ))}
+            <Link 
+              href="/wishlist" 
+              className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white flex items-center space-x-1"
+            >
+              <span>Wishlist</span>
+              {wishlistCount > 0 && (
+                <span className="bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             <Link 
               href="/about" 
               className="text-gray-700 hover:text-amber-600 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-white"
@@ -153,6 +184,18 @@ const Navbar = () => {
               ))}
             </div>
 
+            <Link 
+              href="/wishlist" 
+              className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium flex items-center justify-between"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <span>Wishlist</span>
+              {wishlistCount > 0 && (
+                <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             <Link 
               href="/about" 
               className="block px-4 py-3 text-gray-700 hover:text-amber-600 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"

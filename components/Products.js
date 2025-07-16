@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/lib/CartContext';
+import { useWishlist } from '@/lib/WishlistContext';
 import { useNotification } from '@/lib/NotificationContext';
 import SizeSelectionPopup from './SizeSelectionPopup';
 
@@ -19,6 +20,7 @@ const Products = ({ products = [], categories = [] }) => {
   const [sizePopup, setSizePopup] = useState({ isOpen: false, product: null });
   
   const { addItem } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { showCartNotification } = useNotification();
 
   // Check screen width for responsive behavior
@@ -75,6 +77,17 @@ const Products = ({ products = [], categories = [] }) => {
     setSizePopup({ isOpen: false, product: null });
   };
 
+  // Handle wishlist toggle
+  const handleWishlistToggle = (product) => {
+    if (isInWishlist(product.id)) {
+      removeFromWishlist(product.id);
+      showCartNotification(product, null, 1, 'removed from wishlist');
+    } else {
+      addToWishlist(product);
+      showCartNotification(product, null, 1, 'added to wishlist');
+    }
+  };
+
   // Product Card Component
   const ProductCard = ({ product, showQuickView = false }) => (
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
@@ -86,11 +99,30 @@ const Products = ({ products = [], categories = [] }) => {
                 {product.salepercentage/* || Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)*/}% OFF
               </div>
             )}
-          {product.isNew && (
-            <div className="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold z-10">
+          {product.isNew && !product.onSale && (
+            <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold z-10">
               NEW
             </div>
           )}
+          
+          {/* Wishlist Button */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleWishlistToggle(product);
+            }}
+            className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-300 z-10 ${
+              isInWishlist(product.id)
+                ? 'bg-red-500 text-white shadow-lg'
+                : 'bg-white bg-opacity-80 text-gray-600 hover:bg-red-500 hover:text-white'
+            }`}
+          >
+            <svg className="w-4 h-4" fill={isInWishlist(product.id) ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </button>
+
           <div className="relative w-full h-full bg-gray-100">
               <Image
                 src={product.image}
