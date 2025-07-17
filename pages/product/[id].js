@@ -55,7 +55,7 @@ export default function ProductDetail({ product, relatedProducts }) {
   }
 
   const formatPrice = (price) => {
-    return `Rs. ${price.toLocaleString()}`;
+    return `£${price.toLocaleString()}`;
   };
 
   const handleAddToCart = async () => {

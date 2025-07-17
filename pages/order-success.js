@@ -51,15 +51,15 @@ export default function OrderSuccessPage() {
   }, [orderId, router]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-PK', {
+    return new Intl.NumberFormat('en-GB', {
       style: 'currency',
-      currency: 'PKR',
+      currency: 'GBP',
       minimumFractionDigits: 0
     }).format(price);
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('en-GB', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -71,7 +71,7 @@ export default function OrderSuccessPage() {
   const getEstimatedDelivery = () => {
     const orderDate = new Date(orderData.processedAt);
     const deliveryDate = new Date(orderDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 days from order
-    return deliveryDate.toLocaleDateString('en-US', {
+    return deliveryDate.toLocaleDateString('en-GB', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',

@@ -39,7 +39,7 @@ const Contact = () => {
             Get In Touch
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Contact <span className="text-yellow-600">Comfort</span> Sofa
+            Contact <span className="text-yellow-600">Sofa</span> Sphere
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Have questions about our furniture collection? Need help with sizing or custom orders? 
@@ -59,7 +59,7 @@ const Contact = () => {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Call Us Now</h4>
               <div className="text-center space-y-2">
-                <p className="text-2xl font-bold text-yellow-600">0302-8829260</p>
+                <p className="text-2xl font-bold text-yellow-600">+44 7448 960712</p>
                 <p className="text-gray-600">Available for inquiries & orders</p>
                 <div className="text-sm text-gray-500">
                   <p>📞 Mon-Sat: 10:00 AM - 8:00 PM</p>
@@ -77,7 +77,9 @@ const Contact = () => {
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Email Us</h4>
               <div className="text-center space-y-2">
-                <p className="text-lg font-bold text-yellow-600">support@comfortsofa.com</p>
+                <p className="text-lg font-bold text-yellow-600">info@sofasphere.co.uk</p>
+                <p className="text-lg font-bold text-yellow-600">sales@sofasphere.co.uk</p>
+                
                 <p className="text-gray-600">For orders, inquiries & support</p>
                 <div className="text-sm text-gray-500">
                   <p>📧 We reply within 24 hours</p>
@@ -97,8 +99,8 @@ const Contact = () => {
               <h4 className="text-xl font-bold text-gray-900 mb-3 text-center">Visit Our Studio</h4>
               <div className="text-center space-y-2">
                 <p className="text-gray-700 font-medium">
-                  Comfort Sofa Showroom<br />
-                  Lahore, Pakistan<br />
+                  Sofa Sphere Showroom<br />
+                  52 Elm Street Rosewood, Hornchurch, UK<br />
                 </p>
                 <p className="text-sm text-gray-500">
                   📍 By appointment only
@@ -234,15 +236,15 @@ const Contact = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="https://wa.me/923028829260"
+              href="https://wa.me/447448960712"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white text-yellow-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center space-x-2"
             >
-              <span>💬 WhatsApp: 0302-8829260</span>
+              <span>💬 WhatsApp: +44 7448 960712</span>
             </a>
             <a 
-              href="mailto:support@comfortsofa.com"
+              href="mailto:info@sofasphere.co.uk"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-yellow-600 px-8 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2"
             >
               <span>📧 Email Us</span>

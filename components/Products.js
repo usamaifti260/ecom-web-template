@@ -47,7 +47,7 @@ const Products = ({ products = [], categories = [] }) => {
 
   // Format price for Pakistani Rupees
   const formatPrice = (price) => {
-    return `Rs. ${price.toLocaleString()}`;
+    return `£${price.toLocaleString()}`;
   };
 
   // Handle add to cart - show size selection popup

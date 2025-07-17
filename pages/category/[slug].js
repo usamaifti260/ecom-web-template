@@ -57,7 +57,7 @@ export default function CategoryPage({ products, category, allCategories }) {
 
   // Format price for Pakistani Rupees
   const formatPrice = (price) => {
-    return `Rs. ${price.toLocaleString()}`;
+    return `£${price.toLocaleString()}`;
   };
 
   // Handle add to cart - show size selection popup

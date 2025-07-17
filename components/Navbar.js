@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/lib/CartContext';
 import { useWishlist } from '@/lib/WishlistContext';
+import Image from 'next/image';
+
+import logo from '@/public/assets/Sofasphere_logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,11 +41,14 @@ const Navbar = () => {
 
             {/* Brand Name - Center */}
             <Link href="/" className="flex items-center justify-center flex-1 md:flex-none">
+           {/* Add logo here */}
+           {/* <Image src={logo.src} alt="Sofasphere Logo" width={80} height={80} /> */}
+           
               <div className="text-lg sm:text-xl md:text-3xl font-bold tracking-wide">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400">
-                  COMFORT
+                  SOFA
                 </span>
-                <span className="text-gray-800 ml-1 sm:ml-2 font-light">SOFA</span>
+                <span className="text-gray-800 ml-1 sm:ml-2 font-light">SPHERE</span>
               </div>
             </Link>
 

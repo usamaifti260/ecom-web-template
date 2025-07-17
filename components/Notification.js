@@ -19,9 +19,9 @@ const Notification = () => {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-GB', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'GBP'
     }).format(price);
   };
 
@@ -172,7 +172,7 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
                       {notification.product.selectedColor && `Color: ${notification.product.selectedColor}`}
                     </p>
                     <p className="text-sm font-semibold text-gray-900">
-                      Rs. {notification.product.price.toLocaleString()}
+                     £{notification.product.price.toLocaleString()}
                     </p>
                   </div>
                 </div>

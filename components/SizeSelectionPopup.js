@@ -10,7 +10,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   const { showSuccessNotification } = useNotification();
 
   const formatPrice = (price) => {
-    return `Rs. ${price.toFixed(0)}`;
+    return `£${price.toFixed(0)}`;
   };
 
   const handleAddToCart = () => {

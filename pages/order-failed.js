@@ -46,9 +46,9 @@ export default function OrderFailedPage() {
   }, [reason]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-PK', {
+    return new Intl.NumberFormat('en-GB', {
       style: 'currency',
-      currency: 'PKR',
+      currency: 'GBP',
       minimumFractionDigits: 0
     }).format(price);
   };
