@@ -87,7 +87,7 @@ export default function OrderSuccessPage() {
           <title>Order Confirmation - SOFA SPHERE</title>
           <meta name="description" content="Order confirmation" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function OrderSuccessPage() {
           <title>Order Not Found - SOFA SPHERE</title>
           <meta name="description" content="Order not found" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -134,7 +134,7 @@ export default function OrderSuccessPage() {
         <title>Order Confirmation - SOFA SPHERE</title>
         <meta name="description" content="Your order has been confirmed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -148,7 +148,7 @@ export default function OrderSuccessPage() {
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmed!</h1>
             <p className="text-lg text-gray-600 mb-4">
-              Thank you for shopping with Comfort Sofa! Your beautiful order is being processed.
+              Thank you for shopping with Sofa Sphere! Your beautiful order is being processed.
             </p>
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 inline-block">
               <p className="text-sm text-gray-800">

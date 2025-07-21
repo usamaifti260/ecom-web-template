@@ -67,8 +67,8 @@ export default function Wishlist() {
   return (
     <>
       <Head>
-        <title>My Wishlist - Comfort Sofa</title>
-        <meta name="description" content="Your saved furniture items at Comfort Sofa. Manage your wishlist and find your favorite products." />
+        <title>My Wishlist - Sofa Sphere</title>
+        <meta name="description" content="Your saved furniture items at Sofa Sphere. Manage your wishlist and find your favorite products." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 

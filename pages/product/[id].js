@@ -210,7 +210,8 @@ export default function ProductDetail({ product, relatedProducts }) {
       'Steel': 'bg-slate-500',
       'Camel': 'bg-amber-500',
       'Silver': 'bg-gray-500',
-      'Dark Blue': 'bg-blue-900'
+      'Dark Blue': 'bg-blue-900',
+      'Coal': 'bg-gray-800'
     };
     return colorMap[colorName] || 'bg-gray-400';
   };
@@ -295,14 +296,14 @@ export default function ProductDetail({ product, relatedProducts }) {
   return (
     <>
       <Head>
-        <title>{product.name} - Comfort Sofa</title>
+        <title>{product.name} - Sofa Sphere</title>
         <meta name="description" content={product.description} />
         <meta name="keywords" content={`${product.category}, ${product.brand}, furniture, sofas, home furniture, ${product.name}`} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.image} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

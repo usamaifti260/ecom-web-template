@@ -17,7 +17,7 @@ export default function Home({ products, categories, clientInfo }) {
         <meta name="description" content="Discover luxury furniture at SOFA SPHERE. Premium collection of Living Room, Bedroom, Office, Dining Room, and Outdoor furniture. Shop authentic furniture with modern designs and superior comfort." />
         <meta name="keywords" content="furniture, sofas, living room, bedroom, office furniture, dining room, outdoor furniture, comfort sofa, luxury furniture, modern furniture" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

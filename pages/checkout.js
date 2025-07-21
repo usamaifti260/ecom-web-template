@@ -103,7 +103,7 @@ export default function CheckoutPage() {
     
     try {
       // Calculate shipping fee
-      const shippingFee = totalPrice >= 3000 ? 0 : 200;
+      const shippingFee = totalPrice >= 1000 ? 0 : 100;
       const finalTotal = totalPrice + shippingFee;
       
       // Prepare order data
@@ -166,10 +166,10 @@ export default function CheckoutPage() {
   return (
     <>
       <Head>
-        <title>Checkout - Comfort Sofa</title>
+        <title>Checkout - SOFA SPHERE</title>
         <meta name="description" content="Complete your furniture order" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -183,11 +183,12 @@ export default function CheckoutPage() {
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">COMFORT</span> <span className="text-gray-800">SOFA</span>
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">SOFA</span> <span className="text-gray-800">SPHERE</span>
               </h1>
               <p className="text-gray-600">Complete your beautiful order</p>
             </div>
           </div>
+
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Checkout Form */}
@@ -213,7 +214,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.firstName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="Fatima"
+                        placeholder="John"
                       />
                       {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                     </div>
@@ -230,7 +231,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.lastName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="Khan"
+                        placeholder="Doe"
                       />
                       {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                     </div>
@@ -249,7 +250,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.email ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="fatima@example.com"
+                        placeholder="john@example.com"
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
@@ -266,7 +267,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.phone ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="0306-0007061"
+                        placeholder="+44 7448 960712"
                       />
                       {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
@@ -293,7 +294,7 @@ export default function CheckoutPage() {
                         className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                           errors.address ? 'border-red-500' : 'border-gray-300'
                         }`}
-                        placeholder="123 Fashion Street"
+                        placeholder="123 Sofa Street"
                       />
                       {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                     </div>
@@ -311,7 +312,7 @@ export default function CheckoutPage() {
                           className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                             errors.city ? 'border-red-500' : 'border-gray-300'
                           }`}
-                          placeholder="Lahore"
+                          placeholder="London"
                         />
                         {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
                       </div>
@@ -328,7 +329,7 @@ export default function CheckoutPage() {
                           className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
                             errors.area ? 'border-red-500' : 'border-gray-300'
                           }`}
-                          placeholder="Model Town"
+                          placeholder="Barking"
                         />
                         {errors.area && <p className="text-red-500 text-xs mt-1">{errors.area}</p>}
                       </div>
@@ -343,7 +344,7 @@ export default function CheckoutPage() {
                           value={formData.zipCode}
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
-                          placeholder="54000"
+                          placeholder="E7 0AA"
                         />
                       </div>
                     </div>
@@ -466,7 +467,7 @@ export default function CheckoutPage() {
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium text-green-600">
-                    {totalPrice >= 3000 ? 'FREE' : 'Rs. 200'}
+                    {totalPrice >= 1000 ? 'FREE' : '£100'}
                   </span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
@@ -508,10 +509,10 @@ export default function CheckoutPage() {
               </div>
 
               {/* Free Shipping Info */}
-              {totalPrice < 3000 && (
+              {totalPrice < 1000 && (
                 <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <p className="text-yellow-700 text-sm text-center">
-                    🚚 Add Rs. {(3000 - totalPrice).toFixed(0)} more for FREE shipping!
+                    🚚 Add £{(1000 - totalPrice).toFixed(0)} more for FREE shipping!
                   </p>
                 </div>
               )}

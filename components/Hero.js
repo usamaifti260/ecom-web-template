@@ -6,6 +6,7 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const services = [
     {
@@ -53,6 +54,7 @@ const Hero = () => {
     {
       id: 1,
       image: 'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNvZmF8ZW58MHx8MHx8fDA%3D',
+      mobileImage: 'https://res.cloudinary.com/do8tgpf80/image/upload/v1753122940/Sofaphere_Banner_1_ocrofm.jpg',
       title: 'Luxury Living Room Sets',
       subtitle: 'Transform your space with premium comfort and style',
       category: 'Living Room Collection',
@@ -61,6 +63,7 @@ const Hero = () => {
     {
       id: 2,
       image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+      mobileImage: 'https://res.cloudinary.com/do8tgpf80/image/upload/v1753122942/Sofasphere_Banner_2_zrhpja.jpg',
       title: 'Modern Office Furniture',
       subtitle: 'Productive workspace with ergonomic design',
       category: 'Office Collection',
@@ -69,6 +72,7 @@ const Hero = () => {
     {
       id: 3,
       image: 'https://images.unsplash.com/photo-1664711942326-2c3351e215e6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHNvZmF8ZW58MHx8MHx8fDA%3D',
+      mobileImage: 'https://res.cloudinary.com/do8tgpf80/image/upload/v1753122940/Sofaphere_Banner_1_ocrofm.jpg',
       title: 'Cozy Bedroom Sets',
       subtitle: 'Create your perfect sanctuary for rest and relaxation',
       category: 'Bedroom Collection',
@@ -78,10 +82,23 @@ const Hero = () => {
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
-    }, 7000); // Change slide every 9 seconds
-    return () => clearInterval(interval);
+    }, 7000); // Change slide every 7 seconds
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const nextSlide = () => {
@@ -167,10 +184,10 @@ const Hero = () => {
         </div>
       </div>
 
-            <section className="relative bg-white overflow-hidden">
+        <section className="relative bg-white overflow-hidden">
         {/* Banner Slider */}
         <div 
-          className="relative h-[35vh] sm:h-[60vh] md:h-[60vh] lg:h-screen"
+          className="relative h-[45vh] sm:h-[60vh] md:h-[60vh] lg:h-screen"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -186,16 +203,16 @@ const Hero = () => {
           >
             {/* Background Image */}
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${banner.image})` }}
+              className={`absolute inset-0 ${isMobile ? 'bg-contain' : 'bg-cover'} bg-center bg-no-repeat`}
+              style={{ backgroundImage: `url(${isMobile ? banner.mobileImage : banner.image})` }}
             >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+              {/* Overlay - Hidden on mobile */}
+              <div className={`absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent ${isMobile ? 'hidden' : ''}`}></div>
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent ${isMobile ? 'hidden' : ''}`}></div>
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 h-full flex items-center">
+            {/* Content - Hidden on mobile */}
+            <div className={`relative z-10 h-full flex items-center ${isMobile ? 'hidden' : ''}`}>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-full text-center">
                   <div className={`space-y-3 sm:space-y-4 md:space-y-6 transition-all duration-1000 delay-300 ${

@@ -8,10 +8,10 @@ export default function ShopPage({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>Shop - Comfort Sofa</title>
+        <title>Shop - Sofa Sphere</title>
         <meta name="description" content="Browse our complete collection of premium furniture. Find the perfect sofa and furniture pieces for every room in your home." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

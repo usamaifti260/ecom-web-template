@@ -32,6 +32,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   // Initialize configuration options when product is available
   useEffect(() => {
     if (product) {
+
       // Set defaults only when product first loads or changes
       if (product.dimensions?.length > 0) setSelectedDimension(product.dimensions[0]);
       if (product.Orientation?.length > 0) setSelectedOrientation(product.Orientation[0]);
@@ -163,7 +164,8 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
       'Steel': 'bg-slate-500',
       'Camel': 'bg-amber-500',
       'Silver': 'bg-gray-500',
-      'Dark Blue': 'bg-blue-900'
+      'Dark Blue': 'bg-blue-900',
+      'Coal': 'bg-gray-800'
     };
     return colorMap[colorName] || 'bg-gray-400';
   };

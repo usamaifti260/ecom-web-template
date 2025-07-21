@@ -114,11 +114,11 @@ const Cart = () => {
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mb-6">
-                  <span className="text-6xl">👗</span>
+                  <span className="text-6xl">🛋️</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-3">Your cart is empty</h3>
                 <p className="text-gray-600 mb-6 text-center">
-                  Looks like you haven't added any beautiful clothes yet!<br/>
+                  Looks like you haven't added any furniture yet!<br/>
                   Browse our collection and add your favorites.
                 </p>
                 <button
@@ -236,7 +236,7 @@ const Cart = () => {
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium text-green-600">
-                    {totalPrice >= 3000 ? 'FREE' : 'Rs. 200'}
+                    {totalPrice >= 1000 ? 'FREE' : '£100'}
                   </span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
@@ -286,10 +286,10 @@ const Cart = () => {
               </div>
 
               {/* Free Shipping Info */}
-              {totalPrice < 3000 && (
+              {totalPrice < 1000 && (
                 <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <p className="text-yellow-700 text-sm text-center">
-                    🚚 Add Rs. {(3000 - totalPrice).toFixed(0)} more for FREE shipping!
+                    🚚 Add £{(1000 - totalPrice).toFixed(0)} more for FREE shipping!
                   </p>
                 </div>
               )}

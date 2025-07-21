@@ -498,11 +498,11 @@ export default function CategoryPage({ products, category, allCategories }) {
   return (
     <>
       <Head>
-        <title>{categoryDisplayName} - Comfort Sofa</title>
+        <title>{categoryDisplayName} - Sofa Sphere</title>
         <meta name="description" content={`Browse our ${categoryDisplayName.toLowerCase()} furniture collection. Premium furniture and sofas with elegant designs and superior quality.`} />
         <meta name="keywords" content={`${categoryDisplayName}, furniture, sofas, comfort sofa, home furniture, premium furniture`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

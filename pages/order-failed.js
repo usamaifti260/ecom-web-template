@@ -177,7 +177,7 @@ export default function OrderFailedPage() {
           <title>Order Failed - SOFA SPHERE</title>
           <meta name="description" content="Order processing failed" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -198,7 +198,7 @@ export default function OrderFailedPage() {
         <title>Order Failed - SOFA SPHERE</title>
         <meta name="description" content="Order processing failed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -320,7 +320,7 @@ export default function OrderFailedPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email Support</p>
-                    <p className="text-sm text-gray-700">support@comfortsofa.com</p>
+                    <p className="text-sm text-gray-700">info@sofasphere.co.uk</p>
                     <p className="text-xs text-gray-600">Response within 24 hours</p>
                   </div>
                 </div>
@@ -333,8 +333,8 @@ export default function OrderFailedPage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Phone Support</p>
-                    <p className="text-sm text-gray-700">0304-4481181</p>
-                    <p className="text-xs text-gray-600">Daily 10AM-8PM</p>
+                    <p className="text-sm text-gray-700">+44 7448 960712</p>
+                    <p className="text-xs text-gray-600">Daily 24/7</p>
                   </div>
                 </div>
               </div>

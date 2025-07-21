@@ -61,7 +61,8 @@ export default function PaymentPage() {
         city: orderData.customer.city,
         state: orderData.customer.state,
         zipCode: orderData.customer.zipCode,
-        country: orderData.customer.country
+        country: orderData.customer.country,
+        notes: orderData.customer.notes
       };
 
       // Format products data according to backend expectations
@@ -230,10 +231,10 @@ export default function PaymentPage() {
     return (
       <>
         <Head>
-          <title>Payment - Comfort Sofa</title>
+          <title>Payment - Sofa Sphere</title>
           <meta name="description" content="Complete your payment" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -252,7 +253,7 @@ export default function PaymentPage() {
         <title>Payment - SOFA SPHERE</title>
         <meta name="description" content="Complete your payment" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -363,8 +364,8 @@ export default function PaymentPage() {
                   <div className="text-center">
                     <p className="text-sm text-gray-600">
                       Questions about returns? 
-                      <a href="tel:0302-8829260" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
-                        Call us at 0302-8829260
+                      <a href="tel:+44 7448 960712" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
+                        Call us at +44 7448 960712
                       </a>
                     </p>
                   </div>
@@ -541,7 +542,7 @@ export default function PaymentPage() {
                       Placing Order...
                     </div>
                   ) : (
-                    '👗 Place Order'
+                    '🛋️ Place Order'
                   )}
                 </button>
                 
