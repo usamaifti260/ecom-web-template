@@ -54,9 +54,9 @@ export default function CheckoutPage() {
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
-      removeItem(item.id, item.selectedSize);
+      removeItem(item.id, item.selectedSize, item.selectedConfiguration);
     } else {
-      updateQuantity(item.id, item.selectedSize, newQuantity);
+      updateQuantity(item.id, item.selectedSize, newQuantity, item.selectedConfiguration);
     }
   };
 
@@ -141,7 +141,7 @@ export default function CheckoutPage() {
     return (
       <>
         <Head>
-          <title>Checkout - Comfort Sofa</title>
+          <title>Checkout - SOFA SPHERE</title>
           <meta name="description" content="Complete your furniture order" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />

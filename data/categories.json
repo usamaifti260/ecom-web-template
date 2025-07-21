@@ -1,27 +1,17 @@
 [
   {
     "id": "1",
-    "categoryname": "Living Room",
-    "categorythumbnail": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    "categoryname": "Sofas",
+    "categorythumbnail": "https://ukfurnish.com/cdn/shop/files/verona_cornersofa_grey_b.webp?v=1733926845&width=750"
   },
   {
     "id": "2", 
-    "categoryname": "Bedroom",
-    "categorythumbnail": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    "categoryname": "Beds",
+    "categorythumbnail": "https://ukfurnish.com/cdn/shop/files/bedcategory.svg?v=1729939090&width=750"
   },
   {
     "id": "3",
-    "categoryname": "Office", 
-    "categorythumbnail": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    "id": "4",
-    "categoryname": "Dining Room",
-    "categorythumbnail": "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    "id": "5",
-    "categoryname": "Outdoor",
-    "categorythumbnail": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    "categoryname": "Wardrobe", 
+    "categorythumbnail": "https://ukfurnish.com/cdn/shop/files/wardrobecategory_57de0ebf-048e-4403-a95e-6b52e3b22ac9.svg?v=1729939207&width=750"
   }
 ] 

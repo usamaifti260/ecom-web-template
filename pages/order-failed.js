@@ -174,7 +174,7 @@ export default function OrderFailedPage() {
     return (
       <>
         <Head>
-          <title>Order Failed - Comfort Sofa</title>
+          <title>Order Failed - SOFA SPHERE</title>
           <meta name="description" content="Order processing failed" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -195,7 +195,7 @@ export default function OrderFailedPage() {
   return (
     <>
       <Head>
-        <title>Order Failed - Comfort Sofa</title>
+        <title>Order Failed - SOFA SPHERE</title>
         <meta name="description" content="Order processing failed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

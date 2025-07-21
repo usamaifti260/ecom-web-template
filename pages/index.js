@@ -2,6 +2,7 @@ import { fetchClientProducts, fetchClientCategories } from '@/lib/fetchProducts'
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Categories from '@/components/Categories';
 import Products from '@/components/Products';
 import Reviews from '@/components/Reviews';
 import About from '@/components/About';
@@ -22,9 +23,12 @@ export default function Home({ products, categories, clientInfo }) {
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <Hero />
+        <Categories categories={categories} />
         <Products products={products} categories={categories} />
         <Reviews />
         <Footer /> 
+        {/* Add bottom padding for mobile navigation bar */}
+        <div className="lg:hidden h-16"></div>
       </div>
     </>
   );

@@ -34,9 +34,9 @@ const Cart = () => {
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
-      removeItem(item.id, item.selectedSize);
+      removeItem(item.id, item.selectedSize, item.selectedConfiguration);
     } else {
-      updateQuantity(item.id, item.selectedSize, newQuantity);
+      updateQuantity(item.id, item.selectedSize, newQuantity, item.selectedConfiguration);
     }
   };
 
@@ -199,7 +199,7 @@ const Cart = () => {
 
                         {/* Remove Button */}
                         <button
-                          onClick={() => removeItem(item.id, item.selectedSize)}
+                          onClick={() => removeItem(item.id, item.selectedSize, item.selectedConfiguration)}
                           className="p-1 text-red-400 hover:text-red-600 transition-colors duration-200"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

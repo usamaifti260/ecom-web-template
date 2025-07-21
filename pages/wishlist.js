@@ -15,10 +15,33 @@ export default function Wishlist() {
   const { showCartNotification } = useNotification();
   const [addingToCart, setAddingToCart] = useState({});
   const [sizePopup, setSizePopup] = useState({ isOpen: false, product: null });
+  const [selectedColors, setSelectedColors] = useState({}); // Track selected color for each product
 
-  // Format price for Pakistani Rupees
+  // Format price
   const formatPrice = (price) => {
-    return `Rs. ${price.toLocaleString()}`;
+    return `£${price.toLocaleString()}`;
+  };
+
+  // Handle color selection
+  const handleColorSelect = (productId, colorIndex) => {
+    setSelectedColors(prev => ({
+      ...prev,
+      [productId]: colorIndex
+    }));
+  };
+
+  // Get current image for a product
+  const getCurrentImage = (product) => {
+    const productId = product.id;
+    const selectedColorIndex = selectedColors[productId];
+    
+    // If a color is selected, show the corresponding gallery image
+    if (selectedColorIndex !== undefined && product.gallery && product.gallery[selectedColorIndex]) {
+      return product.gallery[selectedColorIndex];
+    }
+    
+    // Default to main product image
+    return product.image;
   };
 
   // Handle remove from wishlist
@@ -30,26 +53,10 @@ export default function Wishlist() {
     }
   };
 
-  // Handle add to cart
+  // Handle add to cart - always show size selection popup for configuration
   const handleAddToCart = async (product) => {
-    if (product.sizes && product.sizes.length > 0) {
-      setSizePopup({ isOpen: true, product });
-    } else {
-      // For products without sizes, add directly to cart
-      setAddingToCart(prev => ({ ...prev, [product.id]: true }));
-      
-      try {
-        addItem(product, null, 1);
-        showCartNotification(product, null, 1);
-        
-        setTimeout(() => {
-          setAddingToCart(prev => ({ ...prev, [product.id]: false }));
-        }, 800);
-      } catch (error) {
-        console.error('Error adding item to cart:', error);
-        setAddingToCart(prev => ({ ...prev, [product.id]: false }));
-      }
-    }
+    // Always show the configuration popup to allow users to customize their product
+    setSizePopup({ isOpen: true, product });
   };
 
   // Close size popup
@@ -94,23 +101,19 @@ export default function Wishlist() {
 
           {/* Wishlist Items */}
           {wishlistItems.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6">
               {wishlistItems.map((product) => (
-                <div key={product.id} className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
+                <div key={product.id} className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group relative">
                   {/* Product Image */}
                   <Link href={`/product/${product.id}`}>
-                    <div className="relative h-64 overflow-hidden cursor-pointer">
+                    <div className="relative aspect-[5/5] overflow-hidden cursor-pointer lg:h-[480px] w-full">
+                      {/* Sale Badge */}
                       {product.onSale && (
-                        <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold z-10">
-                          {product.salepercentage}% OFF
+                        <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs font-bold z-20 rounded">
+                          SALE
                         </div>
                       )}
-                      {product.isNew && !product.onSale && (
-                        <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold z-10">
-                          NEW
-                        </div>
-                      )}
-                      
+
                       {/* Remove from Wishlist Button */}
                       <button
                         onClick={(e) => {
@@ -118,57 +121,142 @@ export default function Wishlist() {
                           e.stopPropagation();
                           handleRemoveFromWishlist(product.id);
                         }}
-                        className="absolute top-3 right-3 bg-red-500 text-white p-2 rounded-full transition-all duration-300 z-10 hover:bg-red-600"
+                        className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full transition-all duration-300 z-20 flex items-center justify-center hover:bg-red-600"
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
 
-                      <div className="relative w-full h-full bg-gray-100">
+                      {/* Quick View Button - Desktop Only */}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                        className="absolute top-2 right-12 w-8 h-8 bg-white text-gray-600 hover:bg-gray-100 rounded-full transition-all duration-300 z-20 flex items-center justify-center opacity-0 lg:group-hover:opacity-100"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      </button>
+
+                      <div className="relative w-full h-full bg-white group">
+                        {/* Default image */}
                         <Image
-                          src={product.image}
+                          src={getCurrentImage(product)}
                           alt={product.name}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className={`object-contain object-top transition-opacity duration-300 ${
+                            selectedColors[product.id] !== undefined 
+                              ? 'opacity-100' // Always visible when color is selected
+                              : 'opacity-100 group-hover:opacity-0' // Fade on hover when no color selected
+                          }`}
                         />
+
+                        {/* Hover image - show hoverimage if available and no color selected */}
+                        {product.hoverimage && selectedColors[product.id] === undefined && (
+                          <Image
+                            src={product.hoverimage}
+                            alt={product.name}
+                            fill
+                            className="object-contain object-top transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                          />
+                        )}
                       </div>
                     </div>
                   </Link>
 
-                  {/* Product Info */}
-                  <div className="p-4">
-                    {/* Category */}
-                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">{product.category}</p>
-                    
-                    {/* Product Name */}
-                    <Link href={`/product/${product.id}`}>
-                      <h4 className="font-semibold text-base mb-2 line-clamp-2 min-h-[3rem] text-gray-800 leading-tight tracking-wide hover:text-yellow-600 transition-colors duration-200 cursor-pointer">
-                        {product.name}
-                      </h4>
-                    </Link>
+                  {/* Product Info - Slides up on hover (Desktop) */}
+                  <div className="relative">
+                    {/* Desktop: Sliding Content */}
+                    <div className="hidden lg:block absolute bottom-0 left-0 right-0 bg-white transition-all duration-300 lg:translate-y-0 lg:group-hover:-translate-y-16 z-10">
+                      <div className="p-4 text-center">
+                        {/* Brand Name */}
+                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-1 font-medium">{product.brand}</p>
+                        
+                        {/* Product Name */}
+                        <Link href={`/product/${product.id}`}>
+                          <h4 className="font-normal text-xl mb-2 text-gray-800 hover:text-amber-600 leading-tight transition-colors duration-200 cursor-pointer">
+                            {product.name}
+                          </h4>
+                        </Link>
 
-                    {/* Price */}
-                    <div className="mb-4">
-                      <span className="text-xl font-bold text-transparent bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text tracking-wide">
-                        {formatPrice(product.price)}
-                      </span>
-                      {product.onSale && product.originalPrice && (
-                        <span className="text-sm text-gray-500 line-through ml-2">
-                          {formatPrice(product.originalPrice)}
-                        </span>
-                      )}
+                        {/* Price */}
+                        <div className="flex items-center justify-center space-x-2 mb-2">
+                          <span className="text-xl font-normal text-gray-900">
+                            {formatPrice(product.price)}
+                          </span>
+                          {product.onSale && (
+                            <span className="text-sm text-gray-500 line-through font-light">
+                              {formatPrice(product.originalPrice)}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Color Options */}
+                        {product.colors && product.colors.length > 0 && (
+                          <div className="flex items-center justify-center space-x-1">
+                            {product.colors.map((color, index) => {
+                              const getColorClass = (colorName) => {
+                                const colorMap = {
+                                  'Gray': 'bg-gray-400',
+                                  'Mink': 'bg-amber-200',
+                                  'Black': 'bg-black',
+                                  'White': 'bg-white border-2 border-gray-300',
+                                  'Brown': 'bg-amber-800',
+                                  'Blue': 'bg-blue-500',
+                                  'Navy': 'bg-blue-900',
+                                  'Red': 'bg-red-500',
+                                  'Green': 'bg-green-500',
+                                  'Beige': 'bg-amber-100',
+                                  'Cream': 'bg-yellow-50',
+                                  'Sky': 'bg-sky-300',
+                                  'Turquoise': 'bg-teal-400',
+                                  'Steel': 'bg-slate-500',
+                                  "Camel": "bg-amber-500",
+                                  "Silver": "bg-gray-500",
+                                  "Dark Blue": "bg-blue-900"
+                                };
+                                return colorMap[colorName] || 'bg-gray-400';
+                              };
+
+                              return (
+                                <button
+                                  key={index}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    handleColorSelect(product.id, index);
+                                  }}
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                  }}
+                                  className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${
+                                    selectedColors[product.id] === index 
+                                      ? 'ring-2 ring-gray-600 ring-offset-1' 
+                                      : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
+                                  }`}
+                                  title={color}
+                                  type="button"
+                                />
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex space-x-2">
-                      {/* Add to Cart Button */}
+                    {/* Add to Cart Button - Shows on hover (Desktop only) */}
+                    <div className="hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:bg-white lg:opacity-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-300 lg:transform lg:translate-y-16 lg:group-hover:translate-y-0 p-4 lg:z-20">
                       <button
                         onClick={() => handleAddToCart(product)}
-                        className={`flex-1 py-2 px-3 rounded-lg font-semibold text-sm transition-all duration-200 flex items-center justify-center ${
+                        className={`w-full py-3 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center ${
                           addingToCart[product.id]
                             ? 'bg-green-500 text-white'
-                            : 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white transform hover:scale-105'
+                            : 'bg-[#222222] hover:bg-black text-white'
                         }`}
                         disabled={addingToCart[product.id]}
                       >
@@ -177,28 +265,125 @@ export default function Wishlist() {
                             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            Added!
+                            Added to Cart
                           </>
                         ) : (
-                          <>
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
-                            </svg>
-                            Add to Cart
-                          </>
+                          'ADD TO CART'
                         )}
                       </button>
+                    </div>
 
-                      {/* Remove Button */}
-                      <button
-                        onClick={() => handleRemoveFromWishlist(product.id)}
-                        className="px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                        title="Remove from wishlist"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                      </button>
+                    {/* Mobile/Tablet: Static Content (Always Visible) */}
+                    <div className="lg:hidden py-4 px-2 text-center">
+                      {/* Brand Name */}
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1 font-medium">UK FURNISH</p>
+                      
+                      {/* Product Name */}
+                      <Link href={`/product/${product.id}`}>
+                        <h4 className="font-normal text-base mb-2 text-gray-800 hover:text-amber-600 leading-tight transition-colors duration-200 cursor-pointer">
+                          {product.name}
+                        </h4>
+                      </Link>
+
+                      {/* Price */}
+                      <div className="flex items-center justify-center space-x-2 mb-2">
+                        <span className="text-lg font-normal text-gray-900">
+                          {formatPrice(product.price)}
+                        </span>
+                        {product.onSale && (
+                          <span className="text-sm text-gray-500 line-through font-light">
+                            {formatPrice(product.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Color Options - Mobile */}
+                      {product.colors && product.colors.length > 0 && (
+                        <div className="flex items-center justify-center space-x-1 mb-3">
+                          {product.colors.map((color, index) => {
+                            const getColorClass = (colorName) => {
+                              const colorMap = {
+                                'Gray': 'bg-gray-400',
+                                'Mink': 'bg-amber-200',
+                                'Black': 'bg-black',
+                                'White': 'bg-white border-2 border-gray-300',
+                                'Brown': 'bg-amber-800',
+                                'Blue': 'bg-blue-500',
+                                'Navy': 'bg-blue-900',
+                                'Red': 'bg-red-500',
+                                'Green': 'bg-green-500',
+                                'Beige': 'bg-amber-100',
+                                'Cream': 'bg-yellow-50',
+                                'Sky': 'bg-sky-300',
+                                'Turquoise': 'bg-teal-400',
+                                'Steel': 'bg-slate-500',
+                                "Camel": "bg-amber-500",
+                                "Silver": "bg-gray-500",
+                                "Dark Blue": "bg-blue-900"
+                              };
+                              return colorMap[colorName] || 'bg-gray-400';
+                            };
+
+                            return (
+                              <button
+                                key={index}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleColorSelect(product.id, index);
+                                }}
+                                onMouseDown={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                }}
+                                className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${
+                                  selectedColors[product.id] === index 
+                                    ? 'ring-2 ring-gray-600 ring-offset-1' 
+                                    : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
+                                }`}
+                                title={color}
+                                type="button"
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Action Buttons - Mobile */}
+                      <div className="flex space-x-2">
+                        {/* Add to Cart Button */}
+                        <button
+                          onClick={() => handleAddToCart(product)}
+                          className={`flex-1 py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center ${
+                            addingToCart[product.id]
+                              ? 'bg-green-500 text-white'
+                              : 'bg-[#222222] hover:bg-black text-white'
+                          }`}
+                          disabled={addingToCart[product.id]}
+                        >
+                          {addingToCart[product.id] ? (
+                            <>
+                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              Added
+                            </>
+                          ) : (
+                            'ADD TO CART'
+                          )}
+                        </button>
+
+                        {/* Remove Button */}
+                        <button
+                          onClick={() => handleRemoveFromWishlist(product.id)}
+                          className="px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded transition-colors duration-200"
+                          title="Remove from wishlist"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

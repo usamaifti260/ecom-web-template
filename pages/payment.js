@@ -72,14 +72,23 @@ export default function PaymentPage() {
         price: item.price,
         quantity: item.quantity,
         category: item.category || '',
-        features: item.features || [],
         image: item.image || '',
-        brand: item.brand || 'Comfort Sofa',
-        rating: item.rating || 0,
-        reviews: item.reviews || 0,
+        brand: item.brand || 'SOFA SPHERE',
         inStock: item.inStock || true,
-        bestseller: item.bestseller || false,
         selectedSize: item.selectedSize || null,
+        selectedConfiguration: item.selectedConfiguration || null,
+        // Include configuration details in a flattened structure for backend compatibility
+        ...(item.selectedConfiguration && {
+          configurationDetails: {
+            size: item.selectedConfiguration.size || null,
+            color: item.selectedConfiguration.color || null,
+            dimension: item.selectedConfiguration.dimension || null,
+            orientation: item.selectedConfiguration.orientation || null,
+            storage: item.selectedConfiguration.storage || null,
+            includeFootstool: item.selectedConfiguration.includeFootstool || false,
+            includeSofaBed: item.selectedConfiguration.includeSofaBed || false
+          }
+        })
       }));
 
       // Calculate totals according to backend expectations
@@ -113,12 +122,19 @@ export default function PaymentPage() {
       // Submit order to backend
       const orderPayload = {
         customerData,
-        products,
+        products, // Now includes selectedConfiguration and configurationDetails
         totals,
         paymentInfo
       };
 
       console.log('Submitting order to backend:', orderPayload);
+      console.log('Product configurations:', products.map(p => ({
+        id: p.id,
+        name: p.name,
+        selectedSize: p.selectedSize,
+        selectedConfiguration: p.selectedConfiguration,
+        configurationDetails: p.configurationDetails
+      })));
       
       // Replace with your actual siteId
       const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'comfortsofa';
@@ -233,7 +249,7 @@ export default function PaymentPage() {
   return (
     <>
       <Head>
-        <title>Payment - Comfort Sofa</title>
+        <title>Payment - SOFA SPHERE</title>
         <meta name="description" content="Complete your payment" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -252,7 +268,7 @@ export default function PaymentPage() {
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">COMFORT</span> <span className="text-gray-800">SOFA</span>
+                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">SOFA</span> <span className="text-gray-800">SPHERE</span>
               </h1>
               <p className="text-gray-600">Review and confirm your beautiful order</p>
             </div>
@@ -416,11 +432,48 @@ export default function PaymentPage() {
                       <h4 className="text-sm font-medium text-gray-800 truncate">
                         {item.name}
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      {/* <p className="text-xs text-gray-600">
                         {item.category} {item.selectedSize && `• ${item.selectedSize}`}
-                      </p>
+                      </p> */}
                       
-                      <p className="text-xs text-gray-600">
+                      {/* Display configuration details if available */}
+                      {item.selectedConfiguration && Object.keys(item.selectedConfiguration).length > 0 && (
+                        <div className="text-xs text-gray-500 mt-1">
+                          {/* size */}
+                          {item.selectedConfiguration.size && (
+                            <span className="inline-block mr-2">Size: {item.selectedConfiguration.size}</span>
+                          )}
+                          {/* color */}
+                          {item.selectedConfiguration.color && (
+                            <span className="inline-block mr-2">Color: {item.selectedConfiguration.color}</span>
+                          )}
+                          {item.selectedConfiguration.dimension && (
+                            <span className="inline-block mr-2">Dimension: {item.selectedConfiguration.dimension}</span>
+                          )}
+                          {item.selectedConfiguration.orientation && (
+                            <span className="inline-block mr-2">Orientation: {item.selectedConfiguration.orientation}</span>
+                          )}
+                          {item.selectedConfiguration.storage && (
+                            <span className="inline-block mr-2">Storage: {item.selectedConfiguration.storage}</span>
+                          )}
+                          {('includeFootstool' in item.selectedConfiguration) && item.selectedConfiguration.includeFootstool && (
+                            <span className="inline-block mr-2">With Footstool</span>
+                          )}
+                          {('includeFootstool' in item.selectedConfiguration) && !item.selectedConfiguration.includeFootstool && (
+                            <span className="inline-block mr-2">Without Footstool</span>
+                          )}
+
+
+                          {('includeSofaBed' in item.selectedConfiguration) && item.selectedConfiguration.includeSofaBed && (
+                            <span className="inline-block mr-2">With Sofa Bed</span>
+                          )}
+                          {('includeSofaBed' in item.selectedConfiguration) && !item.selectedConfiguration.includeSofaBed && (
+                            <span className="inline-block mr-2">Without Sofa Bed</span>
+                          )}
+                        </div>
+                      )}
+                      
+                      <p className="text-xs text-gray-600 mt-1">
                         Quantity: {item.quantity}
                       </p>
                     </div>

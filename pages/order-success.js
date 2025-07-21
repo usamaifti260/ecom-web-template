@@ -84,7 +84,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Confirmation - Comfort Sofa</title>
+          <title>Order Confirmation - SOFA SPHERE</title>
           <meta name="description" content="Order confirmation" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -104,7 +104,7 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Not Found - Comfort Sofa</title>
+          <title>Order Not Found - SOFA SPHERE</title>
           <meta name="description" content="Order not found" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
@@ -131,7 +131,7 @@ export default function OrderSuccessPage() {
   return (
     <>
       <Head>
-        <title>Order Confirmation - Comfort Sofa</title>
+        <title>Order Confirmation - SOFA SPHERE</title>
         <meta name="description" content="Your order has been confirmed" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

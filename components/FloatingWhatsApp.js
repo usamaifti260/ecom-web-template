@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const FloatingWhatsApp = () => {
   const whatsappNumber = '447448960712'; // Updated phone number
@@ -6,18 +6,18 @@ const FloatingWhatsApp = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
+    <div className="fixed right-4 z-40 bottom-20 lg:bottom-6">
       {/* WhatsApp Button */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative bg-green-500 hover:bg-green-600 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+        className="group relative bg-green-500 hover:bg-green-600 text-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
         aria-label="Contact us on WhatsApp"
       >
-        {/* WhatsApp Icon - Responsive Size */}
+        {/* WhatsApp Icon - Smaller Size */}
         <svg 
-          className="w-6 h-6 sm:w-8 sm:h-8 fill-current" 
+          className="w-5 h-5 sm:w-6 sm:h-6 fill-current" 
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -26,7 +26,7 @@ const FloatingWhatsApp = () => {
 
         {/* Simple Tooltip */}
         <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="bg-gray-900 text-white text-sm rounded-lg py-2 px-3 whitespace-nowrap shadow-lg">
+          <div className="bg-gray-900 text-white text-xs sm:text-sm rounded-lg py-1.5 px-2.5 whitespace-nowrap shadow-lg">
             Chat with us on WhatsApp
             <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
           </div>
