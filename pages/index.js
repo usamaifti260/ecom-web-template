@@ -13,8 +13,8 @@ export default function Home({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>{`${clientInfo?.businessName || 'Comfort Sofa'} - Premium Furniture & Sofas`}</title>
-        <meta name="description" content="Discover luxury furniture at Comfort Sofa. Premium collection of Living Room, Bedroom, Office, Dining Room, and Outdoor furniture. Shop authentic furniture with modern designs and superior comfort." />
+        <title>{`${clientInfo?.businessName || 'SOFA SPHERE'} - Premium Furniture & Sofas`}</title>
+        <meta name="description" content="Discover luxury furniture at SOFA SPHERE. Premium collection of Living Room, Bedroom, Office, Dining Room, and Outdoor furniture. Shop authentic furniture with modern designs and superior comfort." />
         <meta name="keywords" content="furniture, sofas, living room, bedroom, office furniture, dining room, outdoor furniture, comfort sofa, luxury furniture, modern furniture" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
