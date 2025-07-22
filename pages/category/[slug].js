@@ -335,7 +335,16 @@ export default function CategoryPage({ products, category, allCategories }) {
                       'Steel': 'bg-slate-500',
                       "Camel": "bg-amber-500",
                       "Silver": "bg-gray-500",
-                      "Dark Blue": "bg-blue-900"
+                      "Dark Blue": "bg-blue-900",
+                      "Coal": "bg-gray-800",
+                      "Gold": "bg-yellow-500",
+                      "Pearl": "bg-gray-200",
+                      "Midnight": "bg-gray-900",
+                      "Mustard": "bg-amber-500",
+                      "Teal": "bg-teal-400",
+                      "Green": "bg-green-500",
+                      "Red": "bg-red-500"
+
                     };
                     return colorMap[colorName] || 'bg-gray-400';
                   };
@@ -437,7 +446,15 @@ export default function CategoryPage({ products, category, allCategories }) {
                     'Steel': 'bg-slate-500',
                     "Camel": "bg-amber-500",
                     "Silver": "bg-gray-500",
-                    "Dark Blue": "bg-blue-900"
+                    "Dark Blue": "bg-blue-900",
+                    "Coal": "bg-gray-800",
+                    "Gold": "bg-yellow-500",
+                    "Pearl": "bg-gray-200",
+                    "Midnight": "bg-gray-900",
+                    "Mustard": "bg-amber-500",
+                    "Teal": "bg-teal-400",
+                    "Green": "bg-green-500",
+                    "Red": "bg-red-500"
                   };
                   return colorMap[colorName] || 'bg-gray-400';
                 };
