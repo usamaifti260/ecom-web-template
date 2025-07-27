@@ -13,10 +13,10 @@ export default function ShopPage({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>Shop - Sofa Sphere</title>
-        <meta name="description" content="Browse our complete collection of premium furniture. Find the perfect sofa and furniture pieces for every room in your home." />
+        <title>Shop - Bhatti Industries</title>
+        <meta name="description" content="Browse our complete collection of premium surgical instruments. Find the perfect surgical instruments for every room in your home." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        {/* <link rel="icon" href="/assets/bhattiindustries_logo.png" type="image/png" sizes="32x32" /> */}
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -41,8 +41,8 @@ export async function getStaticProps() {
 
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'LEATHER LOFT',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Leather Goods & Accessories - Handcrafted quality, traditional craftsmanship, modern designs.',
+      businessName: process.env.BUSINESS_NAME || 'Bhatti Industries',
+      description: process.env.BUSINESS_DESCRIPTION || 'Premium Surgical Instruments & Medical Equipment - Precision engineering, quality manufacturing, trusted by healthcare professionals worldwide.',
       contact: process.env.BUSINESS_CONTACT || '0321-6801233'
     };
 
@@ -68,7 +68,7 @@ export async function getStaticProps() {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'LEATHER LOFT',
+          businessName: process.env.BUSINESS_NAME || 'Bhatti Industries',
           description: isDevelopment
             ? 'Development mode - check your data/products.json and data/categories.json files'
             : 'Product catalog temporarily unavailable'
