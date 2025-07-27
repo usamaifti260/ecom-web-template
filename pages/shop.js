@@ -16,7 +16,7 @@ export default function ShopPage({ products, categories, clientInfo }) {
         <title>Shop - Bhatti Industries</title>
         <meta name="description" content="Browse our complete collection of premium surgical instruments. Find the perfect surgical instruments for every room in your home." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* <link rel="icon" href="/assets/bhattiindustries_logo.png" type="image/png" sizes="32x32" /> */}
+        <link rel="icon" href="/assets/bhattiindustries_logo.png" type="image/png" sizes="32x32" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

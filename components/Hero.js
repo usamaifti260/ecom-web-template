@@ -167,13 +167,13 @@ const Hero = ({ banners = [] }) => {
             <div
               key={banner.id}
               className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide
-                  ? 'opacity-100 scale-100'
-                  : 'opacity-0 scale-105'
+                ? 'opacity-100 scale-100'
+                : 'opacity-0 scale-105'
                 }`}
             >
               {/* Background Image */}
               <div
-                className={`absolute inset-0 ${isMobile ? 'bg-cover' : 'bg-cover'} bg-center bg-no-repeat`}
+                className={`absolute inset-0 ${isMobile ? 'bg-contain' : 'bg-cover'} bg-center bg-no-repeat`}
                 style={{ backgroundImage: `url(${isMobile ? banner.mobileImage : banner.image})` }}
               >
                 {/* Overlay - Hidden on mobile */}
@@ -186,8 +186,8 @@ const Hero = ({ banners = [] }) => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                   <div className="max-w-full text-center">
                     <div className={`space-y-3 sm:space-y-4 md:space-y-6 transition-all duration-1000 delay-300 ${index === currentSlide
-                        ? 'transform translate-x-0 opacity-100'
-                        : 'transform -translate-x-10 opacity-0'
+                      ? 'transform translate-x-0 opacity-100'
+                      : 'transform -translate-x-10 opacity-0'
                       }`}>
                       {/* Category Badge */}
                       {/* <div className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full font-medium text-[10px] sm:text-xs md:text-sm shadow-lg animate-pulse">
@@ -232,8 +232,8 @@ const Hero = ({ banners = [] }) => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                  ? 'bg-amber-500 scale-125 shadow-lg'
-                  : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                ? 'bg-amber-500 scale-125 shadow-lg'
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                 }`}
             />
           ))}
