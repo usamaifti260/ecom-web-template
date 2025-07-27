@@ -34,12 +34,12 @@ export default function Wishlist() {
   const getCurrentImage = (product) => {
     const productId = product.id;
     const selectedColorIndex = selectedColors[productId];
-    
+
     // If a color is selected, show the corresponding gallery image
     if (selectedColorIndex !== undefined && product.gallery && product.gallery[selectedColorIndex]) {
       return product.gallery[selectedColorIndex];
     }
-    
+
     // Default to main product image
     return product.image;
   };
@@ -67,14 +67,14 @@ export default function Wishlist() {
   return (
     <>
       <Head>
-        <title>My Wishlist - Sofa Sphere</title>
-        <meta name="description" content="Your saved furniture items at Sofa Sphere. Manage your wishlist and find your favorite products." />
+        <title>My Wishlist - Bhatti Industries</title>
+        <meta name="description" content="Your saved surgical instruments at Bhatti Industries. Manage your wishlist and find your favorite products." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        
+
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
@@ -87,7 +87,7 @@ export default function Wishlist() {
                   {wishlistItems.length} {wishlistItems.length === 1 ? 'item' : 'items'} saved
                 </p>
               </div>
-              
+
               {wishlistItems.length > 0 && (
                 <button
                   onClick={clearWishlist}
@@ -103,8 +103,8 @@ export default function Wishlist() {
           {wishlistItems.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6">
               {wishlistItems.map((product) => (
-                <ProductCard 
-                  key={product.id} 
+                <ProductCard
+                  key={product.id}
                   product={product}
                   variant="wishlist"
                   showQuickView={true}
@@ -128,7 +128,7 @@ export default function Wishlist() {
               <p className="text-gray-600 text-lg mb-8">
                 Save items you love to your wishlist and come back to them later!
               </p>
-              <Link 
+              <Link
                 href="/"
                 className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >

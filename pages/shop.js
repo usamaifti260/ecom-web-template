@@ -5,8 +5,8 @@ import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 
 const SITE_CONFIG = {
-  productsSchemaSlug: 'products_leatherloft',
-  categoriesSchemaSlug: 'categories_leatherloft',
+  productsSchemaSlug: 'products_bhattiindustries',
+  categoriesSchemaSlug: 'categories_bhattiindustries',
 };
 
 export default function ShopPage({ products, categories, clientInfo }) {
