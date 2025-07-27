@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "image": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753588109/Medical_Banner_Landscape_qodr3a.jpg",
+        "mobileImage": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753588109/Medical_Banner_Landscape_qodr3a.jpg",
+        "title": "Premium Surgical Instruments",
+        "subtitle": "Precision Engineering for Healthcare Excellence"
+    },
+    {
+        "id": 2,
+        "image": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753589084/White_And_Green_Professional_Medical_Care_Banner_zfzydz.jpg",
+        "mobileImage": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753589084/White_And_Green_Professional_Medical_Care_Banner_zfzydz.jpg",
+        "title": "Cardiovascular Surgery",
+        "subtitle": "Specialized Instruments for Cardiac Care"
+    },
+    {
+        "id": 3,
+        "image": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753588220/Green_and_White_Simple_Medical_Center_Banner_qusobz.jpg",
+        "mobileImage": "https://res.cloudinary.com/do8tgpf80/image/upload/v1753588220/Green_and_White_Simple_Medical_Center_Banner_qusobz.jpg",
+        "title": "Orthopedic Excellence",
+        "subtitle": "Advanced Tools for Bone Surgery"
+    }
+]

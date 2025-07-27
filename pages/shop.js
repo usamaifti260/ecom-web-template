@@ -4,6 +4,11 @@ import Navbar from '@/components/Navbar';
 import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 
+const SITE_CONFIG = {
+  productsSchemaSlug: 'products_leatherloft',
+  categoriesSchemaSlug: 'categories_leatherloft',
+};
+
 export default function ShopPage({ products, categories, clientInfo }) {
   return (
     <>
@@ -26,21 +31,19 @@ export default function ShopPage({ products, categories, clientInfo }) {
 export async function getStaticProps() {
   try {
     console.log('Fetching products and categories for shop page...');
-    
+
     // Fetch products and categories at build time
-    const productsSchemaSlug = 'comfortsofaproductsschema';
-    const categoriesSchemaSlug = 'comfortsofacategoriesschema';
-    
+
     const [products, categories] = await Promise.all([
-      fetchClientProducts(productsSchemaSlug),
-      fetchClientCategories(categoriesSchemaSlug)
+      fetchClientProducts(SITE_CONFIG.productsSchemaSlug),
+      fetchClientCategories(SITE_CONFIG.categoriesSchemaSlug)
     ]);
-    
+
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Furniture & Sofas - Luxury designs, superior comfort, modern style.',
-      contact: process.env.BUSINESS_CONTACT || '0304-4481181'
+      businessName: process.env.BUSINESS_NAME || 'LEATHER LOFT',
+      description: process.env.BUSINESS_DESCRIPTION || 'Premium Leather Goods & Accessories - Handcrafted quality, traditional craftsmanship, modern designs.',
+      contact: process.env.BUSINESS_CONTACT || '0321-6801233'
     };
 
     console.log(`Shop page: Successfully fetched ${products.length} products and ${categories.length} categories`);
@@ -55,19 +58,19 @@ export async function getStaticProps() {
     };
   } catch (error) {
     console.error('Error in getStaticProps (shop page):', error);
-    
+
     // In development, this might be expected if using local JSON
     // In production, this indicates an API issue
     const isDevelopment = process.env.NODE_ENV === 'development';
-    
+
     return {
       props: {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'Comfort Sofa',
-          description: isDevelopment 
-            ? 'Development mode - check your data/products.json and data/categories.json files' 
+          businessName: process.env.BUSINESS_NAME || 'LEATHER LOFT',
+          description: isDevelopment
+            ? 'Development mode - check your data/products.json and data/categories.json files'
             : 'Product catalog temporarily unavailable'
         }
       },

@@ -2,13 +2,88 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useNotification } from '@/lib/NotificationContext';
+
+// Configuration Variables
+const ORDER_FAILED_CONFIG = {
+  // Business Information
+  businessName: 'BHATTI INDUSTRIES',
+
+  // Currency & Formatting
+  currency: 'PKR',
+  locale: 'en-PK',
+
+  // SEO & Meta
+  pageTitle: 'Order Failed - Bhatti Industries',
+  pageDescription: 'Order processing failed',
+  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconSize: '32x32',
+
+  // Contact Information
+  supportEmail: 'info@bhattiindustries.com',
+  supportPhone: '0331-0422676',
+  supportHours: '9 AM - 6 PM (Mon-Sat)',
+
+  // UI Text
+  loadingText: 'Loading...',
+  mainTitle: 'Order Processing Failed',
+  mainSubtitle: 'We encountered an issue while processing your order. Don\'t worry, we\'re here to help!',
+  tryAgainButtonText: 'Try Again',
+  backToShopText: 'Back to Shop',
+
+  // Error Messages
+  errorMessages: {
+    payment_failed: {
+      title: 'Payment Issue',
+      description: 'There was a problem processing your payment. Please try again with a different payment method or contact support.',
+      suggestions: ['Try again with the same payment method', 'Contact your bank if using a card', 'Try a different payment method']
+    },
+    address_invalid: {
+      title: 'Address Issue',
+      description: 'We couldn\'t validate your delivery address. Please check your address details and try again.',
+      suggestions: ['Double-check your address details', 'Ensure all required fields are filled', 'Try a different delivery address']
+    },
+    inventory_unavailable: {
+      title: 'Item Unavailable',
+      description: 'One or more surgical instruments in your cart are currently out of stock.',
+      suggestions: ['Remove out-of-stock items and try again', 'Check for similar available products', 'Contact us for restock information']
+    },
+    system_error: {
+      title: 'System Error',
+      description: 'We\'re experiencing technical difficulties. Our team has been notified and is working to resolve this.',
+      suggestions: ['Try again in a few minutes', 'Clear your browser cache and cookies', 'Contact our support team for assistance']
+    },
+    default: {
+      title: 'Order Failed',
+      description: 'Something went wrong while processing your order. Please try again or contact our support team.',
+      suggestions: ['Try placing your order again', 'Check your internet connection', 'Contact our support team if the problem persists']
+    }
+  },
+
+  // Help Section
+  helpTitle: 'Need More Help?',
+  helpDescription: 'Our customer support team is ready to assist you.',
+  emailSupportText: 'Email Support',
+  phoneSupportText: 'Phone Support',
+
+  // Icons
+  errorIcon: '⚠️',
+  suggestionIcon: '💡',
+  emailIcon: '📧',
+  phoneIcon: '📞',
+
+  // Routes
+  shopRoute: '/shop',
+  checkoutRoute: '/checkout',
+  contactRoute: '/contact'
+};
 
 export default function OrderFailedPage() {
   const router = useRouter();
   const { showInfoNotification } = useNotification();
-  
+
   const [reason, setReason] = useState(null);
   const [errorReason, setErrorReason] = useState('unknown');
   const [retryCount, setRetryCount] = useState(0);
@@ -22,7 +97,7 @@ export default function OrderFailedPage() {
 
   useEffect(() => {
     if (!mounted || !router.isReady) return;
-    
+
     const { reason: queryReason } = router.query;
     setReason(queryReason);
   }, [mounted, router.isReady, router.query]);
@@ -31,7 +106,7 @@ export default function OrderFailedPage() {
     if (reason) {
       setErrorReason(reason);
     }
-    
+
     // Load failed order data if available
     if (typeof window !== 'undefined') {
       const lastFailedOrder = localStorage.getItem('lastFailedOrder');
@@ -46,125 +121,43 @@ export default function OrderFailedPage() {
   }, [reason]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-GB', {
+    return new Intl.NumberFormat(ORDER_FAILED_CONFIG.locale, {
       style: 'currency',
-      currency: 'GBP',
+      currency: ORDER_FAILED_CONFIG.currency,
       minimumFractionDigits: 0
     }).format(price);
   };
 
   const getErrorDetails = (reason) => {
-    switch (reason) {
-      case 'payment_failed':
-        return {
-          title: 'Payment Failed',
-          description: 'There was an issue processing your payment. Please try again.',
-          icon: (
-            <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-            </svg>
-          ),
-          suggestions: [
-            'Check your payment method details',
-            'Ensure you have sufficient funds',
-            'Try a different payment method',
-            'Contact your bank if the issue persists'
-          ]
-        };
-      case 'inventory_unavailable':
-        return {
-          title: 'Item Unavailable',
-          description: 'One or more items in your order are currently out of stock.',
-          icon: (
-            <svg className="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
-          ),
-          suggestions: [
-            'Remove out-of-stock items from your cart',
-            'Choose alternative clothing items',
-            'Check back later for restocked items',
-            'Contact us for item availability'
-          ]
-        };
-      case 'address_invalid':
-        return {
-          title: 'Invalid Delivery Address',
-          description: 'The delivery address provided could not be verified.',
-          icon: (
-            <svg className="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          ),
-          suggestions: [
-            'Double-check your delivery address',
-            'Ensure you are within our delivery area',
-            'Use a verified delivery address',
-            'Contact customer support for assistance'
-          ]
-        };
-      case 'system_error':
-        return {
-          title: 'System Error',
-          description: 'A technical error occurred while processing your order.',
-          icon: (
-            <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
-            </svg>
-          ),
-          suggestions: [
-            'Please try placing your order again',
-            'Clear your browser cache and cookies',
-            'Try using a different browser',
-            'Contact our technical support team'
-          ]
-        };
-      default:
-        return {
-          title: 'Order Failed',
-          description: 'Unfortunately, we could not process your order at this time.',
-          icon: (
-            <svg className="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ),
-          suggestions: [
-            'Please try placing your order again',
-            'Check your internet connection',
-            'Ensure all information is correct',
-            'Contact customer support if needed'
-          ]
-        };
-    }
+    return ORDER_FAILED_CONFIG.errorMessages[reason] || ORDER_FAILED_CONFIG.errorMessages.default;
   };
 
   const handleRetryOrder = () => {
     if (!mounted) return;
-    
+
     setRetryCount(prev => prev + 1);
     if (showInfoNotification) {
       showInfoNotification('Redirecting to checkout...');
     }
-    
+
     // Add a small delay to show the notification
     setTimeout(() => {
       if (router.isReady) {
-        router.push('/checkout');
+        router.push(ORDER_FAILED_CONFIG.checkoutRoute);
       }
     }, 1000);
   };
 
   const handleContactSupport = () => {
     if (!mounted) return;
-    
+
     if (showInfoNotification) {
       showInfoNotification('Redirecting to contact page...');
     }
-    
+
     setTimeout(() => {
       if (router.isReady) {
-        router.push('/contact');
+        router.push(ORDER_FAILED_CONFIG.contactRoute);
       }
     }, 1000);
   };
@@ -174,16 +167,16 @@ export default function OrderFailedPage() {
     return (
       <>
         <Head>
-          <title>Order Failed - SOFA SPHERE</title>
-          <meta name="description" content="Order processing failed" />
+          <title>{ORDER_FAILED_CONFIG.pageTitle}</title>
+          <meta name="description" content={ORDER_FAILED_CONFIG.pageDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+          <link rel="icon" href={ORDER_FAILED_CONFIG.faviconPath} type="image/png" sizes={ORDER_FAILED_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">{ORDER_FAILED_CONFIG.loadingText}</p>
           </div>
         </div>
       </>
@@ -195,10 +188,10 @@ export default function OrderFailedPage() {
   return (
     <>
       <Head>
-        <title>Order Failed - SOFA SPHERE</title>
-        <meta name="description" content="Order processing failed" />
+        <title>{ORDER_FAILED_CONFIG.pageTitle}</title>
+        <meta name="description" content={ORDER_FAILED_CONFIG.pageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={ORDER_FAILED_CONFIG.faviconPath} type="image/png" sizes={ORDER_FAILED_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -207,14 +200,18 @@ export default function OrderFailedPage() {
             {/* Error Header */}
             <div className="text-center mb-8">
               <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                {errorDetails.icon}
+                <span className="text-4xl">{ORDER_FAILED_CONFIG.errorIcon}</span>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{errorDetails.title}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">{ORDER_FAILED_CONFIG.mainTitle}</h1>
               <p className="text-lg text-gray-600 mb-4">
-                {errorDetails.description}
+                {ORDER_FAILED_CONFIG.mainSubtitle}
               </p>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 inline-block">
+                <h3 className="font-semibold text-red-800 mb-2">{errorDetails.title}</h3>
+                <p className="text-sm text-red-700">{errorDetails.description}</p>
+              </div>
               {retryCount > 0 && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 inline-block">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 inline-block mt-4">
                   <p className="text-sm text-gray-800">
                     Retry attempts: {retryCount}
                   </p>
@@ -249,7 +246,7 @@ export default function OrderFailedPage() {
                       <p className="text-sm text-gray-600">{failedOrderData.paymentMethod || 'COD'}</p>
                     </div>
                   </div>
-                  
+
                   {failedOrderData.error && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
                       <p className="text-sm font-medium text-red-800">Error Details:</p>
@@ -264,12 +261,15 @@ export default function OrderFailedPage() {
 
             {/* Error Details and Solutions */}
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">What can you do?</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <span className="text-xl mr-2">{ORDER_FAILED_CONFIG.suggestionIcon}</span>
+                What can you do?
+              </h3>
               <div className="space-y-3">
                 {errorDetails.suggestions.map((suggestion, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-yellow-600">{index + 1}</span>
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold text-blue-600">{index + 1}</span>
                     </div>
                     <p className="text-sm text-gray-700">{suggestion}</p>
                   </div>
@@ -282,14 +282,14 @@ export default function OrderFailedPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button
                   onClick={handleRetryOrder}
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
-                  Try Again
+                  {ORDER_FAILED_CONFIG.tryAgainButtonText}
                 </button>
-                
+
                 <button
                   onClick={handleContactSupport}
                   className="w-full bg-gray-600 hover:bg-gray-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
@@ -300,41 +300,38 @@ export default function OrderFailedPage() {
                   Contact Support
                 </button>
               </div>
-              
+
               <div className="text-center">
-                <Link href="/shop" className="text-yellow-600 hover:text-yellow-700 font-medium">
-                  ← Back to Shop
+                <Link href={ORDER_FAILED_CONFIG.shopRoute} className="text-blue-600 hover:text-blue-700 font-medium">
+                  ← {ORDER_FAILED_CONFIG.backToShopText}
                 </Link>
               </div>
             </div>
 
             {/* Additional Help */}
-            <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-yellow-800 mb-4">Need More Help?</h3>
+            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-blue-800 mb-4">{ORDER_FAILED_CONFIG.helpTitle}</h3>
+              <p className="text-sm text-blue-700 mb-4">{ORDER_FAILED_CONFIG.helpDescription}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-lg">{ORDER_FAILED_CONFIG.emailIcon}</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Email Support</p>
-                    <p className="text-sm text-gray-700">info@sofasphere.co.uk</p>
+                    <p className="font-medium text-gray-900">{ORDER_FAILED_CONFIG.emailSupportText}</p>
+                    <p className="text-sm text-gray-700">{ORDER_FAILED_CONFIG.supportEmail}</p>
                     <p className="text-xs text-gray-600">Response within 24 hours</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                    <span className="text-white text-lg">{ORDER_FAILED_CONFIG.phoneIcon}</span>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Phone Support</p>
-                    <p className="text-sm text-gray-700">+44 7448 960712</p>
-                    <p className="text-xs text-gray-600">Daily 24/7</p>
+                    <p className="font-medium text-gray-900">{ORDER_FAILED_CONFIG.phoneSupportText}</p>
+                    <p className="text-sm text-gray-700">{ORDER_FAILED_CONFIG.supportPhone}</p>
+                    <p className="text-xs text-gray-600">{ORDER_FAILED_CONFIG.supportHours}</p>
                   </div>
                 </div>
               </div>
@@ -344,7 +341,7 @@ export default function OrderFailedPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Visit our{' '}
-                <Link href="/contact" className="text-yellow-600 hover:text-yellow-700 font-medium">
+                <Link href={ORDER_FAILED_CONFIG.contactRoute} className="text-blue-600 hover:text-blue-700 font-medium">
                   Contact Page
                 </Link>
                 {' '}for more support options or check our delivery areas.

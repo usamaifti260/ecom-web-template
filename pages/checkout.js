@@ -7,11 +7,65 @@ import Link from 'next/link';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
 
+// Configuration Variables
+const CHECKOUT_CONFIG = {
+  // Business Information
+  businessName: 'BHATTI INDUSTRIES',
+
+  // Currency & Pricing
+  currency: 'PKR',
+  freeShippingThreshold: 10000,
+  shippingFee: 800,
+
+  // SEO & Meta
+  pageTitle: 'Checkout - Bhatti Industries',
+  pageDescription: 'Complete your surgical instruments order',
+  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconSize: '32x32',
+
+  // Form Placeholders (Pakistani context)
+  placeholders: {
+    firstName: 'Dr. Ahmad',
+    lastName: 'Khan',
+    email: 'ahmad@hospital.com',
+    phone: '0331-0422676',
+    address: 'House 123, Medical Colony, Block A',
+    city: 'Sialkot',
+    area: 'DHA Road',
+    zipCode: '51310',
+    notes: 'Any special instructions for your surgical instruments order... (e.g., preferred delivery time, sterilization requirements, etc.)'
+  },
+
+  // UI Text
+  emptyCartTitle: 'Your cart is empty',
+  emptyCartMessage: 'Add some premium surgical instruments to your cart before checking out.',
+  browseButtonText: '⚕️ Browse Instruments',
+  submitButtonText: '🏥 Proceed to Payment',
+  processingText: 'Processing...',
+
+  // Icons
+  emptyCartIcon: '⚕️',
+  customerIcon: '👤',
+  deliveryIcon: '🚚',
+  notesIcon: '📝',
+  summaryIcon: '🏥',
+  paymentIcon: '💰',
+  returnIcon: '🔄',
+
+  // Routes
+  shopRoute: '/shop',
+  paymentRoute: '/payment',
+
+  // Return Policy
+  returnPolicyDays: 7,
+  returnPolicyText: 'Shop with confidence! Quality guarantee & returns within 7 days for defective items.'
+};
+
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, totalPrice, itemCount, updateQuantity, removeItem } = useCart();
   const { showErrorNotification } = useNotification();
-  
+
   const [isProcessing, setIsProcessing] = useState(false);
   const [formData, setFormData] = useState({
     // Customer Information
@@ -19,13 +73,13 @@ export default function CheckoutPage() {
     lastName: '',
     email: '',
     phone: '',
-    
+
     // Delivery Address
     address: '',
     city: '',
     area: '',
     zipCode: '',
-    
+
     // Additional Information
     notes: ''
   });
@@ -33,7 +87,7 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState({});
 
   const formatPrice = (price) => {
-    return `£${price.toFixed(0)}`;
+    return `${CHECKOUT_CONFIG.currency} ${price.toFixed(0)}`;
   };
 
   const handleInputChange = (e) => {
@@ -42,7 +96,7 @@ export default function CheckoutPage() {
       ...prev,
       [name]: value
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -54,15 +108,15 @@ export default function CheckoutPage() {
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
-      removeItem(item.id, item.selectedSize, item.selectedConfiguration);
+      removeItem(item.id, item.selectedConfiguration);
     } else {
-      updateQuantity(item.id, item.selectedSize, newQuantity, item.selectedConfiguration);
+      updateQuantity(item.id, newQuantity, item.selectedConfiguration);
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     // Required fields
     if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
     if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
@@ -71,41 +125,41 @@ export default function CheckoutPage() {
     if (!formData.address.trim()) newErrors.address = 'Address is required';
     if (!formData.city.trim()) newErrors.city = 'City is required';
     if (!formData.area.trim()) newErrors.area = 'Area is required';
-    
+
     // Email validation
     if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     // Phone validation
     if (formData.phone && !/^[\d\s\-\(\)\+]+$/.test(formData.phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       showErrorNotification('Please fill in all required fields correctly');
       return;
     }
-    
+
     if (items.length === 0) {
       showErrorNotification('Your cart is empty');
       return;
     }
-    
+
     setIsProcessing(true);
-    
+
     try {
       // Calculate shipping fee
-      const shippingFee = totalPrice >= 1000 ? 0 : 100;
+      const shippingFee = totalPrice >= CHECKOUT_CONFIG.freeShippingThreshold ? 0 : CHECKOUT_CONFIG.shippingFee;
       const finalTotal = totalPrice + shippingFee;
-      
+
       // Prepare order data
       const orderData = {
         customer: formData,
@@ -119,16 +173,16 @@ export default function CheckoutPage() {
         paymentMethod: 'COD',
         orderDate: new Date().toISOString()
       };
-      
+
       // Simulate processing delay
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Store order data in localStorage for the payment page
       localStorage.setItem('pendingOrder', JSON.stringify(orderData));
-      
+
       // Redirect to payment page
-      router.push('/payment');
-      
+      router.push(CHECKOUT_CONFIG.paymentRoute);
+
     } catch (error) {
       console.error('Error processing checkout:', error);
       showErrorNotification('An error occurred during checkout. Please try again.');
@@ -141,21 +195,21 @@ export default function CheckoutPage() {
     return (
       <>
         <Head>
-          <title>Checkout - SOFA SPHERE</title>
-          <meta name="description" content="Complete your furniture order" />
+          <title>{CHECKOUT_CONFIG.pageTitle}</title>
+          <meta name="description" content={CHECKOUT_CONFIG.pageDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href={CHECKOUT_CONFIG.faviconPath} type="image/png" sizes={CHECKOUT_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-6xl">🛋️</span>
+            <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-6xl">{CHECKOUT_CONFIG.emptyCartIcon}</span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-3">Your cart is empty</h1>
-            <p className="text-gray-600 mb-6">Add some beautiful furniture to your cart before checking out.</p>
-            <Link href="/shop" className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
-              🛋️ Browse Collection
+            <h1 className="text-3xl font-bold text-gray-800 mb-3">{CHECKOUT_CONFIG.emptyCartTitle}</h1>
+            <p className="text-gray-600 mb-6">{CHECKOUT_CONFIG.emptyCartMessage}</p>
+            <Link href={CHECKOUT_CONFIG.shopRoute} className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-500 hover:to-blue-700 transition-all duration-300">
+              {CHECKOUT_CONFIG.browseButtonText}
             </Link>
           </div>
         </div>
@@ -166,10 +220,10 @@ export default function CheckoutPage() {
   return (
     <>
       <Head>
-        <title>Checkout - SOFA SPHERE</title>
-        <meta name="description" content="Complete your furniture order" />
+        <title>{CHECKOUT_CONFIG.pageTitle}</title>
+        <meta name="description" content={CHECKOUT_CONFIG.pageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={CHECKOUT_CONFIG.faviconPath} type="image/png" sizes={CHECKOUT_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -177,15 +231,15 @@ export default function CheckoutPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href="/shop" className="hover:text-yellow-600 transition-colors">🛋️ Shop</Link>
+              <Link href="/shop" className="hover:text-blue-600 transition-colors">⚕️ Shop</Link>
               <span>→</span>
-              <span className="text-yellow-600 font-medium">Checkout</span>
+              <span className="text-blue-600 font-medium">Checkout</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">SOFA</span> <span className="text-gray-800">SPHERE</span>
+                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">BHATTI</span> <span className="text-gray-800">INDUSTRIES</span>
               </h1>
-              <p className="text-gray-600">Complete your beautiful order</p>
+              <p className="text-gray-600">{CHECKOUT_CONFIG.pageDescription}</p>
             </div>
           </div>
 
@@ -197,7 +251,7 @@ export default function CheckoutPage() {
                 {/* Customer Information */}
                 <div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <span className="text-2xl mr-2">👤</span>
+                    <span className="text-2xl mr-2">{CHECKOUT_CONFIG.customerIcon}</span>
                     Customer Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -211,10 +265,9 @@ export default function CheckoutPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                          errors.firstName ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="John"
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder={CHECKOUT_CONFIG.placeholders.firstName}
                       />
                       {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                     </div>
@@ -228,10 +281,9 @@ export default function CheckoutPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                          errors.lastName ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="Doe"
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder={CHECKOUT_CONFIG.placeholders.lastName}
                       />
                       {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                     </div>
@@ -247,10 +299,9 @@ export default function CheckoutPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                          errors.email ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="john@example.com"
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder={CHECKOUT_CONFIG.placeholders.email}
                       />
                       {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
@@ -264,10 +315,9 @@ export default function CheckoutPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                          errors.phone ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="+44 7448 960712"
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder={CHECKOUT_CONFIG.placeholders.phone}
                       />
                       {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
@@ -277,7 +327,7 @@ export default function CheckoutPage() {
                 {/* Delivery Address */}
                 <div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <span className="text-2xl mr-2">🚚</span>
+                    <span className="text-2xl mr-2">{CHECKOUT_CONFIG.deliveryIcon}</span>
                     Delivery Address
                   </h3>
                   <div className="space-y-4">
@@ -291,10 +341,9 @@ export default function CheckoutPage() {
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                          errors.address ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                        placeholder="123 Sofa Street"
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.address ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder={CHECKOUT_CONFIG.placeholders.address}
                       />
                       {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                     </div>
@@ -309,10 +358,9 @@ export default function CheckoutPage() {
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                            errors.city ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          placeholder="London"
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.city ? 'border-red-500' : 'border-gray-300'
+                            }`}
+                          placeholder={CHECKOUT_CONFIG.placeholders.city}
                         />
                         {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
                       </div>
@@ -326,10 +374,9 @@ export default function CheckoutPage() {
                           name="area"
                           value={formData.area}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 ${
-                            errors.area ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          placeholder="Barking"
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.area ? 'border-red-500' : 'border-gray-300'
+                            }`}
+                          placeholder={CHECKOUT_CONFIG.placeholders.area}
                         />
                         {errors.area && <p className="text-red-500 text-xs mt-1">{errors.area}</p>}
                       </div>
@@ -343,8 +390,8 @@ export default function CheckoutPage() {
                           name="zipCode"
                           value={formData.zipCode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
-                          placeholder="E7 0AA"
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                          placeholder={CHECKOUT_CONFIG.placeholders.zipCode}
                         />
                       </div>
                     </div>
@@ -354,7 +401,7 @@ export default function CheckoutPage() {
                 {/* Additional Information */}
                 <div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <span className="text-2xl mr-2">📝</span>
+                    <span className="text-2xl mr-2">{CHECKOUT_CONFIG.notesIcon}</span>
                     Additional Information
                   </h3>
                   <div>
@@ -367,8 +414,8 @@ export default function CheckoutPage() {
                       value={formData.notes}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200"
-                      placeholder="Any special instructions for your order... (e.g., size preferences, color notes, etc.)"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                      placeholder={CHECKOUT_CONFIG.placeholders.notes}
                     />
                   </div>
                 </div>
@@ -378,11 +425,10 @@ export default function CheckoutPage() {
                   <button
                     type="submit"
                     disabled={isProcessing}
-                    className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${
-                      isProcessing
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
-                    } text-white`}
+                    className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${isProcessing
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transform hover:scale-105'
+                      } text-white`}
                   >
                     {isProcessing ? (
                       <div className="flex items-center justify-center">
@@ -390,10 +436,10 @@ export default function CheckoutPage() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Processing...
+                        {CHECKOUT_CONFIG.processingText}
                       </div>
                     ) : (
-                      '🚀 Proceed to Payment'
+                      CHECKOUT_CONFIG.submitButtonText
                     )}
                   </button>
                 </div>
@@ -403,10 +449,10 @@ export default function CheckoutPage() {
             {/* Order Summary */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-fit">
               <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                <span className="text-2xl mr-2">🛍️</span>
+                <span className="text-2xl mr-2">{CHECKOUT_CONFIG.summaryIcon}</span>
                 Order Summary
               </h3>
-              
+
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {items.map((item, index) => (
@@ -425,10 +471,10 @@ export default function CheckoutPage() {
                           {item.name}
                         </h4>
                         <p className="text-xs text-gray-600 mb-2">
-                          {item.category} {item.selectedSize && `• ${item.selectedSize}`}
+                          {item.category} {item.selectedConfiguration.size && `• ${item.selectedConfiguration.size}`} {item.selectedConfiguration.color && `• ${item.selectedConfiguration.color}`}
                         </p>
-                        
-                        <p className="text-sm font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+
+                        <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                           {formatPrice(item.price)}
                         </p>
                       </div>
@@ -446,7 +492,7 @@ export default function CheckoutPage() {
                         </span>
                         <button
                           onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-yellow-500 hover:border-yellow-500 transition-all duration-200 text-gray-600 hover:text-white"
+                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -467,24 +513,24 @@ export default function CheckoutPage() {
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium text-green-600">
-                    {totalPrice >= 1000 ? 'FREE' : '£100'}
+                    {totalPrice >= CHECKOUT_CONFIG.freeShippingThreshold ? 'FREE' : formatPrice(CHECKOUT_CONFIG.shippingFee)}
                   </span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
-                      {formatPrice(totalPrice >= 3000 ? totalPrice : totalPrice + 200)}
+                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      {formatPrice(totalPrice >= CHECKOUT_CONFIG.freeShippingThreshold ? totalPrice : totalPrice + CHECKOUT_CONFIG.shippingFee)}
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Payment Method */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg">
+              <div className="mt-6 p-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg">
                 <div className="flex items-center space-x-3 text-white">
                   <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                    <span className="text-lg">💰</span>
+                    <span className="text-lg">{CHECKOUT_CONFIG.paymentIcon}</span>
                   </div>
                   <div>
                     <p className="font-semibold">Cash on Delivery</p>
@@ -497,22 +543,20 @@ export default function CheckoutPage() {
               <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
+                    <span className="text-lg">{CHECKOUT_CONFIG.returnIcon}</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-green-800">7-Day Return Policy</p>
-                    <p className="text-sm text-green-700">Shop with confidence! Easy returns & exchanges within 7 days.</p>
+                    <p className="font-semibold text-green-800">{CHECKOUT_CONFIG.returnPolicyDays}-Day Quality Guarantee</p>
+                    <p className="text-sm text-green-700">{CHECKOUT_CONFIG.returnPolicyText}</p>
                   </div>
                 </div>
               </div>
 
               {/* Free Shipping Info */}
-              {totalPrice < 1000 && (
-                <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-yellow-700 text-sm text-center">
-                    🚚 Add £{(1000 - totalPrice).toFixed(0)} more for FREE shipping!
+              {totalPrice < CHECKOUT_CONFIG.freeShippingThreshold && (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-700 text-sm text-center">
+                    🚚 Add {formatPrice(CHECKOUT_CONFIG.freeShippingThreshold - totalPrice)} more for FREE shipping!
                   </p>
                 </div>
               )}

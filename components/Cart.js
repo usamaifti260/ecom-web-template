@@ -4,6 +4,30 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+// Configuration Variables
+const CART_CONFIG = {
+  // Currency & Pricing
+  currency: 'PKR',
+  freeShippingThreshold: 10000,
+  shippingFee: 800,
+
+  // UI Text
+  title: 'Shopping Cart',
+  emptyCartTitle: 'Your cart is empty',
+  emptyCartMessage: 'Looks like you haven\'t added any surgical instruments yet!\nBrowse our premium medical equipment collection and add your favorites.',
+  browseButtonText: '⚕️ Browse Instruments',
+  checkoutButtonText: 'Proceed to Checkout',
+  continueShoppingText: 'Continue Shopping',
+  clearCartText: '🗑️ Clear All Items',
+
+  // Icons
+  cartIcon: '🏥',
+  emptyCartIcon: '⚕️',
+
+  // Routes
+  checkoutRoute: '/checkout'
+};
+
 const Cart = () => {
   const {
     items,
@@ -29,29 +53,29 @@ const Cart = () => {
   }, []);
 
   const formatPrice = (price) => {
-    return `£${price.toFixed(0)}`;
+    return `${CART_CONFIG.currency} ${price.toFixed(0)}`;
   };
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
-      removeItem(item.id, item.selectedSize, item.selectedConfiguration);
+      removeItem(item.id, item.selectedConfiguration);
     } else {
-      updateQuantity(item.id, item.selectedSize, newQuantity, item.selectedConfiguration);
+      updateQuantity(item.id, newQuantity, item.selectedConfiguration);
     }
   };
 
   const handleCheckout = async () => {
     if (!mounted || !router.isReady) return;
-    
+
     setIsCheckoutLoading(true);
-    
+
     // Add a small delay to show the loading animation
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     // Close cart and navigate to checkout
     toggleCart();
-    router.push('/checkout');
-    
+    router.push(CART_CONFIG.checkoutRoute);
+
     // Reset loading state after navigation
     setTimeout(() => {
       setIsCheckoutLoading(false);
@@ -76,25 +100,24 @@ const Cart = () => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black bg-opacity-60 z-40 transition-opacity duration-300"
         onClick={toggleCart}
       />
 
       {/* Cart Sidebar */}
-      <div className={`fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
+      <div className={`fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-lg">🛍️</span>
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-lg">{CART_CONFIG.cartIcon}</span>
               </div>
               <div>
                 <h2 className="text-xl font-bold text-gray-800">
-                  Shopping Cart
+                  {CART_CONFIG.title}
                 </h2>
                 <p className="text-sm text-gray-600">{itemCount} items</p>
               </div>
@@ -113,19 +136,20 @@ const Cart = () => {
           <div className="flex-1 overflow-y-auto">
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center mb-6">
-                  <span className="text-6xl">🛋️</span>
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-6xl">{CART_CONFIG.emptyCartIcon}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Your cart is empty</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                  {CART_CONFIG.emptyCartTitle}
+                </h3>
                 <p className="text-gray-600 mb-6 text-center">
-                  Looks like you haven't added any furniture yet!<br/>
-                  Browse our collection and add your favorites.
+                  {CART_CONFIG.emptyCartMessage}
                 </p>
                 <button
                   onClick={toggleCart}
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-500 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
                 >
-                  ✨ Browse Collection
+                  {CART_CONFIG.browseButtonText}
                 </button>
               </div>
             ) : (
@@ -151,19 +175,27 @@ const Cart = () => {
                         <p className="text-xs text-gray-600">
                           {item.category}
                         </p>
-                        {item.selectedSize && (
+                        {item.selectedConfiguration?.size && (
                           <>
                             <span className="text-xs text-gray-600">•</span>
-                            <span className="text-xs text-yellow-600 font-medium">
-                              {item.selectedSize}
+                            <span className="text-xs text-blue-600 font-medium">
+                              {item.selectedConfiguration.size}
+                            </span>
+                          </>
+                        )}
+                        {item.selectedConfiguration?.color && (
+                          <>
+                            <span className="text-xs text-gray-600">•</span>
+                            <span className="text-xs text-green-600 font-medium">
+                              {item.selectedConfiguration.color}
                             </span>
                           </>
                         )}
                       </div>
-                      
+
                       {/* Price */}
                       <div className="flex items-center space-x-2 mb-3">
-                        <span className="text-sm font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+                        <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                           {formatPrice(item.price)}
                         </span>
                         {item.originalPrice && item.originalPrice > item.price && (
@@ -189,7 +221,7 @@ const Cart = () => {
                           </span>
                           <button
                             onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-yellow-500 hover:border-yellow-500 transition-all duration-200 text-gray-600 hover:text-white"
+                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -199,7 +231,7 @@ const Cart = () => {
 
                         {/* Remove Button */}
                         <button
-                          onClick={() => removeItem(item.id, item.selectedSize, item.selectedConfiguration)}
+                          onClick={() => removeItem(item.id, item.selectedConfiguration)}
                           className="p-1 text-red-400 hover:text-red-600 transition-colors duration-200"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,7 +249,7 @@ const Cart = () => {
                     onClick={handleClearCart}
                     className="w-full text-sm text-red-500 hover:text-red-600 hover:bg-red-50 py-3 rounded-lg transition-all duration-200 border border-red-200 hover:border-red-300"
                   >
-                    🗑️ Clear All Items
+                    {CART_CONFIG.clearCartText}
                   </button>
                 )}
               </div>
@@ -236,14 +268,14 @@ const Cart = () => {
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-medium text-green-600">
-                    {totalPrice >= 1000 ? 'FREE' : '£100'}
+                    {totalPrice >= CART_CONFIG.freeShippingThreshold ? 'FREE' : `${CART_CONFIG.currency} ${CART_CONFIG.shippingFee}`}
                   </span>
                 </div>
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
-                      {formatPrice(totalPrice >= 3000 ? totalPrice : totalPrice + 200)}
+                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                      {formatPrice(totalPrice >= CART_CONFIG.freeShippingThreshold ? totalPrice : totalPrice + CART_CONFIG.shippingFee)}
                     </span>
                   </div>
                 </div>
@@ -254,11 +286,10 @@ const Cart = () => {
                 <button
                   onClick={handleCheckout}
                   disabled={isCheckoutLoading}
-                  className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center ${
-                    isCheckoutLoading 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700'
-                  } text-white`}
+                  className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center ${isCheckoutLoading
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700'
+                    } text-white`}
                 >
                   {isCheckoutLoading ? (
                     <>
@@ -269,27 +300,26 @@ const Cart = () => {
                       Loading...
                     </>
                   ) : (
-                    'Proceed to Checkout'
+                    CART_CONFIG.checkoutButtonText
                   )}
                 </button>
                 <button
                   onClick={toggleCart}
                   disabled={isCheckoutLoading}
-                  className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                    isCheckoutLoading 
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
-                      : 'bg-transparent border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white'
-                  }`}
+                  className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${isCheckoutLoading
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-transparent border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white'
+                    }`}
                 >
-                  Continue Shopping
+                  {CART_CONFIG.continueShoppingText}
                 </button>
               </div>
 
               {/* Free Shipping Info */}
-              {totalPrice < 1000 && (
-                <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <p className="text-yellow-700 text-sm text-center">
-                    🚚 Add £{(1000 - totalPrice).toFixed(0)} more for FREE shipping!
+              {totalPrice < CART_CONFIG.freeShippingThreshold && (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-blue-700 text-sm text-center">
+                    🚚 Add {CART_CONFIG.currency} {(CART_CONFIG.freeShippingThreshold - totalPrice).toFixed(0)} more for FREE shipping!
                   </p>
                 </div>
               )}

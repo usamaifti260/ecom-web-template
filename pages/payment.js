@@ -8,11 +8,82 @@ import axios from 'axios';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
 
+// Configuration Variables
+const PAYMENT_CONFIG = {
+  // Business Information
+  businessName: 'BHATTI INDUSTRIES',
+  defaultBrand: 'BHATTI INDUSTRIES',
+
+  // Currency & Pricing
+  currency: 'PKR',
+
+  // SEO & Meta
+  pageTitle: 'Payment - Bhatti Industries',
+  pageDescription: 'Complete your payment',
+  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconSize: '32x32',
+
+  // API Configuration
+  siteId: process.env.NEXT_PUBLIC_SITE_ID || 'bhattiindustrie',
+  apiBaseUrl: 'https://web-portal-backend-production.up.railway.app/api/orders/submit',
+  apiTimeout: 30000,
+
+  // Contact Information
+  supportPhone: '0331-0422676',
+  supportHours: '9 AM - 6 PM (Mon-Sat)',
+
+  // UI Text
+  loadingText: 'Loading order details...',
+  placingOrderText: 'Placing Order...',
+  placeOrderButtonText: '⚕️ Place Order',
+  securityText: 'Your order is secure and protected',
+
+  // Payment Method
+  codTitle: 'Cash on Delivery',
+  codDescription: 'Pay when you receive your order',
+  codHowItWorksTitle: 'How it works:',
+  codSteps: [
+    'Your surgical instruments will be carefully packaged and sterilized',
+    'Pay the delivery person when your order arrives',
+    'Inspect your medical equipment before payment',
+    'Cash payment only at delivery'
+  ],
+
+  // Return Policy
+  returnPolicyDays: 7,
+  returnPolicyTitle: '7-Day Quality Guarantee',
+  returnPolicyPoints: [
+    'Quality guarantee & returns within 7 days for defective items',
+    'Items must be in original sterile condition with packaging',
+    'Free return pickup for defective surgical instruments',
+    'Full refund or exchange as per your preference'
+  ],
+
+  // Satisfaction Guarantee
+  satisfactionTitle: 'Quality Guarantee',
+  satisfactionText: 'Not satisfied with quality? Return within 7 days for full refund!',
+
+  // Icons
+  paymentIcon: '💳',
+  codIcon: '💰',
+  returnIcon: '🔄',
+  deliveryIcon: '🚚',
+  summaryIcon: '🏥',
+  guaranteeIcon: '✓',
+  securityIcon: '🔒',
+
+  // Routes
+  shopRoute: '/shop',
+  checkoutRoute: '/checkout',
+  successRoute: '/order-success',
+  failureRoute: '/order-failed'
+};
+
 export default function PaymentPage() {
   const router = useRouter();
   const { clearCart } = useCart();
   const { showErrorNotification, showSuccessNotification } = useNotification();
-  
+
   const [orderData, setOrderData] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('COD');
@@ -25,22 +96,22 @@ export default function PaymentPage() {
         setOrderData(JSON.parse(savedOrder));
       } else {
         // Redirect to checkout if no order data
-        router.push('/checkout');
+        router.push(PAYMENT_CONFIG.checkoutRoute);
       }
     } catch (error) {
       console.error('Error loading order data:', error);
-      router.push('/checkout');
+      router.push(PAYMENT_CONFIG.checkoutRoute);
     }
   }, [router]);
 
   const formatPrice = (price) => {
-    return `£${price.toFixed(0)}`;
+    return `${PAYMENT_CONFIG.currency} ${price.toFixed(0)}`;
   };
 
   const generateOrderId = () => {
     const timestamp = Date.now().toString(36);
     const randomStr = Math.random().toString(36).substr(2, 5);
-    return `HO-${timestamp}-${randomStr}`.toUpperCase();
+    return `BI-${timestamp}-${randomStr}`.toUpperCase();
   };
 
   const handlePlaceOrder = async () => {
@@ -74,28 +145,15 @@ export default function PaymentPage() {
         quantity: item.quantity,
         category: item.category || '',
         image: item.image || '',
-        brand: item.brand || 'SOFA SPHERE',
+        brand: item.brand || PAYMENT_CONFIG.defaultBrand,
         inStock: item.inStock || true,
-        selectedSize: item.selectedSize || null,
-        selectedConfiguration: item.selectedConfiguration || null,
-        // Include configuration details in a flattened structure for backend compatibility
-        ...(item.selectedConfiguration && {
-          configurationDetails: {
-            size: item.selectedConfiguration.size || null,
-            color: item.selectedConfiguration.color || null,
-            dimension: item.selectedConfiguration.dimension || null,
-            orientation: item.selectedConfiguration.orientation || null,
-            storage: item.selectedConfiguration.storage || null,
-            includeFootstool: item.selectedConfiguration.includeFootstool || false,
-            includeSofaBed: item.selectedConfiguration.includeSofaBed || false
-          }
-        })
+        selectedConfiguration: item.selectedConfiguration || null
       }));
 
       // Calculate totals according to backend expectations
       const subtotal = orderData.summary.subtotal;
       const shipping = orderData.summary.shippingFee || 0;
-      const tax = 0; // No tax for clothing store
+      const tax = 0; // No tax for surgical instruments store
       const discount = 0; // No discounts
       const total = subtotal + shipping;
 
@@ -114,7 +172,7 @@ export default function PaymentPage() {
         'card': 'card',          // Credit/Debit Card -> card
         'paypal': 'paypal'       // PayPal -> paypal
       };
-      
+
       const paymentInfo = {
         method: paymentMethodMap[paymentMethod] || 'cash',
         status: 'pending'
@@ -128,26 +186,14 @@ export default function PaymentPage() {
         paymentInfo
       };
 
-      console.log('Submitting order to backend:', orderPayload);
-      console.log('Product configurations:', products.map(p => ({
-        id: p.id,
-        name: p.name,
-        selectedSize: p.selectedSize,
-        selectedConfiguration: p.selectedConfiguration,
-        configurationDetails: p.configurationDetails
-      })));
-      
-      // Replace with your actual siteId
-      const siteId = process.env.NEXT_PUBLIC_SITE_ID || 'comfortsofa';
-      
       const response = await axios.post(
-        `https://web-portal-backend-production.up.railway.app/api/orders/submit/${siteId}`, 
+        `${PAYMENT_CONFIG.apiBaseUrl}/${PAYMENT_CONFIG.siteId}`,
         orderPayload,
         {
           headers: {
             'Content-Type': 'application/json'
           },
-          timeout: 30000 // 30 second timeout
+          timeout: PAYMENT_CONFIG.apiTimeout
         }
       );
 
@@ -155,7 +201,7 @@ export default function PaymentPage() {
 
       // Generate order ID from backend response or fallback
       const orderId = response.data?.orderNumber || generateOrderId();
-      
+
       // Prepare final order data for local storage
       const finalOrder = {
         ...orderData,
@@ -174,35 +220,35 @@ export default function PaymentPage() {
       const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
       existingOrders.push(finalOrder);
       localStorage.setItem('orders', JSON.stringify(existingOrders));
-      
+
       // Clear pending order
       localStorage.removeItem('pendingOrder');
-      
+
       // Clear cart
       clearCart();
-      
+
       // Show success notification
       showSuccessNotification('Order placed successfully!');
-      
+
       // Redirect to success page
-      router.push(`/order-success?orderId=${orderId}`);
-      
+      router.push(`${PAYMENT_CONFIG.successRoute}?orderId=${orderId}`);
+
     } catch (error) {
       console.error('Order submission failed:', error);
       console.error('Error response:', error.response);
       console.error('Error response data:', error.response?.data);
       console.error('Error response status:', error.response?.status);
-      
+
       let errorMessage = 'Failed to place order. Please try again.';
-      
+
       if (error.response?.data?.message) {
         errorMessage = error.response.data.message;
       } else if (error.message) {
         errorMessage = error.message;
       }
-      
+
       showErrorNotification(`Order submission failed: ${errorMessage}`);
-      
+
       // For debugging, save failed order attempt
       const failedOrder = {
         ...orderData,
@@ -210,17 +256,17 @@ export default function PaymentPage() {
         failedAt: new Date().toISOString(),
         paymentMethod
       };
-      
+
       localStorage.setItem('lastFailedOrder', JSON.stringify(failedOrder));
-      
+
       // Redirect to failure page with error reason
-      const errorReason = error.response?.status === 400 ? 'address_invalid' : 
-                         error.response?.status === 409 ? 'inventory_unavailable' :
-                         error.response?.status >= 500 ? 'system_error' : 
-                         'payment_failed';
-                         
-      router.push(`/order-failed?reason=${errorReason}`);
-      
+      const errorReason = error.response?.status === 400 ? 'address_invalid' :
+        error.response?.status === 409 ? 'inventory_unavailable' :
+          error.response?.status >= 500 ? 'system_error' :
+            'payment_failed';
+
+      router.push(`${PAYMENT_CONFIG.failureRoute}?reason=${errorReason}`);
+
     } finally {
       setIsProcessing(false);
     }
@@ -231,16 +277,16 @@ export default function PaymentPage() {
     return (
       <>
         <Head>
-          <title>Payment - Sofa Sphere</title>
-          <meta name="description" content="Complete your payment" />
+          <title>{PAYMENT_CONFIG.pageTitle}</title>
+          <meta name="description" content={PAYMENT_CONFIG.pageDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+          <link rel="icon" href={PAYMENT_CONFIG.faviconPath} type="image/png" sizes={PAYMENT_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading order details...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">{PAYMENT_CONFIG.loadingText}</p>
           </div>
         </div>
       </>
@@ -250,10 +296,10 @@ export default function PaymentPage() {
   return (
     <>
       <Head>
-        <title>Payment - SOFA SPHERE</title>
-        <meta name="description" content="Complete your payment" />
+        <title>{PAYMENT_CONFIG.pageTitle}</title>
+        <meta name="description" content={PAYMENT_CONFIG.pageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={PAYMENT_CONFIG.faviconPath} type="image/png" sizes={PAYMENT_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -261,17 +307,17 @@ export default function PaymentPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href="/shop" className="hover:text-yellow-600 transition-colors">🛋️ Shop</Link>
+              <Link href={PAYMENT_CONFIG.shopRoute} className="hover:text-blue-600 transition-colors">⚕️ Shop</Link>
               <span>→</span>
-              <Link href="/checkout" className="hover:text-yellow-600 transition-colors">Checkout</Link>
+              <Link href={PAYMENT_CONFIG.checkoutRoute} className="hover:text-blue-600 transition-colors">Checkout</Link>
               <span>→</span>
-              <span className="text-yellow-600 font-medium">Payment</span>
+              <span className="text-blue-600 font-medium">Payment</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">SOFA</span> <span className="text-gray-800">SPHERE</span>
+                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">BHATTI</span> <span className="text-gray-800">INDUSTRIES</span>
               </h1>
-              <p className="text-gray-600">Review and confirm your beautiful order</p>
+              <p className="text-gray-600">{PAYMENT_CONFIG.pageDescription}</p>
             </div>
           </div>
 
@@ -280,13 +326,13 @@ export default function PaymentPage() {
             <div className="space-y-6">
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
                 <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                  <span className="text-2xl mr-2">💳</span>
+                  <span className="text-2xl mr-2">{PAYMENT_CONFIG.paymentIcon}</span>
                   Payment Method
                 </h3>
-                
+
                 <div className="space-y-4">
                   {/* Cash on Delivery */}
-                  <div className="border border-yellow-400 rounded-lg p-4 bg-gradient-to-r from-yellow-400 to-yellow-600">
+                  <div className="border border-blue-400 rounded-lg p-4 bg-gradient-to-r from-blue-400 to-blue-600">
                     <label className="flex items-start space-x-3 cursor-pointer">
                       <input
                         type="radio"
@@ -294,27 +340,26 @@ export default function PaymentPage() {
                         value="COD"
                         checked={paymentMethod === 'COD'}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="mt-1 w-4 h-4 text-yellow-600 border-white focus:ring-yellow-500"
+                        className="mt-1 w-4 h-4 text-blue-600 border-white focus:ring-blue-500"
                       />
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                            <span className="text-lg">💰</span>
+                            <span className="text-lg">{PAYMENT_CONFIG.codIcon}</span>
                           </div>
                           <div>
-                            <p className="font-bold text-white">Cash on Delivery</p>
-                            <p className="text-sm text-white opacity-90">Pay when you receive your order</p>
+                            <p className="font-bold text-white">{PAYMENT_CONFIG.codTitle}</p>
+                            <p className="text-sm text-white opacity-90">{PAYMENT_CONFIG.codDescription}</p>
                           </div>
                         </div>
                         <div className="mt-3 p-3 bg-black bg-opacity-20 rounded-lg">
                           <p className="text-sm text-white font-semibold">
-                            How it works:
+                            {PAYMENT_CONFIG.codHowItWorksTitle}
                           </p>
                           <ul className="text-sm text-white opacity-90 mt-1 space-y-1">
-                            <li>• Your orders items will be carefully packaged</li>
-                            <li>• Pay the delivery person when your order arrives</li>
-                            <li>• Inspect your items before payment</li>
-                            <li>• Cash payment only at delivery</li>
+                            {PAYMENT_CONFIG.codSteps.map((step, index) => (
+                              <li key={index}>• {step}</li>
+                            ))}
                           </ul>
                         </div>
                       </div>
@@ -339,8 +384,8 @@ export default function PaymentPage() {
               {/* Return Policy Section */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
                 <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                  <span className="text-2xl mr-2">🔄</span>
-                  Return & Exchange Policy
+                  <span className="text-2xl mr-2">{PAYMENT_CONFIG.returnIcon}</span>
+                  Quality Guarantee & Return Policy
                 </h3>
                 <div className="space-y-4">
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -351,21 +396,20 @@ export default function PaymentPage() {
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-green-800 mb-2">7-Day Return Policy</p>
+                        <p className="font-semibold text-green-800 mb-2">{PAYMENT_CONFIG.returnPolicyTitle}</p>
                         <ul className="text-sm text-green-700 space-y-1">
-                          <li>• Easy returns & exchanges within 7 days of purchase</li>
-                          <li>• Items must be in original condition with tags</li>
-                          <li>• Free return pickup for defective items</li>
-                          <li>• Full refund or exchange as per your preference</li>
+                          {PAYMENT_CONFIG.returnPolicyPoints.map((point, index) => (
+                            <li key={index}>• {point}</li>
+                          ))}
                         </ul>
                       </div>
                     </div>
                   </div>
                   <div className="text-center">
                     <p className="text-sm text-gray-600">
-                      Questions about returns? 
-                      <a href="tel:+44 7448 960712" className="text-yellow-600 hover:text-yellow-700 font-medium ml-1">
-                        Call us at +44 7448 960712
+                      Questions about returns?
+                      <a href={`tel:${PAYMENT_CONFIG.supportPhone}`} className="text-blue-600 hover:text-blue-700 font-medium ml-1">
+                        Call us at {PAYMENT_CONFIG.supportPhone}
                       </a>
                     </p>
                   </div>
@@ -375,26 +419,26 @@ export default function PaymentPage() {
               {/* Delivery Information */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
                 <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                  <span className="text-2xl mr-2">🚚</span>
+                  <span className="text-2xl mr-2">{PAYMENT_CONFIG.deliveryIcon}</span>
                   Delivery Information
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm font-medium text-yellow-600">Customer</p>
+                    <p className="text-sm font-medium text-blue-600">Customer</p>
                     <p className="text-sm text-gray-800">
                       {orderData.customer.firstName} {orderData.customer.lastName}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-yellow-600">Email</p>
+                    <p className="text-sm font-medium text-blue-600">Email</p>
                     <p className="text-sm text-gray-800">{orderData.customer.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-yellow-600">Phone</p>
+                    <p className="text-sm font-medium text-blue-600">Phone</p>
                     <p className="text-sm text-gray-800">{orderData.customer.phone}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-yellow-600">Delivery Address</p>
+                    <p className="text-sm font-medium text-blue-600">Delivery Address</p>
                     <p className="text-sm text-gray-800">
                       {orderData.customer.address}<br />
                       {orderData.customer.city}, {orderData.customer.area} {orderData.customer.zipCode}
@@ -402,7 +446,7 @@ export default function PaymentPage() {
                   </div>
                   {orderData.customer.notes && (
                     <div>
-                      <p className="text-sm font-medium text-yellow-600">Order Notes</p>
+                      <p className="text-sm font-medium text-blue-600">Order Notes</p>
                       <p className="text-sm text-gray-800">{orderData.customer.notes}</p>
                     </div>
                   )}
@@ -413,10 +457,10 @@ export default function PaymentPage() {
             {/* Order Summary */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-fit">
               <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                <span className="text-2xl mr-2">🛍️</span>
+                <span className="text-2xl mr-2">{PAYMENT_CONFIG.summaryIcon}</span>
                 Order Summary
               </h3>
-              
+
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {orderData.items.map((item, index) => (
@@ -433,10 +477,7 @@ export default function PaymentPage() {
                       <h4 className="text-sm font-medium text-gray-800 truncate">
                         {item.name}
                       </h4>
-                      {/* <p className="text-xs text-gray-600">
-                        {item.category} {item.selectedSize && `• ${item.selectedSize}`}
-                      </p> */}
-                      
+
                       {/* Display configuration details if available */}
                       {item.selectedConfiguration && Object.keys(item.selectedConfiguration).length > 0 && (
                         <div className="text-xs text-gray-500 mt-1">
@@ -448,38 +489,15 @@ export default function PaymentPage() {
                           {item.selectedConfiguration.color && (
                             <span className="inline-block mr-2">Color: {item.selectedConfiguration.color}</span>
                           )}
-                          {item.selectedConfiguration.dimension && (
-                            <span className="inline-block mr-2">Dimension: {item.selectedConfiguration.dimension}</span>
-                          )}
-                          {item.selectedConfiguration.orientation && (
-                            <span className="inline-block mr-2">Orientation: {item.selectedConfiguration.orientation}</span>
-                          )}
-                          {item.selectedConfiguration.storage && (
-                            <span className="inline-block mr-2">Storage: {item.selectedConfiguration.storage}</span>
-                          )}
-                          {('includeFootstool' in item.selectedConfiguration) && item.selectedConfiguration.includeFootstool && (
-                            <span className="inline-block mr-2">With Footstool</span>
-                          )}
-                          {('includeFootstool' in item.selectedConfiguration) && !item.selectedConfiguration.includeFootstool && (
-                            <span className="inline-block mr-2">Without Footstool</span>
-                          )}
-
-
-                          {('includeSofaBed' in item.selectedConfiguration) && item.selectedConfiguration.includeSofaBed && (
-                            <span className="inline-block mr-2">With Sofa Bed</span>
-                          )}
-                          {('includeSofaBed' in item.selectedConfiguration) && !item.selectedConfiguration.includeSofaBed && (
-                            <span className="inline-block mr-2">Without Sofa Bed</span>
-                          )}
                         </div>
                       )}
-                      
+
                       <p className="text-xs text-gray-600 mt-1">
                         Quantity: {item.quantity}
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+                      <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
@@ -502,7 +520,7 @@ export default function PaymentPage() {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
+                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
                   </div>
                 </div>
               </div>
@@ -511,13 +529,11 @@ export default function PaymentPage() {
               <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <span className="text-white text-lg">{PAYMENT_CONFIG.guaranteeIcon}</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-blue-800">Satisfaction Guarantee</p>
-                    <p className="text-sm text-blue-700">Not happy? Return within 7 days for full refund!</p>
+                    <p className="font-semibold text-blue-800">{PAYMENT_CONFIG.satisfactionTitle}</p>
+                    <p className="text-sm text-blue-700">{PAYMENT_CONFIG.satisfactionText}</p>
                   </div>
                 </div>
               </div>
@@ -527,11 +543,10 @@ export default function PaymentPage() {
                 <button
                   onClick={handlePlaceOrder}
                   disabled={isProcessing}
-                  className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${
-                    isProcessing
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
-                  } text-white`}
+                  className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${isProcessing
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transform hover:scale-105'
+                    } text-white`}
                 >
                   {isProcessing ? (
                     <div className="flex items-center justify-center">
@@ -539,16 +554,16 @@ export default function PaymentPage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Placing Order...
+                      {PAYMENT_CONFIG.placingOrderText}
                     </div>
                   ) : (
-                    '🛋️ Place Order'
+                    PAYMENT_CONFIG.placeOrderButtonText
                   )}
                 </button>
-                
+
                 <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-gray-600">
-                  <span className="text-lg">🔒</span>
-                  <span>Your order is secure and protected</span>
+                  <span className="text-lg">{PAYMENT_CONFIG.securityIcon}</span>
+                  <span>{PAYMENT_CONFIG.securityText}</span>
                 </div>
               </div>
             </div>

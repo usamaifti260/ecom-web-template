@@ -7,451 +7,451 @@ const Reviews = () => {
   const [sortBy, setSortBy] = useState('most-recent');
   const [reviewsToShow, setReviewsToShow] = useState(4);
 
-  // Sample product reviews data - Amazon style (27 reviews for 4.8 rating)
+  // Sample product reviews data - Medical equipment style (27 reviews for 4.8 rating)
   const reviews = [
     {
       id: 1,
-      customerName: "Ahmad H.",
+      customerName: "Dr. Ahmad H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for our new home!",
-      review: "This sectional sofa exceeded my expectations. The comfort level is incredible and the build quality is premium. I received so many compliments from guests. The fabric is beautifully crafted and the design is perfect. Highly recommend for living rooms.",
+      title: "Excellent quality surgical scissors!",
+      review: "These surgical scissors exceeded my expectations. The craftsmanship is incredible and the German stainless steel quality is premium. Perfect for general surgery procedures. The precision and sharpness are outstanding. Highly recommend for medical professionals.",
       date: "December 15, 2024",
-      productName: "Premium Sectional Sofa Set",
-      productImage: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=150&auto=format&fit=crop",
-      size: "Large",
-      color: "Charcoal Gray",
+      productName: "Premium Surgical Scissors Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "6 inch",
+      color: "Silver",
       helpfulVotes: 12,
       totalVotes: 14,
       images: [
-        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=387&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=388&auto=format&fit=crop"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 2,
-      customerName: "Sarah A.",
+      customerName: "Dr. Sarah A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Absolutely love this office chair!",
-      review: "The ergonomic design is so comfortable and the build quality is excellent. Perfect support and beautiful finish. I've used it for months and it's still like new. Great value for money!",
+      title: "Outstanding forceps set!",
+      review: "The forceps set is absolutely outstanding! The quality is excellent and the grip is perfect. The German stainless steel is durable yet precise. Perfect for cardiovascular procedures and looks very professional. Great value for money!",
       date: "December 14, 2024",
-      productName: "Ergonomic Office Chair",
-      productImage: "https://images.unsplash.com/photo-1541558869434-2840d308329a?q=80&w=150&auto=format&fit=crop",
-      size: "Standard",
-      color: "Black",
+      productName: "Cardiovascular Forceps Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Medium",
+      color: "Silver",
       helpfulVotes: 18,
       totalVotes: 20,
       images: []
     },
     {
       id: 3,
-      customerName: "Ali M.",
+      customerName: "Dr. Ali M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Modern design - Love it!",
-      review: "This dining table is exactly what I was looking for. The modern wood finish is beautiful and authentic. Perfect for family gatherings. The craftsmanship is gorgeous and the overall quality is excellent. Fast shipping too!",
+      title: "Perfect orthopedic set!",
+      review: "This orthopedic instrument set is exactly what I was looking for. The German stainless steel finish is beautiful and authentic. Perfect for bone surgery procedures. The craftsmanship is gorgeous and the overall quality is excellent. Fast delivery too!",
       date: "December 12, 2024",
-      productName: "Modern Dining Table Set",
-      productImage: "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?q=80&w=150&auto=format&fit=crop",
-      size: "Large",
-      color: "Walnut",
+      productName: "Orthopedic Surgery Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Complete Set",
+      color: "Silver",
       helpfulVotes: 15,
       totalVotes: 16,
       images: [
-        "https://images.unsplash.com/photo-1449247709967-d4461a6a6103?q=80&w=435&auto=format&fit=crop"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=435&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 4,
-      customerName: "Fatima H.",
+      customerName: "Dr. Fatima H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for bedroom",
-      review: "This bed frame is perfect for our master bedroom. Modern design and comfortable height. The wood finish doesn't scratch easily which is great. Excellent quality and fast delivery.",
+      title: "Excellent dental instruments!",
+      review: "These dental instruments are perfect for my practice. Modern design and excellent craftsmanship. The stainless steel finish doesn't tarnish which is great. Excellent quality and fast delivery from Bhatti Industries.",
       date: "December 10, 2024",
-      productName: "Modern Platform Bed Frame",
-      productImage: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=150&auto=format&fit=crop",
-      size: "King",
-      color: "Oak",
+      productName: "Dental Surgery Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Standard",
+      color: "Silver",
       helpfulVotes: 22,
       totalVotes: 24,
       images: []
     },
     {
       id: 5,
-      customerName: "Hassan L.",
+      customerName: "Dr. Hassan L.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Versatile and elegant",
-      review: "This coffee table is so versatile! I can use it for work or casual entertaining. The material is high quality and the design is beautiful. Great value for money. Will definitely order more from Comfort Sofa.",
+      title: "Superior ENT instruments!",
+      review: "These ENT instruments are so versatile! I can use them for various ear, nose, and throat procedures. The material is high quality and the design is beautiful. Great value for money. Will definitely order more from Bhatti Industries.",
       date: "December 8, 2024",
-      productName: "Modern Glass Coffee Table",
-      productImage: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?q=80&w=150&auto=format&fit=crop",
-      size: "Standard",
-      color: "Clear Glass",
+      productName: "ENT Surgery Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Complete Set",
+      color: "Silver",
       helpfulVotes: 19,
       totalVotes: 21,
       images: []
     },
     {
       id: 6,
-      customerName: "Hina R.",
+      customerName: "Dr. Hina R.",
       isVerifiedPurchase: true,
       rating: 4,
       title: "Good quality, fast delivery",
-      review: "The product quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The outfit fits well and looks exactly like the photos. Satisfied with my purchase.",
+      review: "The product quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The neurosurgery instruments fit well and work exactly as described. Satisfied with my purchase.",
       date: "December 6, 2024",
-      productName: "Premium Kameez Shalwar",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      size: "Medium",
-      color: "Blue",
+      productName: "Neurosurgery Instrument Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Micro",
+      color: "Silver",
       helpfulVotes: 14,
       totalVotes: 16,
       images: []
     },
     {
       id: 7,
-      customerName: "Nadia S.",
+      customerName: "Dr. Nadia S.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Beautiful embroidery work",
-      review: "The embroidery on this 3-piece is absolutely stunning! The attention to detail is remarkable. Perfect for special occasions. The fabric quality is premium and the fit is excellent. Highly recommend!",
+      title: "Beautiful surgical retractors!",
+      review: "The surgical retractors are absolutely stunning! The precision and smoothness are remarkable. Perfect for exposure during surgery. The quality is premium and the craftsmanship is excellent. Highly recommend for surgical procedures!",
       date: "December 4, 2024",
-      productName: "Festive 3 Piece Collection",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-      size: "Small",
-      color: "Gold",
+      productName: "Surgical Retractor Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Large",
+      color: "Titanium",
       helpfulVotes: 25,
       totalVotes: 27,
       images: [
-        "https://images.unsplash.com/photo-1583391733956-6c78276477e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 8,
-      customerName: "Rabia K.",
+      customerName: "Dr. Rabia K.",
       isVerifiedPurchase: true,
       rating: 5,
       title: "Exceeded expectations!",
-      review: "This co-ord set is even better than I expected. The fabric is soft and comfortable, perfect for daily wear. The color is vibrant and the stitching is impeccable. Great customer service too!",
+      review: "This biopsy needle set is even better than I expected. The needles are sharp and precise, perfect for tissue sampling. The quality is vibrant and the construction is impeccable. Great customer service from Bhatti Industries too!",
       date: "December 2, 2024",
-      productName: "Casual Co-ord Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
-      size: "Medium",
-      color: "Beige",
+      productName: "Biopsy Needle Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "18G",
+      color: "Silver",
       helpfulVotes: 16,
       totalVotes: 18,
       images: []
     },
     {
       id: 9,
-      customerName: "Amina T.",
+      customerName: "Dr. Amina T.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Premium quality fabric",
-      review: "The fabric quality is outstanding! This kameez shalwar is perfect for formal events. The embroidery is intricate and beautiful. Received many compliments when I wore it to a wedding.",
+      title: "Premium quality instruments",
+      review: "The instrument quality is outstanding! This scalpel set is perfect for precision procedures. The craftsmanship is intricate and beautiful. Received many compliments from colleagues when I used them in the OR.",
       date: "November 30, 2024",
-      productName: "Premium Kameez Shalwar",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
-      size: "Large",
-      color: "Royal Blue",
+      productName: "Premium Scalpel Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Blade #10-15",
+      color: "Silver",
       helpfulVotes: 21,
       totalVotes: 23,
       images: []
     },
     {
       id: 10,
-      customerName: "Khadija M.",
+      customerName: "Dr. Khadija M.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good fit and comfortable",
-      review: "This 2-piece outfit fits perfectly and is very comfortable. The fabric is breathable and the design is modern. Only minor issue is that the color was slightly different from the photo, but still beautiful.",
+      title: "Good quality and precise",
+      review: "This surgical clamp set fits perfectly and is very durable. The design is professional and the steel is corrosion-resistant. Only minor issue is that the finish was slightly different than the photo, but still beautiful.",
       date: "November 28, 2024",
-      productName: "Modern 2 Piece Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135844.png",
-      size: "Small",
-      color: "Coral",
+      productName: "Surgical Clamp Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Medium",
+      color: "Silver",
       helpfulVotes: 11,
       totalVotes: 13,
       images: []
     },
     {
       id: 11,
-      customerName: "Saira A.",
+      customerName: "Dr. Saira A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Beautiful and elegant",
-      review: "This 1-piece kurta is so elegant and comfortable. Perfect for both casual and formal occasions. The fabric is high quality and the fit is flattering. Great value for money!",
+      title: "Beautiful and precise hemostats",
+      review: "These hemostats are so elegant and practical. Perfect for both general and specialized procedures. The stainless steel is high quality and the design is ergonomic. Great value for money!",
       date: "November 26, 2024",
-      productName: "Elegant 1 Piece Kurta",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      size: "Medium",
-      color: "White",
+      productName: "Hemostat Clamp Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Curved",
+      color: "Silver",
       helpfulVotes: 17,
       totalVotes: 19,
       images: []
     },
     {
       id: 12,
-      customerName: "Farah B.",
+      customerName: "Dr. Farah B.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Designer quality at great price",
-      review: "This designer 3-piece suit is absolutely gorgeous! The fabric is premium and the embroidery work is exquisite. Perfect for special occasions. The packaging was also very nice.",
+      title: "Professional quality at great price",
+      review: "This surgical probe set is absolutely gorgeous! The steel is premium and the craftsmanship is exquisite. Perfect for diagnostic procedures. The packaging was also very nice and sterile.",
       date: "November 24, 2024",
-      productName: "Designer 3 Piece Suit",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-      size: "Large",
-      color: "Deep Purple",
+      productName: "Surgical Probe Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Assorted",
+      color: "Silver",
       helpfulVotes: 23,
       totalVotes: 25,
       images: [
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 13,
-      customerName: "Uzma H.",
+      customerName: "Dr. Uzma H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Trendy and stylish",
-      review: "This trendy co-ord set is perfect for modern women. The style is contemporary and the fabric is comfortable. Great for casual outings and office wear. Highly satisfied!",
+      title: "Modern and efficient sutures",
+      review: "These suture materials are perfect for modern surgery. The quality is contemporary and the material is biocompatible. Great for wound closure and post-operative care. Highly satisfied with Bhatti Industries!",
       date: "November 22, 2024",
-      productName: "Trendy Co-ord Collection",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
-      size: "Small",
-      color: "Turquoise",
+      productName: "Surgical Suture Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "3-0 to 6-0",
+      color: "Blue",
       helpfulVotes: 13,
       totalVotes: 15,
       images: []
     },
     {
       id: 14,
-      customerName: "Mehreen K.",
+      customerName: "Dr. Mehreen K.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Luxury quality",
-      review: "This luxury kameez shalwar set is absolutely beautiful! The handcrafted details are amazing and the fabric quality is premium. Perfect for special events. Worth every penny!",
+      title: "Precision surgical drills",
+      review: "This precision drill set is absolutely beautiful! The engineering details are amazing and the drill quality is premium. Perfect for orthopedic procedures. Worth every penny!",
       date: "November 20, 2024",
-      productName: "Luxury Kameez Shalwar Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
-      size: "Medium",
-      color: "Midnight Blue",
+      productName: "Precision Drill Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "2-10mm",
+      color: "Titanium",
       helpfulVotes: 28,
       totalVotes: 30,
       images: []
     },
     {
       id: 15,
-      customerName: "Rubina S.",
+      customerName: "Dr. Rubina S.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Professional and comfortable",
-      review: "This sophisticated 2-piece is perfect for professional settings. The fabric is comfortable and the fit is good. The color is exactly as shown in photos. Good quality for the price.",
+      title: "Professional and durable",
+      review: "This surgical light is perfect for operating room settings. The illumination is comfortable and consistent. The build quality is good. The brightness is exactly as shown in specifications. Good quality for the price.",
       date: "November 18, 2024",
-      productName: "Sophisticated 2 Piece",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135844.png",
-      size: "Large",
-      color: "Charcoal",
+      productName: "LED Surgical Light",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "36W",
+      color: "White",
       helpfulVotes: 9,
       totalVotes: 11,
       images: []
     },
     {
       id: 16,
-      customerName: "Shazia R.",
+      customerName: "Dr. Shazia R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Stylish and modern",
-      review: "This stylish 1-piece tunic is perfect for casual wear. The modern cuts are flattering and the fabric is comfortable. Great for everyday wear. Fast delivery too!",
+      title: "Excellent sterilization equipment",
+      review: "This autoclave sterilizer is perfect for clinic use. The modern design is efficient and the sterilization is reliable. Great for everyday use. Fast delivery from Bhatti Industries too!",
       date: "November 16, 2024",
-      productName: "Stylish 1 Piece Tunic",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      size: "Small",
-      color: "Lavender",
+      productName: "Autoclave Sterilizer",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "12L",
+      color: "Stainless Steel",
       helpfulVotes: 12,
       totalVotes: 14,
       images: []
     },
     {
       id: 17,
-      customerName: "Tahira M.",
+      customerName: "Dr. Tahira M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for parties!",
-      review: "This party wear 3-piece set is absolutely stunning! The glamorous design is perfect for special events. The fabric is luxurious and the fit is perfect. Received so many compliments!",
+      title: "Perfect for microsurgery!",
+      review: "This microsurgery kit is absolutely stunning! The precision design is perfect for delicate procedures. The instruments are high-quality and the magnification is perfect. Received so many compliments!",
       date: "November 14, 2024",
-      productName: "Party Wear 3 Piece",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-      size: "Medium",
-      color: "Champagne",
+      productName: "Microsurgery Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Micro",
+      color: "Titanium",
       helpfulVotes: 20,
       totalVotes: 22,
       images: [
-        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 18,
-      customerName: "Yasmin A.",
+      customerName: "Dr. Yasmin A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Ultra comfortable",
-      review: "This comfort co-ord set is incredibly comfortable! Perfect for lounging and casual outings. The fabric is soft and the fit is relaxed. Great for everyday wear.",
+      title: "Ultra comfortable surgical gloves",
+      review: "These surgical gloves are incredibly comfortable! Perfect for long procedures and sensitive operations. The latex is soft and the fit is excellent. Great for everyday surgical use.",
       date: "November 12, 2024",
-      productName: "Comfort Co-ord Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
-      size: "Large",
-      color: "Light Gray",
+      productName: "Surgical Gloves (Sterile)",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Size 7.5",
+      color: "White",
       helpfulVotes: 8,
       totalVotes: 10,
       images: []
     },
     {
       id: 19,
-      customerName: "Samina K.",
+      customerName: "Dr. Samina K.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good for formal occasions",
-      review: "This formal kameez shalwar is suitable for office and business meetings. The fabric is professional and the fit is good. The color is elegant and the quality is decent.",
+      title: "Good for clinical use",
+      review: "This examination table is suitable for clinic and hospital use. The upholstery is professional and the construction is good. The height adjustment is smooth and the quality is decent.",
       date: "November 10, 2024",
-      productName: "Formal Kameez Shalwar",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
-      size: "Medium",
-      color: "Black",
+      productName: "Medical Examination Table",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Standard",
+      color: "Blue",
       helpfulVotes: 7,
       totalVotes: 9,
       images: []
     },
     {
       id: 20,
-      customerName: "Naila H.",
+      customerName: "Dr. Naila H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Vintage style is beautiful",
-      review: "This vintage-inspired 2-piece set is absolutely beautiful! The retro patterns are unique and the classic cuts are flattering. Great quality and fast shipping. Love it!",
+      title: "Classic stethoscope is excellent",
+      review: "This classic cardiology stethoscope is absolutely beautiful! The acoustic quality is unique and the classic craftsmanship is outstanding. Great sound quality and fast shipping from Bhatti Industries. Love it!",
       date: "November 8, 2024",
-      productName: "Vintage 2 Piece Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135844.png",
-      size: "Small",
-      color: "Burgundy",
+      productName: "Cardiology Stethoscope",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Adult",
+      color: "Black",
       helpfulVotes: 15,
       totalVotes: 17,
       images: []
     },
     {
       id: 21,
-      customerName: "Bushra S.",
+      customerName: "Dr. Bushra S.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Minimalist and elegant",
-      review: "This minimalist 1-piece dress is perfect for those who love simplicity. The design is clean and elegant. Great quality fabric and comfortable fit. Exactly what I was looking for!",
+      title: "Minimalist and precise",
+      review: "This minimalist surgical kit is perfect for those who love simplicity. The design is clean and elegant. Great quality instruments and comfortable size. Exactly what I was looking for!",
       date: "November 6, 2024",
-      productName: "Minimalist 1 Piece",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      size: "Medium",
-      color: "White",
+      productName: "Minimalist Surgery Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Compact",
+      color: "Silver",
       helpfulVotes: 10,
       totalVotes: 12,
       images: []
     },
     {
       id: 22,
-      customerName: "Fouzia R.",
+      customerName: "Dr. Fouzia R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Bridal collection is stunning!",
-      review: "This bridal 3-piece collection is absolutely exquisite! The heavy embroidery and premium finish are perfect for weddings. The craftsmanship is outstanding. Worth the investment!",
+      title: "Premium anesthesia kit stunning!",
+      review: "This premium anesthesia kit is absolutely exquisite! The quality instruments and perfect precision are amazing for special procedures. The craftsmanship is outstanding. Worth the investment!",
       date: "November 4, 2024",
-      productName: "Bridal 3 Piece Collection",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-      size: "Large",
-      color: "Deep Red",
+      productName: "Anesthesia Administration Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Complete Set",
+      color: "Silver",
       helpfulVotes: 32,
       totalVotes: 34,
       images: [
-        "https://images.unsplash.com/photo-1583391733956-6c78276477e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 23,
-      customerName: "Riffat M.",
+      customerName: "Dr. Riffat M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for summer",
-      review: "This summer co-ord set is light and breezy, perfect for hot weather. The fabric is breathable and the colors are vibrant. Great for casual summer outings. Highly recommend!",
+      title: "Perfect for mobile clinics",
+      review: "This medical equipment case is light yet durable, perfect for mobile clinics. The organization is practical and the design is efficient. Great for field medical work. Highly recommend Bhatti Industries!",
       date: "November 2, 2024",
-      productName: "Summer Co-ord Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135789.png",
-      size: "Small",
-      color: "Sky Blue",
+      productName: "Mobile Medical Kit",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Large",
+      color: "Black",
       helpfulVotes: 14,
       totalVotes: 16,
       images: []
     },
     {
       id: 24,
-      customerName: "Shaista K.",
+      customerName: "Dr. Shaista K.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Traditional and authentic",
-      review: "This traditional kameez shalwar with cultural motifs is beautiful and authentic. The quality is excellent and the design is timeless. Perfect for cultural events and festivals.",
+      title: "Traditional and reliable",
+      review: "This traditional surgical instrument set with cultural heritage is beautiful and authentic. The quality is excellent and the design is timeless. Perfect for teaching hospitals and personal use.",
       date: "October 31, 2024",
-      productName: "Traditional Kameez Shalwar",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135823.png",
-      size: "Medium",
-      color: "Green",
+      productName: "Traditional Surgery Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Heritage",
+      color: "Brass",
       helpfulVotes: 18,
       totalVotes: 20,
       images: []
     },
     {
       id: 25,
-      customerName: "Nayab A.",
+      customerName: "Dr. Nayab A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Executive style is perfect",
-      review: "This executive 2-piece is perfect for business and formal occasions. The style is professional and the fabric is high quality. Great fit and excellent customer service. Very satisfied!",
+      title: "Executive medical organizer perfect",
+      review: "This executive medical organizer is perfect for hospital and clinic management. The organization is professional and the materials are high quality. Great organization and excellent customer service from Bhatti Industries. Very satisfied!",
       date: "October 29, 2024",
-      productName: "Executive 2 Piece",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135844.png",
+      productName: "Medical Equipment Organizer",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
       size: "Large",
-      color: "Navy Blue",
+      color: "Silver",
       helpfulVotes: 16,
       totalVotes: 18,
       images: []
     },
     {
       id: 26,
-      customerName: "Ghazala S.",
+      customerName: "Dr. Ghazala S.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality, minor fitting issue",
-      review: "The quality is good and the design is nice. However, the fit was slightly loose for my size. Overall satisfied with the purchase. The fabric is comfortable and the color is beautiful.",
+      title: "Good quality, minor adjustment needed",
+      review: "The quality is good and the design is nice. However, the handle was slightly longer for my preference. Overall satisfied with the purchase. The steel is durable and the finish is beautiful.",
       date: "October 27, 2024",
-      productName: "Stylish Co-ord Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      size: "Medium",
-      color: "Navy",
+      productName: "Surgical Handle Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Standard",
+      color: "Silver",
       helpfulVotes: 6,
       totalVotes: 8,
       images: []
     },
     {
       id: 27,
-      customerName: "Lubna R.",
+      customerName: "Dr. Lubna R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Amazing embroidery work",
-      review: "The embroidery work on this 3-piece suit is absolutely amazing! The attention to detail is incredible. Perfect for weddings and special occasions. The fabric quality is premium. Highly recommend!",
+      title: "Amazing craftsmanship work",
+      review: "The craftsmanship on this surgical instrument set is absolutely amazing! The attention to detail is incredible. Perfect for complex procedures and special operations. The steel quality is premium. Highly recommend Bhatti Industries!",
       date: "October 25, 2024",
-      productName: "Premium Sectional Sofa Set",
-      productImage: "https://cdn-icons-png.flaticon.com/512/3135/3135768.png",
-      size: "Small",
-      color: "Pink",
+      productName: "Premium Surgery Set",
+      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
+      size: "Professional",
+      color: "Titanium",
       helpfulVotes: 24,
       totalVotes: 26,
       images: []
@@ -461,7 +461,7 @@ const Reviews = () => {
   // Calculate rating statistics
   const totalReviews = reviews.length;
   const averageRating = reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
-  
+
   const ratingBreakdown = {
     5: reviews.filter(r => r.rating === 5).length,
     4: reviews.filter(r => r.rating === 4).length,
@@ -473,11 +473,11 @@ const Reviews = () => {
   // Filter and sort reviews
   const getFilteredReviews = () => {
     let filtered = reviews;
-    
+
     if (selectedFilter !== 'all') {
       filtered = reviews.filter(review => review.rating === parseInt(selectedFilter));
     }
-    
+
     switch (sortBy) {
       case 'most-recent':
         filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -497,7 +497,7 @@ const Reviews = () => {
       default:
         break;
     }
-    
+
     return filtered.slice(0, reviewsToShow);
   };
 
@@ -536,11 +536,11 @@ const Reviews = () => {
         {/* Section Header */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Customer Reviews</h2>
-          
+
           {/* Rating Summary */}
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
+
               {/* Overall Rating */}
               <div className="text-center lg:text-left">
                 <div className="flex items-center justify-center lg:justify-start space-x-2 mb-2">
@@ -592,11 +592,10 @@ const Reviews = () => {
                   setSelectedFilter('all');
                   setReviewsToShow(4);
                 }}
-                className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${
-                  selectedFilter === 'all'
-                    ? 'bg-blue-600 text-white border-blue-600'
-                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                }`}
+                className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === 'all'
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                  }`}
               >
                 All reviews
               </button>
@@ -607,11 +606,10 @@ const Reviews = () => {
                     setSelectedFilter(star.toString());
                     setReviewsToShow(4);
                   }}
-                  className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${
-                    selectedFilter === star.toString()
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
+                  className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === star.toString()
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
                 >
                   {star} stars
                 </button>
@@ -640,7 +638,7 @@ const Reviews = () => {
           {filteredReviews.map((review) => (
             <div key={review.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200">
               <div className="flex flex-col lg:flex-row lg:space-x-6">
-                
+
                 {/* Product Image */}
                 <div className="flex-shrink-0 mb-4 lg:mb-0">
                   <Link href={`/product/${review.id}`}>
@@ -681,7 +679,7 @@ const Reviews = () => {
                     </Link>
                     <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                       <span>Size: {review.size}</span>
-                      <span>Color: {review.color}</span>
+                      <span>Finish: {review.color}</span>
                     </div>
                   </div>
 

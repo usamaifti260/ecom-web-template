@@ -7,8 +7,10 @@ import Link from 'next/link';
 import { fetchClientProducts } from '@/lib/fetchProducts';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
+import { processGalleryItems, isYouTubeVideo, getYouTubeThumbnail } from '@/lib/mediaUtils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import MediaViewer from '@/components/MediaViewer';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -16,12 +18,165 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import ProductCard from '@/components/ProductCard';
+
+// Configuration Variables
+const PRODUCT_DETAIL_CONFIG = {
+  // Schema Slugs
+  productsSchemaSlug: 'products_bhattiindustries',
+
+  // Currency & Pricing
+  currency: 'PKR',
+
+  // Page Meta
+  siteName: 'Bhatti Industries',
+  keywords: 'surgical instruments, medical equipment, general surgery instruments, cardiovascular instruments, orthopedic instruments, dental surgery tools, ENT instruments, neurosurgery tools, medical devices Pakistan, surgical tools manufacturer, hospital equipment, precision instruments',
+  defaultTitle: 'Bhatti Industries',
+
+  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconSize: '32x32',
+
+  // Loading States
+  loading: {
+    title: 'Loading product details...',
+    message: 'Loading product details...'
+  },
+
+  // Error States
+  notFound: {
+    title: 'Product Not Found',
+    message: "The product you're looking for doesn't exist or has been removed.",
+    buttonText: 'Browse All Products',
+    buttonLink: '/shop'
+  },
+
+  // Navigation
+  breadcrumbs: {
+    home: 'Home',
+    shop: 'Shop'
+  },
+
+  // Product Information
+  labels: {
+    color: 'Finish',
+    selectedColor: 'Selected Finish:',
+    size: 'Size',
+    quantity: 'Quantity',
+    yourSelection: 'Your Selection:',
+    addToCart: 'Add to Cart',
+    addingToCart: 'Adding to Cart...'
+  },
+
+  // Badges
+  badges: {
+    new: 'NEW',
+    onSale: 'ON SALE',
+    bestseller: 'BESTSELLER'
+  },
+
+  // Pricing
+  pricing: {
+    youSave: 'You save',
+    off: '% off'
+  },
+
+  // Product Features
+  features: {
+    inStock: 'In Stock',
+    freeShipping: 'Free Shipping',
+    qualityGuaranteed: 'ISO 13485 Certified',
+    returns: '7-Day Quality Guarantee'
+  },
+
+  // Tabs
+  tabs: {
+    description: 'Description',
+    faq: 'FAQ\'s',
+    reviews: 'Reviews'
+  },
+
+  // Tab Content
+  tabContent: {
+    productDescription: 'Product Description',
+    additionalFeatures: 'Additional Features',
+    specifications: 'Specifications',
+    generalInformation: 'General Information',
+    features: 'Features',
+    faqTitle: 'Frequently Asked Questions',
+    faqContact: 'Still have questions?',
+    faqContactMessage: 'Contact our customer service team at info@bhattiindustries.com or call us at 0331-0422676. We\'re here to help you find the perfect surgical instruments for your needs.',
+    reviewsTitle: 'Customer Reviews',
+    writeReview: 'Write a Review',
+    outOfFive: 'out of 5',
+    totalReviews: 'total reviews',
+    reviewsComingSoon: 'Reviews Coming Soon',
+    reviewsComingSoonMessage: 'We\'re working on collecting customer reviews for this product. Be the first to share your experience!'
+  },
+
+  // Related Products
+  relatedProducts: {
+    subtitle: 'Recommended for You',
+    title: 'You May Also',
+    titleHighlight: 'Like',
+    description: 'Discover more surgical instruments from the same collection',
+    viewDetails: 'View Details',
+    viewProduct: 'VIEW PRODUCT'
+  },
+
+  // Slider Settings
+  slider: {
+    spaceBetween: 10,
+    thumbSpaceBetween: 8,
+    thumbSlidesPerView: 4,
+    thumbSlidesPerViewTablet: 5,
+    thumbSlidesPerViewDesktop: 6,
+    transitionDuration: 300
+  },
+
+  // Layout
+  maxQuantity: 10,
+  minQuantity: 1,
+  sizeGridColumns: 4,
+
+  // Color instruction text
+  colorInstruction: 'variant - Click another finish to change',
+
+  // Warranty and delivery info
+  warranty: {
+    years: 'Quality Guarantee',
+    delivery: 'Free Delivery in Pakistan'
+  },
+
+  // FAQ Data
+  faq: [
+    {
+      question: "What is the delivery time for Bhatti Industries products?",
+      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities. For remote areas, please allow an additional 5-7 days. Custom surgical instrument orders may take additional time."
+    },
+    {
+      question: "Do you offer a warranty on your surgical instruments?",
+      answer: "Yes, all Bhatti Industries products come with a quality guarantee covering manufacturing defects and material issues. This does not cover normal wear and tear or damage from improper use or sterilization."
+    },
+    {
+      question: "Are your surgical instruments ISO certified?",
+      answer: "Absolutely! All our products are manufactured according to ISO 13485 standards. We use German stainless steel and follow strict quality control processes to ensure medical grade quality and precision."
+    },
+    {
+      question: "What payment options do you accept?",
+      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers in Pakistan. Easy installment plans are available for bulk orders over PKR 25,000."
+    },
+    {
+      question: "What is your return policy?",
+      answer: "We offer a 7-day quality guarantee for all surgical instruments. Items must be in original condition with original packaging. Custom orders are non-returnable unless there's a manufacturing defect. Return shipping costs may apply."
+    }
+  ]
+};
 
 export default function ProductDetail({ product, relatedProducts }) {
   const router = useRouter();
   const { addItem } = useCart();
   const { showCartNotification } = useNotification();
-  
+
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColorIndex, setSelectedColorIndex] = useState(null);
@@ -30,45 +185,32 @@ export default function ProductDetail({ product, relatedProducts }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
   const programmaticSlideChangeRef = useRef(false);
-  
-  // Product configuration options
-  const [selectedDimension, setSelectedDimension] = useState('');
-  const [selectedOrientation, setSelectedOrientation] = useState('');
-  const [selectedStorage, setSelectedStorage] = useState('');
-  const [includeFootstool, setIncludeFootstool] = useState(false);
-  const [includeSofaBed, setIncludeSofaBed] = useState(false);
+
   const [activeTab, setActiveTab] = useState('description');
+
+  // Process gallery items to handle both images and videos
+  const galleryItems = product ? processGalleryItems(product.gallery) : [];
 
   // Initialize configuration options when product is available
   useEffect(() => {
     if (product) {
       // Set defaults only when product first loads or changes
-      if (product.dimensions?.length > 0) setSelectedDimension(product.dimensions[0]);
-      if (product.Orientation?.length > 0) setSelectedOrientation(product.Orientation[0]);
-      if (product.storage?.length > 0) setSelectedStorage(product.storage[0]);
-      if (product.size?.length > 0) setSelectedSize(product.size[0]);
-      if(product.withFootstool) setIncludeFootstool(false);
-      if(product.sofabedmechanism) setIncludeSofaBed(false);
+      if (product.sizes?.length > 0) setSelectedSize(product.sizes[0].size || product.sizes[0]);
       // Initialize color selection to first color if available
       setSelectedColorIndex(product.colors?.length > 0 ? 0 : null);
-      
+
       // Reset programmatic slide change flag
       programmaticSlideChangeRef.current = false;
     }
   }, [product]);
-
-  // Debug useEffect to track selectedColorIndex changes
-  useEffect(() => {
-    console.log('ProductDetail - selectedColorIndex changed to:', selectedColorIndex);
-  }, [selectedColorIndex]);
 
   // Handle loading state
   if (router.isFallback) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading product details...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">{PRODUCT_DETAIL_CONFIG.loading.message}</p>
         </div>
       </div>
     );
@@ -81,13 +223,13 @@ export default function ProductDetail({ product, relatedProducts }) {
         <Navbar />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Product Not Found</h1>
-            <p className="text-gray-600 mb-8">The product you're looking for doesn't exist or has been removed.</p>
-            <Link 
-              href="/shop"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-lg transition-all duration-300"
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.notFound.title}</h1>
+            <p className="text-gray-600 mb-8">{PRODUCT_DETAIL_CONFIG.notFound.message}</p>
+            <Link
+              href={PRODUCT_DETAIL_CONFIG.notFound.buttonLink}
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
             >
-              Browse All Products
+              {PRODUCT_DETAIL_CONFIG.notFound.buttonText}
             </Link>
           </div>
         </div>
@@ -97,32 +239,17 @@ export default function ProductDetail({ product, relatedProducts }) {
   }
 
   const formatPrice = (price) => {
-    return `£${price.toLocaleString()}`;
-  };
-
-  // Calculate total price including add-ons
-  const calculateTotalPrice = () => {
-    let totalPrice = product.price;
-    if (includeFootstool) totalPrice += 100;
-    if (includeSofaBed) totalPrice += 200;
-    return totalPrice;
-  };
-
-  // Calculate original price including add-ons
-  const calculateOriginalTotalPrice = () => {
-    if (!product.onSale) return null;
-    let totalPrice = product.originalPrice;
-    if (includeFootstool) totalPrice += 100;
-    if (includeSofaBed) totalPrice += 200;
-    return totalPrice;
+    return `${PRODUCT_DETAIL_CONFIG.currency} ${price.toLocaleString()}`;
   };
 
   // Get current image - prioritize color selection, then manual selection
   const getCurrentImage = () => {
-    if (selectedColorIndex !== null && product.gallery && product.gallery[selectedColorIndex]) {
-      return product.gallery[selectedColorIndex];
+    if (selectedColorIndex !== null && galleryItems[selectedColorIndex]) {
+      const item = galleryItems[selectedColorIndex];
+      return item.isYouTube ? item.thumbnail : item.url;
     }
-    return product.gallery[selectedImageIndex];
+    const item = galleryItems[selectedImageIndex];
+    return item ? (item.isYouTube ? item.thumbnail : item.url) : '';
   };
 
   // Get current image index for slider
@@ -132,21 +259,12 @@ export default function ProductDetail({ product, relatedProducts }) {
 
   // Handle color selection
   const handleColorSelect = (colorIndex) => {
-    console.log('ProductDetail - Color selected:', {
-      colorIndex,
-      colorName: product.colors[colorIndex],
-      allColors: product.colors,
-      currentSelectedColorIndex: selectedColorIndex
-    });
-    
     setSelectedColorIndex(colorIndex);
     setSelectedImageIndex(colorIndex); // Sync the slider as well
-    
+
     // Set flag to prevent onSlideChange from resetting color selection
     programmaticSlideChangeRef.current = true;
-    
-    console.log('ProductDetail - After setSelectedColorIndex called with:', colorIndex);
-    
+
     // Update both swipers to show the correct slide
     if (mainSwiper && !mainSwiper.destroyed) {
       mainSwiper.slideTo(colorIndex, 300); // 300ms transition
@@ -171,21 +289,12 @@ export default function ProductDetail({ product, relatedProducts }) {
 
   // Handle manual image selection (from thumbnails or slider)
   const handleImageSelect = (index) => {
-    console.log('ProductDetail - handleImageSelect called:', {
-      index,
-      currentSelectedColorIndex: selectedColorIndex,
-      programmaticSlideChange: programmaticSlideChangeRef.current,
-      hasColors: product.colors?.length > 0
-    });
-    
     // If this is a programmatic slide change (from color selection), don't reset color selection
     if (programmaticSlideChangeRef.current) {
-      console.log('ProductDetail - Skipping color reset because this is a programmatic slide change');
       setSelectedImageIndex(index);
       return;
     }
-    
-    console.log('ProductDetail - Manual image selection, resetting selectedColorIndex to null');
+
     setSelectedImageIndex(index);
     setSelectedColorIndex(null); // Reset color selection when manually selecting image
   };
@@ -193,73 +302,60 @@ export default function ProductDetail({ product, relatedProducts }) {
   // Color mapping function
   const getColorClass = (colorName) => {
     const colorMap = {
-      'Gray': 'bg-gray-400',
-      'Grey': 'bg-gray-400',
-      'Mink': 'bg-amber-200',
-      'Black': 'bg-black',
-      'White': 'bg-white border-2 border-gray-300',
-      'Brown': 'bg-amber-800',
-      'Blue': 'bg-blue-500',
-      'Navy': 'bg-blue-900',
-      'Red': 'bg-red-500',
-      'Green': 'bg-green-500',
-      'Beige': 'bg-amber-100',
-      'Cream': 'bg-yellow-50',
-      'Sky': 'bg-sky-300',
-      'Turquoise': 'bg-teal-400',
-      'Steel': 'bg-slate-500',
-      'Camel': 'bg-amber-500',
       'Silver': 'bg-gray-500',
-      'Dark Blue': 'bg-blue-900',
-      'Coal': 'bg-gray-800',
-      'Gold': 'bg-yellow-500',
-      'Pearl': 'bg-gray-200',
-      'Midnight': 'bg-gray-900',
-      'Mustard': 'bg-amber-500',
-      'Teal': 'bg-teal-400',
-      'Green': 'bg-green-500',
-      'Red': 'bg-red-500'
+      'Gold Plated': 'bg-yellow-500',
+      'Titanium': 'bg-slate-600',
+      'Stainless Steel': 'bg-gray-400',
+      'Black Titanium': 'bg-black',
+      'Copper': 'bg-orange-600',
+      'Chrome': 'bg-gray-300',
+      'Blue Titanium': 'bg-blue-500',
+      'Rose Gold': 'bg-pink-400',
+      'Matte Black': 'bg-gray-800',
+      'Polished': 'bg-gray-200',
+      'Satin': 'bg-gray-300'
     };
     return colorMap[colorName] || 'bg-gray-400';
   };
 
+  // Get current price based on selected size
+  const getCurrentPrice = () => {
+    if (!product.sizes || product.sizes.length === 0) return product.price;
+
+    // If sizes are objects with price, find the selected size price
+    if (typeof product.sizes[0] === 'object' && product.sizes[0].pricebysize) {
+      const selectedSizeObj = product.sizes.find(s => s.size === selectedSize);
+      return selectedSizeObj ? selectedSizeObj.pricebysize : product.price;
+    }
+
+    return product.price;
+  };
+
   const handleAddToCart = async () => {
     // Check if product has sizes and none is selected
-    if (product.size && product.size.length > 0 && !selectedSize) {
+    if (product.sizes && product.sizes.length > 0 && !selectedSize) {
       alert('Please select a size before adding to cart');
       return;
     }
 
     setAddingToCart(true);
-    
+
     try {
-      // Create product configuration object with updated price
+      // Create product configuration object
       const productConfig = {
-        ...product,
-        price: calculateTotalPrice(),
-        originalPrice: product.onSale ? calculateOriginalTotalPrice() : product.price
+        ...product
       };
 
       // Prepare user selections for configuration
       const userSelections = {
         size: selectedSize,
-        color: product.colors && product.colors.length > 0 ? product.colors[selectedColorIndex !== null ? selectedColorIndex : 0] : null,
-        dimension: selectedDimension,
-        orientation: selectedOrientation,
-        storage: selectedStorage,
-        includeFootstool,
-        includeSofaBed
+        color: product.colors && product.colors.length > 0 ? product.colors[selectedColorIndex !== null ? selectedColorIndex : 0] : null
       };
 
-      console.log('ProductDetail - Adding to cart:', {
-        selectedColorIndex,
-        colorName: selectedColorIndex !== null ? product.colors[selectedColorIndex] : null,
-        userSelections
-      });
+      // Use new addItem signature: addItem(product, quantity, userSelections)
+      addItem(productConfig, Number(quantity), userSelections);
+      showCartNotification(productConfig, selectedSize, Number(quantity));
 
-      addItem(productConfig, selectedSize, quantity, userSelections);
-      showCartNotification(productConfig, selectedSize, quantity);
-      
       setTimeout(() => {
         setAddingToCart(false);
       }, 800);
@@ -276,52 +372,52 @@ export default function ProductDetail({ product, relatedProducts }) {
     }
   };
 
-  // FAQ data for SOFA SPHERE brand
+  // FAQ data for Bhatti Industries brand
   const faqData = [
     {
-      question: "What is the delivery time for SOFA SPHERE furniture?",
-      answer: "We offer free delivery across England. Standard delivery takes 7-14 business days. For custom fabric orders, please allow an additional 2-3 weeks for manufacturing."
+      question: "What is the delivery time for Bhatti Industries products?",
+      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities. For remote areas, please allow an additional 5-7 days. Custom surgical instrument orders may take additional time."
     },
     {
-      question: "Do you offer a warranty on your furniture?",
-      answer: "Yes, all SOFA SPHERE furniture comes with a 2-year manufacturer's warranty covering structural defects and workmanship. This does not cover normal wear and tear or fabric staining."
+      question: "Do you offer a warranty on your surgical instruments?",
+      answer: "Yes, all Bhatti Industries products come with a quality guarantee covering manufacturing defects and material issues. This does not cover normal wear and tear or damage from improper use or sterilization."
     },
     {
-      question: "Can I customize the fabric and colors?",
-      answer: "Absolutely! Most of our furniture is available in custom fabrics. You can choose from our extensive fabric collection or provide your own fabric. Custom orders may take additional time to manufacture."
+      question: "Are your surgical instruments ISO certified?",
+      answer: "Absolutely! All our products are manufactured according to ISO 13485 standards. We use German stainless steel and follow strict quality control processes to ensure medical grade quality and precision."
     },
     {
       question: "What payment options do you accept?",
-      answer: "We accept all major credit cards, debit cards, PayPal, and bank transfers. We also offer Cash on Delivery (COD) for customers in England. Financing options are available for purchases over £500."
+      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers in Pakistan. Easy installment plans are available for bulk orders over PKR 25,000."
     },
     {
       question: "What is your return policy?",
-      answer: "We offer a 30-day return policy for all furniture. Items must be in original condition with original packaging. Custom fabric orders are non-returnable unless there's a manufacturing defect. Return shipping costs may apply."
+      answer: "We offer a 7-day quality guarantee for all surgical instruments. Items must be in original condition with original packaging. Custom orders are non-returnable unless there's a manufacturing defect. Return shipping costs may apply."
     }
   ];
 
   return (
     <>
       <Head>
-        <title>{product.name} - Sofa Sphere</title>
+        <title>{product.name} - {PRODUCT_DETAIL_CONFIG.siteName}</title>
         <meta name="description" content={product.description} />
-        <meta name="keywords" content={`${product.category}, ${product.brand}, furniture, sofas, home furniture, ${product.name}`} />
+        <meta name="keywords" content={`${product.category}, ${product.brand}, ${PRODUCT_DETAIL_CONFIG.keywords}, ${product.name}`} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.image} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={PRODUCT_DETAIL_CONFIG.faviconPath} type="image/png" sizes={PRODUCT_DETAIL_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-            <Link href="/" className="hover:text-yellow-600">Home</Link>
+            <Link href="/" className="hover:text-blue-600">Home</Link>
             <span>/</span>
-            <Link href="/shop" className="hover:text-yellow-600">Shop</Link>
+            <Link href="/shop" className="hover:text-blue-600">Shop</Link>
             <span>/</span>
             <span className="text-gray-900">{product.name}</span>
           </nav>
@@ -344,16 +440,18 @@ export default function ProductDetail({ product, relatedProducts }) {
                   onSlideChange={(swiper) => handleImageSelect(swiper.activeIndex)}
                   initialSlide={getCurrentImageIndex()}
                 >
-                  {product.gallery.map((image, index) => (
+                  {galleryItems.map((item, index) => (
                     <SwiperSlide key={index}>
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={image}
-                          alt={`${product.name} - View ${index + 1}`}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
+                      <MediaViewer
+                        url={item.url}
+                        alt={`${product.name} - View ${index + 1}`}
+                        index={index}
+                        productName={product.name}
+                        aspectRatio="square"
+                        className="w-full h-full"
+                        priority={index === 0}
+                        showPlayButton={item.isYouTube}
+                      />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -394,23 +492,32 @@ export default function ProductDetail({ product, relatedProducts }) {
                     },
                   }}
                 >
-                  {product.gallery.map((image, index) => (
+                  {galleryItems.map((item, index) => (
                     <SwiperSlide key={index}>
                       <button
                         onClick={() => handleImageSelect(index)}
-                        className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                          getCurrentImageIndex() === index 
-                            ? 'border-yellow-500 ring-2 ring-yellow-200' 
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                        className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
+                          ? 'border-blue-500 ring-2 ring-blue-200'
+                          : 'border-gray-200 hover:border-gray-300'
+                          }`}
                       >
                         <Image
-                          src={image}
+                          src={item.isYouTube ? item.thumbnail : item.url}
                           alt={`${product.name} - Thumbnail ${index + 1}`}
                           width={100}
                           height={100}
                           className="w-full h-full object-contain"
                         />
+                        {/* Video indicator for thumbnails */}
+                        {item.isYouTube && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
+                              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
                       </button>
                     </SwiperSlide>
                   ))}
@@ -434,28 +541,28 @@ export default function ProductDetail({ product, relatedProducts }) {
             <div className="space-y-6">
               {/* Product Title and Category */}
               <div>
-                <p className="text-sm text-yellow-600 uppercase tracking-wide font-semibold mb-2">
+                <p className="text-sm text-blue-600 uppercase tracking-wide font-semibold mb-2">
                   {product.category}
                 </p>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                   {product.name}
                 </h1>
-                
+
                 {/* Badges */}
                 <div className="flex items-center space-x-2 mb-4">
                   {product.isNew && (
                     <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      NEW
+                      {PRODUCT_DETAIL_CONFIG.badges.new}
                     </span>
                   )}
                   {product.onSale && (
                     <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      ON SALE
+                      {PRODUCT_DETAIL_CONFIG.badges.onSale}
                     </span>
                   )}
                   {product.bestseller && (
                     <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      BESTSELLER
+                      {PRODUCT_DETAIL_CONFIG.badges.bestseller}
                     </span>
                   )}
                 </div>
@@ -466,9 +573,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
-                        className={`w-5 h-5 ${
-                          i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
-                        }`}
+                        className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
+                          }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -485,221 +591,86 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Price */}
               <div className="space-y-2">
                 <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text">
-                    {formatPrice(calculateTotalPrice())}
+                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text">
+                    {formatPrice(getCurrentPrice())}
                   </span>
                   {product.onSale && (
                     <span className="text-xl text-gray-500 line-through">
-                      {formatPrice(calculateOriginalTotalPrice())}
+                      {formatPrice(product.originalPrice)}
                     </span>
                   )}
                 </div>
                 {product.onSale && (
                   <p className="text-sm text-green-600 font-semibold">
-                    You save {formatPrice(calculateOriginalTotalPrice() - calculateTotalPrice())} ({Math.round(((calculateOriginalTotalPrice() - calculateTotalPrice()) / calculateOriginalTotalPrice()) * 100)}% off)
+                    {PRODUCT_DETAIL_CONFIG.pricing.youSave} {formatPrice(product.originalPrice - getCurrentPrice())} ({Math.round(((product.originalPrice - getCurrentPrice()) / product.originalPrice) * 100)}{PRODUCT_DETAIL_CONFIG.pricing.off})
                   </p>
                 )}
-                {(includeFootstool || includeSofaBed) && (
-                  <div className="text-sm text-gray-600">
-                    <p>Base price: {formatPrice(product.price)}</p>
-                    {includeFootstool && <p>+ Footstool: {formatPrice(100)}</p>}
-                    {includeSofaBed && <p>+ Sofa Bed Mechanism: {formatPrice(200)}</p>}
-                  </div>
-                )}
               </div>
-
-
 
               {/* Color Selection */}
               {product.colors && product.colors.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Color</h3>
-                  <div className="mb-4 p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-300 rounded-lg">
-                    <p className="text-base font-semibold text-yellow-800">
-                      Selected Color: <span className="text-yellow-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.color}</h3>
+                  <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-300 rounded-lg">
+                    <p className="text-base font-semibold text-blue-800">
+                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-blue-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                     </p>
                   </div>
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center flex-wrap gap-2">
                     {product.colors.map((color, index) => (
-                      <div key={index} className="relative">
-                        <button
-                          onClick={() => handleColorSelect(index)}
-                          className={`w-12 h-12 rounded-full border-2 transition-all duration-300 ${getColorClass(color)} ${
-                            (selectedColorIndex !== null ? selectedColorIndex : 0) === index 
-                              ? 'ring-3 ring-yellow-500 ring-offset-2 border-yellow-500 transform scale-110' 
-                              : 'border-gray-300 hover:ring-2 hover:ring-gray-400 hover:ring-offset-1 hover:scale-105'
+                      <button
+                        key={index}
+                        onClick={() => handleColorSelect(index)}
+                        className={`px-4 py-2 border-2 rounded-lg font-medium transition-all duration-300 text-sm ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
+                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md transform scale-105'
+                          : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:scale-102'
                           }`}
-                          title={`${color} - Image ${index + 1}`}
-                        />
-                        {(selectedColorIndex !== null ? selectedColorIndex : 0) === index && (
-                          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-                            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                          </div>
-                        )}
-                      </div>
+                        title={`${color} - Image ${index + 1}`}
+                      >
+                        {color}
+                      </button>
                     ))}
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
-                    Viewing {product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]} variant - Click another color to change
+                    Viewing {product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]} {PRODUCT_DETAIL_CONFIG.colorInstruction}
                   </p>
                 </div>
               )}
 
-              {/* Dimensions Selection */}
-              {product.dimensions && product.dimensions.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Dimensions</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    {product.dimensions.map((dimension) => (
-                      <button
-                        key={dimension}
-                        onClick={() => setSelectedDimension(dimension)}
-                        className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 text-sm ${
-                          selectedDimension === dimension
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        {dimension}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Orientation Selection */}
-              {product.Orientation && product.Orientation.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Orientation</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    {product.Orientation.map((orientation) => (
-                      <button
-                        key={orientation}
-                        onClick={() => setSelectedOrientation(orientation)}
-                        className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                          selectedOrientation === orientation
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        {orientation}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Storage Selection */}
-              {product.storage && product.storage.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Storage Options</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    {product.storage.map((storageOption) => (
-                      <button
-                        key={storageOption}
-                        onClick={() => setSelectedStorage(storageOption)}
-                        className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                          selectedStorage === storageOption
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        {storageOption}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Footstool Option */}
-              {product.withFootstool && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Footstool</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => setIncludeFootstool(false)}
-                      className={`py-3 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                        !includeFootstool
-                          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                          : 'border-gray-300 hover:border-gray-400'
-                      }`}
-                    >
-                      Not Include Footstool
-                    </button>
-                    <button
-                      onClick={() => setIncludeFootstool(true)}
-                      className={`py-3 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                        includeFootstool
-                          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                          : 'border-gray-300 hover:border-gray-400'
-                      }`}
-                    >
-                      <div className="text-center">
-                        <div>Yes Include Footstool</div>
-                        <div className="text-xs text-green-600">+{formatPrice(100)}</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Sofa Bed Mechanism Option */}
-              {product.sofabedmechanism && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Sofa Bed Mechanism</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => setIncludeSofaBed(false)}
-                      className={`py-3 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                        !includeSofaBed
-                          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                          : 'border-gray-300 hover:border-gray-400'
-                      }`}
-                    >
-                      Not Include Sofa Bed Mechanism
-                    </button>
-                    <button
-                      onClick={() => setIncludeSofaBed(true)}
-                      className={`py-3 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                        includeSofaBed
-                          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                          : 'border-gray-300 hover:border-gray-400'
-                      }`}
-                    >
-                      <div className="text-center">
-                        <div>Yes Include Sofa Bed</div>
-                        <div className="text-xs text-green-600">+{formatPrice(200)}</div>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              )}
-
               {/* Size Selection */}
-              {product.size && product.size.length > 0 && (
+              {product.sizes && product.sizes.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Size</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.size}</h3>
                   <div className="grid grid-cols-4 gap-2">
-                    {product.size.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 ${
-                          selectedSize === size
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
+                    {product.sizes.map((sizeItem, index) => {
+                      const sizeLabel = typeof sizeItem === 'object' ? sizeItem.size : sizeItem;
+                      const sizePrice = typeof sizeItem === 'object' ? sizeItem.pricebysize : null;
+
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => setSelectedSize(sizeLabel)}
+                          className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
+                            ? 'border-blue-500 bg-blue-50 text-blue-700'
                             : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
+                            }`}
+                        >
+                          <div className="text-sm">{sizeLabel}</div>
+                          {sizePrice && (
+                            <div className="text-xs text-gray-500 mt-1">
+                              {formatPrice(sizePrice)}
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
               {/* Quantity Selection */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Quantity</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.quantity}</h3>
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => handleQuantityChange(-1)}
@@ -722,16 +693,12 @@ export default function ProductDetail({ product, relatedProducts }) {
               </div>
 
               {/* Configuration Summary */}
-              {(selectedDimension || selectedOrientation || selectedStorage || includeFootstool || includeSofaBed || (selectedColorIndex !== null)) && (
+              {(selectedColorIndex !== null || selectedSize) && (
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Your Configuration:</h4>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.labels.yourSelection}</h4>
                   <div className="space-y-1 text-sm text-gray-600">
-                    {selectedColorIndex !== null && <p>• Color: {product.colors[selectedColorIndex]}</p>}
-                    {selectedDimension && <p>• Dimensions: {selectedDimension}</p>}
-                    {selectedOrientation && <p>• Orientation: {selectedOrientation}</p>}
-                    {selectedStorage && <p>• Storage: {selectedStorage}</p>}
-                    {includeFootstool && <p>• Footstool: Included (+{formatPrice(100)})</p>}
-                    {includeSofaBed && <p>• Sofa Bed Mechanism: Included (+{formatPrice(200)})</p>}
+                    {selectedColorIndex !== null && <p>• Finish: {product.colors[selectedColorIndex]}</p>}
+                    {selectedSize && <p>• Size: {selectedSize}</p>}
                   </div>
                 </div>
               )}
@@ -740,28 +707,27 @@ export default function ProductDetail({ product, relatedProducts }) {
               <div className="space-y-4">
                 <button
                   onClick={handleAddToCart}
-                  disabled={addingToCart || (product.size && product.size.length > 0 && !selectedSize)}
-                  className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center space-x-2 ${
-                    addingToCart
-                      ? 'bg-green-500 text-white'
-                      : (product.size && product.size.length > 0 && !selectedSize)
+                  disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize)}
+                  className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center space-x-2 ${addingToCart
+                    ? 'bg-green-500 text-white'
+                    : (product.sizes && product.sizes.length > 0 && !selectedSize)
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white transform hover:scale-105 shadow-lg'
-                  }`}
+                      : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transform hover:scale-105 shadow-lg'
+                    }`}
                 >
                   {addingToCart ? (
                     <>
                       <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                       </svg>
-                      <span>Adding to Cart...</span>
+                      <span>{PRODUCT_DETAIL_CONFIG.labels.addingToCart}</span>
                     </>
                   ) : (
                     <>
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
                       </svg>
-                      <span>Add to Cart</span>
+                      <span>{PRODUCT_DETAIL_CONFIG.labels.addToCart}</span>
                     </>
                   )}
                 </button>
@@ -772,25 +738,25 @@ export default function ProductDetail({ product, relatedProducts }) {
                     <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-gray-600">In Stock</span>
+                    <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.features.inStock}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
-                    <span className="text-gray-600">Free Shipping</span>
+                    <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.features.freeShipping}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="text-gray-600">Quality Guaranteed</span>
+                    <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.features.qualityGuaranteed}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
-                    <span className="text-gray-600">30-Day Returns</span>
+                    <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.features.returns}</span>
                   </div>
                 </div>
               </div>
@@ -804,33 +770,30 @@ export default function ProductDetail({ product, relatedProducts }) {
               <nav className="-mb-px flex space-x-8">
                 <button
                   onClick={() => setActiveTab('description')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                    activeTab === 'description'
-                      ? 'border-yellow-500 text-yellow-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'description'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
                 >
-                  Description
+                  {PRODUCT_DETAIL_CONFIG.tabs.description}
                 </button>
                 <button
                   onClick={() => setActiveTab('faq')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                    activeTab === 'faq'
-                      ? 'border-yellow-500 text-yellow-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'faq'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
                 >
-                  FAQ's
+                  {PRODUCT_DETAIL_CONFIG.tabs.faq}
                 </button>
                 <button
                   onClick={() => setActiveTab('reviews')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                    activeTab === 'reviews'
-                      ? 'border-yellow-500 text-yellow-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'reviews'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
                 >
-                  Reviews ({product.reviews})
+                  {PRODUCT_DETAIL_CONFIG.tabs.reviews} ({product.reviews})
                 </button>
               </nav>
             </div>
@@ -841,15 +804,15 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'description' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Product Description</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.productDescription}</h3>
                     <div className="prose max-w-none text-gray-600 leading-relaxed">
                       <p>{product.description}</p>
                     </div>
                   </div>
-                  
+
                   {product.additionalFeatures && (
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Features</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.additionalFeatures}</h3>
                       <div className="prose max-w-none text-gray-600 leading-relaxed">
                         <p className="whitespace-pre-line">{product.additionalFeatures}</p>
                       </div>
@@ -858,10 +821,10 @@ export default function ProductDetail({ product, relatedProducts }) {
 
                   {/* Product Specifications */}
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Specifications</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.specifications}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">General Information</h4>
+                        <h4 className="font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.generalInformation}</h4>
                         <ul className="space-y-1 text-sm text-gray-600">
                           <li><strong>Brand:</strong> {product.brand}</li>
                           <li><strong>Category:</strong> {product.category}</li>
@@ -869,16 +832,14 @@ export default function ProductDetail({ product, relatedProducts }) {
                           <li><strong>Stock Left:</strong> {product.stockLeft} units</li>
                         </ul>
                       </div>
-                      
+
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">Features</h4>
+                        <h4 className="font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.features}</h4>
                         <ul className="space-y-1 text-sm text-gray-600">
                           {product.isNew && <li>✓ New Arrival</li>}
                           {product.bestseller && <li>✓ Bestseller</li>}
-                          {product.withFootstool && <li>✓ Footstool Available</li>}
-                          {product.sofabedmechanism && <li>✓ Sofa Bed Mechanism Available</li>}
-                          <li>✓ 2 Years Warranty</li>
-                          <li>✓ Free Delivery in England</li>
+                          <li>✓ {PRODUCT_DETAIL_CONFIG.warranty.years}</li>
+                          <li>✓ {PRODUCT_DETAIL_CONFIG.warranty.delivery}</li>
                         </ul>
                       </div>
                     </div>
@@ -890,7 +851,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'faq' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.faqTitle}</h3>
                     <div className="space-y-4">
                       {faqData.map((faq, index) => (
                         <div key={index} className="border border-gray-200 rounded-lg">
@@ -902,12 +863,11 @@ export default function ProductDetail({ product, relatedProducts }) {
                       ))}
                     </div>
                   </div>
-                  
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 className="font-medium text-yellow-800 mb-2">Still have questions?</h4>
-                    <p className="text-yellow-700 text-sm">
-                      Contact our customer service team at info@sofasphere.com or call us during business hours. 
-                      We're here to help you find the perfect furniture for your home.
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 className="font-medium text-blue-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
+                    <p className="text-blue-700 text-sm">
+                      {PRODUCT_DETAIL_CONFIG.tabContent.faqContactMessage}
                     </p>
                   </div>
                 </div>
@@ -917,8 +877,8 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'reviews' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Customer Reviews</h3>
-                    
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsTitle}</h3>
+
                     {/* Reviews Summary */}
                     <div className="bg-gray-50 rounded-lg p-6 mb-8">
                       <div className="flex items-center justify-between">
@@ -928,9 +888,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                               {[...Array(5)].map((_, i) => (
                                 <svg
                                   key={i}
-                                  className={`w-5 h-5 ${
-                                    i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
-                                  }`}
+                                  className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
+                                    }`}
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                 >
@@ -939,13 +898,13 @@ export default function ProductDetail({ product, relatedProducts }) {
                               ))}
                             </div>
                             <span className="text-lg font-semibold text-gray-900">{product.rating}</span>
-                            <span className="text-gray-600">out of 5</span>
+                            <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.tabContent.outOfFive}</span>
                           </div>
-                          <p className="text-sm text-gray-600">{product.reviews} total reviews</p>
+                          <p className="text-sm text-gray-600">{product.reviews} {PRODUCT_DETAIL_CONFIG.tabContent.totalReviews}</p>
                         </div>
-                        
-                        <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
-                          Write a Review
+
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
+                          {PRODUCT_DETAIL_CONFIG.tabContent.writeReview}
                         </button>
                       </div>
                     </div>
@@ -957,10 +916,9 @@ export default function ProductDetail({ product, relatedProducts }) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.013 8.013 0 01-7.93-6.44c-.214-1.028-.214-2.088 0-3.116A8.013 8.013 0 013 4c0-4.418 3.582-8 8-8s8 3.582 8 8z" />
                         </svg>
                       </div>
-                      <h4 className="text-lg font-medium text-gray-900 mb-2">Reviews Coming Soon</h4>
+                      <h4 className="text-lg font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsComingSoon}</h4>
                       <p className="text-gray-600 max-w-md mx-auto">
-                        We're working on collecting customer reviews for this product. 
-                        Be the first to share your experience!
+                        {PRODUCT_DETAIL_CONFIG.tabContent.reviewsComingSoonMessage}
                       </p>
                     </div>
                   </div>
@@ -973,227 +931,26 @@ export default function ProductDetail({ product, relatedProducts }) {
           {relatedProducts && relatedProducts.length > 0 && (
             <div className="mt-16">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-yellow-600 uppercase tracking-wide mb-4">
-                  Recommended for You
+                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.subtitle}
                 </h2>
                 <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                  You May Also <span className="text-yellow-600">Like</span>
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-blue-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Discover more furniture pieces from the same collection
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.description}
                 </p>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6">
                 {relatedProducts.map((relatedProduct) => (
-                  <div key={relatedProduct.id} className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group relative">
-                    {/* Product Image */}
-                    <Link href={`/product/${relatedProduct.id}`}>
-                      <div className="relative aspect-[5/5] overflow-hidden cursor-pointer lg:h-[480px] w-full">
-                        {/* Sale Badge */}
-                        {relatedProduct.onSale && (
-                          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs font-bold z-20 rounded">
-                            SALE
-                          </div>
-                        )}
-
-                        {/* New Badge */}
-                        {relatedProduct.isNew && (
-                          <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 text-xs font-bold z-20 rounded">
-                            NEW
-                          </div>
-                        )}
-
-                        <div className="relative w-full h-full bg-white group">
-                          {/* Default image */}
-                          <Image
-                            src={relatedProduct.image}
-                            alt={relatedProduct.name}
-                            fill
-                            className="object-contain object-top transition-opacity duration-300 opacity-100 group-hover:opacity-0"
-                          />
-
-                          {/* Hover image - show hoverimage if available */}
-                          {relatedProduct.hoverimage && (
-                            <Image
-                              src={relatedProduct.hoverimage}
-                              alt={relatedProduct.name}
-                              fill
-                              className="object-contain object-top transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                            />
-                          )}
-                        </div>
-
-                        {/* Quick View Overlay */}
-                        <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <div className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
-                            View Details
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-
-                    {/* Product Info */}
-                    <div className="relative">
-                      {/* Desktop: Sliding Content */}
-                      <div className="hidden lg:block absolute bottom-0 left-0 right-0 bg-white transition-all duration-300 lg:translate-y-0 lg:group-hover:-translate-y-16 z-10">
-                        <div className="p-4 text-center">
-                          {/* Brand Name */}
-                          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1 font-medium">{relatedProduct.brand}</p>
-                          
-                          {/* Product Name */}
-                          <Link href={`/product/${relatedProduct.id}`}>
-                            <h4 className="font-normal text-lg mb-2 text-gray-800 hover:text-amber-600 leading-tight transition-colors duration-200 cursor-pointer">
-                              {relatedProduct.name}
-                            </h4>
-                          </Link>
-
-                          {/* Price */}
-                          <div className="flex items-center justify-center space-x-2 mb-2">
-                            <span className="text-lg font-normal text-gray-900">
-                              {formatPrice(relatedProduct.price)}
-                            </span>
-                            {relatedProduct.onSale && (
-                              <span className="text-sm text-gray-500 line-through font-light">
-                                {formatPrice(relatedProduct.originalPrice)}
-                              </span>
-                            )}
-                          </div>
-
-                          {/* Color Options */}
-                          {relatedProduct.colors && relatedProduct.colors.length > 0 && (
-                            <div className="flex items-center justify-center space-x-1">
-                              {relatedProduct.colors.slice(0, 4).map((color, index) => {
-                                const getColorClass = (colorName) => {
-                                  const colorMap = {
-                                    'Gray': 'bg-gray-400',
-                                    'Mink': 'bg-amber-200',
-                                    'Black': 'bg-black',
-                                    'White': 'bg-white border-2 border-gray-300',
-                                    'Brown': 'bg-amber-800',
-                                    'Blue': 'bg-blue-500',
-                                    'Navy': 'bg-blue-900',
-                                    'Red': 'bg-red-500',
-                                    'Green': 'bg-green-500',
-                                    'Beige': 'bg-amber-100',
-                                    'Cream': 'bg-yellow-50',
-                                    'Sky': 'bg-sky-300',
-                                    'Turquoise': 'bg-teal-400',
-                                    'Steel': 'bg-slate-500',
-                                    'Camel': 'bg-amber-500',
-                                    'Silver': 'bg-gray-500',
-                                    'Dark Blue': 'bg-blue-900',
-                                    'Coal': 'bg-gray-800',
-                                    'Gold': 'bg-yellow-500',
-                                    'Pearl': 'bg-gray-200',
-                                    'Midnight': 'bg-gray-900',
-                                    'Mustard': 'bg-amber-500',
-                                    'Teal': 'bg-teal-400',
-                                    'Green': 'bg-green-500',
-                                    'Red': 'bg-red-500'
-                                  };
-                                  return colorMap[colorName] || 'bg-gray-400';
-                                };
-
-                                return (
-                                  <div
-                                    key={index}
-                                    className={`w-4 h-4 rounded-full border transition-all duration-200 ${getColorClass(color)} border-gray-300`}
-                                    title={color}
-                                  />
-                                );
-                              })}
-                              {relatedProduct.colors.length > 4 && (
-                                <span className="text-xs text-gray-500 ml-1">+{relatedProduct.colors.length - 4}</span>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Add to Cart Button - Shows on hover (Desktop only) */}
-                      <div className="hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:bg-white lg:opacity-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-300 lg:transform lg:translate-y-16 lg:group-hover:translate-y-0 p-4 lg:z-20">
-                        <Link href={`/product/${relatedProduct.id}`}>
-                          <button className="w-full py-2 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center bg-[#222222] hover:bg-black text-white">
-                            VIEW PRODUCT
-                          </button>
-                        </Link>
-                      </div>
-
-                      {/* Mobile/Tablet: Static Content (Always Visible) */}
-                      <div className="lg:hidden py-4 px-2 text-center">
-                        {/* Brand Name */}
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-1 font-medium">{relatedProduct.brand}</p>
-                        
-                        {/* Product Name */}
-                        <Link href={`/product/${relatedProduct.id}`}>
-                          <h4 className="font-normal text-sm mb-2 text-gray-800 hover:text-amber-600 leading-tight transition-colors duration-200 cursor-pointer line-clamp-2">
-                            {relatedProduct.name}
-                          </h4>
-                        </Link>
-
-                        {/* Price */}
-                        <div className="flex items-center justify-center space-x-2 mb-2">
-                          <span className="text-base font-normal text-gray-900">
-                            {formatPrice(relatedProduct.price)}
-                          </span>
-                          {relatedProduct.onSale && (
-                            <span className="text-sm text-gray-500 line-through font-light">
-                              {formatPrice(relatedProduct.originalPrice)}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Color Options - Mobile */}
-                        {relatedProduct.colors && relatedProduct.colors.length > 0 && (
-                          <div className="flex items-center justify-center space-x-1 mb-3">
-                            {relatedProduct.colors.slice(0, 4).map((color, index) => {
-                              const getColorClass = (colorName) => {
-                                const colorMap = {
-                                  'Gray': 'bg-gray-400',
-                                  'Mink': 'bg-amber-200',
-                                  'Black': 'bg-black',
-                                  'White': 'bg-white border-2 border-gray-300',
-                                  'Brown': 'bg-amber-800',
-                                  'Blue': 'bg-blue-500',
-                                  'Navy': 'bg-blue-900',
-                                  'Red': 'bg-red-500',
-                                  'Green': 'bg-green-500',
-                                  'Beige': 'bg-amber-100',
-                                  'Cream': 'bg-yellow-50',
-                                  'Sky': 'bg-sky-300',
-                                  'Turquoise': 'bg-teal-400',
-                                  'Steel': 'bg-slate-500',
-                                  'Camel': 'bg-amber-500',
-                                  'Silver': 'bg-gray-500',
-                                  'Dark Blue': 'bg-blue-900'
-                                };
-                                return colorMap[colorName] || 'bg-gray-400';
-                              };
-
-                              return (
-                                <div
-                                  key={index}
-                                  className={`w-4 h-4 rounded-full border transition-all duration-200 ${getColorClass(color)} border-gray-300`}
-                                  title={color}
-                                />
-                              );
-                            })}
-                            {relatedProduct.colors.length > 4 && (
-                              <span className="text-xs text-gray-500 ml-1">+{relatedProduct.colors.length - 4}</span>
-                            )}
-                          </div>
-                        )}
-
-                        {/* View Product Button */}
-                        <Link href={`/product/${relatedProduct.id}`}>
-                          <button className="w-full py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center bg-[#222222] hover:bg-black text-white">
-                            VIEW PRODUCT
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={relatedProduct.id}
+                    product={relatedProduct}
+                    variant="related"
+                    showCartButton={false}
+                    showWishlistButton={false}
+                  />
                 ))}
               </div>
             </div>
@@ -1208,8 +965,8 @@ export default function ProductDetail({ product, relatedProducts }) {
 
 export async function getStaticPaths() {
   try {
-    const products = await fetchClientProducts('comfortsofaproductsschema');
-    
+    const products = await fetchClientProducts(PRODUCT_DETAIL_CONFIG.productsSchemaSlug);
+
     const paths = products.map((product) => ({
       params: { id: product.id.toString() }
     }));
@@ -1229,9 +986,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const products = await fetchClientProducts('comfortsofaproductsschema');
+    const products = await fetchClientProducts(PRODUCT_DETAIL_CONFIG.productsSchemaSlug);
     const product = products.find(p => p.id.toString() === params.id);
-    
+
     if (!product) {
       return {
         notFound: true

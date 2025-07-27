@@ -10,7 +10,7 @@ const Categories = ({ categories }) => {
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/category/${category.categoryname.toLowerCase()}`}
+              href={`/category/${category.categoryname.toLowerCase().replace(/\s+/g, '-')}`}
               className="group block text-center hover:transform hover:scale-105 transition-all duration-300"
             >
               {/* Category Image */}

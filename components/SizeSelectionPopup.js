@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
+import { processGalleryItems } from '@/lib/mediaUtils';
+import MediaViewer from '@/components/MediaViewer';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -9,6 +11,85 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
+// Configuration Variables
+const SIZE_POPUP_CONFIG = {
+  // UI Text
+  title: 'Configure Product',
+  
+  // Currency & Pricing
+  currency: 'PKR',
+  
+  // Form Labels
+  labels: {
+    color: 'Color',
+    selectedColor: 'Selected:',
+    size: 'Select Size *',
+    quantity: 'Quantity',
+    totalText: 'Total',
+    originalPrice: 'Original price'
+  },
+  
+  // Buttons
+  buttons: {
+    addToCart: 'Add to Cart',
+    cancel: 'Cancel'
+  },
+  
+  // Messages
+  messages: {
+    selectSize: 'Please select a size',
+    colorInstruction: 'Click a color to see the corresponding product image',
+    item: 'item',
+    items: 'items'
+  },
+  
+  // Slider Settings
+  slider: {
+    spaceBetween: 10,
+    thumbSpaceBetween: 8,
+    thumbSlidesPerView: 4,
+    transitionDuration: 300
+  },
+  
+  // Color Mappings for UI
+  colorClasses: {
+    'Gray': 'bg-gray-400',
+    'Grey': 'bg-gray-400',
+    'Mink': 'bg-amber-200',
+    'Black': 'bg-black',
+    'White': 'bg-white border-2 border-gray-300',
+    'Brown': 'bg-amber-800',
+    'Blue': 'bg-blue-500',
+    'Navy': 'bg-blue-900',
+    'Red': 'bg-red-500',
+    'Green': 'bg-green-500',
+    'Beige': 'bg-amber-100',
+    'Cream': 'bg-yellow-50',
+    'Sky': 'bg-sky-300',
+    'Turquoise': 'bg-teal-400',
+    'Steel': 'bg-slate-500',
+    'Camel': 'bg-amber-500',
+    'Silver': 'bg-gray-500',
+    'Dark Blue': 'bg-blue-900',
+    'Coal': 'bg-gray-800',
+    'Gold': 'bg-yellow-500',
+    'Pearl': 'bg-gray-200',
+    'Midnight': 'bg-gray-900',
+    'Mustard': 'bg-amber-500',
+    'Teal': 'bg-teal-400'
+  },
+  
+  // Layout
+  maxQuantity: 10,
+  minQuantity: 1,
+  
+  // Grid Settings
+  sizeGridColumns: 3,
+  
+  // Delays & Timing
+  slideChangeDelay: 100
+};
 
 const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   const [selectedSize, setSelectedSize] = useState('');
@@ -19,27 +100,17 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   const [mainSwiper, setMainSwiper] = useState(null);
   const programmaticSlideChangeRef = useRef(false);
   
-  // Product configuration options
-  const [selectedDimension, setSelectedDimension] = useState('');
-  const [selectedOrientation, setSelectedOrientation] = useState('');
-  const [selectedStorage, setSelectedStorage] = useState('');
-  const [includeFootstool, setIncludeFootstool] = useState(false);
-  const [includeSofaBed, setIncludeSofaBed] = useState(false);
-
   const { addItem } = useCart();
   const { showCartNotification } = useNotification();
+
+  // Process gallery items to handle both images and videos
+  const galleryItems = product ? processGalleryItems(product.gallery) : [];
 
   // Initialize configuration options when product is available
   useEffect(() => {
     if (product) {
-
       // Set defaults only when product first loads or changes
-      if (product.dimensions?.length > 0) setSelectedDimension(product.dimensions[0]);
-      if (product.Orientation?.length > 0) setSelectedOrientation(product.Orientation[0]);
-      if (product.storage?.length > 0) setSelectedStorage(product.storage[0]);
-      if (product.size?.length > 0) setSelectedSize(product.size[0]);
-      if(product.withFootstool) setIncludeFootstool(false);
-      if(product.sofabedmechanism) setIncludeSofaBed(false);
+      if (product.sizes?.length > 0) setSelectedSize(product.sizes[0].size || product.sizes[0]);
       // Initialize color selection - only reset when product changes, not when user selects
       setSelectedColorIndex(product.colors?.length > 0 ? 0 : null);
       
@@ -50,40 +121,32 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
     }
   }, [product]);
 
-  // Debug useEffect to track selectedColorIndex changes
-  useEffect(() => {
-    console.log('SizeSelectionPopup - selectedColorIndex changed to:', selectedColorIndex);
-  }, [selectedColorIndex]);
-
   const formatPrice = (price) => {
-    return `£${price.toLocaleString()}`;
+    return `${SIZE_POPUP_CONFIG.currency} ${price.toLocaleString()}`;
   };
 
-  // Calculate total price including add-ons
-  const calculateTotalPrice = () => {
-    if (!product) return 0;
-    let totalPrice = product.price;
-    if (includeFootstool) totalPrice += 100;
-    if (includeSofaBed) totalPrice += 200;
-    return totalPrice;
-  };
-
-  // Calculate original price including add-ons
-  const calculateOriginalTotalPrice = () => {
-    if (!product || !product.onSale) return null;
-    let totalPrice = product.originalPrice;
-    if (includeFootstool) totalPrice += 100;
-    if (includeSofaBed) totalPrice += 200;
-    return totalPrice;
+  // Get current price based on selected size
+  const getCurrentPrice = () => {
+    if (!product || !product.sizes || product.sizes.length === 0) return product?.price || 0;
+    
+    // If sizes are objects with price, find the selected size price
+    if (typeof product.sizes[0] === 'object' && product.sizes[0].pricebysize) {
+      const selectedSizeObj = product.sizes.find(s => s.size === selectedSize);
+      return selectedSizeObj ? selectedSizeObj.pricebysize : product.price;
+    }
+    
+    return product.price;
   };
 
   // Get current image - prioritize color selection, then manual selection
   const getCurrentImage = () => {
     if (!product) return '';
-    if (selectedColorIndex !== null && product.gallery && product.gallery[selectedColorIndex]) {
-      return product.gallery[selectedColorIndex];
+    if (selectedColorIndex !== null && galleryItems[selectedColorIndex]) {
+      const item = galleryItems[selectedColorIndex];
+      return item.isYouTube ? item.thumbnail : item.url;
     }
-    return product.gallery ? product.gallery[selectedImageIndex] : product.image;
+    const item = galleryItems[selectedImageIndex];
+    return item ? (item.isYouTube ? item.thumbnail : item.url) : (product.image || '');
   };
 
   // Get current image index for slider
@@ -93,145 +156,73 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
 
   // Handle color selection
   const handleColorSelect = (colorIndex) => {
-    console.log('SizeSelectionPopup - Color selected:', {
-      colorIndex,
-      colorName: product.colors[colorIndex],
-      allColors: product.colors,
-      currentSelectedColorIndex: selectedColorIndex
-    });
-    
     setSelectedColorIndex(colorIndex);
     setSelectedImageIndex(colorIndex);
     
     // Set flag to prevent onSlideChange from resetting color selection
     programmaticSlideChangeRef.current = true;
     
-    // Log after state update (this will show in next render)
-    console.log('SizeSelectionPopup - After setSelectedColorIndex called with:', colorIndex);
-    
     // Update both swipers to show the correct slide
     if (mainSwiper && !mainSwiper.destroyed) {
-      mainSwiper.slideTo(colorIndex, 300);
+      mainSwiper.slideTo(colorIndex, SIZE_POPUP_CONFIG.slider.transitionDuration);
     }
     if (thumbsSwiper && !thumbsSwiper.destroyed) {
-      thumbsSwiper.slideTo(colorIndex, 300);
+      thumbsSwiper.slideTo(colorIndex, SIZE_POPUP_CONFIG.slider.transitionDuration);
     }
     
     // Reset the flag after a short delay to allow slide change to complete
     setTimeout(() => {
       programmaticSlideChangeRef.current = false;
-    }, 100);
+    }, SIZE_POPUP_CONFIG.slideChangeDelay);
   };
 
   // Handle manual image selection (from thumbnail clicks or slider navigation)
   const handleImageSelect = (index) => {
-    console.log('SizeSelectionPopup - handleImageSelect called:', {
-      index,
-      currentSelectedColorIndex: selectedColorIndex,
-      programmaticSlideChange: programmaticSlideChangeRef.current,
-      hasColors: product.colors?.length > 0
-    });
-    
     // If this is a programmatic slide change (from color selection), don't reset color selection
     if (programmaticSlideChangeRef.current) {
-      console.log('SizeSelectionPopup - Skipping color reset because this is a programmatic slide change');
       setSelectedImageIndex(index);
       return;
     }
     
-    console.log('SizeSelectionPopup - Manual image selection, resetting selectedColorIndex to null');
     setSelectedImageIndex(index);
     setSelectedColorIndex(null); // Reset color selection only for manual image selection
   };
 
   // Color mapping function
   const getColorClass = (colorName) => {
-    const colorMap = {
-      'Gray': 'bg-gray-400',
-      'Grey': 'bg-gray-400',
-      'Mink': 'bg-amber-200',
-      'Black': 'bg-black',
-      'White': 'bg-white border-2 border-gray-300',
-      'Brown': 'bg-amber-800',
-      'Blue': 'bg-blue-500',
-      'Navy': 'bg-blue-900',
-      'Red': 'bg-red-500',
-      'Green': 'bg-green-500',
-      'Beige': 'bg-amber-100',
-      'Cream': 'bg-yellow-50',
-      'Sky': 'bg-sky-300',
-      'Turquoise': 'bg-teal-400',
-      'Steel': 'bg-slate-500',
-      'Camel': 'bg-amber-500',
-      'Silver': 'bg-gray-500',
-      'Dark Blue': 'bg-blue-900',
-      'Coal': 'bg-gray-800',
-      'Gold': 'bg-yellow-500',
-      'Pearl': 'bg-gray-200',
-      'Midnight': 'bg-gray-900',
-      'Mustard': 'bg-amber-500',
-      'Teal': 'bg-teal-400',
-      'Green': 'bg-green-500',
-      'Red': 'bg-red-500'
-    };
-    return colorMap[colorName] || 'bg-gray-400';
+    return SIZE_POPUP_CONFIG.colorClasses[colorName] || SIZE_POPUP_CONFIG.colorClasses['Gray'];
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize && product.size && product.size.length > 0) {
+    if (!selectedSize && product.sizes && product.sizes.length > 0) {
       return;
     }
 
-    console.log('SizeSelectionPopup - handleAddToCart called with state:', {
-      selectedColorIndex,
-      selectedSize,
-      selectedDimension,
-      selectedOrientation,
-      selectedStorage,
-      includeFootstool,
-      includeSofaBed,
-      productColors: product.colors
-    });
-
-    // Create product configuration object with updated price
+    // Create product configuration object
     const productConfig = {
-      ...product,
-      price: calculateTotalPrice(),
-      originalPrice: product.onSale ? calculateOriginalTotalPrice() : product.price
+      ...product
     };
 
     // Prepare user selections for configuration
     const userSelections = {
       size: selectedSize,
-      color: product.colors && product.colors.length > 0 ? product.colors[selectedColorIndex !== null ? selectedColorIndex : 0] : null,
-      dimension: selectedDimension,
-      orientation: selectedOrientation,
-      storage: selectedStorage,
-      includeFootstool,
-      includeSofaBed
+      color: product.colors && product.colors.length > 0 ? product.colors[selectedColorIndex !== null ? selectedColorIndex : 0] : null
     };
 
-    console.log('SizeSelectionPopup - Adding to cart:', {
-      selectedColorIndex,
-      colorName: selectedColorIndex !== null ? product.colors[selectedColorIndex] : null,
-      userSelections
-    });
-
-    addItem(productConfig, selectedSize, quantity, userSelections);
-    showCartNotification(productConfig, selectedSize, quantity);
+    // Use new addItem signature: addItem(product, quantity, userSelections)
+    addItem(productConfig, Number(quantity), userSelections);
+    showCartNotification(productConfig, selectedSize, Number(quantity));
     
     // Reset and close
-    setSelectedSize(product.size?.length > 0 ? product.size[0] : '');
+    setSelectedSize(product.sizes?.length > 0 ? (product.sizes[0].size || product.sizes[0]) : '');
     setQuantity(1);
     setSelectedColorIndex(null);
     setSelectedImageIndex(0);
-    setIncludeFootstool(false);
-    setIncludeSofaBed(false);
     onClose();
   };
 
   const handleQuantityChange = (newQuantity) => {
-    if (newQuantity >= 1) {
+    if (newQuantity >= SIZE_POPUP_CONFIG.minQuantity && newQuantity <= SIZE_POPUP_CONFIG.maxQuantity) {
       setQuantity(newQuantity);
     }
   };
@@ -251,7 +242,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
         <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800">Configure Product</h2>
+            <h2 className="text-xl font-bold text-gray-800">{SIZE_POPUP_CONFIG.title}</h2>
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 text-gray-600 hover:text-gray-800"
@@ -268,11 +259,11 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
               {/* Left Side - Images */}
               <div className="space-y-4">
                 {/* Main Image Slider */}
-                {product.gallery && product.gallery.length > 1 ? (
+                {galleryItems && galleryItems.length > 1 ? (
                   <div className="relative">
                     <Swiper
                       modules={[FreeMode, Navigation, Thumbs]}
-                      spaceBetween={10}
+                      spaceBetween={SIZE_POPUP_CONFIG.slider.spaceBetween}
                       navigation={{
                         prevEl: '.popup-main-slider-prev',
                         nextEl: '.popup-main-slider-next',
@@ -283,16 +274,18 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                       onSlideChange={(swiper) => handleImageSelect(swiper.activeIndex)}
                       initialSlide={getCurrentImageIndex()}
                     >
-                      {product.gallery.map((image, index) => (
+                      {galleryItems.map((item, index) => (
                         <SwiperSlide key={index}>
-                          <div className="relative w-full h-full">
-                            <Image
-                              src={image}
-                              alt={`${product.name} - View ${index + 1}`}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
+                          <MediaViewer
+                            url={item.url}
+                            alt={`${product.name} - View ${index + 1}`}
+                            index={index}
+                            productName={product.name}
+                            aspectRatio="square"
+                            className="w-full h-full"
+                            priority={index === 0}
+                            showPlayButton={item.isYouTube}
+                          />
                         </SwiperSlide>
                       ))}
                     </Swiper>
@@ -310,46 +303,57 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     </button>
                   </div>
                 ) : (
-                  <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
-                    <Image
-                      src={getCurrentImage()}
-                      alt={product.name}
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                  <MediaViewer
+                    url={getCurrentImage()}
+                    alt={product.name}
+                    index={0}
+                    productName={product.name}
+                    aspectRatio="square"
+                    className="w-full h-full"
+                    priority={true}
+                    showPlayButton={galleryItems.length > 0 && galleryItems[0]?.isYouTube}
+                  />
                 )}
 
                 {/* Thumbnail Slider */}
-                {product.gallery && product.gallery.length > 1 && (
+                {galleryItems && galleryItems.length > 1 && (
                   <div className="relative">
                     <Swiper
                       onSwiper={setThumbsSwiper}
                       modules={[FreeMode, Navigation]}
-                      spaceBetween={8}
-                      slidesPerView={4}
+                      spaceBetween={SIZE_POPUP_CONFIG.slider.thumbSpaceBetween}
+                      slidesPerView={SIZE_POPUP_CONFIG.slider.thumbSlidesPerView}
                       freeMode={true}
                       watchSlidesProgress={true}
                       className="popup-thumb-slider"
                     >
-                      {product.gallery.map((image, index) => (
+                      {galleryItems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <button
                             onClick={() => handleImageSelect(index)}
-                            className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                            className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${
                               getCurrentImageIndex() === index 
                                 ? 'border-yellow-500 ring-2 ring-yellow-200' 
                                 : 'border-gray-200 hover:border-gray-300'
                             }`}
                           >
                             <Image
-                              src={image}
+                              src={item.isYouTube ? item.thumbnail : item.url}
                               alt={`${product.name} - Thumbnail ${index + 1}`}
                               width={80}
                               height={80}
                               className="w-full h-full object-contain"
                             />
+                            {/* Video indicator for thumbnails */}
+                            {item.isYouTube && (
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
+                                  <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                  </svg>
+                                </div>
+                              </div>
+                            )}
                           </button>
                         </SwiperSlide>
                       ))}
@@ -368,208 +372,87 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                   {/* Price */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text">
-                        {formatPrice(calculateTotalPrice())}
+                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text">
+                        {formatPrice(getCurrentPrice())}
                       </span>
                       {product.onSale && (
                         <span className="text-lg text-gray-500 line-through">
-                          {formatPrice(calculateOriginalTotalPrice())}
+                          {formatPrice(product.originalPrice)}
                         </span>
                       )}
                     </div>
-                    {(includeFootstool || includeSofaBed) && (
-                      <div className="text-xs text-gray-600">
-                        <p>Base: {formatPrice(product.price)}</p>
-                        {includeFootstool && <p>+ Footstool: {formatPrice(100)}</p>}
-                        {includeSofaBed && <p>+ Sofa Bed: {formatPrice(200)}</p>}
-                      </div>
-                    )}
                   </div>
                 </div>
 
                 {/* Color Selection */}
                 {product.colors && product.colors.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-2">Color</h4>
-                    <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded-lg">
-                      <p className="text-sm font-semibold text-yellow-800">
-                        Selected: <span className="text-yellow-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">{SIZE_POPUP_CONFIG.labels.color}</h4>
+                    <div className="mb-3 p-2 bg-amber-50 border border-amber-200 rounded-lg">
+                      <p className="text-sm font-semibold text-amber-800">
+                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-amber-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                       </p>
                     </div>
-                    <div className="flex items-center space-x-2 flex-wrap gap-2">
+                    <div className="flex items-center flex-wrap gap-2">
                       {product.colors.map((color, index) => (
                         <button
                           key={index}
                           onClick={() => handleColorSelect(index)}
-                          className={`w-8 h-8 rounded-full border-2 transition-all duration-200 ${getColorClass(color)} ${
+                          className={`px-3 py-2 border-2 rounded-lg font-medium transition-all duration-200 text-xs ${
                             (selectedColorIndex !== null ? selectedColorIndex : 0) === index 
-                              ? 'ring-2 ring-yellow-500 ring-offset-1 border-yellow-500' 
-                              : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
+                              ? 'border-amber-500 bg-amber-50 text-amber-700 shadow-md' 
+                              : 'border-gray-300 hover:border-amber-300 hover:bg-amber-50 text-gray-700'
                           }`}
                           title={`${color} - Image ${index + 1}`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2">Click a color to see the corresponding product image</p>
-                  </div>
-                )}
-
-                {/* Dimensions */}
-                {product.dimensions && product.dimensions.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Dimensions</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {product.dimensions.map((dimension) => (
-                        <button
-                          key={dimension}
-                          onClick={() => setSelectedDimension(dimension)}
-                          className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                            selectedDimension === dimension
-                              ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
                         >
-                          {dimension}
+                          {color}
                         </button>
                       ))}
                     </div>
+                    <p className="text-xs text-gray-500 mt-2">{SIZE_POPUP_CONFIG.messages.colorInstruction}</p>
                   </div>
                 )}
 
-                {/* Orientation */}
-                {product.Orientation && product.Orientation.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Orientation</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {product.Orientation.map((orientation) => (
-                        <button
-                          key={orientation}
-                          onClick={() => setSelectedOrientation(orientation)}
-                          className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                            selectedOrientation === orientation
-                              ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
-                        >
-                          {orientation}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
-                {/* Storage */}
-                {product.storage && product.storage.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Storage Options</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {product.storage.map((storageOption) => (
-                        <button
-                          key={storageOption}
-                          onClick={() => setSelectedStorage(storageOption)}
-                          className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                            selectedStorage === storageOption
-                              ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
-                        >
-                          {storageOption}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
-                {/* Footstool Option */}
-                {product.withFootstool && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Footstool</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => setIncludeFootstool(false)}
-                        className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                          !includeFootstool
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        No Footstool
-                      </button>
-                      <button
-                        onClick={() => setIncludeFootstool(true)}
-                        className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                          includeFootstool
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        <div className="text-center">
-                          <div>Include (+£100)</div>
-                        </div>
-                      </button>
+                                  {/* Size Selection */}
+                  {product.sizes && product.sizes.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-3">{SIZE_POPUP_CONFIG.labels.size}</h4>
+                      <div className="grid grid-cols-3 gap-2">
+                        {product.sizes.map((sizeItem, index) => {
+                          const sizeLabel = typeof sizeItem === 'object' ? sizeItem.size : sizeItem;
+                          const sizePrice = typeof sizeItem === 'object' ? sizeItem.pricebysize : null;
+                          
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => setSelectedSize(sizeLabel)}
+                              className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 text-center ${
+                                selectedSize === sizeLabel
+                                  ? 'border-amber-500 bg-amber-50 text-amber-700'
+                                  : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
+                              }`}
+                            >
+                              <div>{sizeLabel}</div>
+                              {sizePrice && (
+                                <div className="text-xs text-gray-500 mt-1">
+                                  {formatPrice(sizePrice)}
+                                </div>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {!selectedSize && product.sizes.length > 0 && (
+                        <p className="text-red-500 text-xs mt-1">{SIZE_POPUP_CONFIG.messages.selectSize}</p>
+                      )}
                     </div>
-                  </div>
-                )}
-
-                {/* Sofa Bed Option */}
-                {product.sofabedmechanism && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Sofa Bed</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => setIncludeSofaBed(false)}
-                        className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                          !includeSofaBed
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        No Sofa Bed
-                      </button>
-                      <button
-                        onClick={() => setIncludeSofaBed(true)}
-                        className={`py-2 px-3 border rounded-lg text-xs font-medium transition-all duration-200 ${
-                          includeSofaBed
-                            ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        <div className="text-center">
-                          <div>Include (+£200)</div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* Size Selection */}
-                {product.size && product.size.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Select Size *</h4>
-                    <div className="grid grid-cols-3 gap-2">
-                      {product.size.map((size) => (
-                        <button
-                          key={size}
-                          onClick={() => setSelectedSize(size)}
-                          className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 ${
-                            selectedSize === size
-                              ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                              : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
-                          }`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
-                    {!selectedSize && product.size.length > 0 && (
-                      <p className="text-red-500 text-xs mt-1">Please select a size</p>
-                    )}
-                  </div>
-                )}
+                  )}
 
                 {/* Quantity Selection */}
                 <div>
-                  <h4 className="text-sm font-medium text-gray-700 mb-3">Quantity</h4>
+                  <h4 className="text-sm font-medium text-gray-700 mb-3">{SIZE_POPUP_CONFIG.labels.quantity}</h4>
                   <div className="flex items-center space-x-3">
                     <button
                       onClick={() => handleQuantityChange(quantity - 1)}
@@ -584,7 +467,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     </span>
                     <button
                       onClick={() => handleQuantityChange(quantity + 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-yellow-500 hover:border-yellow-500 transition-all duration-200 text-gray-600 hover:text-white"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-amber-500 hover:border-amber-500 transition-all duration-200 text-gray-600 hover:text-white"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -596,16 +479,16 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 {/* Total Price Summary */}
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Total ({quantity} item{quantity > 1 ? 's' : ''})</span>
-                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text">
-                      {formatPrice(calculateTotalPrice() * quantity)}
+                    <span className="text-sm text-gray-600">{SIZE_POPUP_CONFIG.labels.totalText} ({quantity} {quantity > 1 ? SIZE_POPUP_CONFIG.messages.items : SIZE_POPUP_CONFIG.messages.item})</span>
+                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text">
+                      {formatPrice(getCurrentPrice() * quantity)}
                     </span>
                   </div>
                   {product.onSale && (
                     <div className="flex justify-between items-center mt-1">
-                      <span className="text-xs text-gray-500">Original price</span>
+                      <span className="text-xs text-gray-500">{SIZE_POPUP_CONFIG.labels.originalPrice}</span>
                       <span className="text-sm text-gray-500 line-through">
-                        {formatPrice(calculateOriginalTotalPrice() * quantity)}
+                        {formatPrice(product.originalPrice * quantity)}
                       </span>
                     </div>
                   )}
@@ -615,20 +498,20 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div className="space-y-3">
                   <button
                     onClick={handleAddToCart}
-                    disabled={product.size && product.size.length > 0 && !selectedSize}
+                    disabled={product.sizes && product.sizes.length > 0 && !selectedSize}
                     className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
-                      (product.size && product.size.length > 0 && !selectedSize)
+                      (product.sizes && product.sizes.length > 0 && !selectedSize)
                         ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-                        : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white'
+                        : 'bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white'
                     }`}
                   >
-                    Add to Cart
+                    {SIZE_POPUP_CONFIG.buttons.addToCart}
                   </button>
                   <button
                     onClick={onClose}
                     className="w-full py-3 px-4 rounded-lg font-medium border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   >
-                    Cancel
+                    {SIZE_POPUP_CONFIG.buttons.cancel}
                   </button>
                 </div>
               </div>

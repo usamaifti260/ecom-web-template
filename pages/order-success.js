@@ -5,6 +5,71 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Configuration Variables
+const ORDER_SUCCESS_CONFIG = {
+  // Business Information
+  businessName: 'BHATTI INDUSTRIES',
+
+  // Currency & Formatting
+  currency: 'PKR',
+  locale: 'en-PK',
+
+  // SEO & Meta
+  pageTitle: 'Order Confirmation - Bhatti Industries',
+  pageDescription: 'Your order has been confirmed',
+  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconSize: '32x32',
+
+  // UI Text
+  loadingText: 'Loading order details...',
+  successTitle: 'Order Confirmed!',
+  successMessage: 'Thank you for choosing Bhatti Industries! Your premium surgical instruments order is being processed.',
+  orderNotFoundTitle: 'Order Not Found',
+  orderNotFoundMessage: 'The order you\'re looking for could not be found.',
+
+  // Delivery Configuration
+  estimatedDeliveryDays: 3,
+  deliveryBusinessDays: '3-5 business days',
+
+  // Delivery Steps
+  deliverySteps: [
+    {
+      step: 1,
+      title: 'Order Confirmed',
+      description: 'Your order has been received and is being processed',
+      bgColor: 'bg-blue-500',
+      textColor: 'text-white'
+    },
+    {
+      step: 2,
+      title: 'Quality Check & Packaging',
+      description: 'Your surgical instruments are being quality checked and carefully packaged',
+      bgColor: 'bg-blue-400',
+      textColor: 'text-black'
+    },
+    {
+      step: 3,
+      title: 'Out for Delivery',
+      description: 'Your order is on its way to you',
+      bgColor: 'bg-green-500',
+      textColor: 'text-white'
+    }
+  ],
+
+  // Action Buttons
+  shopMoreButtonText: 'Shop More Instruments',
+  printButtonText: 'Print Order Details',
+
+  // Icons
+  successIcon: '✓',
+  locationIcon: '📍',
+  timeIcon: '🕐',
+  paymentIcon: '💰',
+
+  // Routes
+  shopRoute: '/shop'
+};
+
 export default function OrderSuccessPage() {
   const router = useRouter();
   const [orderId, setOrderId] = useState(null);
@@ -19,19 +84,19 @@ export default function OrderSuccessPage() {
 
   useEffect(() => {
     if (!mounted || !router.isReady) return;
-    
+
     const { orderId: queryOrderId } = router.query;
     setOrderId(queryOrderId);
   }, [mounted, router.isReady, router.query]);
 
   useEffect(() => {
     if (!orderId) return;
-    
+
     // Load order data from localStorage
     try {
       const orders = JSON.parse(localStorage.getItem('orders') || '[]');
       const order = orders.find(o => o.orderId === orderId);
-      
+
       if (order) {
         setOrderData(order);
       } else {
@@ -51,9 +116,9 @@ export default function OrderSuccessPage() {
   }, [orderId, router]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-GB', {
+    return new Intl.NumberFormat(ORDER_SUCCESS_CONFIG.locale, {
       style: 'currency',
-      currency: 'GBP',
+      currency: ORDER_SUCCESS_CONFIG.currency,
       minimumFractionDigits: 0
     }).format(price);
   };
@@ -70,8 +135,8 @@ export default function OrderSuccessPage() {
 
   const getEstimatedDelivery = () => {
     const orderDate = new Date(orderData.processedAt);
-    const deliveryDate = new Date(orderDate.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 days from order
-    return deliveryDate.toLocaleDateString('en-GB', {
+    const deliveryDate = new Date(orderDate.getTime() + (ORDER_SUCCESS_CONFIG.estimatedDeliveryDays * 24 * 60 * 60 * 1000));
+    return deliveryDate.toLocaleDateString(ORDER_SUCCESS_CONFIG.locale, {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -84,16 +149,16 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Confirmation - SOFA SPHERE</title>
-          <meta name="description" content="Order confirmation" />
+          <title>{ORDER_SUCCESS_CONFIG.pageTitle}</title>
+          <meta name="description" content={ORDER_SUCCESS_CONFIG.pageDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+          <link rel="icon" href={ORDER_SUCCESS_CONFIG.faviconPath} type="image/png" sizes={ORDER_SUCCESS_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading order details...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">{ORDER_SUCCESS_CONFIG.loadingText}</p>
           </div>
         </div>
       </>
@@ -104,10 +169,10 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>Order Not Found - SOFA SPHERE</title>
-          <meta name="description" content="Order not found" />
+          <title>{ORDER_SUCCESS_CONFIG.pageTitle}</title>
+          <meta name="description" content={ORDER_SUCCESS_CONFIG.pageDescription} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+          <link rel="icon" href={ORDER_SUCCESS_CONFIG.faviconPath} type="image/png" sizes={ORDER_SUCCESS_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -117,9 +182,9 @@ export default function OrderSuccessPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Order Not Found</h1>
-            <p className="text-gray-600 mb-6">The order you're looking for could not be found.</p>
-            <Link href="/shop" className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">{ORDER_SUCCESS_CONFIG.orderNotFoundTitle}</h1>
+            <p className="text-gray-600 mb-6">{ORDER_SUCCESS_CONFIG.orderNotFoundMessage}</p>
+            <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
               Continue Shopping
             </Link>
           </div>
@@ -131,10 +196,10 @@ export default function OrderSuccessPage() {
   return (
     <>
       <Head>
-        <title>Order Confirmation - SOFA SPHERE</title>
-        <meta name="description" content="Your order has been confirmed" />
+        <title>{ORDER_SUCCESS_CONFIG.pageTitle}</title>
+        <meta name="description" content={ORDER_SUCCESS_CONFIG.pageDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/sofasphere_dark_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={ORDER_SUCCESS_CONFIG.faviconPath} type="image/png" sizes={ORDER_SUCCESS_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -146,11 +211,11 @@ export default function OrderSuccessPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmed!</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{ORDER_SUCCESS_CONFIG.successTitle}</h1>
             <p className="text-lg text-gray-600 mb-4">
-              Thank you for shopping with Sofa Sphere! Your beautiful order is being processed.
+              {ORDER_SUCCESS_CONFIG.successMessage}
             </p>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 inline-block">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
               <p className="text-sm text-gray-800">
                 <strong>Order ID:</strong> {orderData.orderId}
               </p>
@@ -173,8 +238,8 @@ export default function OrderSuccessPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -188,10 +253,10 @@ export default function OrderSuccessPage() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -201,7 +266,7 @@ export default function OrderSuccessPage() {
                         {getEstimatedDelivery()}
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Standard delivery within 2-3 business days
+                        Standard delivery within {ORDER_SUCCESS_CONFIG.deliveryBusinessDays}
                       </p>
                     </div>
                   </div>
@@ -247,36 +312,20 @@ export default function OrderSuccessPage() {
               </div>
 
               {/* What's Next */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-800 mb-4">What happens next?</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-blue-800 mb-4">What happens next?</h3>
                 <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-white">1</span>
+                  {ORDER_SUCCESS_CONFIG.deliverySteps.map((deliveryStep, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className={`w-6 h-6 ${deliveryStep.bgColor} rounded-full flex items-center justify-center flex-shrink-0 mt-1`}>
+                        <span className={`text-xs font-bold ${deliveryStep.textColor}`}>{deliveryStep.step}</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">{deliveryStep.title}</p>
+                        <p className="text-xs text-gray-700">{deliveryStep.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Order Confirmed</p>
-                      <p className="text-xs text-gray-700">Your order has been received and is being processed</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-black">2</span>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Packaging in Progress</p>
-                      <p className="text-xs text-gray-700">Your beautiful items are being carefully packaged</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-white">3</span>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Out for Delivery</p>
-                      <p className="text-xs text-gray-700">Your order is on its way to you</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -284,7 +333,7 @@ export default function OrderSuccessPage() {
             {/* Order Summary */}
             <div className="bg-white rounded-lg shadow-sm p-6 h-fit">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
-              
+
               {/* Items */}
               <div className="space-y-4 mb-6">
                 {orderData.items.map((item, index) => (
@@ -359,14 +408,14 @@ export default function OrderSuccessPage() {
 
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
-                <Link href="/shop" className="w-full bg-yellow-500 hover:bg-yellow-600 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
-                  Shop More Items
+                <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="w-full bg-blue-500 hover:bg-blue-600 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
+                  {ORDER_SUCCESS_CONFIG.shopMoreButtonText}
                 </Link>
-                <button 
+                <button
                   onClick={() => window.print()}
                   className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-lg font-medium transition-colors duration-200"
                 >
-                  Print Order Details
+                  {ORDER_SUCCESS_CONFIG.printButtonText}
                 </button>
               </div>
             </div>
