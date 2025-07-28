@@ -100,7 +100,7 @@ const Contact = () => {
                 <p className="text-gray-700 font-medium">
                   ALHAFIZ MILK & SWEETS<br />
                   Traditional Sweet Shop<br />
-                  Sialkot, Pakistan
+                  Satellite town, Jhang, Pakistan
                 </p>
                 <p className="text-sm text-gray-500">
                   📍 Fresh sweets made daily
