@@ -16,17 +16,17 @@ import { CONFIG_FILES } from 'next/dist/shared/lib/constants';
 // Configuration Variables - Match index.js exactly
 const SITE_CONFIG = {
   // Schema Slugs
-  productsSchemaSlug: 'products_bhattiindustries',
-  categoriesSchemaSlug: 'categories_bhattiindustries',
+  productsSchemaSlug: 'products_alhafizsweetsandmilk',
+  categoriesSchemaSlug: 'categories_alhafizsweetsandmilk',
 
   // SEO & Meta
   // Page Meta
-  siteName: 'Bhatti Industries',
-  defaultDescription: 'Browse our surgical instruments collection. Premium medical equipment with precision engineering and ISO 13485 certification.',
-  keywords: 'surgical instruments, medical equipment, general surgery instruments, cardiovascular instruments, orthopedic instruments, dental surgery tools, ENT instruments, neurosurgery tools, medical devices Pakistan, surgical tools manufacturer, hospital equipment, precision instruments',
-  defaultTitle: 'Bhatti Industries',
+  siteName: 'AlHafiz Milk and Sweets',
+  defaultDescription: 'Browse our traditional sweets collection. Premium quality traditional sweets, fresh milk products, and authentic desi ghee made with traditional recipes.',
+  keywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
+  defaultTitle: 'AlHafiz Milk and Sweets',
 
-  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
 
   currency: 'PKR',
@@ -64,6 +64,7 @@ export default function CategoryPage({
 
   // Update price range and initial filtered products when products change
   useEffect(() => {
+    console.log("Products", products);
     if (products.length > 0) {
       const newMinPrice = Math.min(...products.map(product => product.price));
       const newMaxPrice = Math.max(...products.map(product => product.price));
@@ -111,6 +112,7 @@ export default function CategoryPage({
 
   // Get current category's subcategories
   const currentCategoryData = categoryHierarchy?.find(cat => cat.slug === category);
+  console.log("Current Category Data", currentCategoryData);
   const subcategories = currentCategoryData?.subcategories || [];
 
   // Get current subcategory from URL
@@ -121,6 +123,8 @@ export default function CategoryPage({
     )].find(subcat =>
       subcat.toLowerCase().replace(/\s+/g, '-') === router.query.subcategory
     ) : null;
+
+  console.log("Current Subcategory From Url", currentSubcategoryFromUrl);
 
   // Format price for Pakistani Rupees
   const formatPrice = (price) => {
@@ -293,6 +297,8 @@ export default function CategoryPage({
 
   // Get category display name
   const getCategoryDisplayName = (slug) => {
+
+    console.log("Slug", slug);
     // Handle special categories
     if (slug === 'new-arrivals') return 'New Arrivals';
     if (slug === 'on-sale') return 'On Sale';

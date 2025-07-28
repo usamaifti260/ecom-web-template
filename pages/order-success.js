@@ -8,22 +8,22 @@ import Link from 'next/link';
 // Configuration Variables
 const ORDER_SUCCESS_CONFIG = {
   // Business Information
-  businessName: 'BHATTI INDUSTRIES',
+  businessName: 'ALHAFIZ MILK AND SWEETS',
 
   // Currency & Formatting
   currency: 'PKR',
   locale: 'en-PK',
 
   // SEO & Meta
-  pageTitle: 'Order Confirmation - Bhatti Industries',
+  pageTitle: 'Order Confirmation - AlHafiz Milk and Sweets',
   pageDescription: 'Your order has been confirmed',
-  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
 
   // UI Text
   loadingText: 'Loading order details...',
   successTitle: 'Order Confirmed!',
-  successMessage: 'Thank you for choosing Bhatti Industries! Your premium surgical instruments order is being processed.',
+  successMessage: 'Thank you for choosing AlHafiz Milk and Sweets! Your premium traditional sweets order is being processed.',
   orderNotFoundTitle: 'Order Not Found',
   orderNotFoundMessage: 'The order you\'re looking for could not be found.',
 
@@ -37,14 +37,14 @@ const ORDER_SUCCESS_CONFIG = {
       step: 1,
       title: 'Order Confirmed',
       description: 'Your order has been received and is being processed',
-      bgColor: 'bg-blue-500',
+      bgColor: 'bg-red-500',
       textColor: 'text-white'
     },
     {
       step: 2,
       title: 'Quality Check & Packaging',
-      description: 'Your surgical instruments are being quality checked and carefully packaged',
-      bgColor: 'bg-blue-400',
+      description: 'Your traditional sweets are being quality checked and carefully packaged',
+      bgColor: 'bg-red-400',
       textColor: 'text-black'
     },
     {
@@ -57,7 +57,7 @@ const ORDER_SUCCESS_CONFIG = {
   ],
 
   // Action Buttons
-  shopMoreButtonText: 'Shop More Instruments',
+  shopMoreButtonText: 'Shop More Sweets',
   printButtonText: 'Print Order Details',
 
   // Icons
@@ -312,8 +312,8 @@ export default function OrderSuccessPage() {
               </div>
 
               {/* What's Next */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">What happens next?</h3>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-red-800 mb-4">What happens next?</h3>
                 <div className="space-y-3">
                   {ORDER_SUCCESS_CONFIG.deliverySteps.map((deliveryStep, index) => (
                     <div key={index} className="flex items-start space-x-3">
@@ -408,7 +408,7 @@ export default function OrderSuccessPage() {
 
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
-                <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="w-full bg-blue-500 hover:bg-blue-600 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
+                <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="w-full bg-red-500 hover:bg-red-600 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
                   {ORDER_SUCCESS_CONFIG.shopMoreButtonText}
                 </Link>
                 <button

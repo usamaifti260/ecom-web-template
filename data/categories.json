@@ -1,44 +1,38 @@
 [
   {
     "id": "1",
-    "categoryname": "General Surgery",
-    "categorythumbnail": "https://images.unsplash.com/photo-1640876777002-badf6aee5bcc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3VyZ2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+    "categoryname": "Sohan Halwa",
+    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/474631877_594322286689604_7263185880011590076_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=X-t-oFSnsZ0Q7kNvwHz1Yqs&_nc_oc=Adk403Pr1aHmJQemhGV5jZzkUOXX448ZX3NPg_0zb7YRdvqTNOOdpsp2RHnL3xcKGOs&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=D0W0m6rmze2qpQiXyrwKaw&oh=00_AfQlIvNhud9i02RiRZU-uL1x0TIskh8_bEsCYazVyYH3Zw&oe=688CA13D",
     "showonhomepage": true
   },
   {
     "id": "2",
-    "categoryname": "Cardiovascular",
-    "categorythumbnail": "https://images.unsplash.com/photo-1591940765155-0604537032a5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNhcmRpb3Zhc2N1bGFyfGVufDB8fDB8fHww",
+    "categoryname": "Khoya Barfi",
+    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/518133726_721704703951361_5611930838175328462_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=x8lMAfOPRuYQ7kNvwHuZD9J&_nc_oc=AdmXiljmXXul_MnlLtmbBfmtVu-mm6_eZarHRe0n2QVuUQfDIbGDm_JWq_NbpE-jVyA&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=6Ko0AQx0DG4b-MrSAQ5GEg&oh=00_AfTUCdVqRx08gyZ5VBohz8h5iUz_RLlPwggyULGIbEQRpg&oe=688C969B",
     "showonhomepage": true
   },
   {
     "id": "3",
-    "categoryname": "Orthopedic",
-    "categorythumbnail": "https://images.unsplash.com/photo-1597765654534-e42ea47ab66a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b3J0aG9wZWRpY3xlbnwwfHwwfHx8MA%3D%3D",
+    "categoryname": "Desi Ghee",
+    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/513166432_709101215211710_7305540477351751481_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eHnCqL0rQroQ7kNvwG5NoLf&_nc_oc=AdntgHczOJUuygFhPuFGZ0d77Y1BcG7NBvLoANQJSDrKorHeUjFgGlXabPjdb_KqT4M&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=9JdY0NGFicSfzYHbKHANrw&oh=00_AfQ9Lrgmwj63NGhUDh0i1vSQLWvyDZ5XkR8EkFXTfWjJPQ&oe=688CA9B6",
     "showonhomepage": true
   },
   {
     "id": "4",
-    "categoryname": "Dental Surgery",
-    "categorythumbnail": "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRlbnRhbHxlbnwwfHwwfHx8MA%3D%3D",
+    "categoryname": "Milk Products",
+    "categorythumbnail": "https://i.ibb.co/p6PX7sdn/Blue-and-White-Modern-Local-Dairy-Farm-Market-Linked-In-Post.png",
     "showonhomepage": true
   },
   {
     "id": "5",
-    "categoryname": "ENT Surgery",
-    "categorythumbnail": "https://images.unsplash.com/photo-1692459524732-0df0f60d1e05?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZW50JTIwc3VyZ2VyeXxlbnwwfHwwfHx8MA%3D%3D",
+    "categoryname": "Traditional Sweets",
+    "categorythumbnail": "https://i.ibb.co/G32qhdhX/Brown-Simple-Yummy-Sweet-Food-Instagram-Post.png",
     "showonhomepage": true
   },
   {
     "id": "6",
-    "categoryname": "Neurosurgery",
-    "categorythumbnail": "https://images.unsplash.com/photo-1700308433726-303f30fb96c2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV1cm9zdXJnZXJ5fGVufDB8fDB8fHww",
-    "showonhomepage": true
-  },
-  {
-    "id": "7",
-    "categoryname": "Ophthalmology",
-    "categorythumbnail": "https://images.unsplash.com/photo-1663151064065-cb334788f77d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8T3BodGhhbG1vbG9neXxlbnwwfHwwfHx8MA%3D%3D",
+    "categoryname": "Festival Specials",
+    "categorythumbnail": "https://i.ibb.co/BHHJmzRz/Yellow-and-Orange-Photo-India-Export-Sweets-Instagram-Post.png",
     "showonhomepage": true
   }
 ]

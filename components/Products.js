@@ -20,42 +20,42 @@ const PRODUCTS_CONFIG = {
   itemsToLoadMore: 8,
   newArrivalsLimit: 8,
   onSaleProductsLimit: 8,
-  
+
   // Currency & Pricing
   currency: 'PKR',
-  
+
   // Section Titles & Text
   shopCollectionText: 'Shop Collection',
   itemsAvailableText: 'items available in this collection',
   viewMoreText: 'View More',
   viewAllText: 'View All',
-  
+
   // Special Sections
   specialOffersSection: {
     subtitle: 'Special Offers',
     title: 'On Sale',
     titleHighlight: 'Sale',
-    description: "Don't miss out on these amazing deals and discounts",
+    description: "Don't miss out on these amazing deals and fresh sweet offers",
     viewAllLink: '/category/on-sale',
     viewAllText: 'View All Sale Items'
   },
-  
+
   newArrivalsSection: {
     subtitle: 'Fresh Collection',
     title: 'New Arrivals',
     titleHighlight: 'Arrivals',
-    description: 'Discover our latest collection of elegant eastern wear designed for the modern woman',
+    description: 'Discover our latest collection of traditional sweets made with authentic recipes and premium ingredients',
     viewAllLink: '/category/new-arrivals',
     viewAllText: 'View All New Arrivals'
   },
-  
+
   // Product Cards
   badges: {
     sale: 'SALE',
     new: 'NEW',
     bestseller: 'BESTSELLER'
   },
-  
+
   buttons: {
     addToCart: 'ADD TO CART',
     addedToCart: 'Added to Cart',
@@ -63,22 +63,22 @@ const PRODUCTS_CONFIG = {
     viewProduct: 'VIEW PRODUCT',
     viewDetails: 'View Details'
   },
-  
+
   // Empty State
   emptyState: {
-    icon: '👗',
+    icon: '🍯',
     title: 'No Products Available',
-    message: 'Our beautiful collection is being prepared. Check back soon for amazing eastern wear!'
+    message: 'Our delicious collection of traditional sweets is being prepared. Check back soon for amazing fresh sweets!'
   },
-  
+
   // Messages & Text
   messages: {
     addedToWishlist: 'added to wishlist',
     removedFromWishlist: 'removed from wishlist'
   },
-  
+
   moreItemsText: '+',
-  
+
   // Responsive Breakpoints
   breakpoints: {
     mobile: 320,
@@ -87,7 +87,7 @@ const PRODUCTS_CONFIG = {
     desktop: 1024,
     desktopLarge: 1280
   },
-  
+
   // Slider Settings
   slider: {
     spaceBetween: 24,
@@ -96,19 +96,14 @@ const PRODUCTS_CONFIG = {
     autoplay: false,
     navigation: true
   },
-  
+
   // Product Display
   maxColorsToShow: 3,
   maxSizesToShow: 3,
   moreItemsText: '+',
-  
+
   // Category Slug Mappings
   categorySlugMappings: {
-    '1-piece': '1piece',
-    '2-piece': '2piece', 
-    '3-piece': '3piece',
-    'co-ord-set': 'coord',
-    'kameez-shalwar-3-piece': 'kameez-shalwar'
   }
 };
 
@@ -119,7 +114,7 @@ const Products = ({ products = [], categories = [] }) => {
   const [sizePopup, setSizePopup] = useState({ isOpen: false, product: null });
   const [selectedColors, setSelectedColors] = useState({}); // Track selected color for each product
   const [visibleItems, setVisibleItems] = useState({}); // Track how many items are visible per category
-  
+
   const { addItem } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { showCartNotification } = useNotification();
@@ -138,7 +133,7 @@ const Products = ({ products = [], categories = [] }) => {
     const checkScreenWidth = () => {
       setScreenWidth(window.innerWidth);
     };
-    
+
     if (typeof window !== 'undefined') {
       checkScreenWidth();
       window.addEventListener('resize', checkScreenWidth);
@@ -149,7 +144,7 @@ const Products = ({ products = [], categories = [] }) => {
   // Filter products for different sections
   const newArrivals = products.filter(product => product.isNew).slice(0, PRODUCTS_CONFIG.newArrivalsLimit);
   const onSaleProducts = products.filter(product => product.onSale).slice(0, PRODUCTS_CONFIG.onSaleProductsLimit);
-  
+
   // Get products by category name
   const getProductsByCategory = (categoryName) => {
     return products.filter(product => product.category === categoryName);
@@ -180,12 +175,12 @@ const Products = ({ products = [], categories = [] }) => {
   const getCurrentImage = (product) => {
     const productId = product.id;
     const selectedColorIndex = selectedColors[productId];
-    
+
     // If a color is selected, show the corresponding gallery image
     if (selectedColorIndex !== undefined && product.gallery && product.gallery[selectedColorIndex]) {
       return product.gallery[selectedColorIndex];
     }
-    
+
     // Default to main product image
     return product.image;
   };
@@ -276,25 +271,25 @@ const Products = ({ products = [], categories = [] }) => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Individual Category Sections - Now at the top with grid layout */}
         {categories.filter(category => category.showonhomepage === true).map((category, index) => {
           const categoryProducts = getProductsByCategory(category.categoryname);
           if (categoryProducts.length === 0) return null;
-          
+
           // Convert category name to URL slug
           const getCategorySlug = (categoryName) => {
             let slug = categoryName.toLowerCase().replace(/\s+/g, '-');
             return PRODUCTS_CONFIG.categorySlugMappings[slug] || slug;
           };
-          
+
           const currentVisible = visibleItems[category.id] || 8;
           const productsToShow = categoryProducts.slice(0, currentVisible);
-          
+
           return (
             <div key={category.id} className="mb-20">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-yellow-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
                   {PRODUCTS_CONFIG.shopCollectionText}
                 </h2>
                 <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -307,9 +302,9 @@ const Products = ({ products = [], categories = [] }) => {
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6 mb-8">
                 {productsToShow.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
+                  <ProductCard
+                    key={product.id}
+                    product={product}
                     showQuickView={true}
                     onAddToCart={handleAddToCart}
                     onColorSelect={handleColorSelect}
@@ -324,7 +319,7 @@ const Products = ({ products = [], categories = [] }) => {
                 {currentVisible < categoryProducts.length ? (
                   <button
                     onClick={() => handleViewMore(category.id)}
-                    className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewMoreText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,9 +327,9 @@ const Products = ({ products = [], categories = [] }) => {
                     </svg>
                   </button>
                 ) : (
-                  <Link 
+                  <Link
                     href={`/category/${getCategorySlug(category.categoryname)}`}
-                    className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewAllText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -349,16 +344,16 @@ const Products = ({ products = [], categories = [] }) => {
       </div>
 
       {/* On Sale Section - Full width dark background */}
-      <div className="mb-20 bg-gray-900 py-16">
+      <div className="mb-20 bg-red-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-red-400 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-yellow-400 uppercase tracking-wide mb-4">
               {PRODUCTS_CONFIG.specialOffersSection.subtitle}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-red-400">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
+              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-yellow-400">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
             </h3>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-yellow-100 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.specialOffersSection.description}
             </p>
           </div>
@@ -387,10 +382,10 @@ const Products = ({ products = [], categories = [] }) => {
             >
               {onSaleProducts.map((product) => (
                 <SwiperSlide key={product.id}>
-                  <ProductCard 
-                    product={product} 
-                    showQuickView={true} 
-                    isDarkBackground={true}
+                  <ProductCard
+                    product={product}
+                    showQuickView={true}
+                    variant="sale-section"
                     onAddToCart={handleAddToCart}
                     onColorSelect={handleColorSelect}
                     selectedColors={selectedColors}
@@ -414,9 +409,9 @@ const Products = ({ products = [], categories = [] }) => {
           </div>
 
           <div className="text-center mt-8">
-            <Link 
+            <Link
               href={PRODUCTS_CONFIG.specialOffersSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-white text-gray-900 hover:bg-gray-100 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-yellow-400 text-red-900 hover:bg-yellow-300 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.specialOffersSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -431,11 +426,11 @@ const Products = ({ products = [], categories = [] }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-amber-600 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
               {PRODUCTS_CONFIG.newArrivalsSection.subtitle}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              New <span className="text-amber-600">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
+              New <span className="text-red-600">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.newArrivalsSection.description}
@@ -466,8 +461,8 @@ const Products = ({ products = [], categories = [] }) => {
             >
               {newArrivals.map((product) => (
                 <SwiperSlide key={product.id}>
-                  <ProductCard 
-                    product={product} 
+                  <ProductCard
+                    product={product}
                     showQuickView={true}
                     onAddToCart={handleAddToCart}
                     onColorSelect={handleColorSelect}
@@ -492,9 +487,9 @@ const Products = ({ products = [], categories = [] }) => {
           </div>
 
           <div className="text-center mt-8">
-            <Link 
+            <Link
               href={PRODUCTS_CONFIG.newArrivalsSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.newArrivalsSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

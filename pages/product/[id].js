@@ -23,17 +23,17 @@ import ProductCard from '@/components/ProductCard';
 // Configuration Variables
 const PRODUCT_DETAIL_CONFIG = {
   // Schema Slugs
-  productsSchemaSlug: 'products_bhattiindustries',
+  productsSchemaSlug: 'products_alhafizsweetsandmilk',
 
   // Currency & Pricing
   currency: 'PKR',
 
   // Page Meta
-  siteName: 'Bhatti Industries',
-  keywords: 'surgical instruments, medical equipment, general surgery instruments, cardiovascular instruments, orthopedic instruments, dental surgery tools, ENT instruments, neurosurgery tools, medical devices Pakistan, surgical tools manufacturer, hospital equipment, precision instruments',
-  defaultTitle: 'Bhatti Industries',
+  siteName: 'AlHafiz Milk and Sweets',
+  keywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
+  defaultTitle: 'AlHafiz Milk and Sweets',
 
-  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
 
   // Loading States
@@ -58,8 +58,8 @@ const PRODUCT_DETAIL_CONFIG = {
 
   // Product Information
   labels: {
-    color: 'Finish',
-    selectedColor: 'Selected Finish:',
+    color: 'Variety',
+    selectedColor: 'Selected Variety:',
     size: 'Size',
     quantity: 'Quantity',
     yourSelection: 'Your Selection:',
@@ -83,8 +83,8 @@ const PRODUCT_DETAIL_CONFIG = {
   // Product Features
   features: {
     inStock: 'In Stock',
-    freeShipping: 'Free Shipping',
-    qualityGuaranteed: 'ISO 13485 Certified',
+    freeShipping: 'Free Delivery',
+    qualityGuaranteed: 'Fresh Daily',
     returns: '7-Day Quality Guarantee'
   },
 
@@ -104,7 +104,7 @@ const PRODUCT_DETAIL_CONFIG = {
     features: 'Features',
     faqTitle: 'Frequently Asked Questions',
     faqContact: 'Still have questions?',
-    faqContactMessage: 'Contact our customer service team at info@bhattiindustries.com or call us at 0331-0422676. We\'re here to help you find the perfect surgical instruments for your needs.',
+    faqContactMessage: 'Contact our customer service team at info@alhafizsweetsandmilk.com or call us at 03487765824. We\'re here to help you find the perfect traditional sweets for your special occasions and daily enjoyment.',
     reviewsTitle: 'Customer Reviews',
     writeReview: 'Write a Review',
     outOfFive: 'out of 5',
@@ -118,7 +118,7 @@ const PRODUCT_DETAIL_CONFIG = {
     subtitle: 'Recommended for You',
     title: 'You May Also',
     titleHighlight: 'Like',
-    description: 'Discover more surgical instruments from the same collection',
+    description: 'Discover more traditional sweets from the same collection',
     viewDetails: 'View Details',
     viewProduct: 'VIEW PRODUCT'
   },
@@ -150,24 +150,24 @@ const PRODUCT_DETAIL_CONFIG = {
   // FAQ Data
   faq: [
     {
-      question: "What is the delivery time for Bhatti Industries products?",
-      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities. For remote areas, please allow an additional 5-7 days. Custom surgical instrument orders may take additional time."
+      question: "What is the delivery time for AlHafiz Milk and Sweets products?",
+      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities like Sialkot, Lahore, Karachi, and Islamabad. For remote areas, please allow an additional 2-3 days. Fresh sweets are prepared daily and delivered promptly to maintain quality and taste."
     },
     {
-      question: "Do you offer a warranty on your surgical instruments?",
-      answer: "Yes, all Bhatti Industries products come with a quality guarantee covering manufacturing defects and material issues. This does not cover normal wear and tear or damage from improper use or sterilization."
+      question: "Do you offer a freshness guarantee on your sweets?",
+      answer: "Yes, all AlHafiz Milk and Sweets products come with a 7-day quality guarantee covering freshness and taste. Our sweets are made daily with pure ingredients including fresh milk and premium dry fruits. We ensure the highest standards of hygiene and quality in our preparation."
     },
     {
-      question: "Are your surgical instruments ISO certified?",
-      answer: "Absolutely! All our products are manufactured according to ISO 13485 standards. We use German stainless steel and follow strict quality control processes to ensure medical grade quality and precision."
+      question: "Are your sweets made with pure and natural ingredients?",
+      answer: "Absolutely! All our traditional sweets are made with 100% pure ingredients - fresh milk, pure desi ghee, premium dry fruits (almonds, pistachios, walnuts), and natural sugar. We source our milk daily from local farms and use traditional recipes passed down through generations."
     },
     {
       question: "What payment options do you accept?",
-      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers in Pakistan. Easy installment plans are available for bulk orders over PKR 25,000."
+      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers across Pakistan. Easy installment plans are available for bulk orders over PKR 10,000 for festivals and special occasions."
     },
     {
-      question: "What is your return policy?",
-      answer: "We offer a 7-day quality guarantee for all surgical instruments. Items must be in original condition with original packaging. Custom orders are non-returnable unless there's a manufacturing defect. Return shipping costs may apply."
+      question: "What is your return policy for sweets?",
+      answer: "We offer a 7-day quality guarantee for all our traditional sweets. Items must be in original condition with original packaging. Due to the perishable nature of sweets, returns are accepted only for quality issues or if the product doesn't meet our freshness standards. Custom orders for festivals are non-returnable unless there's a quality issue."
     }
   ]
 };
@@ -209,7 +209,7 @@ export default function ProductDetail({ product, relatedProducts }) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
           <p className="text-gray-600">{PRODUCT_DETAIL_CONFIG.loading.message}</p>
         </div>
       </div>
@@ -227,7 +227,7 @@ export default function ProductDetail({ product, relatedProducts }) {
             <p className="text-gray-600 mb-8">{PRODUCT_DETAIL_CONFIG.notFound.message}</p>
             <Link
               href={PRODUCT_DETAIL_CONFIG.notFound.buttonLink}
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-lg transition-all duration-300"
             >
               {PRODUCT_DETAIL_CONFIG.notFound.buttonText}
             </Link>
@@ -372,29 +372,8 @@ export default function ProductDetail({ product, relatedProducts }) {
     }
   };
 
-  // FAQ data for Bhatti Industries brand
-  const faqData = [
-    {
-      question: "What is the delivery time for Bhatti Industries products?",
-      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities. For remote areas, please allow an additional 5-7 days. Custom surgical instrument orders may take additional time."
-    },
-    {
-      question: "Do you offer a warranty on your surgical instruments?",
-      answer: "Yes, all Bhatti Industries products come with a quality guarantee covering manufacturing defects and material issues. This does not cover normal wear and tear or damage from improper use or sterilization."
-    },
-    {
-      question: "Are your surgical instruments ISO certified?",
-      answer: "Absolutely! All our products are manufactured according to ISO 13485 standards. We use German stainless steel and follow strict quality control processes to ensure medical grade quality and precision."
-    },
-    {
-      question: "What payment options do you accept?",
-      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers in Pakistan. Easy installment plans are available for bulk orders over PKR 25,000."
-    },
-    {
-      question: "What is your return policy?",
-      answer: "We offer a 7-day quality guarantee for all surgical instruments. Items must be in original condition with original packaging. Custom orders are non-returnable unless there's a manufacturing defect. Return shipping costs may apply."
-    }
-  ];
+  // FAQ data for AlHafiz Milk and Sweets brand
+  const faqData = PRODUCT_DETAIL_CONFIG.faq;
 
   return (
     <>
@@ -415,9 +394,9 @@ export default function ProductDetail({ product, relatedProducts }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
+            <Link href="/" className="hover:text-red-600">Home</Link>
             <span>/</span>
-            <Link href="/shop" className="hover:text-blue-600">Shop</Link>
+            <Link href="/shop" className="hover:text-red-600">Shop</Link>
             <span>/</span>
             <span className="text-gray-900">{product.name}</span>
           </nav>
@@ -497,7 +476,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                       <button
                         onClick={() => handleImageSelect(index)}
                         className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
-                          ? 'border-blue-500 ring-2 ring-blue-200'
+                          ? 'border-red-500 ring-2 ring-red-200'
                           : 'border-gray-200 hover:border-gray-300'
                           }`}
                       >
@@ -541,7 +520,7 @@ export default function ProductDetail({ product, relatedProducts }) {
             <div className="space-y-6">
               {/* Product Title and Category */}
               <div>
-                <p className="text-sm text-blue-600 uppercase tracking-wide font-semibold mb-2">
+                <p className="text-sm text-red-600 uppercase tracking-wide font-semibold mb-2">
                   {product.category}
                 </p>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -591,7 +570,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Price */}
               <div className="space-y-2">
                 <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text">
+                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
                     {formatPrice(getCurrentPrice())}
                   </span>
                   {product.onSale && (
@@ -611,9 +590,9 @@ export default function ProductDetail({ product, relatedProducts }) {
               {product.colors && product.colors.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.color}</h3>
-                  <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-300 rounded-lg">
-                    <p className="text-base font-semibold text-blue-800">
-                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-blue-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                  <div className="mb-4 p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-300 rounded-lg">
+                    <p className="text-base font-semibold text-red-800">
+                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-red-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                     </p>
                   </div>
                   <div className="flex items-center flex-wrap gap-2">
@@ -622,8 +601,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                         key={index}
                         onClick={() => handleColorSelect(index)}
                         className={`px-4 py-2 border-2 rounded-lg font-medium transition-all duration-300 text-sm ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
-                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md transform scale-105'
-                          : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:scale-102'
+                          ? 'border-red-500 bg-red-50 text-red-700 shadow-md transform scale-105'
+                          : 'border-gray-300 hover:border-red-300 hover:bg-red-50 text-gray-700 hover:scale-102'
                           }`}
                         title={`${color} - Image ${index + 1}`}
                       >
@@ -651,7 +630,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           key={index}
                           onClick={() => setSelectedSize(sizeLabel)}
                           className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
-                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            ? 'border-red-500 bg-red-50 text-red-700'
                             : 'border-gray-300 hover:border-gray-400'
                             }`}
                         >
@@ -712,7 +691,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                     ? 'bg-green-500 text-white'
                     : (product.sizes && product.sizes.length > 0 && !selectedSize)
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transform hover:scale-105 shadow-lg'
+                      : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white transform hover:scale-105 shadow-lg'
                     }`}
                 >
                   {addingToCart ? (
@@ -771,7 +750,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('description')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'description'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -780,7 +759,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('faq')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'faq'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -789,7 +768,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('reviews')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'reviews'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-red-500 text-red-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -864,9 +843,9 @@ export default function ProductDetail({ product, relatedProducts }) {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-medium text-blue-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
-                    <p className="text-blue-700 text-sm">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <h4 className="font-medium text-red-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
+                    <p className="text-red-700 text-sm">
                       {PRODUCT_DETAIL_CONFIG.tabContent.faqContactMessage}
                     </p>
                   </div>
@@ -903,7 +882,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           <p className="text-sm text-gray-600">{product.reviews} {PRODUCT_DETAIL_CONFIG.tabContent.totalReviews}</p>
                         </div>
 
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
+                        <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                           {PRODUCT_DETAIL_CONFIG.tabContent.writeReview}
                         </button>
                       </div>
@@ -931,11 +910,11 @@ export default function ProductDetail({ product, relatedProducts }) {
           {relatedProducts && relatedProducts.length > 0 && (
             <div className="mt-16">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.subtitle}
                 </h2>
                 <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-blue-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-red-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.description}

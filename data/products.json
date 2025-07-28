@@ -1,626 +1,398 @@
 [
   {
     "id": "1",
-    "name": "Premium Surgical Scissors Set",
-    "description": "High-quality stainless steel surgical scissors set including Mayo, Metzenbaum, and Iris scissors. Perfect for general surgery procedures.",
-    "price": 8500,
-    "originalPrice": 12000,
-    "image": "https://m.media-amazon.com/images/I/61i4xzyl4kL._AC_SX679_.jpg",
-    "hoverimage": "https://m.media-amazon.com/images/I/61HEBudTXxL._AC_SL1500_.jpg",
+    "name": "Sohan Halwa - Sada",
+    "description": "Traditional plain sohan halwa made with pure ghee, milk, and sugar. A classic sweet with rich taste and perfect texture.",
+    "price": 1500,
+    "originalPrice": 1800,
+    "image": "https://cafesajawal.pk/cdn/shop/files/Sohan_Halwa_kaju.webp?v=1739098565&width=990",
+    "hoverimage": "https://khawajasohanhalwa.com/cdn/shop/products/akhroti-sohan-halwa_900x.jpg?v=1667265807",
     "gallery": [
-      "https://m.media-amazon.com/images/I/61i4xzyl4kL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61HEBudTXxL._AC_SL1500_.jpg"
+      "https://cafesajawal.pk/cdn/shop/files/Sohan_Halwa_kaju.webp?v=1739098565&width=990",
+      "https://khawajasohanhalwa.com/cdn/shop/products/akhroti-sohan-halwa_900x.jpg?v=1667265807"
     ],
-    "category": "General Surgery",
-    "subcategory": "Scissors",
-    "brand": "Bhatti Industries",
+    "category": "Sohan Halwa",
+    "subcategory": "Sada",
+    "brand": "AlHafiz Milk and Sweets",
     "isNew": true,
     "onSale": true,
     "sizes": [
       {
-        "size": "4 inch",
-        "pricebysize": 8500
+        "size": "1kg",
+        "pricebysize": 1500
       },
       {
-        "size": "5 inch",
-        "pricebysize": 9500
+        "size": "5kg",
+        "pricebysize": 7000
       },
       {
-        "size": "6 inch",
-        "pricebysize": 10500
+        "size": "10kg",
+        "pricebysize": 14000
       }
     ],
-    "colors": [
-      "Silver",
-      "Gold Plated"
-    ],
-    "rating": 4.9,
-    "reviews": 87,
+    "colors": [],
+    "rating": 4.7,
+    "reviews": 156,
     "inStock": true,
     "bestseller": true,
-    "salepercentage": 29,
-    "stockLeft": 45,
-    "additionalFeatures": "German Stainless Steel, Autoclave Safe, Precision Ground, Ergonomic Design, CE Certified, ISO 13485 Compliant"
+    "salepercentage": 17,
+    "stockLeft": 38,
+    "additionalFeatures": "Pure Desi Ghee, Traditional Recipe, No Artificial Colors, Fresh Daily, Family Recipe"
   },
   {
     "id": "2",
-    "name": "Delicate Tissue Forceps",
-    "description": "Precision tissue forceps with fine tips for delicate surgical procedures. Non-traumatic design ensures minimal tissue damage.",
-    "price": 6500,
-    "originalPrice": 8500,
-    "image": "https://corzaeye.com/media/catalog/product/cache/0bed61fac158a281301e2928be468c82/a/d/adson-tissue-forceps-1x2-teeth-delicate-k5-4170.jpg",
-    "hoverimage": "https://www.germedusa.com/up_data/products/images/large/odtf-delicate-tissue-forceps-1672152602-.jpg",
+    "name": "Sohan Halwa - Badami",
+    "description": "Rich sohan halwa enriched with premium almonds. Perfect blend of traditional halwa with the crunch and flavor of badams.",
+    "price": 2200,
+    "originalPrice": 2600,
+    "image": "https://aljannatsweets.com/cdn/shop/files/listing-02_1.jpg?v=1744913204&width=990",
+    "hoverimage": "https://aljannatsweets.com/cdn/shop/products/badamisimple.jpg?v=1744913204",
     "gallery": [
-      "https://corzaeye.com/media/catalog/product/cache/0bed61fac158a281301e2928be468c82/a/d/adson-tissue-forceps-1x2-teeth-delicate-k5-4170.jpg",
-      "https://www.germedusa.com/up_data/products/images/large/odtf-delicate-tissue-forceps-1672152602-.jpg"
+      "https://aljannatsweets.com/cdn/shop/files/listing-02_1.jpg?v=1744913204&width=990",
+      "https://aljannatsweets.com/cdn/shop/products/badamisimple.jpg?v=1744913204"
     ],
-    "category": "General Surgery",
-    "subcategory": "Forceps",
-    "brand": "Bhatti Industries",
+    "category": "Sohan Halwa",
+    "subcategory": "Badami",
+    "brand": "AlHafiz Milk and Sweets",
     "isNew": false,
     "onSale": true,
     "sizes": [
       {
-        "size": "5 inch",
-        "pricebysize": 6500
+        "size": "1kg",
+        "pricebysize": 2200
       },
       {
-        "size": "6 inch",
-        "pricebysize": 7500
-      }
-    ],
-    "colors": [
-      "Silver",
-      "Titanium Coated"
-    ],
-    "rating": 4.7,
-    "reviews": 63,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 24,
-    "stockLeft": 32,
-    "additionalFeatures": "Fine Tip Design, Non-Slip Grip, Corrosion Resistant, Lightweight, Medical Grade Steel"
-  },
-  {
-    "id": "3",
-    "name": "Self-Retaining Retractor",
-    "description": "Versatile self-retaining retractor for maintaining surgical site exposure. Adjustable arms for optimal positioning.",
-    "price": 12000,
-    "originalPrice": 16000,
-    "image": "https://www.wpiinc.com/pub/media/catalog/product/cache/234fca73c2b1cf8a1eff43bb59d2f4b6/5/0/501724_1.jpg",
-    "hoverimage": "https://junemedical.com/wp-content/uploads/2022/04/image001-1-300x229.jpg",
-    "gallery": [
-      "https://www.wpiinc.com/pub/media/catalog/product/cache/234fca73c2b1cf8a1eff43bb59d2f4b6/5/0/501724_1.jpg",
-      "https://junemedical.com/wp-content/uploads/2022/04/image001-1-300x229.jpg"
-    ],
-    "category": "General Surgery",
-    "subcategory": "Retractors",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Small",
-        "pricebysize": 12000
+        "size": "5kg",
+        "pricebysize": 10000
       },
       {
-        "size": "Medium",
-        "pricebysize": 14000
-      },
-      {
-        "size": "Large",
-        "pricebysize": 16000
-      }
-    ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.8,
-    "reviews": 41,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 28,
-    "additionalFeatures": "Self-Retaining Mechanism, Adjustable Arms, Smooth Operation, Durable Construction, Easy to Sterilize"
-  },
-  {
-    "id": "4",
-    "name": "Hemostatic Clamps Set",
-    "description": "Professional hemostatic clamps for controlling bleeding during surgical procedures. Includes Kelly, Mosquito, and Pean clamps.",
-    "price": 9500,
-    "originalPrice": 13000,
-    "image": "https://surgicalmart.com/wp-content/uploads/2022/09/pean-hemostat-forceps-straight-surgicalmart-768x768.jpg",
-    "hoverimage": "https://surgicalmart.com/wp-content/uploads/2022/08/pean-hemostat-forceps-12-sp-inspection-tips-surgicalmart-768x768.jpg",
-    "gallery": [
-      "https://surgicalmart.com/wp-content/uploads/2022/09/pean-hemostat-forceps-straight-surgicalmart-768x768.jpg",
-      "https://surgicalmart.com/wp-content/uploads/2022/08/pean-hemostat-forceps-12-sp-inspection-tips-surgicalmart-768x768.jpg"
-    ],
-    "category": "General Surgery",
-    "subcategory": "Clamps",
-    "brand": "Bhatti Industries",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Curved",
-        "pricebysize": 9500
-      },
-      {
-        "size": "Straight",
-        "pricebysize": 9500
-      }
-    ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.6,
-    "reviews": 55,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 27,
-    "stockLeft": 38,
-    "additionalFeatures": "Secure Locking Mechanism, Graduated Markings, Heat Resistant, Non-Magnetic, Professional Grade"
-  },
-  {
-    "id": "5",
-    "name": "Cardiac Surgery Scissors",
-    "description": "Specialized cardiac surgery scissors designed for precise cutting in cardiovascular procedures.",
-    "price": 15000,
-    "originalPrice": 20000,
-    "image": "https://s.alicdn.com/@sc04/kf/Aa2eb7e8b0a584b1e9a1213694cc9402c1.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/A221227b9bf7642339976c5f06bfb12adA.jpeg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/Aa2eb7e8b0a584b1e9a1213694cc9402c1.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/A221227b9bf7642339976c5f06bfb12adA.jpeg_720x720q50.jpg"
-    ],
-    "category": "Cardiovascular",
-    "subcategory": "Cardiac Scissors",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "5 inch",
-        "pricebysize": 15000
-      },
-      {
-        "size": "6 inch",
-        "pricebysize": 17000
-      }
-    ],
-    "colors": [
-      "Silver",
-      "Titanium"
-    ],
-    "rating": 4.9,
-    "reviews": 29,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 15,
-    "additionalFeatures": "Ultra-Sharp Blades, Micro-Serrated Tips, Precision Engineering, Cardiac Specific Design, Premium Quality"
-  },
-  {
-    "id": "6",
-    "name": "Vascular Clamps",
-    "description": "Professional vascular clamps for blood vessel occlusion during cardiovascular surgery.",
-    "price": 18000,
-    "originalPrice": 24000,
-    "image": "https://s.alicdn.com/@sc04/kf/A60eef2045d584d87942acb248aef7a1aZ.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/Ac74b12b0b36043639d05a1b2cbb274deq.jpg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/A60eef2045d584d87942acb248aef7a1aZ.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/Ac74b12b0b36043639d05a1b2cbb274deq.jpg_720x720q50.jpg"
-    ],
-    "category": "Cardiovascular",
-    "subcategory": "Vascular Clamps",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Partial",
-        "pricebysize": 18000
-      },
-      {
-        "size": "Side Biting",
+        "size": "10kg",
         "pricebysize": 20000
       }
     ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.8,
-    "reviews": 34,
+    "colors": [],
+    "rating": 4.9,
+    "reviews": 98,
     "inStock": true,
     "bestseller": false,
-    "salepercentage": 25,
+    "salepercentage": 15,
     "stockLeft": 22,
-    "additionalFeatures": "Atraumatic Jaws, Precise Occlusion, Smooth Mechanism, Cardiovascular Grade, Reusable Design"
+    "additionalFeatures": "Premium Almonds, Rich Texture, Nutritious, Traditional Taste, Perfect for Gifts"
   },
   {
-    "id": "7",
-    "name": "Orthopedic Bone Saw",
-    "description": "High-performance bone saw for orthopedic procedures. Designed for precision cutting of bone and cartilage.",
-    "price": 25000,
-    "originalPrice": 32000,
-    "image": "https://s.alicdn.com/@sc04/kf/H1e129007aed147f2a6596303f88e8f2aC.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/H5ff35da88b6d423ea3ef58e62d42a2533.jpg_720x720q50.jpg",
+    "id": "3",
+    "name": "Sohan Halwa - Akhroti",
+    "description": "Delicious sohan halwa loaded with fresh walnuts. A healthy and tasty combination of traditional sweet with dry fruits.",
+    "price": 2400,
+    "originalPrice": 2800,
+    "image": "https://jallundharsweets.com/cdn/shop/files/IMG_21_1800x1800.webp?v=1741608985",
+    "hoverimage": "https://jallundharsweets.com/cdn/shop/files/0016_DSC08442copy.webp?v=1741608985&width=1200",
     "gallery": [
-      "https://s.alicdn.com/@sc04/kf/H1e129007aed147f2a6596303f88e8f2aC.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/H5ff35da88b6d423ea3ef58e62d42a2533.jpg_720x720q50.jpg"
+      "https://jallundharsweets.com/cdn/shop/files/IMG_21_1800x1800.webp?v=1741608985",
+      "https://jallundharsweets.com/cdn/shop/files/0016_DSC08442copy.webp?v=1741608985&width=1200"
     ],
-    "category": "Orthopedic",
-    "subcategory": "Bone Saws",
-    "brand": "Bhatti Industries",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Small",
-        "pricebysize": 25000
-      },
-      {
-        "size": "Large",
-        "pricebysize": 28000
-      }
-    ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.7,
-    "reviews": 18,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 22,
-    "stockLeft": 12,
-    "additionalFeatures": "Tungsten Carbide Blade, Ergonomic Handle, Oscillating Motion, Reduced Heat Generation, Orthopedic Grade"
-  },
-  {
-    "id": "8",
-    "name": "Surgical Power Drill",
-    "description": "Electric surgical drill for orthopedic procedures. Variable speed control with precision chuck.",
-    "price": 45000,
-    "originalPrice": 60000,
-    "image": "https://s.alicdn.com/@sc04/kf/A79cc71d321264898a5eea90964e18af7Z.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/Ha0ddb4189c974b0cab1fa261c364b226r.jpg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/A79cc71d321264898a5eea90964e18af7Z.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/Ha0ddb4189c974b0cab1fa261c364b226r.jpg_720x720q50.jpg"
-    ],
-    "category": "Orthopedic",
-    "subcategory": "Drills",
-    "brand": "Bhatti Industries",
+    "category": "Sohan Halwa",
+    "subcategory": "Akhroti",
+    "brand": "AlHafiz Milk and Sweets",
     "isNew": true,
     "onSale": true,
     "sizes": [
       {
-        "size": "Cordless",
-        "pricebysize": 45000
+        "size": "1kg",
+        "pricebysize": 2400
       },
       {
-        "size": "Corded",
-        "pricebysize": 40000
-      }
-    ],
-    "colors": [
-      "Blue",
-      "Silver"
-    ],
-    "rating": 4.9,
-    "reviews": 25,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 8,
-    "additionalFeatures": "Variable Speed Control, Autoclavable Components, Long Battery Life, Precision Chuck, Low Noise Operation"
-  },
-  {
-    "id": "9",
-    "name": "Dental Extraction Forceps",
-    "description": "Professional dental extraction forceps for tooth removal procedures. Ergonomic design for optimal grip.",
-    "price": 7500,
-    "originalPrice": 10000,
-    "image": "https://s.alicdn.com/@sc04/kf/H7ca34387751c4438a7bef2b9a37481a5t.png_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/H669150984c804ed2bc9970c3fafe79d66.png_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/H7ca34387751c4438a7bef2b9a37481a5t.png_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/H669150984c804ed2bc9970c3fafe79d66.png_720x720q50.jpg"
-    ],
-    "category": "Dental Surgery",
-    "subcategory": "Dental Forceps",
-    "brand": "Bhatti Industries",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Adult",
-        "pricebysize": 7500
+        "size": "5kg",
+        "pricebysize": 12000
       },
       {
-        "size": "Pediatric",
-        "pricebysize": 7000
+        "size": "10kg",
+        "pricebysize": 24000
       }
     ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.6,
-    "reviews": 42,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 35,
-    "additionalFeatures": "Ergonomic Handle, Non-Slip Grip, Precise Beaks, Dental Grade Steel, Corrosion Resistant"
-  },
-  {
-    "id": "10",
-    "name": "Ultrasonic Scaler",
-    "description": "High-frequency ultrasonic scaler for dental cleaning and periodontal therapy.",
-    "price": 35000,
-    "originalPrice": 45000,
-    "image": "https://s.alicdn.com/@sc04/kf/H5c01fe3bbcf541829a028e2633315412n.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/Hfc9c37c7831f4dd4aff75960195eed89x.jpg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/H5c01fe3bbcf541829a028e2633315412n.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/Hfc9c37c7831f4dd4aff75960195eed89x.jpg_720x720q50.jpg"
-    ],
-    "category": "Dental Surgery",
-    "subcategory": "Scalers",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Standard",
-        "pricebysize": 35000
-      }
-    ],
-    "colors": [
-      "White",
-      "Blue"
-    ],
+    "colors": [],
     "rating": 4.8,
-    "reviews": 31,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 22,
-    "stockLeft": 18,
-    "additionalFeatures": "High Frequency Vibration, Multiple Tips, Water Irrigation, LED Light, Adjustable Power"
-  },
-  {
-    "id": "11",
-    "name": "ENT Nasal Speculum",
-    "description": "Precision nasal speculum for ENT examinations and procedures. Adjustable blades for optimal visualization.",
-    "price": 5500,
-    "originalPrice": 7500,
-    "image": "https://s.alicdn.com/@sc04/kf/A2cc767cf215f4fcfb6a4023430a749a11.jpeg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/A9b46aa2513d147a3a9a32657c05165746.jpeg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/A2cc767cf215f4fcfb6a4023430a749a11.jpeg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/A9b46aa2513d147a3a9a32657c05165746.jpeg_720x720q50.jpg"
-    ],
-    "category": "ENT Surgery",
-    "subcategory": "Nasal Instruments",
-    "brand": "Bhatti Industries",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Adult",
-        "pricebysize": 5500
-      },
-      {
-        "size": "Pediatric",
-        "pricebysize": 5000
-      }
-    ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.5,
-    "reviews": 28,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 27,
-    "stockLeft": 24,
-    "additionalFeatures": "Smooth Adjustment, Atraumatic Tips, Spring Mechanism, ENT Grade Quality, Easy Sterilization"
-  },
-  {
-    "id": "12",
-    "name": "Otoscope Set",
-    "description": "Professional otoscope for ear examination with LED illumination and multiple specula sizes.",
-    "price": 12000,
-    "originalPrice": 16000,
-    "image": "https://s.alicdn.com/@sc04/kf/HTB1bBGIQXXXXXXlaFXXq6xXFXXXK.jpg_720x720q50.jpg",
-    "hoverimage": "https://s.alicdn.com/@sc04/kf/HTB1BkV3RXXXXXcnXVXXq6xXFXXXF.jpg_720x720q50.jpg",
-    "gallery": [
-      "https://s.alicdn.com/@sc04/kf/HTB1bBGIQXXXXXXlaFXXq6xXFXXXK.jpg_720x720q50.jpg",
-      "https://s.alicdn.com/@sc04/kf/HTB1BkV3RXXXXXcnXVXXq6xXFXXXF.jpg_720x720q50.jpg"
-    ],
-    "category": "ENT Surgery",
-    "subcategory": "Ear Surgery",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Standard Set",
-        "pricebysize": 12000
-      }
-    ],
-    "colors": [
-      "Black",
-      "Silver"
-    ],
-    "rating": 4.7,
-    "reviews": 37,
+    "reviews": 76,
     "inStock": true,
     "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 20,
-    "additionalFeatures": "LED Illumination, Multiple Specula, Magnification Lens, Rechargeable Battery, Carrying Case"
+    "salepercentage": 14,
+    "stockLeft": 31,
+    "additionalFeatures": "Fresh Walnuts, Brain Food, Rich in Omega-3, Traditional Preparation, Healthy Choice"
   },
   {
-    "id": "13",
-    "name": "Premium Surgical Scissors Set",
-    "description": "High-quality stainless steel surgical scissors set including Mayo, Metzenbaum, and Iris scissors. Perfect for general surgery procedures.",
-    "price": 8500,
-    "originalPrice": 12000,
-    "image": "https://m.media-amazon.com/images/I/61i4xzyl4kL._AC_SX679_.jpg",
-    "hoverimage": "https://m.media-amazon.com/images/I/61HEBudTXxL._AC_SL1500_.jpg",
+    "id": "4",
+    "name": "Sohan Halwa - Mix Dry Fruit",
+    "description": "Premium sohan halwa loaded with assorted dry fruits including almonds, cashews, pistachios, and raisins.",
+    "price": 2800,
+    "originalPrice": 3200,
+    "image": "https://hafizhalwa.com/cdn/shop/files/IMG_6679.jpg?v=1748549736&width=1946",
+    "hoverimage": "https://hafizhalwa.com/cdn/shop/products/IMG_9585.jpg?v=1748549383&width=1946",
     "gallery": [
-      "https://m.media-amazon.com/images/I/61i4xzyl4kL._AC_SX679_.jpg",
-      "https://m.media-amazon.com/images/I/61HEBudTXxL._AC_SL1500_.jpg"
+      "https://hafizhalwa.com/cdn/shop/files/IMG_6679.jpg?v=1748549736&width=1946",
+      "https://hafizhalwa.com/cdn/shop/products/IMG_9585.jpg?v=1748549383&width=1946"
     ],
-    "category": "General Surgery",
-    "subcategory": "Scissors",
-    "brand": "Bhatti Industries",
+    "category": "Sohan Halwa",
+    "subcategory": "Mix Dry Fruit",
+    "brand": "AlHafiz Milk and Sweets",
     "isNew": true,
     "onSale": true,
     "sizes": [
       {
-        "size": "4 inch",
-        "pricebysize": 8500
+        "size": "1kg",
+        "pricebysize": 2800
       },
       {
-        "size": "5 inch",
-        "pricebysize": 9500
-      },
-      {
-        "size": "6 inch",
-        "pricebysize": 10500
-      }
-    ],
-    "colors": [
-      "Silver",
-      "Gold Plated"
-    ],
-    "rating": 4.9,
-    "reviews": 87,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 29,
-    "stockLeft": 45,
-    "additionalFeatures": "German Stainless Steel, Autoclave Safe, Precision Ground, Ergonomic Design, CE Certified, ISO 13485 Compliant"
-  },
-  {
-    "id": "14",
-    "name": "Delicate Tissue Forceps",
-    "description": "Precision tissue forceps with fine tips for delicate surgical procedures. Non-traumatic design ensures minimal tissue damage.",
-    "price": 6500,
-    "originalPrice": 8500,
-    "image": "https://corzaeye.com/media/catalog/product/cache/0bed61fac158a281301e2928be468c82/a/d/adson-tissue-forceps-1x2-teeth-delicate-k5-4170.jpg",
-    "hoverimage": "https://www.germedusa.com/up_data/products/images/large/odtf-delicate-tissue-forceps-1672152602-.jpg",
-    "gallery": [
-      "https://corzaeye.com/media/catalog/product/cache/0bed61fac158a281301e2928be468c82/a/d/adson-tissue-forceps-1x2-teeth-delicate-k5-4170.jpg",
-      "https://www.germedusa.com/up_data/products/images/large/odtf-delicate-tissue-forceps-1672152602-.jpg"
-    ],
-    "category": "General Surgery",
-    "subcategory": "Forceps",
-    "brand": "Bhatti Industries",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "5 inch",
-        "pricebysize": 6500
-      },
-      {
-        "size": "6 inch",
-        "pricebysize": 7500
-      }
-    ],
-    "colors": [
-      "Silver",
-      "Titanium Coated"
-    ],
-    "rating": 4.7,
-    "reviews": 63,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 24,
-    "stockLeft": 32,
-    "additionalFeatures": "Fine Tip Design, Non-Slip Grip, Corrosion Resistant, Lightweight, Medical Grade Steel"
-  },
-  {
-    "id": "15",
-    "name": "Self-Retaining Retractor",
-    "description": "Versatile self-retaining retractor for maintaining surgical site exposure. Adjustable arms for optimal positioning.",
-    "price": 12000,
-    "originalPrice": 16000,
-    "image": "https://www.wpiinc.com/pub/media/catalog/product/cache/234fca73c2b1cf8a1eff43bb59d2f4b6/5/0/501724_1.jpg",
-    "hoverimage": "https://junemedical.com/wp-content/uploads/2022/04/image001-1-300x229.jpg",
-    "gallery": [
-      "https://www.wpiinc.com/pub/media/catalog/product/cache/234fca73c2b1cf8a1eff43bb59d2f4b6/5/0/501724_1.jpg",
-      "https://junemedical.com/wp-content/uploads/2022/04/image001-1-300x229.jpg"
-    ],
-    "category": "General Surgery",
-    "subcategory": "Retractors",
-    "brand": "Bhatti Industries",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "Small",
-        "pricebysize": 12000
-      },
-      {
-        "size": "Medium",
+        "size": "5kg",
         "pricebysize": 14000
       },
       {
-        "size": "Large",
-        "pricebysize": 16000
+        "size": "10kg",
+        "pricebysize": 28000
       }
     ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.8,
-    "reviews": 41,
+    "colors": [],
+    "rating": 4.9,
+    "reviews": 134,
     "inStock": true,
     "bestseller": true,
-    "salepercentage": 25,
-    "stockLeft": 28,
-    "additionalFeatures": "Self-Retaining Mechanism, Adjustable Arms, Smooth Operation, Durable Construction, Easy to Sterilize"
+    "salepercentage": 13,
+    "stockLeft": 18,
+    "additionalFeatures": "Assorted Dry Fruits, Premium Quality, Luxury Sweet, Perfect for Festivals, Rich in Nutrients"
   },
   {
-    "id": "16",
-    "name": "Hemostatic Clamps Set",
-    "description": "Professional hemostatic clamps for controlling bleeding during surgical procedures. Includes Kelly, Mosquito, and Pean clamps.",
-    "price": 9500,
-    "originalPrice": 13000,
-    "image": "https://surgicalmart.com/wp-content/uploads/2022/09/pean-hemostat-forceps-straight-surgicalmart-768x768.jpg",
-    "hoverimage": "https://surgicalmart.com/wp-content/uploads/2022/08/pean-hemostat-forceps-12-sp-inspection-tips-surgicalmart-768x768.jpg",
+    "id": "5",
+    "name": "Premium Khoya Barfi",
+    "description": "Traditional milk-based sweet made with pure khoya, sugar, and cardamom. Rich, creamy texture with authentic desi taste.",
+    "price": 1200,
+    "originalPrice": 1400,
+    "image": "https://aljannatsweets.com/cdn/shop/files/listing-07_1.jpg?v=1744913867&width=2890",
+    "hoverimage": "https://aljannatsweets.com/cdn/shop/products/alinewbarfibanner.jpg?v=1744913867",
     "gallery": [
-      "https://surgicalmart.com/wp-content/uploads/2022/09/pean-hemostat-forceps-straight-surgicalmart-768x768.jpg",
-      "https://surgicalmart.com/wp-content/uploads/2022/08/pean-hemostat-forceps-12-sp-inspection-tips-surgicalmart-768x768.jpg"
+      "https://aljannatsweets.com/cdn/shop/files/listing-07_1.jpg?v=1744913867&width=2890",
+      "https://aljannatsweets.com/cdn/shop/products/alinewbarfibanner.jpg?v=1744913867"
     ],
-    "category": "General Surgery",
-    "subcategory": "Clamps",
-    "brand": "Bhatti Industries",
+    "category": "Khoya Barfi",
+    "subcategory": "Plain Barfi",
+    "brand": "AlHafiz Milk and Sweets",
+    "isNew": true,
+    "onSale": true,
+    "sizes": [
+      {
+        "size": "1kg",
+        "pricebysize": 1200
+      },
+      {
+        "size": "5kg",
+        "pricebysize": 5000
+      },
+      {
+        "size": "10kg",
+        "pricebysize": 10000
+      }
+    ],
+    "colors": [],
+    "rating": 4.9,
+    "reviews": 127,
+    "inStock": true,
+    "bestseller": true,
+    "salepercentage": 14,
+    "stockLeft": 45,
+    "additionalFeatures": "Fresh Daily, Pure Milk, No Preservatives, Traditional Recipe, Hygienic Packaging"
+  },
+  {
+    "id": "6",
+    "name": "Kaju Khoya Barfi",
+    "description": "Premium khoya barfi decorated with edible silver leaves (chandi ka varq). Perfect for special occasions and festivals.",
+    "price": 1800,
+    "originalPrice": 2100,
+    "image": "https://aljannatsweets.com/cdn/shop/files/listing-09_1.jpg?v=1744913959&width=2890",
+    "hoverimage": "https://aljannatsweets.com/cdn/shop/files/kajubweb.jpg?v=1744914026",
+    "gallery": [
+      "https://aljannatsweets.com/cdn/shop/files/listing-09_1.jpg?v=1744913959&width=2890",
+      "https://aljannatsweets.com/cdn/shop/files/kajubweb.jpg?v=1744914026"
+    ],
+    "category": "Khoya Barfi",
+    "subcategory": "Silver Barfi",
+    "brand": "AlHafiz Milk and Sweets",
     "isNew": false,
     "onSale": true,
     "sizes": [
       {
-        "size": "Curved",
-        "pricebysize": 9500
+        "size": "1kg",
+        "pricebysize": 1800
       },
       {
-        "size": "Straight",
-        "pricebysize": 9500
+        "size": "5kg",
+        "pricebysize": 8000
+      },
+      {
+        "size": "10kg",
+        "pricebysize": 16000
       }
     ],
-    "colors": [
-      "Silver"
-    ],
-    "rating": 4.6,
-    "reviews": 55,
+    "colors": [],
+    "rating": 4.8,
+    "reviews": 89,
     "inStock": true,
     "bestseller": false,
-    "salepercentage": 27,
-    "stockLeft": 38,
-    "additionalFeatures": "Secure Locking Mechanism, Graduated Markings, Heat Resistant, Non-Magnetic, Professional Grade"
+    "salepercentage": 14,
+    "stockLeft": 28,
+    "additionalFeatures": "Edible Silver Leaves, Premium Quality, Festive Special, Fresh Preparation, Gift Box Available"
+  },
+  {
+    "id": "7",
+    "name": "Pure Cow Desi Ghee",
+    "description": "100% pure cow ghee made using traditional bilona method. Rich aroma, golden color, and authentic taste.",
+    "price": 3200,
+    "originalPrice": 3600,
+    "image": "https://www.khalisland.com/cdn/shop/files/desighee3.jpg?v=1682559481&width=1646",
+    "hoverimage": "",
+    "gallery": [
+      "https://www.khalisland.com/cdn/shop/files/desighee3.jpg?v=1682559481&width=1646",
+      ""
+    ],
+    "category": "Desi Ghee",
+    "subcategory": "Pure Cow Ghee",
+    "brand": "AlHafiz Milk and Sweets",
+    "isNew": false,
+    "onSale": true,
+    "sizes": [
+      {
+        "size": "250ml",
+        "pricebysize": 3200
+      },
+      {
+        "size": "500ml",
+        "pricebysize": 6400
+      },
+      {
+        "size": "1L",
+        "pricebysize": 12800
+      }
+    ],
+    "colors": [],
+    "rating": 4.9,
+    "reviews": 243,
+    "inStock": true,
+    "bestseller": true,
+    "salepercentage": 11,
+    "stockLeft": 52,
+    "additionalFeatures": "Bilona Method, A2 Cow Milk, Chemical Free, Traditional Process, Rich in Vitamins"
+  },
+  {
+    "id": "8",
+    "name": "Buffalo Desi Ghee",
+    "description": "Premium buffalo ghee with rich taste and high nutritional value. Made from fresh buffalo milk using traditional methods.",
+    "price": 2800,
+    "originalPrice": 3200,
+    "image": "https://thalnaturals.com/cdn/shop/files/cow.jpg?v=1745580407",
+    "hoverimage": "",
+    "gallery": [
+      "https://thalnaturals.com/cdn/shop/files/cow.jpg?v=1745580407",
+      ""
+    ],
+    "category": "Desi Ghee",
+    "subcategory": "Buffalo Ghee",
+    "brand": "AlHafiz Milk and Sweets",
+    "isNew": false,
+    "onSale": true,
+    "sizes": [
+      {
+        "size": "250ml",
+        "pricebysize": 2800
+      },
+      {
+        "size": "500ml",
+        "pricebysize": 5600
+      },
+      {
+        "size": "1L",
+        "pricebysize": 11200
+      }
+    ],
+    "colors": [],
+    "rating": 4.7,
+    "reviews": 187,
+    "inStock": true,
+    "bestseller": false,
+    "salepercentage": 13,
+    "stockLeft": 34,
+    "additionalFeatures": "High Fat Content, Rich Flavor, Traditional Churning, Natural Process, Long Shelf Life"
+  },
+  {
+    "id": "9",
+    "name": "Fresh Milk (Full Cream)",
+    "description": "Farm fresh full cream milk delivered daily. Rich, creamy, and packed with natural nutrients.",
+    "price": 180,
+    "originalPrice": 200,
+    "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=60",
+    "hoverimage": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop&q=60",
+    "gallery": [
+      "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=60",
+      "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop&q=60"
+    ],
+    "category": "Milk Products",
+    "subcategory": "Fresh Milk",
+    "brand": "AlHafiz Milk and Sweets",
+    "isNew": false,
+    "onSale": true,
+    "sizes": [
+      {
+        "size": "500ml",
+        "pricebysize": 1800
+      },
+      {
+        "size": "1L",
+        "pricebysize": 3600
+      }
+    ],
+    "colors": [],
+    "rating": 4.8,
+    "reviews": 324,
+    "inStock": true,
+    "bestseller": true,
+    "salepercentage": 10,
+    "stockLeft": 85,
+    "additionalFeatures": "Daily Fresh, Full Cream, Natural Taste, Hygienic Packaging, Farm to Table"
+  },
+  {
+    "id": "10",
+    "name": "Traditional Gulab Jamun",
+    "description": "Soft, spongy gulab jamuns soaked in aromatic sugar syrup. Made with khoya and flour, fried to perfection.",
+    "price": 800,
+    "originalPrice": 950,
+    "image": "https://amratsarsweets.com/cdn/shop/files/New_gulab_Jamun_pics.jpg?v=1749610481&width=900",
+    "hoverimage": "",
+    "gallery": [
+      "https://amratsarsweets.com/cdn/shop/files/New_gulab_Jamun_pics.jpg?v=1749610481&width=900",
+      ""
+    ],
+    "category": "Traditional Sweets",
+    "subcategory": "Gulab Jamun",
+    "brand": "AlHafiz Milk and Sweets",
+    "isNew": false,
+    "onSale": true,
+    "sizes": [
+      {
+        "size": "250g",
+        "pricebysize": 800
+      },
+      {
+        "size": "500g",
+        "pricebysize": 1600
+      },
+      {
+        "size": "1kg",
+        "pricebysize": 3200
+      }
+    ],
+    "colors": [],
+    "rating": 4.6,
+    "reviews": 198,
+    "inStock": true,
+    "bestseller": false,
+    "salepercentage": 16,
+    "stockLeft": 42,
+    "additionalFeatures": "Soft Texture, Aromatic Syrup, Traditional Recipe, Fresh Preparation, Perfect Sweetness"
   }
 ]

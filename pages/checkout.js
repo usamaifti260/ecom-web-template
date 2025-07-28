@@ -10,7 +10,7 @@ import { useNotification } from '@/lib/NotificationContext';
 // Configuration Variables
 const CHECKOUT_CONFIG = {
   // Business Information
-  businessName: 'BHATTI INDUSTRIES',
+  businessName: 'ALHAFIZ MILK AND SWEETS',
 
   // Currency & Pricing
   currency: 'PKR',
@@ -18,37 +18,37 @@ const CHECKOUT_CONFIG = {
   shippingFee: 800,
 
   // SEO & Meta
-  pageTitle: 'Checkout - Bhatti Industries',
-  pageDescription: 'Complete your surgical instruments order',
-  faviconPath: '/assets/bhattiindustries_logo.png',
+  pageTitle: 'Checkout - AlHafiz Milk and Sweets',
+  pageDescription: 'Complete your traditional sweets order',
+  faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
 
   // Form Placeholders (Pakistani context)
   placeholders: {
-    firstName: 'Dr. Ahmad',
+    firstName: 'Ahmad',
     lastName: 'Khan',
-    email: 'ahmad@hospital.com',
-    phone: '0331-0422676',
-    address: 'House 123, Medical Colony, Block A',
+    email: 'ahmad@gmail.com',
+    phone: '03487765824',
+    address: 'House 123, Sweet Colony, Block A',
     city: 'Sialkot',
-    area: 'DHA Road',
+    area: 'GT Road',
     zipCode: '51310',
-    notes: 'Any special instructions for your surgical instruments order... (e.g., preferred delivery time, sterilization requirements, etc.)'
+    notes: 'Any special instructions for your sweet order... (e.g., preferred delivery time, packaging requirements, event date, etc.)'
   },
 
   // UI Text
   emptyCartTitle: 'Your cart is empty',
-  emptyCartMessage: 'Add some premium surgical instruments to your cart before checking out.',
-  browseButtonText: '⚕️ Browse Instruments',
-  submitButtonText: '🏥 Proceed to Payment',
+  emptyCartMessage: 'Add some delicious traditional sweets to your cart before checking out.',
+  browseButtonText: '🍯 Browse Sweets',
+  submitButtonText: '🍯 Proceed to Payment',
   processingText: 'Processing...',
 
   // Icons
-  emptyCartIcon: '⚕️',
+  emptyCartIcon: '🍯',
   customerIcon: '👤',
   deliveryIcon: '🚚',
   notesIcon: '📝',
-  summaryIcon: '🏥',
+  summaryIcon: '🍯',
   paymentIcon: '💰',
   returnIcon: '🔄',
 
@@ -58,7 +58,7 @@ const CHECKOUT_CONFIG = {
 
   // Return Policy
   returnPolicyDays: 7,
-  returnPolicyText: 'Shop with confidence! Quality guarantee & returns within 7 days for defective items.'
+  returnPolicyText: 'Shop with confidence! Quality guarantee & returns within 7 days for quality issues.'
 };
 
 export default function CheckoutPage() {
@@ -203,12 +203,12 @@ export default function CheckoutPage() {
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-32 h-32 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-6xl">{CHECKOUT_CONFIG.emptyCartIcon}</span>
             </div>
             <h1 className="text-3xl font-bold text-gray-800 mb-3">{CHECKOUT_CONFIG.emptyCartTitle}</h1>
             <p className="text-gray-600 mb-6">{CHECKOUT_CONFIG.emptyCartMessage}</p>
-            <Link href={CHECKOUT_CONFIG.shopRoute} className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-500 hover:to-blue-700 transition-all duration-300">
+            <Link href={CHECKOUT_CONFIG.shopRoute} className="bg-gradient-to-r from-red-400 to-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-red-500 hover:to-red-700 transition-all duration-300">
               {CHECKOUT_CONFIG.browseButtonText}
             </Link>
           </div>
@@ -231,13 +231,13 @@ export default function CheckoutPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href="/shop" className="hover:text-blue-600 transition-colors">⚕️ Shop</Link>
+              <Link href="/shop" className="hover:text-red-600 transition-colors">🍯 Shop</Link>
               <span>→</span>
-              <span className="text-blue-600 font-medium">Checkout</span>
+              <span className="text-red-600 font-medium">Checkout</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">BHATTI</span> <span className="text-gray-800">INDUSTRIES</span>
+                <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">ALHAFIZ</span> <span className="text-gray-800">MILK AND SWEETS</span>
               </h1>
               <p className="text-gray-600">{CHECKOUT_CONFIG.pageDescription}</p>
             </div>
@@ -265,7 +265,7 @@ export default function CheckoutPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.firstName ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder={CHECKOUT_CONFIG.placeholders.firstName}
                       />
@@ -281,7 +281,7 @@ export default function CheckoutPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.lastName ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder={CHECKOUT_CONFIG.placeholders.lastName}
                       />
@@ -299,7 +299,7 @@ export default function CheckoutPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder={CHECKOUT_CONFIG.placeholders.email}
                       />
@@ -315,7 +315,7 @@ export default function CheckoutPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.phone ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder={CHECKOUT_CONFIG.placeholders.phone}
                       />
@@ -341,7 +341,7 @@ export default function CheckoutPage() {
                         name="address"
                         value={formData.address}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.address ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.address ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder={CHECKOUT_CONFIG.placeholders.address}
                       />
@@ -358,7 +358,7 @@ export default function CheckoutPage() {
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.city ? 'border-red-500' : 'border-gray-300'
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.city ? 'border-red-500' : 'border-gray-300'
                             }`}
                           placeholder={CHECKOUT_CONFIG.placeholders.city}
                         />
@@ -374,7 +374,7 @@ export default function CheckoutPage() {
                           name="area"
                           value={formData.area}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ${errors.area ? 'border-red-500' : 'border-gray-300'
+                          className={`w-full px-4 py-3 bg-gray-50 border rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 ${errors.area ? 'border-red-500' : 'border-gray-300'
                             }`}
                           placeholder={CHECKOUT_CONFIG.placeholders.area}
                         />
@@ -390,7 +390,7 @@ export default function CheckoutPage() {
                           name="zipCode"
                           value={formData.zipCode}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
                           placeholder={CHECKOUT_CONFIG.placeholders.zipCode}
                         />
                       </div>
@@ -414,7 +414,7 @@ export default function CheckoutPage() {
                       value={formData.notes}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200"
                       placeholder={CHECKOUT_CONFIG.placeholders.notes}
                     />
                   </div>
@@ -427,7 +427,7 @@ export default function CheckoutPage() {
                     disabled={isProcessing}
                     className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${isProcessing
                       ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transform hover:scale-105'
+                      : 'bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 transform hover:scale-105'
                       } text-white`}
                   >
                     {isProcessing ? (
@@ -474,7 +474,7 @@ export default function CheckoutPage() {
                           {item.category} {item.selectedConfiguration.size && `• ${item.selectedConfiguration.size}`} {item.selectedConfiguration.color && `• ${item.selectedConfiguration.color}`}
                         </p>
 
-                        <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                        <p className="text-sm font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
                           {formatPrice(item.price)}
                         </p>
                       </div>
@@ -492,7 +492,7 @@ export default function CheckoutPage() {
                         </span>
                         <button
                           onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
+                          className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-red-500 hover:border-red-500 transition-all duration-200 text-gray-600 hover:text-white"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -519,7 +519,7 @@ export default function CheckoutPage() {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                    <span className="text-base font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
                       {formatPrice(totalPrice >= CHECKOUT_CONFIG.freeShippingThreshold ? totalPrice : totalPrice + CHECKOUT_CONFIG.shippingFee)}
                     </span>
                   </div>
@@ -527,7 +527,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Payment Method */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg">
+              <div className="mt-6 p-4 bg-gradient-to-r from-red-400 to-red-600 rounded-lg">
                 <div className="flex items-center space-x-3 text-white">
                   <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                     <span className="text-lg">{CHECKOUT_CONFIG.paymentIcon}</span>
@@ -554,8 +554,8 @@ export default function CheckoutPage() {
 
               {/* Free Shipping Info */}
               {totalPrice < CHECKOUT_CONFIG.freeShippingThreshold && (
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-blue-700 text-sm text-center">
+                <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-700 text-sm text-center">
                     🚚 Add {formatPrice(CHECKOUT_CONFIG.freeShippingThreshold - totalPrice)} more for FREE shipping!
                   </p>
                 </div>

@@ -16,10 +16,10 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 const SIZE_POPUP_CONFIG = {
   // UI Text
   title: 'Configure Product',
-  
+
   // Currency & Pricing
   currency: 'PKR',
-  
+
   // Form Labels
   labels: {
     color: 'Color',
@@ -29,13 +29,13 @@ const SIZE_POPUP_CONFIG = {
     totalText: 'Total',
     originalPrice: 'Original price'
   },
-  
+
   // Buttons
   buttons: {
     addToCart: 'Add to Cart',
     cancel: 'Cancel'
   },
-  
+
   // Messages
   messages: {
     selectSize: 'Please select a size',
@@ -43,7 +43,7 @@ const SIZE_POPUP_CONFIG = {
     item: 'item',
     items: 'items'
   },
-  
+
   // Slider Settings
   slider: {
     spaceBetween: 10,
@@ -51,7 +51,7 @@ const SIZE_POPUP_CONFIG = {
     thumbSlidesPerView: 4,
     transitionDuration: 300
   },
-  
+
   // Color Mappings for UI
   colorClasses: {
     'Gray': 'bg-gray-400',
@@ -79,14 +79,14 @@ const SIZE_POPUP_CONFIG = {
     'Mustard': 'bg-amber-500',
     'Teal': 'bg-teal-400'
   },
-  
+
   // Layout
   maxQuantity: 10,
   minQuantity: 1,
-  
+
   // Grid Settings
   sizeGridColumns: 3,
-  
+
   // Delays & Timing
   slideChangeDelay: 100
 };
@@ -99,7 +99,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
   const programmaticSlideChangeRef = useRef(false);
-  
+
   const { addItem } = useCart();
   const { showCartNotification } = useNotification();
 
@@ -113,7 +113,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
       if (product.sizes?.length > 0) setSelectedSize(product.sizes[0].size || product.sizes[0]);
       // Initialize color selection - only reset when product changes, not when user selects
       setSelectedColorIndex(product.colors?.length > 0 ? 0 : null);
-      
+
       // Reset other states when product changes
       setSelectedImageIndex(0);
       setQuantity(1);
@@ -128,13 +128,13 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   // Get current price based on selected size
   const getCurrentPrice = () => {
     if (!product || !product.sizes || product.sizes.length === 0) return product?.price || 0;
-    
+
     // If sizes are objects with price, find the selected size price
     if (typeof product.sizes[0] === 'object' && product.sizes[0].pricebysize) {
       const selectedSizeObj = product.sizes.find(s => s.size === selectedSize);
       return selectedSizeObj ? selectedSizeObj.pricebysize : product.price;
     }
-    
+
     return product.price;
   };
 
@@ -158,10 +158,10 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   const handleColorSelect = (colorIndex) => {
     setSelectedColorIndex(colorIndex);
     setSelectedImageIndex(colorIndex);
-    
+
     // Set flag to prevent onSlideChange from resetting color selection
     programmaticSlideChangeRef.current = true;
-    
+
     // Update both swipers to show the correct slide
     if (mainSwiper && !mainSwiper.destroyed) {
       mainSwiper.slideTo(colorIndex, SIZE_POPUP_CONFIG.slider.transitionDuration);
@@ -169,7 +169,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
     if (thumbsSwiper && !thumbsSwiper.destroyed) {
       thumbsSwiper.slideTo(colorIndex, SIZE_POPUP_CONFIG.slider.transitionDuration);
     }
-    
+
     // Reset the flag after a short delay to allow slide change to complete
     setTimeout(() => {
       programmaticSlideChangeRef.current = false;
@@ -183,7 +183,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
       setSelectedImageIndex(index);
       return;
     }
-    
+
     setSelectedImageIndex(index);
     setSelectedColorIndex(null); // Reset color selection only for manual image selection
   };
@@ -212,7 +212,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
     // Use new addItem signature: addItem(product, quantity, userSelections)
     addItem(productConfig, Number(quantity), userSelections);
     showCartNotification(productConfig, selectedSize, Number(quantity));
-    
+
     // Reset and close
     setSelectedSize(product.sizes?.length > 0 ? (product.sizes[0].size || product.sizes[0]) : '');
     setQuantity(1);
@@ -232,7 +232,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300"
         onClick={onClose}
       />
@@ -331,11 +331,10 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                         <SwiperSlide key={index}>
                           <button
                             onClick={() => handleImageSelect(index)}
-                            className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${
-                              getCurrentImageIndex() === index 
-                                ? 'border-yellow-500 ring-2 ring-yellow-200' 
-                                : 'border-gray-200 hover:border-gray-300'
-                            }`}
+                            className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
+                              ? 'border-yellow-500 ring-2 ring-yellow-200'
+                              : 'border-gray-200 hover:border-gray-300'
+                              }`}
                           >
                             <Image
                               src={item.isYouTube ? item.thumbnail : item.url}
@@ -349,7 +348,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                               <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
                                   <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
+                                    <path d="M8 5v14l11-7z" />
                                   </svg>
                                 </div>
                               </div>
@@ -368,11 +367,11 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
                   <p className="text-sm text-gray-600 mb-3">{product.category}</p>
-                  
+
                   {/* Price */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text">
+                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
                         {formatPrice(getCurrentPrice())}
                       </span>
                       {product.onSale && (
@@ -388,9 +387,9 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 {product.colors && product.colors.length > 0 && (
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-2">{SIZE_POPUP_CONFIG.labels.color}</h4>
-                    <div className="mb-3 p-2 bg-amber-50 border border-amber-200 rounded-lg">
-                      <p className="text-sm font-semibold text-amber-800">
-                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-amber-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                    <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded-lg">
+                      <p className="text-sm font-semibold text-red-800">
+                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-red-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                       </p>
                     </div>
                     <div className="flex items-center flex-wrap gap-2">
@@ -398,11 +397,10 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                         <button
                           key={index}
                           onClick={() => handleColorSelect(index)}
-                          className={`px-3 py-2 border-2 rounded-lg font-medium transition-all duration-200 text-xs ${
-                            (selectedColorIndex !== null ? selectedColorIndex : 0) === index 
-                              ? 'border-amber-500 bg-amber-50 text-amber-700 shadow-md' 
-                              : 'border-gray-300 hover:border-amber-300 hover:bg-amber-50 text-gray-700'
-                          }`}
+                          className={`px-3 py-2 border-2 rounded-lg font-medium transition-all duration-200 text-xs ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
+                            ? 'border-red-500 bg-red-50 text-red-700 shadow-md'
+                            : 'border-gray-300 hover:border-red-300 hover:bg-red-50 text-gray-700'
+                            }`}
                           title={`${color} - Image ${index + 1}`}
                         >
                           {color}
@@ -415,40 +413,39 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
 
 
 
-                                  {/* Size Selection */}
-                  {product.sizes && product.sizes.length > 0 && (
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-3">{SIZE_POPUP_CONFIG.labels.size}</h4>
-                      <div className="grid grid-cols-3 gap-2">
-                        {product.sizes.map((sizeItem, index) => {
-                          const sizeLabel = typeof sizeItem === 'object' ? sizeItem.size : sizeItem;
-                          const sizePrice = typeof sizeItem === 'object' ? sizeItem.pricebysize : null;
-                          
-                          return (
-                            <button
-                              key={index}
-                              onClick={() => setSelectedSize(sizeLabel)}
-                              className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 text-center ${
-                                selectedSize === sizeLabel
-                                  ? 'border-amber-500 bg-amber-50 text-amber-700'
-                                  : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
+                {/* Size Selection */}
+                {product.sizes && product.sizes.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-3">{SIZE_POPUP_CONFIG.labels.size}</h4>
+                    <div className="grid grid-cols-3 gap-2">
+                      {product.sizes.map((sizeItem, index) => {
+                        const sizeLabel = typeof sizeItem === 'object' ? sizeItem.size : sizeItem;
+                        const sizePrice = typeof sizeItem === 'object' ? sizeItem.pricebysize : null;
+
+                        return (
+                          <button
+                            key={index}
+                            onClick={() => setSelectedSize(sizeLabel)}
+                            className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
+                              ? 'border-red-500 bg-red-50 text-red-700'
+                              : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
                               }`}
-                            >
-                              <div>{sizeLabel}</div>
-                              {sizePrice && (
-                                <div className="text-xs text-gray-500 mt-1">
-                                  {formatPrice(sizePrice)}
-                                </div>
-                              )}
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {!selectedSize && product.sizes.length > 0 && (
-                        <p className="text-red-500 text-xs mt-1">{SIZE_POPUP_CONFIG.messages.selectSize}</p>
-                      )}
+                          >
+                            <div>{sizeLabel}</div>
+                            {sizePrice && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                {formatPrice(sizePrice)}
+                              </div>
+                            )}
+                          </button>
+                        );
+                      })}
                     </div>
-                  )}
+                    {!selectedSize && product.sizes.length > 0 && (
+                      <p className="text-red-500 text-xs mt-1">{SIZE_POPUP_CONFIG.messages.selectSize}</p>
+                    )}
+                  </div>
+                )}
 
                 {/* Quantity Selection */}
                 <div>
@@ -467,7 +464,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     </span>
                     <button
                       onClick={() => handleQuantityChange(quantity + 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-amber-500 hover:border-amber-500 transition-all duration-200 text-gray-600 hover:text-white"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-red-500 hover:border-red-500 transition-all duration-200 text-gray-600 hover:text-white"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -480,7 +477,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">{SIZE_POPUP_CONFIG.labels.totalText} ({quantity} {quantity > 1 ? SIZE_POPUP_CONFIG.messages.items : SIZE_POPUP_CONFIG.messages.item})</span>
-                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text">
+                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
                       {formatPrice(getCurrentPrice() * quantity)}
                     </span>
                   </div>
@@ -499,11 +496,10 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                   <button
                     onClick={handleAddToCart}
                     disabled={product.sizes && product.sizes.length > 0 && !selectedSize}
-                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${
-                      (product.sizes && product.sizes.length > 0 && !selectedSize)
-                        ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-                        : 'bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-white'
-                    }`}
+                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${(product.sizes && product.sizes.length > 0 && !selectedSize)
+                      ? 'bg-gray-300 cursor-not-allowed text-gray-500'
+                      : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white'
+                      }`}
                   >
                     {SIZE_POPUP_CONFIG.buttons.addToCart}
                   </button>

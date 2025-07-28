@@ -11,17 +11,17 @@ const PRODUCT_CARD_CONFIG = {
   maxColorsToShow: 3,
   maxSizesToShow: 3,
   moreItemsText: '+',
-  
+
   // Currency
   currency: 'PKR',
-  
+
   // Badges
   badges: {
     sale: 'SALE',
     new: 'NEW',
     bestseller: 'BESTSELLER'
   },
-  
+
   // Buttons
   buttons: {
     addToCart: 'ADD TO CART',
@@ -30,7 +30,7 @@ const PRODUCT_CARD_CONFIG = {
     viewProduct: 'VIEW PRODUCT',
     viewDetails: 'View Details'
   },
-  
+
   // Messages
   messages: {
     addedToWishlist: 'added to wishlist',
@@ -38,21 +38,24 @@ const PRODUCT_CARD_CONFIG = {
   }
 };
 
-const ProductCard = ({ 
-  product, 
+const ProductCard = ({
+  product,
   isDarkBackground = false,
   onAddToCart,
   onColorSelect,
   selectedColors = {},
   addingToCart = {},
   showQuickView = false,
-  variant = 'default', // 'default', 'wishlist', 'related'
+  variant = 'default', // 'default', 'wishlist', 'related', 'sale-section'
   onRemoveFromWishlist,
   showCartButton = true,
   showWishlistButton = true
 }) => {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { showCartNotification } = useNotification();
+
+  // Determine if this card should use the special sale section styling
+  const isInSaleSection = variant === 'sale-section';
 
   // Format price for Pakistani Rupees
   const formatPrice = (price) => {
@@ -70,12 +73,12 @@ const ProductCard = ({
   const getCurrentImage = (product) => {
     const productId = product.id;
     const selectedColorIndex = selectedColors[productId];
-    
+
     // If a color is selected, show the corresponding gallery image
     if (selectedColorIndex !== undefined && product.gallery && product.gallery[selectedColorIndex]) {
       return product.gallery[selectedColorIndex];
     }
-    
+
     // Default to main product image
     return product.image;
   };
@@ -143,13 +146,21 @@ const ProductCard = ({
   };
 
   return (
-    <div className={`${isDarkBackground ? 'bg-gray-800 border border-gray-700' : 'bg-white'} rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group relative`}>
+    <div className={`${isInSaleSection
+      ? 'bg-red-900 border border-red-800'
+      : isDarkBackground
+        ? 'bg-gray-800 border border-gray-700'
+        : 'bg-white'
+      } rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group relative`}>
       {/* Product Image */}
       <Link href={`/product/${product.id}`}>
         <div className="relative aspect-[5/5] overflow-hidden cursor-pointer lg:h-[480px] w-full">
           {/* Sale Badge */}
           {product.onSale && (
-            <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs font-bold z-20 rounded">
+            <div className={`absolute top-2 left-2 px-2 py-1 text-xs font-bold z-20 rounded ${isInSaleSection
+              ? 'bg-yellow-400 text-red-900'
+              : 'bg-red-500 text-white'
+              }`}>
               {PRODUCT_CARD_CONFIG.badges.sale}
             </div>
           )}
@@ -169,17 +180,18 @@ const ProductCard = ({
                 e.stopPropagation();
                 handleWishlistToggle(product);
               }}
-              className={`absolute top-2 right-2 w-8 h-8 rounded-full transition-all duration-300 z-20 flex items-center justify-center ${
-                variant === 'wishlist'
-                  ? 'bg-red-500 text-white hover:bg-red-600'
-                  : isInWishlist(product.id)
-                    ? 'bg-red-500 text-white'
+              className={`absolute top-2 right-2 w-8 h-8 rounded-full transition-all duration-300 z-20 flex items-center justify-center ${variant === 'wishlist'
+                ? 'bg-red-500 text-white hover:bg-red-600'
+                : isInWishlist(product.id)
+                  ? 'bg-red-500 text-white'
+                  : isInSaleSection
+                    ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
                     : 'bg-white text-gray-600 hover:bg-red-500 hover:text-white'
-              }`}
+                }`}
             >
               {variant === 'wishlist' ? (
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               ) : (
                 <svg className="w-4 h-4" fill={isInWishlist(product.id) ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
@@ -196,7 +208,10 @@ const ProductCard = ({
                 e.preventDefault();
                 e.stopPropagation();
               }}
-              className="absolute top-2 right-12 w-8 h-8 bg-white text-gray-600 hover:bg-gray-100 rounded-full transition-all duration-300 z-20 flex items-center justify-center opacity-0 lg:group-hover:opacity-100"
+              className={`absolute top-2 right-12 w-8 h-8 rounded-full transition-all duration-300 z-20 flex items-center justify-center opacity-0 lg:group-hover:opacity-100 ${isInSaleSection
+                ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
+                : 'bg-white text-gray-600 hover:bg-gray-100'
+                }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -205,17 +220,16 @@ const ProductCard = ({
             </button>
           )}
 
-          <div className="relative w-full h-full bg-white group">
+          <div className={`relative w-full h-full ${isInSaleSection ? 'bg-red-900' : 'bg-white'} group`}>
             {/* Default image */}
             <Image
               src={getCurrentImage(product)}
               alt={product.name}
               fill
-              className={`object-contain object-top transition-opacity duration-300 ${
-                selectedColors[product.id] !== undefined 
-                  ? 'opacity-100' // Always visible when color is selected
-                  : 'opacity-100 group-hover:opacity-0' // Fade on hover when no color selected
-              }`}
+              className={`object-contain object-top transition-opacity duration-300 ${selectedColors[product.id] !== undefined
+                ? 'opacity-100' // Always visible when color is selected
+                : 'opacity-100 group-hover:opacity-0' // Fade on hover when no color selected
+                }`}
             />
 
             {/* Hover image - show hoverimage if available and no color selected */}
@@ -243,32 +257,62 @@ const ProductCard = ({
       {/* Product Info - Slides up on hover (Desktop) */}
       <div className="relative">
         {/* Desktop: Sliding Content */}
-        <div className={`hidden lg:block absolute bottom-0 left-0 right-0 ${isDarkBackground ? 'bg-gray-800' : 'bg-white'} transition-all duration-300 lg:translate-y-0 lg:group-hover:-translate-y-16 z-10`}>
+        <div className={`hidden lg:block absolute bottom-0 left-0 right-0 transition-all duration-300 lg:translate-y-0 lg:group-hover:-translate-y-16 z-10 ${isInSaleSection
+          ? 'bg-red-900'
+          : isDarkBackground
+            ? 'bg-gray-800'
+            : 'bg-white'
+          }`}>
           <div className="p-4 text-center">
             {/* Brand Name */}
-            <p className={`text-xs ${isDarkBackground ? 'text-gray-400' : 'text-gray-500'} uppercase tracking-wide mb-1 font-medium`}>
-              {product.brand || 'LEATHER LOFT'}
+            <p className={`text-xs uppercase tracking-wide mb-1 font-medium ${isInSaleSection
+              ? 'text-yellow-300'
+              : isDarkBackground
+                ? 'text-gray-400'
+                : 'text-gray-500'
+              }`}>
+              {product.brand || 'ALHAFIZ MILK & SWEETS'}
             </p>
-            
+
             {/* Product Name */}
             <Link href={`/product/${product.id}`}>
-              <h4 className={`font-normal ${variant === 'related' ? 'text-lg' : 'text-xl'} mb-2 ${isDarkBackground ? 'text-gray-200 hover:text-red-400' : 'text-gray-800 hover:text-amber-600'} leading-tight transition-colors duration-200 cursor-pointer`}>
+              <h4 className={`font-normal ${variant === 'related' ? 'text-lg' : 'text-xl'} mb-2 leading-tight transition-colors duration-200 cursor-pointer ${isInSaleSection
+                ? 'text-yellow-100 hover:text-yellow-200'
+                : isDarkBackground
+                  ? 'text-gray-200 hover:text-red-400'
+                  : 'text-gray-800 hover:text-amber-600'
+                }`}>
                 {product.name}
               </h4>
             </Link>
 
             {/* Subcategory */}
             {product.subcategory && variant !== 'related' && (
-              <p className="text-xs text-amber-600 mb-2 font-medium">{product.subcategory}</p>
+              <p className={`text-xs mb-2 font-medium ${isInSaleSection
+                ? 'text-yellow-400'
+                : 'text-amber-600'
+                }`}>
+                {product.subcategory}
+              </p>
             )}
 
             {/* Price */}
             <div className="flex items-center justify-center space-x-2 mb-2">
-              <span className={`${variant === 'related' ? 'text-lg' : 'text-xl'} font-normal ${isDarkBackground ? 'text-gray-100' : 'text-gray-900'}`}>
+              <span className={`${variant === 'related' ? 'text-lg' : 'text-xl'} font-normal ${isInSaleSection
+                ? 'text-yellow-100'
+                : isDarkBackground
+                  ? 'text-gray-100'
+                  : 'text-gray-900'
+                }`}>
                 {formatPrice(product.price)}
               </span>
               {product.onSale && (
-                <span className={`text-sm ${isDarkBackground ? 'text-gray-400' : 'text-gray-500'} line-through font-light`}>
+                <span className={`text-sm line-through font-light ${isInSaleSection
+                  ? 'text-yellow-300'
+                  : isDarkBackground
+                    ? 'text-gray-400'
+                    : 'text-gray-500'
+                  }`}>
                   {formatPrice(product.originalPrice)}
                 </span>
               )}
@@ -283,14 +327,22 @@ const ProductCard = ({
                     {product.colors.slice(0, PRODUCT_CARD_CONFIG.maxColorsToShow).map((color, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border"
+                        className={`px-2 py-1 text-xs rounded border ${isInSaleSection
+                          ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                          : 'bg-gray-100 text-gray-700 border-gray-200'
+                          }`}
                         title={color}
                       >
                         {color}
                       </span>
                     ))}
                     {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
-                      <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}</span>
+                      <span className={`text-xs ${isInSaleSection
+                        ? 'text-yellow-300'
+                        : 'text-gray-500'
+                        }`}>
+                        {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
+                      </span>
                     )}
                   </>
                 ) : (
@@ -309,11 +361,10 @@ const ProductCard = ({
                             e.preventDefault();
                             e.stopPropagation();
                           }}
-                          className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${
-                            selectedColors[product.id] === index 
-                              ? 'ring-2 ring-gray-600 ring-offset-1' 
-                              : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
-                          }`}
+                          className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${selectedColors[product.id] === index
+                            ? 'ring-2 ring-gray-600 ring-offset-1'
+                            : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
+                            }`}
                           title={color}
                           type="button"
                         />
@@ -329,11 +380,14 @@ const ProductCard = ({
                             e.preventDefault();
                             e.stopPropagation();
                           }}
-                          className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${
-                            selectedColors[product.id] === index 
-                              ? 'border-amber-500 bg-amber-50 text-amber-700' 
-                              : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-amber-300'
-                          }`}
+                          className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${selectedColors[product.id] === index
+                            ? isInSaleSection
+                              ? 'border-yellow-400 bg-yellow-100 text-red-900'
+                              : 'border-red-500 bg-red-50 text-red-700'
+                            : isInSaleSection
+                              ? 'border-yellow-300 bg-yellow-50 text-red-800 hover:border-yellow-400 hover:bg-yellow-100'
+                              : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-red-300'
+                            }`}
                           title={color}
                           type="button"
                         >
@@ -342,7 +396,12 @@ const ProductCard = ({
                       )
                     ))}
                     {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
-                      <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}</span>
+                      <span className={`text-xs ${isInSaleSection
+                        ? 'text-yellow-300'
+                        : 'text-gray-500'
+                        }`}>
+                        {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
+                      </span>
                     )}
                   </>
                 )}
@@ -354,7 +413,10 @@ const ProductCard = ({
                   return (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border"
+                      className={`px-2 py-1 text-xs rounded border ${isInSaleSection
+                        ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                        : 'bg-gray-100 text-gray-700 border-gray-200'
+                        }`}
                       title={sizeLabel}
                     >
                       {sizeLabel}
@@ -362,7 +424,12 @@ const ProductCard = ({
                   );
                 })}
                 {product.sizes.length > PRODUCT_CARD_CONFIG.maxSizesToShow && (
-                  <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}</span>
+                  <span className={`text-xs ${isInSaleSection
+                    ? 'text-yellow-300'
+                    : 'text-gray-500'
+                    }`}>
+                    {PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}
+                  </span>
                 )}
               </div>
             )}
@@ -371,21 +438,25 @@ const ProductCard = ({
 
         {/* Add to Cart Button - Shows on hover (Desktop only) */}
         {showCartButton && (
-          <div className="hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:bg-white lg:opacity-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-300 lg:transform lg:translate-y-16 lg:group-hover:translate-y-0 p-4 lg:z-20">
+          <div className={`hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-300 lg:transform lg:translate-y-16 lg:group-hover:translate-y-0 p-4 lg:z-20 ${isInSaleSection
+            ? 'bg-red-900'
+            : 'bg-white'
+            }`}>
             {variant === 'related' ? (
               <Link href={`/product/${product.id}`}>
-                <button className="w-full py-2 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center bg-[#222222] hover:bg-black text-white">
+                <button className="w-full py-2 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center bg-red-800 hover:bg-red-900 text-white">
                   {PRODUCT_CARD_CONFIG.buttons.viewProduct}
                 </button>
               </Link>
             ) : (
               <button
                 onClick={handleAddToCart}
-                className={`w-full py-3 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center ${
-                  addingToCart[product.id]
-                    ? 'bg-green-500 text-white'
-                    : 'bg-[#222222] hover:bg-black text-white'
-                }`}
+                className={`w-full py-3 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center ${addingToCart[product.id]
+                  ? 'bg-green-500 text-white'
+                  : isInSaleSection
+                    ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
+                    : 'bg-red-800 hover:bg-red-900 text-white'
+                  }`}
                 disabled={addingToCart[product.id]}
               >
                 {addingToCart[product.id] ? (
@@ -406,29 +477,54 @@ const ProductCard = ({
         {/* Mobile/Tablet: Static Content (Always Visible) */}
         <div className="lg:hidden py-4 px-2 text-center">
           {/* Brand Name */}
-          <p className={`text-[10px] ${isDarkBackground ? 'text-gray-400' : 'text-gray-500'} uppercase tracking-wide mb-1 font-medium`}>
-            {product.brand || 'LEATHER LOFT'}
+          <p className={`text-[10px] uppercase tracking-wide mb-1 font-medium ${isInSaleSection
+            ? 'text-yellow-300'
+            : isDarkBackground
+              ? 'text-gray-400'
+              : 'text-gray-500'
+            }`}>
+            {product.brand || 'ALHAFIZ MILK & SWEETS'}
           </p>
-          
+
           {/* Product Name */}
           <Link href={`/product/${product.id}`}>
-            <h4 className={`font-normal text-base mb-2 ${isDarkBackground ? 'text-gray-200 hover:text-red-400' : 'text-gray-800 hover:text-amber-600'} leading-tight transition-colors duration-200 cursor-pointer`}>
+            <h4 className={`font-normal text-base mb-2 leading-tight transition-colors duration-200 cursor-pointer ${isInSaleSection
+              ? 'text-yellow-100 hover:text-yellow-200'
+              : isDarkBackground
+                ? 'text-gray-200 hover:text-red-400'
+                : 'text-gray-800 hover:text-amber-600'
+              }`}>
               {product.name}
             </h4>
           </Link>
 
           {/* Subcategory - Mobile */}
           {product.subcategory && variant !== 'related' && (
-            <p className="text-xs text-amber-600 mb-2 font-medium">{product.subcategory}</p>
+            <p className={`text-xs mb-2 font-medium ${isInSaleSection
+              ? 'text-yellow-400'
+              : 'text-amber-600'
+              }`}>
+              {product.subcategory}
+            </p>
           )}
 
           {/* Price */}
           <div className="flex items-center justify-center space-x-2 mb-2">
-            <span className={`text-base font-normal ${isDarkBackground ? 'text-gray-100' : 'text-gray-900'}`}>
+            <span className={`text-base font-normal ${isInSaleSection
+              ? 'text-yellow-100'
+              : isDarkBackground
+                ? 'text-gray-100'
+                : 'text-gray-900'
+              }`}>
               {formatPrice(product.price)}
             </span>
             {product.onSale && variant !== 'default' && (
-              <span className={`text-sm ${isDarkBackground ? 'text-gray-400' : 'text-gray-500'} line-through font-light`}>
+              <span className={`text-sm line-through font-light ${isInSaleSection
+                ? 'text-yellow-300'
+                : isDarkBackground
+                  ? 'text-gray-400'
+                  : 'text-gray-500'
+                }`}>
                 {formatPrice(product.originalPrice)}
               </span>
             )}
@@ -443,14 +539,22 @@ const ProductCard = ({
                   {product.colors.slice(0, PRODUCT_CARD_CONFIG.maxColorsToShow).map((color, index) => (
                     <span
                       key={index}
-                      className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border"
+                      className={`px-2 py-1 text-xs rounded border ${isInSaleSection
+                        ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                        : 'bg-gray-100 text-gray-700 border-gray-200'
+                        }`}
                       title={color}
                     >
                       {color}
                     </span>
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
-                    <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}</span>
+                    <span className={`text-xs ${isInSaleSection
+                      ? 'text-yellow-300'
+                      : 'text-gray-500'
+                      }`}>
+                      {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
+                    </span>
                   )}
                 </>
               ) : variant === 'wishlist' ? (
@@ -468,17 +572,21 @@ const ProductCard = ({
                         e.preventDefault();
                         e.stopPropagation();
                       }}
-                      className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${
-                        selectedColors[product.id] === index 
-                          ? 'ring-2 ring-gray-600 ring-offset-1' 
-                          : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
-                      }`}
+                      className={`w-5 h-5 rounded-full border transition-all duration-200 ${getColorClass(color)} ${selectedColors[product.id] === index
+                        ? 'ring-2 ring-gray-600 ring-offset-1'
+                        : 'border-gray-300 hover:ring-1 hover:ring-gray-400'
+                        }`}
                       title={color}
                       type="button"
                     />
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
-                    <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}</span>
+                    <span className={`text-xs ${isInSaleSection
+                      ? 'text-yellow-300'
+                      : 'text-gray-500'
+                      }`}>
+                      {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
+                    </span>
                   )}
                 </>
               ) : (
@@ -496,11 +604,14 @@ const ProductCard = ({
                         e.preventDefault();
                         e.stopPropagation();
                       }}
-                      className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${
-                        selectedColors[product.id] === index 
-                          ? 'border-amber-500 bg-amber-50 text-amber-700' 
-                          : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-amber-300'
-                      }`}
+                      className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${selectedColors[product.id] === index
+                        ? isInSaleSection
+                          ? 'border-yellow-400 bg-yellow-100 text-red-900'
+                          : 'border-red-500 bg-red-50 text-red-700'
+                        : isInSaleSection
+                          ? 'border-yellow-300 bg-yellow-50 text-red-800 hover:border-yellow-400 hover:bg-yellow-100'
+                          : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-red-300'
+                        }`}
                       title={color}
                       type="button"
                     >
@@ -508,7 +619,12 @@ const ProductCard = ({
                     </button>
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
-                    <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}</span>
+                    <span className={`text-xs ${isInSaleSection
+                      ? 'text-yellow-300'
+                      : 'text-gray-500'
+                      }`}>
+                      {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
+                    </span>
                   )}
                 </>
               )}
@@ -520,7 +636,10 @@ const ProductCard = ({
                 return (
                   <span
                     key={index}
-                    className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded border"
+                    className={`px-2 py-1 text-xs rounded border ${isInSaleSection
+                      ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                      : 'bg-gray-100 text-gray-700 border-gray-200'
+                      }`}
                     title={sizeLabel}
                   >
                     {sizeLabel}
@@ -528,7 +647,12 @@ const ProductCard = ({
                 );
               })}
               {product.sizes.length > PRODUCT_CARD_CONFIG.maxSizesToShow && (
-                <span className="text-xs text-gray-500">{PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}</span>
+                <span className={`text-xs ${isInSaleSection
+                  ? 'text-yellow-300'
+                  : 'text-gray-500'
+                  }`}>
+                  {PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}
+                </span>
               )}
             </div>
           )}
@@ -538,18 +662,19 @@ const ProductCard = ({
             <div className={variant === 'wishlist' ? 'flex space-x-2' : ''}>
               {variant === 'related' ? (
                 <Link href={`/product/${product.id}`}>
-                  <button className="w-full py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center bg-[#222222] hover:bg-black text-white">
+                  <button className="w-full py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center bg-red-800 hover:bg-red-900 text-white">
                     {PRODUCT_CARD_CONFIG.buttons.viewProduct}
                   </button>
                 </Link>
               ) : (
                 <button
                   onClick={handleAddToCart}
-                  className={`${variant === 'wishlist' ? 'flex-1' : 'w-full'} py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center ${
-                    addingToCart[product.id]
-                      ? 'bg-green-500 text-white'
-                      : 'bg-[#222222] hover:bg-black text-white'
-                  }`}
+                  className={`${variant === 'wishlist' ? 'flex-1' : 'w-full'} py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center ${addingToCart[product.id]
+                    ? 'bg-green-500 text-white'
+                    : isInSaleSection
+                      ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
+                      : 'bg-red-800 hover:bg-red-900 text-white'
+                    }`}
                   disabled={addingToCart[product.id]}
                 >
                   {addingToCart[product.id] ? (

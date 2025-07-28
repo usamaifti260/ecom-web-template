@@ -12,22 +12,22 @@ import Footer from '@/components/Footer';
 // Configuration Variables
 const SITE_CONFIG = {
   // Business Information
-  businessName: 'BHATTI INDUSTRIES',
-  businessDescription: 'Premium Surgical Instruments & Medical Equipment - Precision engineering, quality manufacturing, trusted by healthcare professionals worldwide.',
-  businessContact: '0331-0422676',
+  businessName: 'ALHAFIZ MILK AND SWEETS',
+  businessDescription: 'Premium Traditional Sweets & Fresh Milk Products - Authentic taste, quality ingredients, fresh daily preparation. Specializing in Khoya Barfi, Sohan Halwa, and Pure Desi Ghee.',
+  businessContact: '03487765824',
 
   // Schema Slugs
-  productsSchemaSlug: 'products_bhattiindustries',
-  categoriesSchemaSlug: 'categories_bhattiindustries',
-  bannersSchemaSlug: 'banners_bhattiindustries',
+  productsSchemaSlug: 'products_alhafizsweetsandmilk',
+  categoriesSchemaSlug: 'categories_alhafizsweetsandmilk',
+  bannersSchemaSlug: 'banners_alhafizsweetsandmilk',
 
   // SEO Meta Data
-  seoTitle: 'Premium Surgical Instruments & Medical Equipment',
-  seoDescription: 'Discover premium surgical instruments at BHATTI INDUSTRIES Pakistan. Professional collection of General Surgery, Cardiovascular, Orthopedic, Dental, ENT, and Neurosurgery instruments. Shop quality medical equipment with precision engineering and reliable performance.',
-  seoKeywords: 'surgical instruments, medical equipment, general surgery instruments, cardiovascular instruments, orthopedic instruments, dental surgery tools, ENT instruments, neurosurgery tools, medical devices Pakistan, surgical tools manufacturer, hospital equipment, precision instruments',
+  seoTitle: 'Premium Traditional Sweets & Fresh Milk Products',
+  seoDescription: 'Discover authentic traditional sweets at AlHafiz Milk and Sweets Pakistan. Fresh Khoya Barfi, Sohan Halwa varieties (Sada, Badami, Akhroti, Mix Dry Fruit), Pure Desi Ghee, and farm-fresh milk products. Traditional recipes, quality ingredients, daily fresh preparation.',
+  seoKeywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
 
   // Assets
-  faviconPath: '/assets/bhattiindustries_logo.png',
+  faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32'
 };
 

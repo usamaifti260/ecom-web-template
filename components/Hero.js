@@ -12,12 +12,11 @@ const Hero = ({ banners = [] }) => {
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 5a3 3 0 006 0" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
         </svg>
       ),
-      title: 'Free Delivery',
-      subtitle: 'Free Delivery in Pakistan'
+      title: 'Fresh Daily',
+      subtitle: 'Made Fresh Every Day'
     },
     {
       icon: (
@@ -25,27 +24,26 @@ const Hero = ({ banners = [] }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: '24/7 Support',
-      subtitle: 'Customer Support'
+      title: 'Fast Delivery',
+      subtitle: 'Quick Home Delivery'
     },
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       ),
-      title: 'Handcrafted',
-      subtitle: 'Premium Quality'
+      title: 'Traditional',
+      subtitle: 'Authentic Recipes'
     },
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
         </svg>
       ),
-      title: 'Best Prices',
-      subtitle: 'Competitive Rates'
+      title: 'Pure Quality',
+      subtitle: 'Premium Ingredients'
     }
   ];
 
@@ -111,20 +109,20 @@ const Hero = ({ banners = [] }) => {
   return (
     <>
       {/* Services Banner Row */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-yellow-50 border-b border-yellow-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Layout */}
           <div className="hidden md:grid md:grid-cols-4 gap-4 py-3">
             {services.map((service, index) => (
               <div key={index} className="flex items-center space-x-2 text-center md:text-left">
-                <div className="flex-shrink-0 text-[#222222]">
+                <div className="flex-shrink-0 text-red-700">
                   {service.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-semibold text-[#222222] mb-0.5">
+                  <h3 className="text-sm font-semibold text-red-800 mb-0.5">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-red-600">
                     {service.subtitle}
                   </p>
                 </div>
@@ -137,14 +135,14 @@ const Hero = ({ banners = [] }) => {
             <div className="flex space-x-3 overflow-x-auto scrollbar-hide justify-start sm:justify-center py-2">
               {services.map((service, index) => (
                 <div key={index} className="flex-shrink-0 flex items-center space-x-2 min-w-[110px]">
-                  <div className="flex-shrink-0 text-[#222222]">
+                  <div className="flex-shrink-0 text-red-700">
                     {service.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xs font-semibold text-[#222222] mb-0.5 leading-tight">
+                    <h3 className="text-xs font-semibold text-red-800 mb-0.5 leading-tight">
                       {service.title}
                     </h3>
-                    <p className="text-[10px] text-gray-600 leading-tight">
+                    <p className="text-[10px] text-red-600 leading-tight">
                       {service.subtitle}
                     </p>
                   </div>
@@ -173,7 +171,7 @@ const Hero = ({ banners = [] }) => {
             >
               {/* Background Image */}
               <div
-                className={`absolute inset-0 ${isMobile ? 'bg-contain' : 'bg-cover'} bg-center bg-no-repeat`}
+                className={`absolute inset-0 ${isMobile ? 'bg-cover' : 'bg-cover'} bg-center bg-no-repeat`}
                 style={{ backgroundImage: `url(${isMobile ? banner.mobileImage : banner.image})` }}
               >
                 {/* Overlay - Hidden on mobile */}
@@ -190,8 +188,8 @@ const Hero = ({ banners = [] }) => {
                       : 'transform -translate-x-10 opacity-0'
                       }`}>
                       {/* Category Badge */}
-                      {/* <div className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full font-medium text-[10px] sm:text-xs md:text-sm shadow-lg animate-pulse">
-                      <span className="mr-1">🛋️</span>
+                      {/* <div className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-red-700 to-red-800 text-white rounded-full font-medium text-[10px] sm:text-xs md:text-sm shadow-lg animate-pulse">
+                      <span className="mr-1">🍯</span>
                       {banner.category}
                      </div> */}
 
@@ -209,7 +207,7 @@ const Hero = ({ banners = [] }) => {
                       {/* <div className="pt-2 sm:pt-3 md:pt-4 lg:pt-6">
                      <Link 
                        href="/shop"
-                        className="group bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 lg:px-6 lg:py-3 rounded text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-1 w-fit mx-auto"
+                        className="group bg-gradient-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 lg:px-6 lg:py-3 rounded text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-1 w-fit mx-auto"
                        >
                         <span>Shop Now</span>
                         <svg className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +230,7 @@ const Hero = ({ banners = [] }) => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                ? 'bg-amber-500 scale-125 shadow-lg'
+                ? 'bg-yellow-400 scale-125 shadow-lg'
                 : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                 }`}
             />
@@ -251,36 +249,36 @@ const Hero = ({ banners = [] }) => {
 
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-10 right-10 md:top-20 md:right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-amber-400 bg-opacity-10 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 left-10 md:bottom-40 md:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-white bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-amber-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+          <div className="absolute top-10 right-10 md:top-20 md:right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-yellow-400 bg-opacity-10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 left-10 md:bottom-40 md:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-red-700 bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-yellow-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
         </div>
 
 
       </section>
 
-      {/* Deals of the Day Banner */}
-      <div className="relative bg-gradient-to-r from-gray-800 via-gray-900 to-black py-3 sm:py-4 md:py-6 lg:py-8 mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden my-2">
+      {/* Special Offers Banner */}
+      <div className="relative bg-gradient-to-r from-red-800 via-red-900 to-red-950 py-3 sm:py-4 md:py-6 lg:py-8 mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden my-2">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Animated Text Section */}
           <div className="flex items-center space-x-2 sm:space-x-4 flex-1">
             <div className="animate-pulse">
               <h2 className="text-white font-bold text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl">
-                Deals of the Day
+                Fresh Sweets Daily
               </h2>
             </div>
             {/* Hide this on mobile */}
             <div className="hidden sm:block animate-bounce">
-              <span className="text-gray-300 font-medium text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
-                New Every Day!
+              <span className="text-yellow-200 font-medium text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
+                Made with Love!
               </span>
             </div>
 
             {/* Animated decorative elements */}
             <div className="hidden sm:flex items-center space-x-2">
-              <div className="w-2 h-2 bg-amber-500 rounded-full animate-ping"></div>
-              <div className="w-2 h-2 bg-amber-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-              <div className="w-2 h-2 bg-amber-600 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-ping"></div>
+              <div className="w-2 h-2 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+              <div className="w-2 h-2 bg-yellow-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
 
@@ -288,10 +286,10 @@ const Hero = ({ banners = [] }) => {
           <div className="flex-shrink-0">
             <Link
               href="/shop"
-              className="group bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white hover:text-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-8 md:py-3 lg:px-10 lg:py-4 xl:px-12 xl:py-5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-1 sm:space-x-2 animate-pulse"
+              className="group bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-red-900 hover:text-red-900 px-3 py-1.5 sm:px-4 sm:py-2 md:px-8 md:py-3 lg:px-10 lg:py-4 xl:px-12 xl:py-5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-1 sm:space-x-2 animate-pulse"
             >
               <span>Shop Now</span>
-              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:w-6 xl:w-7 xl:h-7 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -300,10 +298,10 @@ const Hero = ({ banners = [] }) => {
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 bg-amber-500 bg-opacity-20 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-3 h-3 sm:w-4 sm:h-4 bg-amber-400 bg-opacity-30 rounded-full animate-ping" style={{ animationDelay: '0.8s' }}></div>
-          <div className="absolute -bottom-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 bg-amber-600 bg-opacity-25 rounded-full animate-bounce" style={{ animationDelay: '1.2s' }}></div>
-          <div className="absolute top-2 right-1/3 w-2 h-2 sm:w-3 sm:h-3 bg-amber-500 bg-opacity-40 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 bg-opacity-20 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-3 h-3 sm:w-4 sm:h-4 bg-yellow-300 bg-opacity-30 rounded-full animate-ping" style={{ animationDelay: '0.8s' }}></div>
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 bg-yellow-500 bg-opacity-25 rounded-full animate-bounce" style={{ animationDelay: '1.2s' }}></div>
+          <div className="absolute top-2 right-1/3 w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 bg-opacity-40 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
         </div>
       </div>
     </>

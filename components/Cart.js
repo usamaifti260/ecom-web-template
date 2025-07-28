@@ -14,15 +14,15 @@ const CART_CONFIG = {
   // UI Text
   title: 'Shopping Cart',
   emptyCartTitle: 'Your cart is empty',
-  emptyCartMessage: 'Looks like you haven\'t added any surgical instruments yet!\nBrowse our premium medical equipment collection and add your favorites.',
-  browseButtonText: '⚕️ Browse Instruments',
+  emptyCartMessage: 'Looks like you haven\'t added any delicious sweets yet!\nBrowse our premium traditional sweets collection and add your favorites.',
+  browseButtonText: '🍯 Browse Sweets',
   checkoutButtonText: 'Proceed to Checkout',
   continueShoppingText: 'Continue Shopping',
   clearCartText: '🗑️ Clear All Items',
 
   // Icons
-  cartIcon: '🏥',
-  emptyCartIcon: '⚕️',
+  cartIcon: '🍯',
+  emptyCartIcon: '🍯',
 
   // Routes
   checkoutRoute: '/checkout'
@@ -112,7 +112,7 @@ const Cart = () => {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center">
                 <span className="text-white text-lg">{CART_CONFIG.cartIcon}</span>
               </div>
               <div>
@@ -136,7 +136,7 @@ const Cart = () => {
           <div className="flex-1 overflow-y-auto">
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-6">
+                <div className="w-32 h-32 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center mb-6">
                   <span className="text-6xl">{CART_CONFIG.emptyCartIcon}</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-3">
@@ -147,7 +147,7 @@ const Cart = () => {
                 </p>
                 <button
                   onClick={toggleCart}
-                  className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-500 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-red-400 to-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-red-500 hover:to-red-700 transition-all duration-300 transform hover:scale-105"
                 >
                   {CART_CONFIG.browseButtonText}
                 </button>
@@ -178,7 +178,7 @@ const Cart = () => {
                         {item.selectedConfiguration?.size && (
                           <>
                             <span className="text-xs text-gray-600">•</span>
-                            <span className="text-xs text-blue-600 font-medium">
+                            <span className="text-xs text-red-600 font-medium">
                               {item.selectedConfiguration.size}
                             </span>
                           </>
@@ -195,7 +195,7 @@ const Cart = () => {
 
                       {/* Price */}
                       <div className="flex items-center space-x-2 mb-3">
-                        <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                        <span className="text-sm font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
                           {formatPrice(item.price)}
                         </span>
                         {item.originalPrice && item.originalPrice > item.price && (
@@ -221,7 +221,7 @@ const Cart = () => {
                           </span>
                           <button
                             onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
+                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-red-500 hover:border-red-500 transition-all duration-200 text-gray-600 hover:text-white"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -274,7 +274,7 @@ const Cart = () => {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                    <span className="text-base font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
                       {formatPrice(totalPrice >= CART_CONFIG.freeShippingThreshold ? totalPrice : totalPrice + CART_CONFIG.shippingFee)}
                     </span>
                   </div>
@@ -288,7 +288,7 @@ const Cart = () => {
                   disabled={isCheckoutLoading}
                   className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center ${isCheckoutLoading
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700'
+                    : 'bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700'
                     } text-white`}
                 >
                   {isCheckoutLoading ? (
@@ -308,7 +308,7 @@ const Cart = () => {
                   disabled={isCheckoutLoading}
                   className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${isCheckoutLoading
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-transparent border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white'
+                    : 'bg-transparent border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white'
                     }`}
                 >
                   {CART_CONFIG.continueShoppingText}
@@ -317,8 +317,8 @@ const Cart = () => {
 
               {/* Free Shipping Info */}
               {totalPrice < CART_CONFIG.freeShippingThreshold && (
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-blue-700 text-sm text-center">
+                <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-700 text-sm text-center">
                     🚚 Add {CART_CONFIG.currency} {(CART_CONFIG.freeShippingThreshold - totalPrice).toFixed(0)} more for FREE shipping!
                   </p>
                 </div>

@@ -19,7 +19,7 @@ export default function Wishlist() {
 
   // Format price
   const formatPrice = (price) => {
-    return `£${price.toLocaleString()}`;
+    return `PKR ${price.toLocaleString()}`;
   };
 
   // Handle color selection
@@ -67,8 +67,8 @@ export default function Wishlist() {
   return (
     <>
       <Head>
-        <title>My Wishlist - Bhatti Industries</title>
-        <meta name="description" content="Your saved surgical instruments at Bhatti Industries. Manage your wishlist and find your favorite products." />
+        <title>My Wishlist - AlHafiz Milk and Sweets</title>
+        <meta name="description" content="Your saved traditional sweets at AlHafiz Milk and Sweets. Manage your wishlist and find your favorite products." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -130,7 +130,7 @@ export default function Wishlist() {
               </p>
               <Link
                 href="/"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Continue Shopping
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

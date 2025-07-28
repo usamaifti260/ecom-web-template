@@ -5,12 +5,12 @@ import { useWishlist } from '@/lib/WishlistContext';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import navlogo from '@/public/assets/sofasphere_dark_logo.png';
+import alhafizLogo from '@/public/assets/Alhafiz_logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSurgicalSubmenuOpen, setIsSurgicalSubmenuOpen] = useState(false);
-  const [isMobileSurgicalOpen, setIsMobileSurgicalOpen] = useState(false);
+  const [isSweetsSubmenuOpen, setIsSweetsSubmenuOpen] = useState(false);
+  const [isMobileSweetsOpen, setIsMobileSweetsOpen] = useState(false);
   const [showBottomNav, setShowBottomNav] = useState(false);
   const { itemCount, toggleCart } = useCart();
   const { wishlistCount } = useWishlist();
@@ -40,59 +40,59 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    setIsMobileSurgicalOpen(false); // Close submenu when main menu closes
+    setIsMobileSweetsOpen(false); // Close submenu when main menu closes
   };
 
-  const toggleMobileSurgicalSubmenu = () => {
-    setIsMobileSurgicalOpen(!isMobileSurgicalOpen);
+  const toggleMobileSweetsSubmenu = () => {
+    setIsMobileSweetsOpen(!isMobileSweetsOpen);
   };
 
-  const surgicalCategories = [
+  const sweetsCategories = [
     {
-      name: 'General Surgery',
-      href: '/category/general-surgery',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Scissors', 'Forceps', 'Retractors', 'Clamps']
+      name: 'Khoya Barfi',
+      href: '/category/khoya-barfi',
+      image: 'https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&auto=format&fit=crop&q=60',
+      subcategories: ['Plain Barfi', 'Silver Barfi', 'Kaju Barfi']
     },
     {
-      name: 'Cardiovascular',
-      href: '/category/cardiovascular',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Heart Surgery', 'Vascular Clamps', 'Cardiac Scissors']
+      name: 'Sohan Halwa',
+      href: '/category/sohan-halwa',
+      image: 'https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=500&auto=format&fit=crop&q=60',
+      subcategories: ['Sada', 'Badami', 'Akhroti', 'Mix Dry Fruit']
     },
     {
-      name: 'Orthopedic',
-      href: '/category/orthopedic',
-      image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Bone Saws', 'Drills', 'Plates & Screws', 'Implants']
+      name: 'Desi Ghee',
+      href: '/category/desi-ghee',
+      image: 'https://images.unsplash.com/photo-1628288309058-4bc21cf48090?w=500&auto=format&fit=crop&q=60',
+      subcategories: ['Pure Cow Ghee', 'Buffalo Ghee', 'Mixed Ghee']
     },
     {
-      name: 'Dental Surgery',
-      href: '/category/dental-surgery',
-      image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Dental Forceps', 'Scalers', 'Elevators']
+      name: 'Milk Products',
+      href: '/category/milk-products',
+      image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500&auto=format&fit=crop&q=60',
+      subcategories: ['Fresh Milk', 'Cream', 'Yogurt']
     },
     {
-      name: 'ENT Surgery',
-      href: '/category/ent-surgery',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Nasal Instruments', 'Ear Surgery', 'Throat Instruments']
+      name: 'Traditional Sweets',
+      href: '/category/traditional-sweets',
+      image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500&auto=format&fit=crop&q=60',
+      subcategories: ['Gulab Jamun', 'Rasgulla', 'Jalebi']
     }
   ];
 
   const navLinks = [
     { name: 'HOME', href: '/' },
-    { name: 'GENERAL SURGERY', href: '/category/general-surgery' },
-    { name: 'CARDIOVASCULAR', href: '/category/cardiovascular' },
-    { name: 'SURGICAL INSTRUMENTS', href: '/category/surgical-instruments', hasSubmenu: true },
-    { name: 'ORTHOPEDIC', href: '/category/orthopedic' },
+    { name: 'KHOYA BARFI', href: '/category/khoya-barfi' },
+    { name: 'SOHAN HALWA', href: '/category/sohan-halwa' },
+    { name: 'ALL SWEETS', href: '/category/all-sweets', hasSubmenu: true },
+    { name: 'DESI GHEE', href: '/category/desi-ghee' },
     { name: 'CONTACT', href: '/contact' }
   ];
 
   return (
     <>
       {/* Header Bar with Contact Info */}
-      <div className="bg-[#1e40af] text-white text-sm">
+      <div className="bg-yellow-400 text-gray-800 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2">
             {/* Mobile - Show only location */}
@@ -100,7 +100,7 @@ const Navbar = () => {
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
-              <span>DHA Road Sialkot, Pakistan</span>
+              <span>Sialkot, Pakistan</span>
             </div>
 
             {/* Desktop - Show all contact info */}
@@ -109,31 +109,31 @@ const Navbar = () => {
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                <span>0331-0422676</span>
+                <span>03487765824</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>info@bhattiindustries.com</span>
+                <span>info@alhafizsweetsandmilk.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <span>DHA Road Sialkot, Pakistan</span>
+                <span>Sialkot, Pakistan</span>
               </div>
             </div>
             <div className="hidden sm:flex items-center space-x-4">
-              <span className="text-blue-200">Follow Us:</span>
+              <span className="text-gray-700">Follow Us:</span>
               <div className="flex items-center space-x-3">
-                <a href="#" className="hover:text-blue-200 transition-colors">
+                <a href="https://www.facebook.com/Alhafizmilkandsweets" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </a>
-                <a href="#" className="hover:text-blue-200 transition-colors">
+                <a href="#" className="hover:text-gray-600 transition-colors">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z" />
                   </svg>
@@ -144,14 +144,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
+      <nav className="bg-red-800 shadow-lg sticky top-0 z-50 border-b border-red-900">
         {/* Single Row Navigation */}
         <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Mobile Menu Button - Left side */}
             <button
               onClick={toggleMenu}
-              className="lg:hidden text-[#1e40af] hover:text-blue-700 transition-colors duration-300"
+              className="lg:hidden text-white hover:text-yellow-200 transition-colors duration-300"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -162,17 +162,13 @@ const Navbar = () => {
             <Link href="/" className="flex items-center">
               <div className="flex items-center justify-center text-center">
                 {/* Logo icon - hidden on mobile */}
-                <div className="mr-3 bg-[#1e40af] p-2 rounded-lg hidden sm:block">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />
-                  </svg>
-                </div>
+                <Image src={alhafizLogo} alt="AlHafiz Logo" className='mr-2 hidden sm:block' width={72} height={72} />
                 {/* Logo text - smaller on mobile */}
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold tracking-wide">
-                  <span className="text-[#1e40af]">
-                    BHATTI
+                  <span className="text-white">
+                    ALHAFIZ
                   </span>
-                  <span className="text-gray-600 ml-1 sm:ml-2 font-light">INDUSTRIES</span>
+                  <span className="text-yellow-200 ml-1 sm:ml-2 font-light">MILK & SWEETS</span>
                 </div>
               </div>
             </Link>
@@ -183,9 +179,9 @@ const Navbar = () => {
                 <div key={link.name} className="relative">
                   {link.hasSubmenu ? (
                     <button
-                      onMouseEnter={() => setIsSurgicalSubmenuOpen(true)}
-                      onMouseLeave={() => setIsSurgicalSubmenuOpen(false)}
-                      className="text-[#1e40af] hover:text-blue-700 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-blue-50 flex items-center space-x-1"
+                      onMouseEnter={() => setIsSweetsSubmenuOpen(true)}
+                      onMouseLeave={() => setIsSweetsSubmenuOpen(false)}
+                      className="text-white hover:text-yellow-200 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-red-900 flex items-center space-x-1"
                     >
                       <span>{link.name}</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +191,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-[#1e40af] hover:text-blue-700 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-blue-50"
+                      className="text-white hover:text-yellow-200 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-red-900"
                     >
                       {link.name}
                     </Link>
@@ -209,13 +205,13 @@ const Navbar = () => {
               {/* Wishlist Button - Hidden on extra small mobile devices */}
               <Link
                 href="/wishlist"
-                className="relative text-[#1e40af] hover:text-blue-700 transition-colors duration-300 p-2 hidden sm:block"
+                className="relative text-white hover:text-yellow-200 transition-colors duration-300 p-2 hidden sm:block"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-yellow-400 text-red-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                     {wishlistCount}
                   </span>
                 )}
@@ -224,14 +220,14 @@ const Navbar = () => {
               {/* Cart Button */}
               <button
                 onClick={toggleCart}
-                className="relative bg-[#1e40af] hover:bg-blue-700 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-2"
+                className="relative bg-yellow-400 hover:bg-yellow-300 text-red-800 px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-2"
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
                 </svg>
                 <span className="hidden sm:inline font-medium text-sm">Cart</span>
                 {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-2 -right-2 bg-white text-red-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
                     {itemCount}
                   </span>
                 )}
@@ -240,20 +236,20 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Full Width Submenu for SURGICAL INSTRUMENTS */}
+        {/* Full Width Submenu for ALL SWEETS */}
         <div
-          className={`absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-200 transition-all duration-300 ease-in-out ${isSurgicalSubmenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          className={`absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-200 transition-all duration-300 ease-in-out ${isSweetsSubmenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
             }`}
-          onMouseEnter={() => setIsSurgicalSubmenuOpen(true)}
-          onMouseLeave={() => setIsSurgicalSubmenuOpen(false)}
+          onMouseEnter={() => setIsSweetsSubmenuOpen(true)}
+          onMouseLeave={() => setIsSweetsSubmenuOpen(false)}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {surgicalCategories.map((category) => (
+              {sweetsCategories.map((category) => (
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="group block bg-blue-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+                  className="group block bg-red-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
                   <div className="aspect-w-3 aspect-h-2 relative h-32">
                     <img
@@ -263,7 +259,7 @@ const Navbar = () => {
                     />
                   </div>
                   <div className="p-3 text-center">
-                    <h3 className="text-sm font-medium text-[#1e40af] group-hover:text-blue-700 transition-colors duration-300">
+                    <h3 className="text-sm font-medium text-red-800 group-hover:text-red-900 transition-colors duration-300">
                       {category.name}
                     </h3>
                   </div>
@@ -284,14 +280,14 @@ const Navbar = () => {
             {/* Mobile Menu Header */}
             <div className="flex justify-between items-center p-6 border-b border-gray-200">
               <div className="text-xl font-bold">
-                <span className="text-[#1e40af]">
-                  BHATTI
+                <span className="text-red-800">
+                  ALHAFIZ
                 </span>
-                <span className="text-gray-600 ml-2">INDUSTRIES</span>
+                <span className="text-gray-600 ml-2">MILK & SWEETS</span>
               </div>
               <button
                 onClick={toggleMenu}
-                className="text-gray-500 hover:text-[#1e40af] transition-colors duration-200"
+                className="text-gray-500 hover:text-red-800 transition-colors duration-200"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -306,12 +302,12 @@ const Navbar = () => {
                   {link.hasSubmenu ? (
                     <div>
                       <button
-                        onClick={toggleMobileSurgicalSubmenu}
-                        className="w-full flex justify-between items-center px-4 py-3 text-[#1e40af] hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium"
+                        onClick={toggleMobileSweetsSubmenu}
+                        className="w-full flex justify-between items-center px-4 py-3 text-red-800 hover:text-red-900 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
                       >
                         <span>{link.name}</span>
                         <svg
-                          className={`w-4 h-4 transition-transform duration-200 ${isMobileSurgicalOpen ? 'rotate-180' : ''
+                          className={`w-4 h-4 transition-transform duration-200 ${isMobileSweetsOpen ? 'rotate-180' : ''
                             }`}
                           fill="none"
                           stroke="currentColor"
@@ -321,17 +317,17 @@ const Navbar = () => {
                         </svg>
                       </button>
 
-                      {/* Mobile Submenu for SURGICAL INSTRUMENTS */}
-                      <div className={`ml-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ${isMobileSurgicalOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      {/* Mobile Submenu for ALL SWEETS */}
+                      <div className={`ml-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ${isMobileSweetsOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                        {surgicalCategories.map((category) => (
+                        {sweetsCategories.map((category) => (
                           <Link
                             key={category.name}
                             href={category.href}
-                            className="block px-4 py-2 text-sm text-blue-600 hover:text-[#1e40af] hover:bg-blue-50 rounded-lg transition-all duration-200"
+                            className="block px-4 py-2 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-all duration-200"
                             onClick={() => {
                               setIsMenuOpen(false);
-                              setIsMobileSurgicalOpen(false);
+                              setIsMobileSweetsOpen(false);
                             }}
                           >
                             {category.name}
@@ -342,7 +338,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="block px-4 py-3 text-[#1e40af] hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium"
+                      className="block px-4 py-3 text-red-800 hover:text-red-900 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
@@ -353,12 +349,12 @@ const Navbar = () => {
 
               <Link
                 href="/wishlist"
-                className="block px-4 py-3 text-[#1e40af] hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium flex items-center justify-between"
+                className="block px-4 py-3 text-red-800 hover:text-red-900 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium flex items-center justify-between"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>Wishlist</span>
                 {wishlistCount > 0 && (
-                  <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  <span className="bg-yellow-400 text-red-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                     {wishlistCount}
                   </span>
                 )}
@@ -376,8 +372,8 @@ const Navbar = () => {
           <Link
             href="/"
             className={`flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/'
-              ? 'text-[#1e40af] bg-blue-50'
-              : 'text-gray-500 hover:text-[#1e40af] hover:bg-blue-50'
+              ? 'text-red-800 bg-red-50'
+              : 'text-gray-500 hover:text-red-800 hover:bg-red-50'
               }`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -390,8 +386,8 @@ const Navbar = () => {
           <Link
             href="/shop"
             className={`flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/shop'
-              ? 'text-[#1e40af] bg-blue-50'
-              : 'text-gray-500 hover:text-[#1e40af] hover:bg-blue-50'
+              ? 'text-red-800 bg-red-50'
+              : 'text-gray-500 hover:text-red-800 hover:bg-red-50'
               }`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -404,8 +400,8 @@ const Navbar = () => {
           <Link
             href="/wishlist"
             className={`relative flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/wishlist'
-              ? 'text-[#1e40af] bg-blue-50'
-              : 'text-gray-500 hover:text-[#1e40af] hover:bg-blue-50'
+              ? 'text-red-800 bg-red-50'
+              : 'text-gray-500 hover:text-red-800 hover:bg-red-50'
               }`}
           >
             <div className="relative">
@@ -413,7 +409,7 @@ const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-red-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                   {wishlistCount}
                 </span>
               )}
@@ -424,14 +420,14 @@ const Navbar = () => {
           {/* Cart */}
           <button
             onClick={toggleCart}
-            className="relative flex flex-col items-center justify-center space-y-1 text-gray-500 hover:text-[#1e40af] hover:bg-blue-50 transition-colors duration-200"
+            className="relative flex flex-col items-center justify-center space-y-1 text-gray-500 hover:text-red-800 hover:bg-red-50 transition-colors duration-200"
           >
             <div className="relative">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
               </svg>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-red-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                   {itemCount}
                 </span>
               )}

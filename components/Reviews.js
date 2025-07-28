@@ -7,104 +7,104 @@ const Reviews = () => {
   const [sortBy, setSortBy] = useState('most-recent');
   const [reviewsToShow, setReviewsToShow] = useState(4);
 
-  // Sample product reviews data - Medical equipment style (27 reviews for 4.8 rating)
+  // Sample product reviews data - Sweet shop style (27 reviews for 4.8 rating)
   const reviews = [
     {
       id: 1,
-      customerName: "Dr. Ahmad H.",
+      customerName: "Fatima A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent quality surgical scissors!",
-      review: "These surgical scissors exceeded my expectations. The craftsmanship is incredible and the German stainless steel quality is premium. Perfect for general surgery procedures. The precision and sharpness are outstanding. Highly recommend for medical professionals.",
+      title: "Best Khoya Barfi in town!",
+      review: "This Khoya Barfi exceeded my expectations. The taste is incredible and the freshness is amazing. Perfect for special occasions and family gatherings. The sweetness level is just right and melts in your mouth. Highly recommend for sweet lovers.",
       date: "December 15, 2024",
-      productName: "Premium Surgical Scissors Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "6 inch",
+      productName: "Premium Khoya Barfi",
+      productImage: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=150&auto=format&fit=crop&q=60",
+      size: "500g",
       color: "Silver",
       helpfulVotes: 12,
       totalVotes: 14,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 2,
-      customerName: "Dr. Sarah A.",
+      customerName: "Ahmad H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Outstanding forceps set!",
-      review: "The forceps set is absolutely outstanding! The quality is excellent and the grip is perfect. The German stainless steel is durable yet precise. Perfect for cardiovascular procedures and looks very professional. Great value for money!",
+      title: "Outstanding Sohan Halwa!",
+      review: "The Sohan Halwa is absolutely outstanding! The quality is excellent and the taste is perfect. The traditional recipe is authentic and brings back childhood memories. Perfect for festivals and celebrations. Great value for money!",
       date: "December 14, 2024",
-      productName: "Cardiovascular Forceps Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Medium",
-      color: "Silver",
+      productName: "Sohan Halwa - Badami",
+      productImage: "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=150&auto=format&fit=crop&q=60",
+      size: "250g",
+      color: "Golden",
       helpfulVotes: 18,
       totalVotes: 20,
       images: []
     },
     {
       id: 3,
-      customerName: "Dr. Ali M.",
+      customerName: "Ayesha M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect orthopedic set!",
-      review: "This orthopedic instrument set is exactly what I was looking for. The German stainless steel finish is beautiful and authentic. Perfect for bone surgery procedures. The craftsmanship is gorgeous and the overall quality is excellent. Fast delivery too!",
+      title: "Pure Desi Ghee is amazing!",
+      review: "This pure desi ghee is exactly what I was looking for. The aroma is divine and the taste is authentic. Perfect for cooking and traditional sweets. The quality is excellent and you can taste the purity. Fast delivery too!",
       date: "December 12, 2024",
-      productName: "Orthopedic Surgery Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Complete Set",
-      color: "Silver",
+      productName: "Pure Cow Desi Ghee",
+      productImage: "https://images.unsplash.com/photo-1628288309058-4bc21cf48090?w=150&auto=format&fit=crop&q=60",
+      size: "1kg",
+      color: "Golden",
       helpfulVotes: 15,
       totalVotes: 16,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=435&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1628288309058-4bc21cf48090?w=435&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 4,
-      customerName: "Dr. Fatima H.",
+      customerName: "Maria K.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent dental instruments!",
-      review: "These dental instruments are perfect for my practice. Modern design and excellent craftsmanship. The stainless steel finish doesn't tarnish which is great. Excellent quality and fast delivery from Bhatti Industries.",
+      title: "Delicious Gulab Jamun!",
+      review: "These Gulab Jamuns are perfect for my family gatherings. Traditional taste and excellent sweetness. The syrup is perfectly balanced and the texture is soft. Excellent quality and fast delivery from AlHafiz Milk and Sweets.",
       date: "December 10, 2024",
-      productName: "Dental Surgery Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Standard",
-      color: "Silver",
+      productName: "Traditional Gulab Jamun",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "12 pieces",
+      color: "Brown",
       helpfulVotes: 22,
       totalVotes: 24,
       images: []
     },
     {
       id: 5,
-      customerName: "Dr. Hassan L.",
+      customerName: "Zara L.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Superior ENT instruments!",
-      review: "These ENT instruments are so versatile! I can use them for various ear, nose, and throat procedures. The material is high quality and the design is beautiful. Great value for money. Will definitely order more from Bhatti Industries.",
+      title: "Fresh milk is excellent!",
+      review: "This fresh milk is so pure and creamy! I can taste the difference compared to packaged milk. The taste is natural and the quality is amazing. Great for making traditional sweets at home. Will definitely order more from AlHafiz.",
       date: "December 8, 2024",
-      productName: "ENT Surgery Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Complete Set",
-      color: "Silver",
+      productName: "Fresh Cow Milk",
+      productImage: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&auto=format&fit=crop&q=60",
+      size: "1 liter",
+      color: "White",
       helpfulVotes: 19,
       totalVotes: 21,
       images: []
     },
     {
       id: 6,
-      customerName: "Dr. Hina R.",
+      customerName: "Hina R.",
       isVerifiedPurchase: true,
       rating: 4,
       title: "Good quality, fast delivery",
-      review: "The product quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The neurosurgery instruments fit well and work exactly as described. Satisfied with my purchase.",
+      review: "The product quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The Kaju Barfi tastes fresh and melts perfectly. Satisfied with my purchase.",
       date: "December 6, 2024",
-      productName: "Neurosurgery Instrument Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Micro",
+      productName: "Kaju Barfi",
+      productImage: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=150&auto=format&fit=crop&q=60",
+      size: "250g",
       color: "Silver",
       helpfulVotes: 14,
       totalVotes: 16,
@@ -112,148 +112,148 @@ const Reviews = () => {
     },
     {
       id: 7,
-      customerName: "Dr. Nadia S.",
+      customerName: "Sadia S.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Beautiful surgical retractors!",
-      review: "The surgical retractors are absolutely stunning! The precision and smoothness are remarkable. Perfect for exposure during surgery. The quality is premium and the craftsmanship is excellent. Highly recommend for surgical procedures!",
+      title: "Beautiful Sohan Halwa Mix!",
+      review: "The Mix Dry Fruit Sohan Halwa is absolutely stunning! The variety of nuts and the perfect sweetness are remarkable. Perfect for special occasions. The quality is premium and the taste is excellent. Highly recommend for celebrations!",
       date: "December 4, 2024",
-      productName: "Surgical Retractor Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Large",
-      color: "Titanium",
+      productName: "Sohan Halwa - Mix Dry Fruit",
+      productImage: "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=150&auto=format&fit=crop&q=60",
+      size: "500g",
+      color: "Mixed",
       helpfulVotes: 25,
       totalVotes: 27,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 8,
-      customerName: "Dr. Rabia K.",
+      customerName: "Rabia K.",
       isVerifiedPurchase: true,
       rating: 5,
       title: "Exceeded expectations!",
-      review: "This biopsy needle set is even better than I expected. The needles are sharp and precise, perfect for tissue sampling. The quality is vibrant and the construction is impeccable. Great customer service from Bhatti Industries too!",
+      review: "This Rasgulla pack is even better than I expected. The sweets are soft and spongy, perfect for dessert after meals. The syrup is perfectly sweet and the texture is amazing. Great customer service from AlHafiz too!",
       date: "December 2, 2024",
-      productName: "Biopsy Needle Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "18G",
-      color: "Silver",
+      productName: "Traditional Rasgulla",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "8 pieces",
+      color: "White",
       helpfulVotes: 16,
       totalVotes: 18,
       images: []
     },
     {
       id: 9,
-      customerName: "Dr. Amina T.",
+      customerName: "Amina T.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Premium quality instruments",
-      review: "The instrument quality is outstanding! This scalpel set is perfect for precision procedures. The craftsmanship is intricate and beautiful. Received many compliments from colleagues when I used them in the OR.",
+      title: "Premium quality sweets",
+      review: "The sweet quality is outstanding! This Jalebi set is perfect for festivals and celebrations. The crispiness is perfect and the syrup coating is excellent. Received many compliments from guests when I served them.",
       date: "November 30, 2024",
-      productName: "Premium Scalpel Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Blade #10-15",
-      color: "Silver",
+      productName: "Crispy Jalebi",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "300g",
+      color: "Orange",
       helpfulVotes: 21,
       totalVotes: 23,
       images: []
     },
     {
       id: 10,
-      customerName: "Dr. Khadija M.",
+      customerName: "Khadija M.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality and precise",
-      review: "This surgical clamp set fits perfectly and is very durable. The design is professional and the steel is corrosion-resistant. Only minor issue is that the finish was slightly different than the photo, but still beautiful.",
+      title: "Good quality and fresh",
+      review: "This Kheer mix fits perfectly for family desserts and is very convenient. The taste is authentic and the preparation is simple. Only minor issue is that the sweetness was slightly different than expected, but still delicious.",
       date: "November 28, 2024",
-      productName: "Surgical Clamp Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Medium",
-      color: "Silver",
+      productName: "Kheer Mix",
+      productImage: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&auto=format&fit=crop&q=60",
+      size: "200g",
+      color: "Cream",
       helpfulVotes: 11,
       totalVotes: 13,
       images: []
     },
     {
       id: 11,
-      customerName: "Dr. Saira A.",
+      customerName: "Saira A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Beautiful and precise hemostats",
-      review: "These hemostats are so elegant and practical. Perfect for both general and specialized procedures. The stainless steel is high quality and the design is ergonomic. Great value for money!",
+      title: "Beautiful and tasty laddu",
+      review: "These Besan Laddu are so elegant and delicious. Perfect for both daily consumption and special celebrations. The gram flour is high quality and the ghee taste is authentic. Great value for money!",
       date: "November 26, 2024",
-      productName: "Hemostat Clamp Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Curved",
-      color: "Silver",
+      productName: "Besan Laddu",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "6 pieces",
+      color: "Yellow",
       helpfulVotes: 17,
       totalVotes: 19,
       images: []
     },
     {
       id: 12,
-      customerName: "Dr. Farah B.",
+      customerName: "Farah B.",
       isVerifiedPurchase: true,
       rating: 5,
       title: "Professional quality at great price",
-      review: "This surgical probe set is absolutely gorgeous! The steel is premium and the craftsmanship is exquisite. Perfect for diagnostic procedures. The packaging was also very nice and sterile.",
+      review: "This Malai Khoya is absolutely gorgeous! The texture is creamy and the taste is authentic. Perfect for making homemade sweets. The packaging was also very nice and hygienic.",
       date: "November 24, 2024",
-      productName: "Surgical Probe Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Assorted",
-      color: "Silver",
+      productName: "Fresh Malai Khoya",
+      productImage: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&auto=format&fit=crop&q=60",
+      size: "500g",
+      color: "White",
       helpfulVotes: 23,
       totalVotes: 25,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=387&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 13,
-      customerName: "Dr. Uzma H.",
+      customerName: "Uzma H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Modern and efficient sutures",
-      review: "These suture materials are perfect for modern surgery. The quality is contemporary and the material is biocompatible. Great for wound closure and post-operative care. Highly satisfied with Bhatti Industries!",
+      title: "Modern and traditional taste",
+      review: "These Coconut Barfi are perfect for modern celebrations. The quality is contemporary and the coconut flavor is amazing. Great for parties and festivals. Highly satisfied with AlHafiz Milk and Sweets!",
       date: "November 22, 2024",
-      productName: "Surgical Suture Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "3-0 to 6-0",
-      color: "Blue",
+      productName: "Coconut Barfi",
+      productImage: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=150&auto=format&fit=crop&q=60",
+      size: "250g",
+      color: "White",
       helpfulVotes: 13,
       totalVotes: 15,
       images: []
     },
     {
       id: 14,
-      customerName: "Dr. Mehreen K.",
+      customerName: "Mehreen K.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Precision surgical drills",
-      review: "This precision drill set is absolutely beautiful! The engineering details are amazing and the drill quality is premium. Perfect for orthopedic procedures. Worth every penny!",
+      title: "Premium festival sweets",
+      review: "This festival sweet box is absolutely beautiful! The variety and presentation are amazing and the sweet quality is premium. Perfect for gifting during Eid and other celebrations. Worth every penny!",
       date: "November 20, 2024",
-      productName: "Precision Drill Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "2-10mm",
-      color: "Titanium",
+      productName: "Festival Sweet Box",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "1kg Mixed",
+      color: "Assorted",
       helpfulVotes: 28,
       totalVotes: 30,
       images: []
     },
     {
       id: 15,
-      customerName: "Dr. Rubina S.",
+      customerName: "Rubina S.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Professional and durable",
-      review: "This surgical light is perfect for operating room settings. The illumination is comfortable and consistent. The build quality is good. The brightness is exactly as shown in specifications. Good quality for the price.",
+      title: "Fresh and convenient",
+      review: "This yogurt is perfect for daily consumption and cooking. The taste is fresh and consistent. The packaging is good. The sourness is exactly as expected. Good quality for the price.",
       date: "November 18, 2024",
-      productName: "LED Surgical Light",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "36W",
+      productName: "Fresh Yogurt",
+      productImage: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&auto=format&fit=crop&q=60",
+      size: "500ml",
       color: "White",
       helpfulVotes: 9,
       totalVotes: 11,
@@ -261,197 +261,197 @@ const Reviews = () => {
     },
     {
       id: 16,
-      customerName: "Dr. Shazia R.",
+      customerName: "Shazia R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent sterilization equipment",
-      review: "This autoclave sterilizer is perfect for clinic use. The modern design is efficient and the sterilization is reliable. Great for everyday use. Fast delivery from Bhatti Industries too!",
+      title: "Excellent cream quality",
+      review: "This fresh cream is perfect for making desserts and sweets. The texture is smooth and the taste is rich. Great for everyday use. Fast delivery from AlHafiz Milk and Sweets too!",
       date: "November 16, 2024",
-      productName: "Autoclave Sterilizer",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "12L",
-      color: "Stainless Steel",
+      productName: "Fresh Cream",
+      productImage: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=150&auto=format&fit=crop&q=60",
+      size: "250ml",
+      color: "White",
       helpfulVotes: 12,
       totalVotes: 14,
       images: []
     },
     {
       id: 17,
-      customerName: "Dr. Tahira M.",
+      customerName: "Tahira M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for microsurgery!",
-      review: "This microsurgery kit is absolutely stunning! The precision design is perfect for delicate procedures. The instruments are high-quality and the magnification is perfect. Received so many compliments!",
+      title: "Perfect for special occasions!",
+      review: "This Sohan Halwa Akhroti is absolutely stunning! The walnut pieces are perfectly distributed and the taste is divine. Perfect for wedding celebrations and special events. Received so many compliments!",
       date: "November 14, 2024",
-      productName: "Microsurgery Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Micro",
-      color: "Titanium",
+      productName: "Sohan Halwa - Akhroti",
+      productImage: "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=150&auto=format&fit=crop&q=60",
+      size: "500g",
+      color: "Golden",
       helpfulVotes: 20,
       totalVotes: 22,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=387&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 18,
-      customerName: "Dr. Yasmin A.",
+      customerName: "Yasmin A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Ultra comfortable surgical gloves",
-      review: "These surgical gloves are incredibly comfortable! Perfect for long procedures and sensitive operations. The latex is soft and the fit is excellent. Great for everyday surgical use.",
+      title: "Ultra fresh buffalo ghee",
+      review: "This buffalo ghee is incredibly pure and aromatic! Perfect for traditional cooking and making authentic sweets. The taste is rich and the quality is excellent. Great for everyday cooking use.",
       date: "November 12, 2024",
-      productName: "Surgical Gloves (Sterile)",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Size 7.5",
-      color: "White",
+      productName: "Pure Buffalo Ghee",
+      productImage: "https://images.unsplash.com/photo-1628288309058-4bc21cf48090?w=150&auto=format&fit=crop&q=60",
+      size: "500g",
+      color: "Golden",
       helpfulVotes: 8,
       totalVotes: 10,
       images: []
     },
     {
       id: 19,
-      customerName: "Dr. Samina K.",
+      customerName: "Samina K.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good for clinical use",
-      review: "This examination table is suitable for clinic and hospital use. The upholstery is professional and the construction is good. The height adjustment is smooth and the quality is decent.",
+      title: "Good for daily use",
+      review: "This mixed ghee is suitable for daily cooking and baking. The taste is good and the price is reasonable. The aroma is pleasant and the quality is decent for regular household use.",
       date: "November 10, 2024",
-      productName: "Medical Examination Table",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Standard",
-      color: "Blue",
+      productName: "Mixed Ghee",
+      productImage: "https://images.unsplash.com/photo-1628288309058-4bc21cf48090?w=150&auto=format&fit=crop&q=60",
+      size: "1kg",
+      color: "Golden",
       helpfulVotes: 7,
       totalVotes: 9,
       images: []
     },
     {
       id: 20,
-      customerName: "Dr. Naila H.",
+      customerName: "Naila H.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Classic stethoscope is excellent",
-      review: "This classic cardiology stethoscope is absolutely beautiful! The acoustic quality is unique and the classic craftsmanship is outstanding. Great sound quality and fast shipping from Bhatti Industries. Love it!",
+      title: "Classic Sohan Halwa is excellent",
+      review: "This classic Sohan Halwa Sada is absolutely beautiful! The traditional taste is unique and the classic preparation is outstanding. Great authentic flavor and fast shipping from AlHafiz. Love it!",
       date: "November 8, 2024",
-      productName: "Cardiology Stethoscope",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Adult",
-      color: "Black",
+      productName: "Sohan Halwa - Sada",
+      productImage: "https://images.unsplash.com/photo-1603894584373-5ac82605b9ee?w=150&auto=format&fit=crop&q=60",
+      size: "250g",
+      color: "Golden",
       helpfulVotes: 15,
       totalVotes: 17,
       images: []
     },
     {
       id: 21,
-      customerName: "Dr. Bushra S.",
+      customerName: "Bushra S.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Minimalist and precise",
-      review: "This minimalist surgical kit is perfect for those who love simplicity. The design is clean and elegant. Great quality instruments and comfortable size. Exactly what I was looking for!",
+      title: "Minimalist and pure",
+      review: "This simple Khoya Barfi is perfect for those who love traditional taste. The preparation is clean and elegant. Great quality ingredients and comfortable sweetness. Exactly what I was looking for!",
       date: "November 6, 2024",
-      productName: "Minimalist Surgery Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Compact",
-      color: "Silver",
+      productName: "Plain Khoya Barfi",
+      productImage: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=150&auto=format&fit=crop&q=60",
+      size: "250g",
+      color: "White",
       helpfulVotes: 10,
       totalVotes: 12,
       images: []
     },
     {
       id: 22,
-      customerName: "Dr. Fouzia R.",
+      customerName: "Fouzia R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Premium anesthesia kit stunning!",
-      review: "This premium anesthesia kit is absolutely exquisite! The quality instruments and perfect precision are amazing for special procedures. The craftsmanship is outstanding. Worth the investment!",
+      title: "Premium gift box stunning!",
+      review: "This premium sweet gift box is absolutely exquisite! The variety of sweets and perfect presentation are amazing for special occasions and gifting. The packaging is outstanding. Worth the investment!",
       date: "November 4, 2024",
-      productName: "Anesthesia Administration Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Complete Set",
-      color: "Silver",
+      productName: "Premium Sweet Gift Box",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "2kg Mixed",
+      color: "Assorted",
       helpfulVotes: 32,
       totalVotes: 34,
       images: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=387&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=388&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=387&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=388&auto=format&fit=crop&q=60"
       ]
     },
     {
       id: 23,
-      customerName: "Dr. Riffat M.",
+      customerName: "Riffat M.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for mobile clinics",
-      review: "This medical equipment case is light yet durable, perfect for mobile clinics. The organization is practical and the design is efficient. Great for field medical work. Highly recommend Bhatti Industries!",
+      title: "Perfect for parties",
+      review: "This party sweet pack is light yet satisfying, perfect for celebrations and gatherings. The variety is practical and the taste is excellent. Great for family events. Highly recommend AlHafiz Milk and Sweets!",
       date: "November 2, 2024",
-      productName: "Mobile Medical Kit",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Large",
-      color: "Black",
+      productName: "Party Sweet Pack",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "1kg",
+      color: "Mixed",
       helpfulVotes: 14,
       totalVotes: 16,
       images: []
     },
     {
       id: 24,
-      customerName: "Dr. Shaista K.",
+      customerName: "Shaista K.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Traditional and reliable",
-      review: "This traditional surgical instrument set with cultural heritage is beautiful and authentic. The quality is excellent and the design is timeless. Perfect for teaching hospitals and personal use.",
+      title: "Traditional and authentic",
+      review: "This traditional sweet collection with cultural heritage is beautiful and authentic. The quality is excellent and the taste is timeless. Perfect for preserving our sweet traditions and family celebrations.",
       date: "October 31, 2024",
-      productName: "Traditional Surgery Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Heritage",
-      color: "Brass",
+      productName: "Traditional Sweet Collection",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "500g Mixed",
+      color: "Traditional",
       helpfulVotes: 18,
       totalVotes: 20,
       images: []
     },
     {
       id: 25,
-      customerName: "Dr. Nayab A.",
+      customerName: "Nayab A.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Executive medical organizer perfect",
-      review: "This executive medical organizer is perfect for hospital and clinic management. The organization is professional and the materials are high quality. Great organization and excellent customer service from Bhatti Industries. Very satisfied!",
+      title: "Executive sweet hamper perfect",
+      review: "This executive sweet hamper is perfect for corporate gifting and business occasions. The presentation is professional and the quality is high. Great variety and excellent customer service from AlHafiz. Very satisfied!",
       date: "October 29, 2024",
-      productName: "Medical Equipment Organizer",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Large",
-      color: "Silver",
+      productName: "Executive Sweet Hamper",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "1.5kg",
+      color: "Premium",
       helpfulVotes: 16,
       totalVotes: 18,
       images: []
     },
     {
       id: 26,
-      customerName: "Dr. Ghazala S.",
+      customerName: "Ghazala S.",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality, minor adjustment needed",
-      review: "The quality is good and the design is nice. However, the handle was slightly longer for my preference. Overall satisfied with the purchase. The steel is durable and the finish is beautiful.",
+      title: "Good quality, minor preference",
+      review: "The quality is good and the taste is nice. However, the sweetness was slightly higher for my preference. Overall satisfied with the purchase. The texture is perfect and the freshness is good.",
       date: "October 27, 2024",
-      productName: "Surgical Handle Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Standard",
-      color: "Silver",
+      productName: "Sweet Samosa",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "6 pieces",
+      color: "Golden",
       helpfulVotes: 6,
       totalVotes: 8,
       images: []
     },
     {
       id: 27,
-      customerName: "Dr. Lubna R.",
+      customerName: "Lubna R.",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Amazing craftsmanship work",
-      review: "The craftsmanship on this surgical instrument set is absolutely amazing! The attention to detail is incredible. Perfect for complex procedures and special operations. The steel quality is premium. Highly recommend Bhatti Industries!",
+      title: "Amazing craftsmanship and taste",
+      review: "The craftsmanship on these handmade sweets is absolutely amazing! The attention to detail is incredible. Perfect for special celebrations and premium gifting. The taste quality is exceptional. Highly recommend AlHafiz Milk and Sweets!",
       date: "October 25, 2024",
-      productName: "Premium Surgery Set",
-      productImage: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&auto=format&fit=crop&q=60",
-      size: "Professional",
-      color: "Titanium",
+      productName: "Handmade Premium Sweets",
+      productImage: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=150&auto=format&fit=crop&q=60",
+      size: "750g",
+      color: "Artisan",
       helpfulVotes: 24,
       totalVotes: 26,
       images: []
@@ -562,7 +562,7 @@ const Reviews = () => {
                           setSelectedFilter(star.toString());
                           setReviewsToShow(4);
                         }}
-                        className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200"
+                        className="flex items-center space-x-1 text-sm text-red-600 hover:text-red-800 transition-colors duration-200"
                       >
                         <span>{star} star</span>
                       </button>
@@ -593,7 +593,7 @@ const Reviews = () => {
                   setReviewsToShow(4);
                 }}
                 className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === 'all'
-                  ? 'bg-blue-600 text-white border-blue-600'
+                  ? 'bg-red-600 text-white border-red-600'
                   : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                   }`}
               >
@@ -607,7 +607,7 @@ const Reviews = () => {
                     setReviewsToShow(4);
                   }}
                   className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === star.toString()
-                    ? 'bg-blue-600 text-white border-blue-600'
+                    ? 'bg-red-600 text-white border-red-600'
                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                     }`}
                 >
@@ -621,7 +621,7 @@ const Reviews = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
               >
                 <option value="most-recent">Most recent</option>
                 <option value="oldest">Oldest</option>
@@ -674,7 +674,7 @@ const Reviews = () => {
 
                   {/* Product Info */}
                   <div className="mb-3">
-                    <Link href={`/product/${review.id}`} className="text-blue-600 hover:text-blue-800 text-sm">
+                    <Link href={`/product/${review.id}`} className="text-red-600 hover:text-red-800 text-sm">
                       {review.productName}
                     </Link>
                     <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
@@ -712,11 +712,11 @@ const Reviews = () => {
                       {review.helpfulVotes} of {review.totalVotes} people found this helpful
                     </span>
                     <div className="flex space-x-2">
-                      <button className="text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                      <button className="text-red-600 hover:text-red-800 transition-colors duration-200">
                         Helpful
                       </button>
                       <span className="text-gray-400">|</span>
-                      <button className="text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                      <button className="text-red-600 hover:text-red-800 transition-colors duration-200">
                         Report
                       </button>
                     </div>
@@ -732,7 +732,7 @@ const Reviews = () => {
           <div className="text-center mt-8">
             <button
               onClick={loadMoreReviews}
-              className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="px-8 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200 shadow-md hover:shadow-lg"
             >
               Load More Reviews ({allFilteredReviews.length - reviewsToShow} remaining)
             </button>
