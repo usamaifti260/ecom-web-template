@@ -7,16 +7,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const categories = [
-    { name: 'Khoya Barfi', href: '/category/khoya-barfi' },
-    { name: 'Sohan Halwa', href: '/category/sohan-halwa' },
-    { name: 'Desi Ghee', href: '/category/desi-ghee' },
-    { name: 'Milk Products', href: '/category/milk-products' },
-    { name: 'Traditional Sweets', href: '/category/traditional-sweets' }
+    { name: 'Kitchen Cleaners', href: '/category/kitchen-cleaners' },
+    { name: 'Bathroom Cleaners', href: '/category/bathroom-cleaners' },
+    { name: 'Bleach & Disinfectants', href: '/category/bleach-disinfectants' },
+    { name: 'Laundry Products', href: '/category/laundry-products' },
+    { name: 'Personal Care', href: '/category/personal-care' }
   ];
 
   const quickLinks = [
-    { name: 'New Arrivals', href: '/category/new-arrivals' },
-    { name: 'Sale Items', href: '/category/on-sale' },
+    { name: 'New Arrivals', href: '/shop?sort=newest' },
+    { name: 'On Sale', href: '/shop?onSale=true' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -24,7 +24,7 @@ const Footer = () => {
   const customerService = [
     { name: 'Shipping Info', href: '/shipping' },
     { name: 'Returns & Exchanges', href: '/returns' },
-    { name: 'Payment Options', href: '/payment-options' },
+    { name: 'Payment Options', href: '/payment' },
     { name: 'Track Your Order', href: '/track-order' },
     { name: 'FAQ', href: '/faq' }
   ];
@@ -32,17 +32,17 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-red-600 to-red-500">
+      <div className="bg-gradient-to-r from-blue-800 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Stay Updated with Fresh Traditional Sweets
+              Stay Updated with Our Latest Cleaning Solutions
             </h3>
-            <p className="text-red-100 mb-2 max-w-2xl mx-auto">
-              Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and premium traditional sweets made with authentic recipes.
+            <p className="text-blue-100 mb-2 max-w-2xl mx-auto">
+              Subscribe to our newsletter and be the first to know about new products, exclusive offers, and expert cleaning tips.
             </p>
-            <p className="text-red-100 mb-8 max-w-2xl mx-auto font-semibold">
-              ✨ Plus, enjoy our fresh daily preparation and quality assurance!
+            <p className="text-blue-100 mb-8 max-w-2xl mx-auto font-semibold">
+              ✨ Plus, get a 10% discount on your first order!
             </p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
               <input
@@ -50,7 +50,7 @@ const Footer = () => {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <button className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
+              <button className="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200">
                 Subscribe
               </button>
             </div>
@@ -65,17 +65,24 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <Link href="/">
-                <Image src={alhafizLogo} alt="AlHafiz Logo" className="mb-4" width={164} height={164} />
+              <Link href="/" className="flex items-center justify-start mb-4">
+                <div className="relative mr-4">
+                  <svg className="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9.5 2C8.67 2 8 2.67 8 3.5V5H7C5.9 5 5 5.9 5 7v1c0 1.1.9 2 2 2h1v7c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V10h1c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-1V3.5C16 2.67 15.33 2 14.5 2h-5zM9.5 3h5c.28 0 .5.22.5.5V5H9V3.5c0-.28.22-.5.5-.5zM7 6h10c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1h-1v7c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1V9H7c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1z" />
+                  </svg>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full opacity-80"></div>
+                  <div className="absolute top-1 right-1 w-3 h-3 bg-white rounded-full opacity-60"></div>
+                </div>
+                {/* <Image src={alhafizLogo} alt="Marakish Logo" width={120} height={120} /> */}
               </Link>
               <div className="text-2xl font-bold tracking-wide mb-4">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-300">
-                  ALHAFIZ
+                <span className="text-white">
+                  MARAKISH
                 </span>
-                <span className="text-white ml-2 font-light">MILK & SWEETS</span>
+                <span className="text-blue-400 ml-2 font-light">CLEANING SOLUTIONS</span>
               </div>
               <p className="text-gray-300 leading-relaxed mb-6">
-                Premium Traditional Sweets & Fresh Milk Products. Discover authentic taste, quality ingredients, and fresh daily preparation. Specializing in Khoya Barfi, Sohan Halwa, Pure Desi Ghee, and traditional sweets that bring joy to every celebration.
+                Premium Quality Cleaning Products. Discover powerful formulas, effective results, and complete household and commercial cleaning solutions. Specializing in dishwash liquids, detergents, bathroom cleaners, and more.
               </p>
 
               {/* Trust Indicators */}
@@ -84,13 +91,13 @@ const Footer = () => {
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Fresh Daily Preparation</span>
+                  <span className="text-gray-300 text-sm">Powerful Cleaning Formulas</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-300 text-sm">Made in Sialkot, Pakistan</span>
+                  <span className="text-gray-300 text-sm">Proudly Made in Pakistan</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,29 +114,29 @@ const Footer = () => {
             <h4 className="text-lg font-bold text-white mb-4">Contact Us</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-gray-300">03487765824</span>
+                <span className="text-gray-300">0343-5801011</span>
               </div>
               <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-gray-300">info@alhafizsweetsandmilk.com</span>
+                <span className="text-gray-300">info@marakish.com</span>
               </div>
               <div className="flex items-start space-x-3">
-                <svg className="w-5 h-5 text-yellow-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-gray-300">Satellite town, Jhang, Pakistan</span>
+                <span className="text-gray-300">Karachi, Pakistan</span>
               </div>
               <div className="flex items-center space-x-3 mt-4 p-3 bg-gray-800 rounded-lg">
                 <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span className="text-green-400 font-semibold text-sm">Fresh Daily Products</span>
+                <span className="text-green-400 font-semibold text-sm">Effective & Reliable</span>
               </div>
             </div>
           </div>
@@ -142,7 +149,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-200"
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -156,8 +163,8 @@ const Footer = () => {
             <h4 className="text-lg font-bold text-white mb-4">Follow Us</h4>
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com/Alhafizmilkandsweets"
-                className="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition-colors duration-200"
+                href="#"
+                className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-colors duration-200"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -166,7 +173,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition-colors duration-200"
+                className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-colors duration-200"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -174,8 +181,8 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://wa.me/923487765824"
-                className="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition-colors duration-200"
+                href="https://wa.me/923435801011"
+                className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-colors duration-200"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -184,7 +191,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition-colors duration-200"
+                className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -193,7 +200,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-gray-400 text-sm mt-4">
-              Stay connected for latest updates, fresh sweet arrivals, and exclusive traditional sweet offers!
+              Stay connected for the latest news, product launches, and special offers!
             </p>
           </div>
         </div>
@@ -204,16 +211,16 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2020 - {currentYear} AlHafiz Milk and Sweets. All rights reserved.
+              © {currentYear > 2024 ? `2024 - ${currentYear}` : '2024'} Marakish. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <Link href="/privacy-policy" className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-blue-400 transition-colors duration-200">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+              <Link href="/terms-of-service" className="text-gray-400 hover:text-blue-400 transition-colors duration-200">
                 Terms of Service
               </Link>
-              <Link href="/cookie-policy" className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+              <Link href="/cookie-policy" className="text-gray-400 hover:text-blue-400 transition-colors duration-200">
                 Cookie Policy
               </Link>
             </div>

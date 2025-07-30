@@ -1,38 +1,38 @@
 [
   {
     "id": "1",
-    "categoryname": "Sohan Halwa",
-    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/474631877_594322286689604_7263185880011590076_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=X-t-oFSnsZ0Q7kNvwHz1Yqs&_nc_oc=Adk403Pr1aHmJQemhGV5jZzkUOXX448ZX3NPg_0zb7YRdvqTNOOdpsp2RHnL3xcKGOs&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=D0W0m6rmze2qpQiXyrwKaw&oh=00_AfQlIvNhud9i02RiRZU-uL1x0TIskh8_bEsCYazVyYH3Zw&oe=688CA13D",
+    "categoryname": "Kitchen Cleaners",
+    "categorythumbnail": "https://i.ibb.co/DHW1DKKP/1.jpg",
     "showonhomepage": true
   },
   {
     "id": "2",
-    "categoryname": "Khoya Barfi",
-    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/518133726_721704703951361_5611930838175328462_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=x8lMAfOPRuYQ7kNvwHuZD9J&_nc_oc=AdmXiljmXXul_MnlLtmbBfmtVu-mm6_eZarHRe0n2QVuUQfDIbGDm_JWq_NbpE-jVyA&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=6Ko0AQx0DG4b-MrSAQ5GEg&oh=00_AfTUCdVqRx08gyZ5VBohz8h5iUz_RLlPwggyULGIbEQRpg&oe=688C969B",
+    "categoryname": "Bathroom Cleaners",
+    "categorythumbnail": "https://i.ibb.co/yFZfRd78/2.jpg",
     "showonhomepage": true
   },
   {
     "id": "3",
-    "categoryname": "Desi Ghee",
-    "categorythumbnail": "https://scontent.flyp4-1.fna.fbcdn.net/v/t39.30808-6/513166432_709101215211710_7305540477351751481_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eHnCqL0rQroQ7kNvwG5NoLf&_nc_oc=AdntgHczOJUuygFhPuFGZ0d77Y1BcG7NBvLoANQJSDrKorHeUjFgGlXabPjdb_KqT4M&_nc_zt=23&_nc_ht=scontent.flyp4-1.fna&_nc_gid=9JdY0NGFicSfzYHbKHANrw&oh=00_AfQ9Lrgmwj63NGhUDh0i1vSQLWvyDZ5XkR8EkFXTfWjJPQ&oe=688CA9B6",
+    "categoryname": "Bleach & Disinfectants",
+    "categorythumbnail": "https://i.ibb.co/h12LmF2L/3.jpg",
     "showonhomepage": true
   },
   {
     "id": "4",
-    "categoryname": "Milk Products",
-    "categorythumbnail": "https://i.ibb.co/p6PX7sdn/Blue-and-White-Modern-Local-Dairy-Farm-Market-Linked-In-Post.png",
+    "categoryname": "Laundry Products",
+    "categorythumbnail": "https://i.ibb.co/6cV5mG8Y/4.jpg",
     "showonhomepage": true
   },
   {
     "id": "5",
-    "categoryname": "Traditional Sweets",
-    "categorythumbnail": "https://i.ibb.co/G32qhdhX/Brown-Simple-Yummy-Sweet-Food-Instagram-Post.png",
+    "categoryname": "Personal Care",
+    "categorythumbnail": "https://i.ibb.co/PGHsfK6W/5.jpg",
     "showonhomepage": true
   },
   {
     "id": "6",
-    "categoryname": "Festival Specials",
-    "categorythumbnail": "https://i.ibb.co/BHHJmzRz/Yellow-and-Orange-Photo-India-Export-Sweets-Instagram-Post.png",
+    "categoryname": "Commercial Cleaning",
+    "categorythumbnail": "https://i.ibb.co/Y7wmTV55/6.jpg",
     "showonhomepage": true
   }
 ]

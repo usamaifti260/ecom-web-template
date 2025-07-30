@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const WHATSAPP_NUMBER = '923487765824';
+const WHATSAPP_NUMBER = '923435801011';
 const MESSAGE = 'Hi! I need help with my order.';
 
 const FloatingWhatsApp = () => {

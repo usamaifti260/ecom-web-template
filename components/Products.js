@@ -35,16 +35,16 @@ const PRODUCTS_CONFIG = {
     subtitle: 'Special Offers',
     title: 'On Sale',
     titleHighlight: 'Sale',
-    description: "Don't miss out on these amazing deals and fresh sweet offers",
+    description: "Don't miss out on these amazing deals on premium cleaning products",
     viewAllLink: '/category/on-sale',
     viewAllText: 'View All Sale Items'
   },
 
   newArrivalsSection: {
-    subtitle: 'Fresh Collection',
+    subtitle: 'Latest Products',
     title: 'New Arrivals',
     titleHighlight: 'Arrivals',
-    description: 'Discover our latest collection of traditional sweets made with authentic recipes and premium ingredients',
+    description: 'Discover our latest collection of cleaning products with advanced formulas and effective solutions',
     viewAllLink: '/category/new-arrivals',
     viewAllText: 'View All New Arrivals'
   },
@@ -66,9 +66,9 @@ const PRODUCTS_CONFIG = {
 
   // Empty State
   emptyState: {
-    icon: '🍯',
+    icon: '🧽',
     title: 'No Products Available',
-    message: 'Our delicious collection of traditional sweets is being prepared. Check back soon for amazing fresh sweets!'
+    message: 'Our premium cleaning products collection is being updated. Check back soon for amazing cleaning solutions!'
   },
 
   // Messages & Text
@@ -289,7 +289,7 @@ const Products = ({ products = [], categories = [] }) => {
           return (
             <div key={category.id} className="mb-20">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
                   {PRODUCTS_CONFIG.shopCollectionText}
                 </h2>
                 <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -319,7 +319,7 @@ const Products = ({ products = [], categories = [] }) => {
                 {currentVisible < categoryProducts.length ? (
                   <button
                     onClick={() => handleViewMore(category.id)}
-                    className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewMoreText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,7 +329,7 @@ const Products = ({ products = [], categories = [] }) => {
                 ) : (
                   <Link
                     href={`/category/${getCategorySlug(category.categoryname)}`}
-                    className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewAllText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -344,16 +344,16 @@ const Products = ({ products = [], categories = [] }) => {
       </div>
 
       {/* On Sale Section - Full width dark background */}
-      <div className="mb-20 bg-red-900 py-16">
+      <div className="mb-20 bg-blue-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-yellow-400 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-green-400 uppercase tracking-wide mb-4">
               {PRODUCTS_CONFIG.specialOffersSection.subtitle}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-yellow-400">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
+              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-green-400">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
             </h3>
-            <p className="text-lg text-yellow-100 max-w-2xl mx-auto">
+            <p className="text-lg text-green-100 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.specialOffersSection.description}
             </p>
           </div>
@@ -411,7 +411,7 @@ const Products = ({ products = [], categories = [] }) => {
           <div className="text-center mt-8">
             <Link
               href={PRODUCTS_CONFIG.specialOffersSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-yellow-400 text-red-900 hover:bg-yellow-300 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-green-400 text-blue-900 hover:bg-green-300 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.specialOffersSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,11 +426,11 @@ const Products = ({ products = [], categories = [] }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
               {PRODUCTS_CONFIG.newArrivalsSection.subtitle}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              New <span className="text-red-600">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
+              New <span className="text-blue-600">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.newArrivalsSection.description}
@@ -489,7 +489,7 @@ const Products = ({ products = [], categories = [] }) => {
           <div className="text-center mt-8">
             <Link
               href={PRODUCTS_CONFIG.newArrivalsSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-red-800 hover:bg-red-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.newArrivalsSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

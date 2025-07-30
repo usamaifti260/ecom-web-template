@@ -5,16 +5,16 @@ import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 
 const SITE_CONFIG = {
-  productsSchemaSlug: 'products_alhafizsweetsandmilk',
-  categoriesSchemaSlug: 'categories_alhafizsweetsandmilk',
+  productsSchemaSlug: 'products_marakish',
+  categoriesSchemaSlug: 'categories_marakish',
 };
 
 export default function ShopPage({ products, categories, clientInfo }) {
   return (
     <>
       <Head>
-        <title>Shop - AlHafiz Milk and Sweets</title>
-        <meta name="description" content="Browse our complete collection of premium traditional sweets and fresh milk products. Find the perfect sweets for every occasion." />
+        <title>Shop - Marakish</title>
+        <meta name="description" content="Browse our complete collection of premium cleaning products. Find the perfect solutions for your home and business." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/alhafiz_logo.png" type="image/png" sizes="32x32" />
       </Head>
@@ -41,9 +41,9 @@ export async function getStaticProps() {
 
     // Client info from environment variables
     const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'Bhatti Industries',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Surgical Instruments & Medical Equipment - Precision engineering, quality manufacturing, trusted by healthcare professionals worldwide.',
-      contact: process.env.BUSINESS_CONTACT || '0321-6801233'
+      businessName: process.env.BUSINESS_NAME || 'Marakish',
+      description: process.env.BUSINESS_DESCRIPTION || 'Premium Quality Cleaning Products - Complete household and commercial cleaning solutions.',
+      contact: process.env.BUSINESS_CONTACT || '0343-5801011'
     };
 
     console.log(`Shop page: Successfully fetched ${products.length} products and ${categories.length} categories`);
@@ -68,7 +68,7 @@ export async function getStaticProps() {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'Bhatti Industries',
+          businessName: process.env.BUSINESS_NAME || 'Marakish',
           description: isDevelopment
             ? 'Development mode - check your data/products.json and data/categories.json files'
             : 'Product catalog temporarily unavailable'

@@ -16,17 +16,17 @@ import { CONFIG_FILES } from 'next/dist/shared/lib/constants';
 // Configuration Variables - Match index.js exactly
 const SITE_CONFIG = {
   // Schema Slugs
-  productsSchemaSlug: 'products_alhafizsweetsandmilk',
-  categoriesSchemaSlug: 'categories_alhafizsweetsandmilk',
+  productsSchemaSlug: 'products_marakish',
+  categoriesSchemaSlug: 'categories_marakish',
 
   // SEO & Meta
   // Page Meta
-  siteName: 'AlHafiz Milk and Sweets',
-  defaultDescription: 'Browse our traditional sweets collection. Premium quality traditional sweets, fresh milk products, and authentic desi ghee made with traditional recipes.',
-  keywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
-  defaultTitle: 'AlHafiz Milk and Sweets',
+  siteName: 'Marakish',
+  defaultDescription: 'Premium Quality Cleaning Products - Complete household and commercial cleaning solutions. Specializing in dishwash liquids, bathroom cleaners, bleach, detergents, and personal care products.',
+  keywords: 'chemical dishwash, bathroom cleaner, tezaab cleaner, harpic neel bleach, surf excel, handwash, shampoo, cleaning products, household cleaners, Pakistani cleaning products, marakish, quality cleaning solutions',
+  defaultTitle: 'Marakish',
 
-  faviconPath: '/assets/alhafiz_logo.png',
+  faviconPath: '/assets/marakish_logo.png',
   faviconSize: '32x32',
 
   currency: 'PKR',

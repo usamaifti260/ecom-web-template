@@ -7,11 +7,6 @@ import { useNotification } from '@/lib/NotificationContext';
 
 // Configuration for the ProductCard component
 const PRODUCT_CARD_CONFIG = {
-  // Product Display
-  maxColorsToShow: 3,
-  maxSizesToShow: 3,
-  moreItemsText: '+',
-
   // Currency
   currency: 'PKR',
 
@@ -19,22 +14,48 @@ const PRODUCT_CARD_CONFIG = {
   badges: {
     sale: 'SALE',
     new: 'NEW',
-    bestseller: 'BESTSELLER'
+    bestseller: 'BESTSELLER',
+    outOfStock: 'OUT OF STOCK'
   },
 
-  // Buttons
+  // Buttons & Actions
   buttons: {
-    addToCart: 'ADD TO CART',
+    addToCart: 'Add to Cart',
     addedToCart: 'Added to Cart',
-    added: 'Added',
-    viewProduct: 'VIEW PRODUCT',
-    viewDetails: 'View Details'
+    quickView: 'Quick View',
+    viewDetails: 'View Details',
+    outOfStock: 'Out of Stock',
+    viewProduct: 'VIEW PRODUCT'
   },
 
   // Messages
   messages: {
-    addedToWishlist: 'added to wishlist',
-    removedFromWishlist: 'removed from wishlist'
+    addedToWishlist: 'Added to wishlist!',
+    removedFromWishlist: 'Removed from wishlist!',
+    outOfStock: 'This product is currently out of stock',
+    limitedStock: 'Only {count} left in stock'
+  },
+
+  // Stock Configuration
+  stock: {
+    threshold: 10,
+    inStock: 'In Stock',
+    outOfStock: 'Out of Stock',
+    limitedStock: 'Only {count} left'
+  },
+
+  // Display Configuration
+  maxColorsToShow: 3,
+  maxSizesToShow: 3,
+  moreItemsText: '+',
+
+  // Brand Colors
+  brandColors: {
+    primary: 'blue-800',
+    secondary: 'green-500',
+    accent: 'blue-600',
+    light: 'blue-50',
+    dark: 'blue-900'
   }
 };
 
@@ -62,6 +83,26 @@ const ProductCard = ({
     return `${PRODUCT_CARD_CONFIG.currency} ${price.toLocaleString()}`;
   };
 
+  // Check if product is in stock
+  const isProductInStock = () => {
+    return product && product.inStock && product.stockLeft > 0;
+  };
+
+  // Get stock status message
+  const getStockStatus = () => {
+    if (!product) return '';
+
+    if (!product.inStock || product.stockLeft <= 0) {
+      return PRODUCT_CARD_CONFIG.stock.outOfStock;
+    }
+
+    if (product.stockLeft <= PRODUCT_CARD_CONFIG.stock.threshold) {
+      return PRODUCT_CARD_CONFIG.stock.limitedStock.replace('{count}', product.stockLeft);
+    }
+
+    return PRODUCT_CARD_CONFIG.stock.inStock;
+  };
+
   // Handle color selection
   const handleColorSelect = (productId, colorIndex) => {
     if (onColorSelect) {
@@ -85,6 +126,11 @@ const ProductCard = ({
 
   // Handle add to cart
   const handleAddToCart = () => {
+    if (!isProductInStock()) {
+      alert(PRODUCT_CARD_CONFIG.messages.outOfStock);
+      return;
+    }
+
     if (onAddToCart) {
       onAddToCart(product);
     }
@@ -147,7 +193,7 @@ const ProductCard = ({
 
   return (
     <div className={`${isInSaleSection
-      ? 'bg-red-900 border border-red-800'
+      ? 'bg-blue-900 border border-blue-800'
       : isDarkBackground
         ? 'bg-gray-800 border border-gray-700'
         : 'bg-white'
@@ -158,7 +204,7 @@ const ProductCard = ({
           {/* Sale Badge */}
           {product.onSale && (
             <div className={`absolute top-2 left-2 px-2 py-1 text-xs font-bold z-20 rounded ${isInSaleSection
-              ? 'bg-yellow-400 text-red-900'
+              ? 'bg-blue-600 text-white'
               : 'bg-red-500 text-white'
               }`}>
               {PRODUCT_CARD_CONFIG.badges.sale}
@@ -166,9 +212,16 @@ const ProductCard = ({
           )}
 
           {/* New Badge */}
-          {product.isNew && variant === 'related' && (
+          {product.isNew && variant === 'related' && isProductInStock() && (
             <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 text-xs font-bold z-20 rounded">
               {PRODUCT_CARD_CONFIG.badges.new}
+            </div>
+          )}
+
+          {/* Out of Stock Badge */}
+          {!isProductInStock() && (
+            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 text-xs font-bold z-20 rounded">
+              {PRODUCT_CARD_CONFIG.badges.outOfStock}
             </div>
           )}
 
@@ -185,7 +238,7 @@ const ProductCard = ({
                 : isInWishlist(product.id)
                   ? 'bg-red-500 text-white'
                   : isInSaleSection
-                    ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
                     : 'bg-white text-gray-600 hover:bg-red-500 hover:text-white'
                 }`}
             >
@@ -209,7 +262,7 @@ const ProductCard = ({
                 e.stopPropagation();
               }}
               className={`absolute top-2 right-12 w-8 h-8 rounded-full transition-all duration-300 z-20 flex items-center justify-center opacity-0 lg:group-hover:opacity-100 ${isInSaleSection
-                ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
                 : 'bg-white text-gray-600 hover:bg-gray-100'
                 }`}
             >
@@ -220,7 +273,7 @@ const ProductCard = ({
             </button>
           )}
 
-          <div className={`relative w-full h-full ${isInSaleSection ? 'bg-red-900' : 'bg-white'} group`}>
+          <div className={`relative w-full h-full ${isInSaleSection ? 'bg-blue-900' : 'bg-white'} group`}>
             {/* Default image */}
             <Image
               src={getCurrentImage(product)}
@@ -242,8 +295,20 @@ const ProductCard = ({
               />
             )}
 
+            {/* Out of Stock Overlay */}
+            {!isProductInStock() && (
+              <div className="absolute inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <svg className="w-12 h-12 mx-auto mb-2 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                  </svg>
+                  <p className="text-sm font-semibold">{PRODUCT_CARD_CONFIG.stock.outOfStock}</p>
+                </div>
+              </div>
+            )}
+
             {/* Quick View Overlay for Related Products */}
-            {variant === 'related' && (
+            {variant === 'related' && isProductInStock() && (
               <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200">
                   {PRODUCT_CARD_CONFIG.buttons.viewDetails}
@@ -258,7 +323,7 @@ const ProductCard = ({
       <div className="relative">
         {/* Desktop: Sliding Content */}
         <div className={`hidden lg:block absolute bottom-0 left-0 right-0 transition-all duration-300 lg:translate-y-0 lg:group-hover:-translate-y-16 z-10 ${isInSaleSection
-          ? 'bg-red-900'
+          ? 'bg-blue-900'
           : isDarkBackground
             ? 'bg-gray-800'
             : 'bg-white'
@@ -266,21 +331,21 @@ const ProductCard = ({
           <div className="p-4 text-center">
             {/* Brand Name */}
             <p className={`text-xs uppercase tracking-wide mb-1 font-medium ${isInSaleSection
-              ? 'text-yellow-300'
+              ? 'text-green-300'
               : isDarkBackground
                 ? 'text-gray-400'
                 : 'text-gray-500'
               }`}>
-              {product.brand || 'ALHAFIZ MILK & SWEETS'}
+              {product.brand || 'MARAKISH'}
             </p>
 
             {/* Product Name */}
             <Link href={`/product/${product.id}`}>
               <h4 className={`font-normal ${variant === 'related' ? 'text-lg' : 'text-xl'} mb-2 leading-tight transition-colors duration-200 cursor-pointer ${isInSaleSection
-                ? 'text-yellow-100 hover:text-yellow-200'
+                ? 'text-blue-100 hover:text-blue-200'
                 : isDarkBackground
-                  ? 'text-gray-200 hover:text-red-400'
-                  : 'text-gray-800 hover:text-amber-600'
+                  ? 'text-gray-200 hover:text-blue-400'
+                  : 'text-gray-800 hover:text-green-600'
                 }`}>
                 {product.name}
               </h4>
@@ -289,8 +354,8 @@ const ProductCard = ({
             {/* Subcategory */}
             {product.subcategory && variant !== 'related' && (
               <p className={`text-xs mb-2 font-medium ${isInSaleSection
-                ? 'text-yellow-400'
-                : 'text-amber-600'
+                ? 'text-green-400'
+                : 'text-green-600'
                 }`}>
                 {product.subcategory}
               </p>
@@ -299,7 +364,7 @@ const ProductCard = ({
             {/* Price */}
             <div className="flex items-center justify-center space-x-2 mb-2">
               <span className={`${variant === 'related' ? 'text-lg' : 'text-xl'} font-normal ${isInSaleSection
-                ? 'text-yellow-100'
+                ? 'text-white'
                 : isDarkBackground
                   ? 'text-gray-100'
                   : 'text-gray-900'
@@ -308,7 +373,7 @@ const ProductCard = ({
               </span>
               {product.onSale && (
                 <span className={`text-sm line-through font-light ${isInSaleSection
-                  ? 'text-yellow-300'
+                  ? 'text-green-300'
                   : isDarkBackground
                     ? 'text-gray-400'
                     : 'text-gray-500'
@@ -328,7 +393,7 @@ const ProductCard = ({
                       <span
                         key={index}
                         className={`px-2 py-1 text-xs rounded border ${isInSaleSection
-                          ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                          ? 'bg-blue-100 text-blue-900 border-blue-200'
                           : 'bg-gray-100 text-gray-700 border-gray-200'
                           }`}
                         title={color}
@@ -338,7 +403,7 @@ const ProductCard = ({
                     ))}
                     {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
                       <span className={`text-xs ${isInSaleSection
-                        ? 'text-yellow-300'
+                        ? 'text-blue-300'
                         : 'text-gray-500'
                         }`}>
                         {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
@@ -382,11 +447,11 @@ const ProductCard = ({
                           }}
                           className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${selectedColors[product.id] === index
                             ? isInSaleSection
-                              ? 'border-yellow-400 bg-yellow-100 text-red-900'
-                              : 'border-red-500 bg-red-50 text-red-700'
+                              ? 'border-blue-400 bg-blue-100 text-blue-900'
+                              : 'border-green-500 bg-green-50 text-green-700'
                             : isInSaleSection
-                              ? 'border-yellow-300 bg-yellow-50 text-red-800 hover:border-yellow-400 hover:bg-yellow-100'
-                              : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-red-300'
+                              ? 'border-blue-300 bg-blue-50 text-blue-800 hover:border-blue-400 hover:bg-blue-100'
+                              : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-green-300'
                             }`}
                           title={color}
                           type="button"
@@ -397,7 +462,7 @@ const ProductCard = ({
                     ))}
                     {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
                       <span className={`text-xs ${isInSaleSection
-                        ? 'text-yellow-300'
+                        ? 'text-blue-300'
                         : 'text-gray-500'
                         }`}>
                         {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
@@ -414,7 +479,7 @@ const ProductCard = ({
                     <span
                       key={index}
                       className={`px-2 py-1 text-xs rounded border ${isInSaleSection
-                        ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                        ? 'bg-blue-100 text-blue-900 border-blue-200'
                         : 'bg-gray-100 text-gray-700 border-gray-200'
                         }`}
                       title={sizeLabel}
@@ -425,7 +490,7 @@ const ProductCard = ({
                 })}
                 {product.sizes.length > PRODUCT_CARD_CONFIG.maxSizesToShow && (
                   <span className={`text-xs ${isInSaleSection
-                    ? 'text-yellow-300'
+                    ? 'text-blue-300'
                     : 'text-gray-500'
                     }`}>
                     {PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}
@@ -439,12 +504,12 @@ const ProductCard = ({
         {/* Add to Cart Button - Shows on hover (Desktop only) */}
         {showCartButton && (
           <div className={`hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-300 lg:transform lg:translate-y-16 lg:group-hover:translate-y-0 p-4 lg:z-20 ${isInSaleSection
-            ? 'bg-red-900'
+            ? 'bg-blue-900'
             : 'bg-white'
             }`}>
             {variant === 'related' ? (
               <Link href={`/product/${product.id}`}>
-                <button className="w-full py-2 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center bg-red-800 hover:bg-red-900 text-white">
+                <button className="w-full py-2 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center bg-green-800 hover:bg-green-900 text-white">
                   {PRODUCT_CARD_CONFIG.buttons.viewProduct}
                 </button>
               </Link>
@@ -453,11 +518,13 @@ const ProductCard = ({
                 onClick={handleAddToCart}
                 className={`w-full py-3 px-4 rounded font-bold text-sm transition-all duration-200 flex items-center justify-center ${addingToCart[product.id]
                   ? 'bg-green-500 text-white'
-                  : isInSaleSection
-                    ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
-                    : 'bg-red-800 hover:bg-red-900 text-white'
+                  : !isProductInStock()
+                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                    : isInSaleSection
+                      ? 'bg-green-400 text-blue-900 hover:bg-green-300'
+                      : 'bg-green-800 hover:bg-green-900 text-white'
                   }`}
-                disabled={addingToCart[product.id]}
+                disabled={addingToCart[product.id] || !isProductInStock()}
               >
                 {addingToCart[product.id] ? (
                   <>
@@ -465,6 +532,13 @@ const ProductCard = ({
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     {PRODUCT_CARD_CONFIG.buttons.addedToCart}
+                  </>
+                ) : !isProductInStock() ? (
+                  <>
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                    </svg>
+                    {PRODUCT_CARD_CONFIG.buttons.outOfStock}
                   </>
                 ) : (
                   PRODUCT_CARD_CONFIG.buttons.addToCart
@@ -478,21 +552,21 @@ const ProductCard = ({
         <div className="lg:hidden py-4 px-2 text-center">
           {/* Brand Name */}
           <p className={`text-[10px] uppercase tracking-wide mb-1 font-medium ${isInSaleSection
-            ? 'text-yellow-300'
+            ? 'text-green-300'
             : isDarkBackground
               ? 'text-gray-400'
               : 'text-gray-500'
             }`}>
-            {product.brand || 'ALHAFIZ MILK & SWEETS'}
+            {product.brand || 'MARAKISH'}
           </p>
 
           {/* Product Name */}
           <Link href={`/product/${product.id}`}>
             <h4 className={`font-normal text-base mb-2 leading-tight transition-colors duration-200 cursor-pointer ${isInSaleSection
-              ? 'text-yellow-100 hover:text-yellow-200'
+              ? 'text-blue-100 hover:text-blue-200'
               : isDarkBackground
-                ? 'text-gray-200 hover:text-red-400'
-                : 'text-gray-800 hover:text-amber-600'
+                ? 'text-gray-200 hover:text-blue-400'
+                : 'text-gray-800 hover:text-green-600'
               }`}>
               {product.name}
             </h4>
@@ -501,8 +575,8 @@ const ProductCard = ({
           {/* Subcategory - Mobile */}
           {product.subcategory && variant !== 'related' && (
             <p className={`text-xs mb-2 font-medium ${isInSaleSection
-              ? 'text-yellow-400'
-              : 'text-amber-600'
+              ? 'text-green-400'
+              : 'text-green-600'
               }`}>
               {product.subcategory}
             </p>
@@ -511,7 +585,7 @@ const ProductCard = ({
           {/* Price */}
           <div className="flex items-center justify-center space-x-2 mb-2">
             <span className={`text-base font-normal ${isInSaleSection
-              ? 'text-yellow-100'
+              ? 'text-white'
               : isDarkBackground
                 ? 'text-gray-100'
                 : 'text-gray-900'
@@ -520,7 +594,7 @@ const ProductCard = ({
             </span>
             {product.onSale && variant !== 'default' && (
               <span className={`text-sm line-through font-light ${isInSaleSection
-                ? 'text-yellow-300'
+                ? 'text-blue-300'
                 : isDarkBackground
                   ? 'text-gray-400'
                   : 'text-gray-500'
@@ -528,6 +602,24 @@ const ProductCard = ({
                 {formatPrice(product.originalPrice)}
               </span>
             )}
+          </div>
+
+          {/* Stock Status - Mobile */}
+          <div className="flex items-center justify-center space-x-1 mb-2">
+            <div className={`w-2 h-2 rounded-full ${isProductInStock()
+              ? product.stockLeft <= PRODUCT_CARD_CONFIG.stock.threshold
+                ? 'bg-orange-500'
+                : 'bg-green-500'
+              : 'bg-red-500'
+              }`}></div>
+            <span className={`text-xs font-medium ${isProductInStock()
+              ? product.stockLeft <= PRODUCT_CARD_CONFIG.stock.threshold
+                ? 'text-orange-600'
+                : 'text-green-600'
+              : 'text-red-600'
+              }`}>
+              {getStockStatus()}
+            </span>
           </div>
 
           {/* Color or Size Options - Mobile */}
@@ -540,7 +632,7 @@ const ProductCard = ({
                     <span
                       key={index}
                       className={`px-2 py-1 text-xs rounded border ${isInSaleSection
-                        ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                        ? 'bg-blue-100 text-blue-900 border-blue-200'
                         : 'bg-gray-100 text-gray-700 border-gray-200'
                         }`}
                       title={color}
@@ -550,7 +642,7 @@ const ProductCard = ({
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
                     <span className={`text-xs ${isInSaleSection
-                      ? 'text-yellow-300'
+                      ? 'text-blue-300'
                       : 'text-gray-500'
                       }`}>
                       {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
@@ -582,7 +674,7 @@ const ProductCard = ({
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
                     <span className={`text-xs ${isInSaleSection
-                      ? 'text-yellow-300'
+                      ? 'text-blue-300'
                       : 'text-gray-500'
                       }`}>
                       {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
@@ -606,11 +698,11 @@ const ProductCard = ({
                       }}
                       className={`px-2 py-1 border rounded text-xs font-medium transition-all duration-200 ${selectedColors[product.id] === index
                         ? isInSaleSection
-                          ? 'border-yellow-400 bg-yellow-100 text-red-900'
-                          : 'border-red-500 bg-red-50 text-red-700'
+                          ? 'border-blue-400 bg-blue-100 text-blue-900'
+                          : 'border-green-500 bg-green-50 text-green-700'
                         : isInSaleSection
-                          ? 'border-yellow-300 bg-yellow-50 text-red-800 hover:border-yellow-400 hover:bg-yellow-100'
-                          : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-red-300'
+                          ? 'border-blue-300 bg-blue-50 text-blue-800 hover:border-blue-400 hover:bg-blue-100'
+                          : 'border-gray-300 bg-gray-50 text-gray-700 hover:border-green-300'
                         }`}
                       title={color}
                       type="button"
@@ -620,7 +712,7 @@ const ProductCard = ({
                   ))}
                   {product.colors.length > PRODUCT_CARD_CONFIG.maxColorsToShow && (
                     <span className={`text-xs ${isInSaleSection
-                      ? 'text-yellow-300'
+                      ? 'text-blue-300'
                       : 'text-gray-500'
                       }`}>
                       {PRODUCT_CARD_CONFIG.moreItemsText}{product.colors.length - PRODUCT_CARD_CONFIG.maxColorsToShow}
@@ -637,7 +729,7 @@ const ProductCard = ({
                   <span
                     key={index}
                     className={`px-2 py-1 text-xs rounded border ${isInSaleSection
-                      ? 'bg-yellow-100 text-red-900 border-yellow-200'
+                      ? 'bg-blue-100 text-blue-900 border-blue-200'
                       : 'bg-gray-100 text-gray-700 border-gray-200'
                       }`}
                     title={sizeLabel}
@@ -648,7 +740,7 @@ const ProductCard = ({
               })}
               {product.sizes.length > PRODUCT_CARD_CONFIG.maxSizesToShow && (
                 <span className={`text-xs ${isInSaleSection
-                  ? 'text-yellow-300'
+                  ? 'text-blue-300'
                   : 'text-gray-500'
                   }`}>
                   {PRODUCT_CARD_CONFIG.moreItemsText}{product.sizes.length - PRODUCT_CARD_CONFIG.maxSizesToShow}
@@ -662,7 +754,7 @@ const ProductCard = ({
             <div className={variant === 'wishlist' ? 'flex space-x-2' : ''}>
               {variant === 'related' ? (
                 <Link href={`/product/${product.id}`}>
-                  <button className="w-full py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center bg-red-800 hover:bg-red-900 text-white">
+                  <button className="w-full py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center bg-green-800 hover:bg-green-900 text-white">
                     {PRODUCT_CARD_CONFIG.buttons.viewProduct}
                   </button>
                 </Link>
@@ -672,8 +764,8 @@ const ProductCard = ({
                   className={`${variant === 'wishlist' ? 'flex-1' : 'w-full'} py-2 px-3 rounded font-bold text-xs transition-all duration-200 flex items-center justify-center ${addingToCart[product.id]
                     ? 'bg-green-500 text-white'
                     : isInSaleSection
-                      ? 'bg-yellow-400 text-red-900 hover:bg-yellow-300'
-                      : 'bg-red-800 hover:bg-red-900 text-white'
+                      ? 'bg-green-400 text-blue-900 hover:bg-green-300'
+                      : 'bg-green-800 hover:bg-green-900 text-white'
                     }`}
                   disabled={addingToCart[product.id]}
                 >

@@ -12,11 +12,11 @@ const Hero = ({ banners = [] }) => {
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6-4a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'Fresh Daily',
-      subtitle: 'Made Fresh Every Day'
+      title: 'Quality Assured',
+      subtitle: 'Premium Cleaning Products'
     },
     {
       icon: (
@@ -30,20 +30,20 @@ const Hero = ({ banners = [] }) => {
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: 'Traditional',
-      subtitle: 'Authentic Recipes'
+      title: 'Powerful Formula',
+      subtitle: 'Effective Cleaning'
     },
     {
       icon: (
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       ),
-      title: 'Pure Quality',
-      subtitle: 'Premium Ingredients'
+      title: 'Trusted Brand',
+      subtitle: 'Customer Satisfaction'
     }
   ];
 
@@ -109,20 +109,20 @@ const Hero = ({ banners = [] }) => {
   return (
     <>
       {/* Services Banner Row */}
-      <div className="bg-yellow-50 border-b border-yellow-100">
+      <div className="bg-blue-50 border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Layout */}
           <div className="hidden md:grid md:grid-cols-4 gap-4 py-3">
             {services.map((service, index) => (
               <div key={index} className="flex items-center space-x-2 text-center md:text-left">
-                <div className="flex-shrink-0 text-red-700">
+                <div className="flex-shrink-0 text-blue-700">
                   {service.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm font-semibold text-red-800 mb-0.5">
+                  <h3 className="text-sm font-semibold text-blue-800 mb-0.5">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-red-600">
+                  <p className="text-xs text-blue-600">
                     {service.subtitle}
                   </p>
                 </div>
@@ -135,14 +135,14 @@ const Hero = ({ banners = [] }) => {
             <div className="flex space-x-3 overflow-x-auto scrollbar-hide justify-start sm:justify-center py-2">
               {services.map((service, index) => (
                 <div key={index} className="flex-shrink-0 flex items-center space-x-2 min-w-[110px]">
-                  <div className="flex-shrink-0 text-red-700">
+                  <div className="flex-shrink-0 text-blue-700">
                     {service.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xs font-semibold text-red-800 mb-0.5 leading-tight">
+                    <h3 className="text-xs font-semibold text-blue-800 mb-0.5 leading-tight">
                       {service.title}
                     </h3>
-                    <p className="text-[10px] text-red-600 leading-tight">
+                    <p className="text-[10px] text-blue-600 leading-tight">
                       {service.subtitle}
                     </p>
                   </div>
@@ -230,7 +230,7 @@ const Hero = ({ banners = [] }) => {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                ? 'bg-yellow-400 scale-125 shadow-lg'
+                ? 'bg-green-400 scale-125 shadow-lg'
                 : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                 }`}
             />
@@ -249,36 +249,36 @@ const Hero = ({ banners = [] }) => {
 
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-10 right-10 md:top-20 md:right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-yellow-400 bg-opacity-10 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 left-10 md:bottom-40 md:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-red-700 bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 right-1/4 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-yellow-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+          <div className="absolute top-10 right-10 md:top-20 md:right-20 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-green-400 bg-opacity-10 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 left-10 md:bottom-40 md:left-20 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-blue-700 bg-opacity-10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-green-300 bg-opacity-10 transform rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
         </div>
 
 
       </section>
 
       {/* Special Offers Banner */}
-      <div className="relative bg-gradient-to-r from-red-800 via-red-900 to-red-950 py-3 sm:py-4 md:py-6 lg:py-8 mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden my-2">
+      <div className="relative bg-gradient-to-r from-blue-800 via-blue-900 to-blue-950 py-3 sm:py-4 md:py-6 lg:py-8 mx-2 sm:mx-4 md:mx-6 lg:mx-8 rounded-lg overflow-hidden my-2">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           {/* Animated Text Section */}
           <div className="flex items-center space-x-2 sm:space-x-4 flex-1">
             <div className="animate-pulse">
               <h2 className="text-white font-bold text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl">
-                Fresh Sweets Daily
+                Premium Cleaning Solutions
               </h2>
             </div>
             {/* Hide this on mobile */}
             <div className="hidden sm:block animate-bounce">
-              <span className="text-yellow-200 font-medium text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
-                Made with Love!
+              <span className="text-green-200 font-medium text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
+                Quality You Trust!
               </span>
             </div>
 
             {/* Animated decorative elements */}
             <div className="hidden sm:flex items-center space-x-2">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-ping"></div>
-              <div className="w-2 h-2 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+              <div className="w-2 h-2 bg-green-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
 
@@ -286,7 +286,7 @@ const Hero = ({ banners = [] }) => {
           <div className="flex-shrink-0">
             <Link
               href="/shop"
-              className="group bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-red-900 hover:text-red-900 px-3 py-1.5 sm:px-4 sm:py-2 md:px-8 md:py-3 lg:px-10 lg:py-4 xl:px-12 xl:py-5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-1 sm:space-x-2 animate-pulse"
+              className="group bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-blue-900 hover:text-blue-900 px-3 py-1.5 sm:px-4 sm:py-2 md:px-8 md:py-3 lg:px-10 lg:py-4 xl:px-12 xl:py-5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-1 sm:space-x-2 animate-pulse"
             >
               <span>Shop Now</span>
               <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:w-6 xl:w-7 xl:h-7 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -298,10 +298,10 @@ const Hero = ({ banners = [] }) => {
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 bg-opacity-20 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-3 h-3 sm:w-4 sm:h-4 bg-yellow-300 bg-opacity-30 rounded-full animate-ping" style={{ animationDelay: '0.8s' }}></div>
-          <div className="absolute -bottom-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 bg-yellow-500 bg-opacity-25 rounded-full animate-bounce" style={{ animationDelay: '1.2s' }}></div>
-          <div className="absolute top-2 right-1/3 w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 bg-opacity-40 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 bg-green-400 bg-opacity-20 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-3 h-3 sm:w-4 sm:h-4 bg-green-300 bg-opacity-30 rounded-full animate-ping" style={{ animationDelay: '0.8s' }}></div>
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 sm:w-6 sm:h-6 bg-green-500 bg-opacity-25 rounded-full animate-bounce" style={{ animationDelay: '1.2s' }}></div>
+          <div className="absolute top-2 right-1/3 w-2 h-2 sm:w-3 sm:h-3 bg-green-400 bg-opacity-40 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
         </div>
       </div>
     </>

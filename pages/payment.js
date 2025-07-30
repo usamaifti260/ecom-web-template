@@ -11,31 +11,31 @@ import { useNotification } from '@/lib/NotificationContext';
 // Configuration Variables
 const PAYMENT_CONFIG = {
   // Business Information
-  businessName: 'ALHAFIZ MILK AND SWEETS',
-  defaultBrand: 'ALHAFIZ MILK AND SWEETS',
+  businessName: 'MARAKISH',
+  defaultBrand: 'MARAKISH',
 
   // Currency & Pricing
   currency: 'PKR',
 
   // SEO & Meta
-  pageTitle: 'Payment - AlHafiz Milk and Sweets',
-  pageDescription: 'Complete your payment',
+  pageTitle: 'Payment - Marakish',
+  pageDescription: 'Complete your payment for premium cleaning products',
   faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
 
   // API Configuration
-  siteId: process.env.NEXT_PUBLIC_SITE_ID || 'alhafizsweetsandmilk',
+  siteId: process.env.NEXT_PUBLIC_SITE_ID || 'marakishstore',
   apiBaseUrl: 'https://web-portal-backend-production.up.railway.app/api/orders/submit',
   apiTimeout: 30000,
 
   // Contact Information
-  supportPhone: '03487765824',
+  supportPhone: '0343-5801011',
   supportHours: '9 AM - 6 PM (Mon-Sat)',
 
   // UI Text
   loadingText: 'Loading order details...',
   placingOrderText: 'Placing Order...',
-  placeOrderButtonText: '🍯 Place Order',
+  placeOrderButtonText: 'Place Order',
   securityText: 'Your order is secure and protected',
 
   // Payment Method
@@ -43,9 +43,9 @@ const PAYMENT_CONFIG = {
   codDescription: 'Pay when you receive your order',
   codHowItWorksTitle: 'How it works:',
   codSteps: [
-    'Your traditional sweets will be carefully packaged',
+    'Your cleaning products will be carefully packaged',
     'Pay the delivery person when your order arrives',
-    'Inspect your sweets before payment',
+    'Inspect your products before payment',
     'Cash payment only at delivery'
   ],
 
@@ -61,14 +61,14 @@ const PAYMENT_CONFIG = {
 
   // Satisfaction Guarantee
   satisfactionTitle: 'Quality Guarantee',
-  satisfactionText: 'Not satisfied with quality? Return within 7 days for full refund!',
+  satisfactionText: 'Not satisfied with quality? Return within 7 days for a full refund!',
 
   // Icons
   paymentIcon: '💳',
   codIcon: '💰',
   returnIcon: '🔄',
   deliveryIcon: '🚚',
-  summaryIcon: '🍯',
+  summaryIcon: '🧾',
   guaranteeIcon: '✓',
   securityIcon: '🔒',
 
@@ -111,7 +111,7 @@ export default function PaymentPage() {
   const generateOrderId = () => {
     const timestamp = Date.now().toString(36);
     const randomStr = Math.random().toString(36).substr(2, 5);
-    return `AH-${timestamp}-${randomStr}`.toUpperCase();
+    return `MK-${timestamp}-${randomStr}`.toUpperCase();
   };
 
   const handlePlaceOrder = async () => {
@@ -307,15 +307,15 @@ export default function PaymentPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href={PAYMENT_CONFIG.shopRoute} className="hover:text-red-600 transition-colors">🍯 Shop</Link>
+              <Link href={PAYMENT_CONFIG.shopRoute} className="hover:text-blue-600 transition-colors">🧼 Shop</Link>
               <span>→</span>
-              <Link href={PAYMENT_CONFIG.checkoutRoute} className="hover:text-red-600 transition-colors">Checkout</Link>
+              <Link href={PAYMENT_CONFIG.checkoutRoute} className="hover:text-blue-600 transition-colors">Checkout</Link>
               <span>→</span>
-              <span className="text-red-600 font-medium">Payment</span>
+              <span className="text-blue-600 font-medium">Payment</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">ALHAFIZ</span> <span className="text-gray-800">MILK & SWEETS</span>
+                <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">MARAKISH</span>
               </h1>
               <p className="text-gray-600">{PAYMENT_CONFIG.pageDescription}</p>
             </div>
@@ -332,7 +332,7 @@ export default function PaymentPage() {
 
                 <div className="space-y-4">
                   {/* Cash on Delivery */}
-                  <div className="border border-red-400 rounded-lg p-4 bg-gradient-to-r from-red-400 to-red-600">
+                  <div className="border border-blue-400 rounded-lg p-4 bg-gradient-to-r from-blue-500 to-blue-700">
                     <label className="flex items-start space-x-3 cursor-pointer">
                       <input
                         type="radio"
@@ -340,7 +340,7 @@ export default function PaymentPage() {
                         value="COD"
                         checked={paymentMethod === 'COD'}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="mt-1 w-4 h-4 text-red-600 border-white focus:ring-red-500"
+                        className="mt-1 w-4 h-4 text-blue-600 border-white focus:ring-blue-500"
                       />
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
@@ -497,7 +497,7 @@ export default function PaymentPage() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+                      <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
@@ -520,20 +520,20 @@ export default function PaymentPage() {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
+                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
                   </div>
                 </div>
               </div>
 
               {/* Satisfaction Guarantee */}
-              <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
                     <span className="text-white text-lg">{PAYMENT_CONFIG.guaranteeIcon}</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-red-800">{PAYMENT_CONFIG.satisfactionTitle}</p>
-                    <p className="text-sm text-red-700">{PAYMENT_CONFIG.satisfactionText}</p>
+                    <p className="font-semibold text-green-800">{PAYMENT_CONFIG.satisfactionTitle}</p>
+                    <p className="text-sm text-green-700">{PAYMENT_CONFIG.satisfactionText}</p>
                   </div>
                 </div>
               </div>
@@ -545,7 +545,7 @@ export default function PaymentPage() {
                   disabled={isProcessing}
                   className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${isProcessing
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 transform hover:scale-105'
+                    : 'bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 transform hover:scale-105'
                     } text-white`}
                 >
                   {isProcessing ? (

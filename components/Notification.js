@@ -19,9 +19,9 @@ const Notification = () => {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-GB', {
+    return new Intl.NumberFormat('en-PK', {
       style: 'currency',
-      currency: 'GBP'
+      currency: 'PKR'
     }).format(price);
   };
 
@@ -115,11 +115,10 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
 
   return (
     <div
-      className={`transform transition-all duration-300 ease-in-out ${
-        isVisible && !isRemoving
+      className={`transform transition-all duration-300 ease-in-out ${isVisible && !isRemoving
           ? 'translate-x-0 opacity-100'
           : 'translate-x-full opacity-0'
-      }`}
+        }`}
     >
       <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-80 max-w-sm">
         <div className="flex items-start space-x-3">
@@ -139,7 +138,7 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
                   {notification.message}
                 </p>
               </div>
-              
+
               {/* Close button */}
               <button
                 onClick={handleRemove}
@@ -172,7 +171,7 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
                       {notification.product.selectedColor && `Color: ${notification.product.selectedColor}`}
                     </p>
                     <p className="text-sm font-semibold text-gray-900">
-                     £{notification.product.price.toLocaleString()}
+                      PKR{notification.product.price.toLocaleString()}
                     </p>
                   </div>
                 </div>

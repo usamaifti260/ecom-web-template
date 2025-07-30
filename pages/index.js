@@ -12,19 +12,19 @@ import Footer from '@/components/Footer';
 // Configuration Variables
 const SITE_CONFIG = {
   // Business Information
-  businessName: 'ALHAFIZ MILK AND SWEETS',
-  businessDescription: 'Premium Traditional Sweets & Fresh Milk Products - Authentic taste, quality ingredients, fresh daily preparation. Specializing in Khoya Barfi, Sohan Halwa, and Pure Desi Ghee.',
-  businessContact: '03487765824',
+  businessName: 'MARAKISH',
+  businessDescription: 'Premium Quality Cleaning Products - Complete household and commercial cleaning solutions. Specializing in dishwash liquids, bathroom cleaners, bleach, detergents, and personal care products.',
+  businessContact: '0343-5801011',
 
   // Schema Slugs
-  productsSchemaSlug: 'products_alhafizsweetsandmilk',
-  categoriesSchemaSlug: 'categories_alhafizsweetsandmilk',
-  bannersSchemaSlug: 'banners_alhafizsweetsandmilk',
+  productsSchemaSlug: 'products_marakish',
+  categoriesSchemaSlug: 'categories_marakish',
+  bannersSchemaSlug: 'banners_marakish',
 
   // SEO Meta Data
-  seoTitle: 'Premium Traditional Sweets & Fresh Milk Products',
-  seoDescription: 'Discover authentic traditional sweets at AlHafiz Milk and Sweets Pakistan. Fresh Khoya Barfi, Sohan Halwa varieties (Sada, Badami, Akhroti, Mix Dry Fruit), Pure Desi Ghee, and farm-fresh milk products. Traditional recipes, quality ingredients, daily fresh preparation.',
-  seoKeywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
+  seoTitle: 'Premium Quality Cleaning Products & Household Solutions',
+  seoDescription: 'Discover premium cleaning products at Marakish Pakistan. Chemical Dishwash, Bathroom Cleaner Tezaab, Harpic Neel Bleach, Surf Excel, Handwash, Shampoo and complete household cleaning solutions. Quality products, effective cleaning, trusted brands.',
+  seoKeywords: 'chemical dishwash, bathroom cleaner, tezaab cleaner, harpic neel bleach, surf excel, handwash, shampoo, cleaning products, household cleaners, Pakistani cleaning products, marakish, quality cleaning solutions',
 
   // Assets
   faviconPath: '/assets/alhafiz_logo.png',

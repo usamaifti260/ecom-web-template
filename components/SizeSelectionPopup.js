@@ -14,20 +14,20 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 // Configuration Variables
 const SIZE_POPUP_CONFIG = {
-  // UI Text
-  title: 'Configure Product',
-
-  // Currency & Pricing
+  // Modal Configuration
+  title: 'Add to Cart',
   currency: 'PKR',
 
-  // Form Labels
+  // Product Labels
   labels: {
-    color: 'Color',
-    selectedColor: 'Selected:',
-    size: 'Select Size *',
+    size: 'Size',
+    color: 'Variety',
     quantity: 'Quantity',
     totalText: 'Total',
-    originalPrice: 'Original price'
+    originalPrice: 'Original',
+    addToCart: 'Add to Cart',
+    outOfStock: 'Out of Stock',
+    notifyWhenAvailable: 'Notify When Available'
   },
 
   // Buttons
@@ -39,9 +39,26 @@ const SIZE_POPUP_CONFIG = {
   // Messages
   messages: {
     selectSize: 'Please select a size',
-    colorInstruction: 'Click a color to see the corresponding product image',
     item: 'item',
-    items: 'items'
+    items: 'items',
+    outOfStock: 'This product is currently out of stock',
+    limitedStock: 'Only {count} left in stock',
+    insufficientStock: 'Only {count} items available'
+  },
+
+  // Stock Configuration
+  stock: {
+    threshold: 10,
+    inStock: 'In Stock',
+    outOfStock: 'Out of Stock',
+    limitedStock: 'Only {count} left'
+  },
+
+  // Button States
+  buttonStates: {
+    default: 'Add to Cart',
+    adding: 'Adding...',
+    outOfStock: 'Out of Stock'
   },
 
   // Slider Settings
@@ -125,6 +142,26 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
     return `${SIZE_POPUP_CONFIG.currency} ${price.toLocaleString()}`;
   };
 
+  // Check if product is in stock
+  const isProductInStock = () => {
+    return product && product.inStock && product.stockLeft > 0;
+  };
+
+  // Get stock status message
+  const getStockStatus = () => {
+    if (!product) return '';
+
+    if (!product.inStock || product.stockLeft <= 0) {
+      return SIZE_POPUP_CONFIG.stock.outOfStock;
+    }
+
+    if (product.stockLeft <= SIZE_POPUP_CONFIG.stock.threshold) {
+      return SIZE_POPUP_CONFIG.stock.limitedStock.replace('{count}', product.stockLeft);
+    }
+
+    return SIZE_POPUP_CONFIG.stock.inStock;
+  };
+
   // Get current price based on selected size
   const getCurrentPrice = () => {
     if (!product || !product.sizes || product.sizes.length === 0) return product?.price || 0;
@@ -194,7 +231,19 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   };
 
   const handleAddToCart = () => {
+    // Check if product is out of stock
+    if (!isProductInStock()) {
+      alert(SIZE_POPUP_CONFIG.messages.outOfStock);
+      return;
+    }
+
     if (!selectedSize && product.sizes && product.sizes.length > 0) {
+      return;
+    }
+
+    // Check if requested quantity exceeds available stock
+    if (quantity > product.stockLeft) {
+      alert(SIZE_POPUP_CONFIG.messages.insufficientStock.replace('{count}', product.stockLeft));
       return;
     }
 
@@ -222,7 +271,8 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
   };
 
   const handleQuantityChange = (newQuantity) => {
-    if (newQuantity >= SIZE_POPUP_CONFIG.minQuantity && newQuantity <= SIZE_POPUP_CONFIG.maxQuantity) {
+    const maxQuantity = Math.min(SIZE_POPUP_CONFIG.maxQuantity, product.stockLeft || 0);
+    if (newQuantity >= SIZE_POPUP_CONFIG.minQuantity && newQuantity <= maxQuantity) {
       setQuantity(newQuantity);
     }
   };
@@ -332,7 +382,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                           <button
                             onClick={() => handleImageSelect(index)}
                             className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
-                              ? 'border-yellow-500 ring-2 ring-yellow-200'
+                              ? 'border-blue-500 ring-2 ring-blue-200'
                               : 'border-gray-200 hover:border-gray-300'
                               }`}
                           >
@@ -346,7 +396,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                             {/* Video indicator for thumbnails */}
                             {item.isYouTube && (
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
+                                <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
                                   <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                   </svg>
@@ -371,7 +421,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                   {/* Price */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
+                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">
                         {formatPrice(getCurrentPrice())}
                       </span>
                       {product.onSale && (
@@ -380,6 +430,23 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                         </span>
                       )}
                     </div>
+                    {/* Stock Status */}
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full ${isProductInStock()
+                        ? product.stockLeft <= SIZE_POPUP_CONFIG.stock.threshold
+                          ? 'bg-orange-500'
+                          : 'bg-green-500'
+                        : 'bg-red-500'
+                        }`}></div>
+                      <span className={`text-xs font-medium ${isProductInStock()
+                        ? product.stockLeft <= SIZE_POPUP_CONFIG.stock.threshold
+                          ? 'text-orange-600'
+                          : 'text-green-600'
+                        : 'text-red-600'
+                        }`}>
+                        {getStockStatus()}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -387,9 +454,9 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 {product.colors && product.colors.length > 0 && (
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-2">{SIZE_POPUP_CONFIG.labels.color}</h4>
-                    <div className="mb-3 p-2 bg-yellow-50 border border-yellow-200 rounded-lg">
-                      <p className="text-sm font-semibold text-red-800">
-                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-red-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                    <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg">
+                      <p className="text-sm font-semibold text-blue-800">
+                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-blue-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                       </p>
                     </div>
                     <div className="flex items-center flex-wrap gap-2">
@@ -398,8 +465,8 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                           key={index}
                           onClick={() => handleColorSelect(index)}
                           className={`px-3 py-2 border-2 rounded-lg font-medium transition-all duration-200 text-xs ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
-                            ? 'border-red-500 bg-red-50 text-red-700 shadow-md'
-                            : 'border-gray-300 hover:border-red-300 hover:bg-red-50 text-gray-700'
+                            ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md'
+                            : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700'
                             }`}
                           title={`${color} - Image ${index + 1}`}
                         >
@@ -427,7 +494,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                             key={index}
                             onClick={() => setSelectedSize(sizeLabel)}
                             className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
-                              ? 'border-red-500 bg-red-50 text-red-700'
+                              ? 'border-blue-500 bg-blue-50 text-blue-700'
                               : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
                               }`}
                           >
@@ -464,7 +531,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     </span>
                     <button
                       onClick={() => handleQuantityChange(quantity + 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-red-500 hover:border-red-500 transition-all duration-200 text-gray-600 hover:text-white"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -477,7 +544,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">{SIZE_POPUP_CONFIG.labels.totalText} ({quantity} {quantity > 1 ? SIZE_POPUP_CONFIG.messages.items : SIZE_POPUP_CONFIG.messages.item})</span>
-                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
+                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">
                       {formatPrice(getCurrentPrice() * quantity)}
                     </span>
                   </div>
@@ -495,13 +562,27 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div className="space-y-3">
                   <button
                     onClick={handleAddToCart}
-                    disabled={product.sizes && product.sizes.length > 0 && !selectedSize}
-                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 ${(product.sizes && product.sizes.length > 0 && !selectedSize)
+                    disabled={(product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
+                    className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${(product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
                       ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-                      : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white'
+                      : 'bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white'
                       }`}
                   >
-                    {SIZE_POPUP_CONFIG.buttons.addToCart}
+                    {!isProductInStock() ? (
+                      <>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                        </svg>
+                        <span>{SIZE_POPUP_CONFIG.labels.outOfStock}</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                        </svg>
+                        <span>{SIZE_POPUP_CONFIG.buttons.addToCart}</span>
+                      </>
+                    )}
                   </button>
                   <button
                     onClick={onClose}

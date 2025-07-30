@@ -23,15 +23,15 @@ import ProductCard from '@/components/ProductCard';
 // Configuration Variables
 const PRODUCT_DETAIL_CONFIG = {
   // Schema Slugs
-  productsSchemaSlug: 'products_alhafizsweetsandmilk',
+  productsSchemaSlug: 'products_marakish',
 
   // Currency & Pricing
   currency: 'PKR',
 
   // Page Meta
-  siteName: 'AlHafiz Milk and Sweets',
-  keywords: 'khoya barfi, sohan halwa, desi ghee, traditional sweets, milk products, Pakistani sweets, fresh milk, badami halwa, akhroti halwa, mix dry fruit halwa, silver barfi, gulab jamun, sialkot sweets, authentic taste',
-  defaultTitle: 'AlHafiz Milk and Sweets',
+  siteName: 'Marakish Cleaning Products',
+  keywords: 'chemical dishwash, bathroom cleaner, tezaab cleaner, harpic neel bleach, surf excel, handwash, shampoo, cleaning products, household cleaners, Pakistani cleaning products, marakish, quality cleaning solutions',
+  defaultTitle: 'Marakish Cleaning Products',
 
   faviconPath: '/assets/alhafiz_logo.png',
   faviconSize: '32x32',
@@ -64,14 +64,17 @@ const PRODUCT_DETAIL_CONFIG = {
     quantity: 'Quantity',
     yourSelection: 'Your Selection:',
     addToCart: 'Add to Cart',
-    addingToCart: 'Adding to Cart...'
+    addingToCart: 'Adding to Cart...',
+    outOfStock: 'Out of Stock',
+    notifyWhenAvailable: 'Notify When Available'
   },
 
   // Badges
   badges: {
     new: 'NEW',
     onSale: 'ON SALE',
-    bestseller: 'BESTSELLER'
+    bestseller: 'BESTSELLER',
+    outOfStock: 'OUT OF STOCK'
   },
 
   // Pricing
@@ -83,9 +86,20 @@ const PRODUCT_DETAIL_CONFIG = {
   // Product Features
   features: {
     inStock: 'In Stock',
+    outOfStock: 'Out of Stock',
+    limitedStock: 'Limited Stock',
     freeShipping: 'Free Delivery',
-    qualityGuaranteed: 'Fresh Daily',
+    qualityGuaranteed: 'Quality Guaranteed',
     returns: '7-Day Quality Guarantee'
+  },
+
+  // Stock Messages
+  stock: {
+    inStock: 'In Stock',
+    outOfStock: 'Out of Stock',
+    limitedStock: 'Only {count} left in stock',
+    lowStock: 'Low Stock - {count} remaining',
+    stockThreshold: 10
   },
 
   // Tabs
@@ -98,13 +112,14 @@ const PRODUCT_DETAIL_CONFIG = {
   // Tab Content
   tabContent: {
     productDescription: 'Product Description',
+    keyFeatures: 'Key Features',
     additionalFeatures: 'Additional Features',
     specifications: 'Specifications',
     generalInformation: 'General Information',
     features: 'Features',
     faqTitle: 'Frequently Asked Questions',
     faqContact: 'Still have questions?',
-    faqContactMessage: 'Contact our customer service team at info@alhafizsweetsandmilk.com or call us at 03487765824. We\'re here to help you find the perfect traditional sweets for your special occasions and daily enjoyment.',
+    faqContactMessage: 'Contact our customer service team at info@marakish.com or call us at 0343-5801011. We\'re here to help you find the perfect cleaning solutions for your home and office needs.',
     reviewsTitle: 'Customer Reviews',
     writeReview: 'Write a Review',
     outOfFive: 'out of 5',
@@ -118,7 +133,7 @@ const PRODUCT_DETAIL_CONFIG = {
     subtitle: 'Recommended for You',
     title: 'You May Also',
     titleHighlight: 'Like',
-    description: 'Discover more traditional sweets from the same collection',
+    description: 'Discover more cleaning products from the same collection',
     viewDetails: 'View Details',
     viewProduct: 'VIEW PRODUCT'
   },
@@ -150,24 +165,24 @@ const PRODUCT_DETAIL_CONFIG = {
   // FAQ Data
   faq: [
     {
-      question: "What is the delivery time for AlHafiz Milk and Sweets products?",
-      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities like Sialkot, Lahore, Karachi, and Islamabad. For remote areas, please allow an additional 2-3 days. Fresh sweets are prepared daily and delivered promptly to maintain quality and taste."
+      question: "What is the delivery time for Marakish cleaning products?",
+      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities like Lahore, Karachi, and Islamabad. For remote areas, please allow an additional 2-3 days. Our cleaning products are carefully packaged to maintain quality during transit."
     },
     {
-      question: "Do you offer a freshness guarantee on your sweets?",
-      answer: "Yes, all AlHafiz Milk and Sweets products come with a 7-day quality guarantee covering freshness and taste. Our sweets are made daily with pure ingredients including fresh milk and premium dry fruits. We ensure the highest standards of hygiene and quality in our preparation."
+      question: "Do you offer a quality guarantee on your cleaning products?",
+      answer: "Yes, all Marakish cleaning products come with a 7-day quality guarantee covering effectiveness and satisfaction. Our products are formulated with premium ingredients to ensure superior cleaning performance. We ensure the highest standards of quality control in our manufacturing process."
     },
     {
-      question: "Are your sweets made with pure and natural ingredients?",
-      answer: "Absolutely! All our traditional sweets are made with 100% pure ingredients - fresh milk, pure desi ghee, premium dry fruits (almonds, pistachios, walnuts), and natural sugar. We source our milk daily from local farms and use traditional recipes passed down through generations."
+      question: "Are your cleaning products safe and eco-friendly?",
+      answer: "Absolutely! All our cleaning products are formulated to be safe for family use while being effective against dirt and germs. We prioritize eco-friendly ingredients where possible and ensure all products meet safety standards for household and commercial use."
     },
     {
       question: "What payment options do you accept?",
-      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers across Pakistan. Easy installment plans are available for bulk orders over PKR 10,000 for festivals and special occasions."
+      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers across Pakistan. Easy installment plans are available for bulk orders over PKR 10,000 for commercial customers."
     },
     {
-      question: "What is your return policy for sweets?",
-      answer: "We offer a 7-day quality guarantee for all our traditional sweets. Items must be in original condition with original packaging. Due to the perishable nature of sweets, returns are accepted only for quality issues or if the product doesn't meet our freshness standards. Custom orders for festivals are non-returnable unless there's a quality issue."
+      question: "What is your return policy for cleaning products?",
+      answer: "We offer a 7-day quality guarantee for all our cleaning products. Items must be in original condition with original packaging. Returns are accepted for quality issues or if the product doesn't meet our effectiveness standards. Bulk orders for commercial use have special return policies."
     }
   ]
 };
@@ -240,6 +255,26 @@ export default function ProductDetail({ product, relatedProducts }) {
 
   const formatPrice = (price) => {
     return `${PRODUCT_DETAIL_CONFIG.currency} ${price.toLocaleString()}`;
+  };
+
+  // Check if product is in stock
+  const isProductInStock = () => {
+    return product && product.inStock && product.stockLeft > 0;
+  };
+
+  // Get stock status message
+  const getStockStatus = () => {
+    if (!product) return '';
+
+    if (!product.inStock || product.stockLeft <= 0) {
+      return PRODUCT_DETAIL_CONFIG.stock.outOfStock;
+    }
+
+    if (product.stockLeft <= PRODUCT_DETAIL_CONFIG.stock.stockThreshold) {
+      return PRODUCT_DETAIL_CONFIG.stock.limitedStock.replace('{count}', product.stockLeft);
+    }
+
+    return PRODUCT_DETAIL_CONFIG.stock.inStock;
   };
 
   // Get current image - prioritize color selection, then manual selection
@@ -332,9 +367,21 @@ export default function ProductDetail({ product, relatedProducts }) {
   };
 
   const handleAddToCart = async () => {
+    // Check if product is out of stock
+    if (!isProductInStock()) {
+      alert('This product is currently out of stock');
+      return;
+    }
+
     // Check if product has sizes and none is selected
     if (product.sizes && product.sizes.length > 0 && !selectedSize) {
       alert('Please select a size before adding to cart');
+      return;
+    }
+
+    // Check if requested quantity exceeds available stock
+    if (quantity > product.stockLeft) {
+      alert(`Only ${product.stockLeft} items available in stock`);
       return;
     }
 
@@ -367,12 +414,13 @@ export default function ProductDetail({ product, relatedProducts }) {
 
   const handleQuantityChange = (change) => {
     const newQuantity = quantity + change;
-    if (newQuantity >= 1 && newQuantity <= 10) {
+    const maxQuantity = Math.min(10, product.stockLeft || 0);
+    if (newQuantity >= 1 && newQuantity <= maxQuantity) {
       setQuantity(newQuantity);
     }
   };
 
-  // FAQ data for AlHafiz Milk and Sweets brand
+  // FAQ data for Marakish brand
   const faqData = PRODUCT_DETAIL_CONFIG.faq;
 
   return (
@@ -394,9 +442,9 @@ export default function ProductDetail({ product, relatedProducts }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-            <Link href="/" className="hover:text-red-600">Home</Link>
+            <Link href="/" className="hover:text-blue-600">Home</Link>
             <span>/</span>
-            <Link href="/shop" className="hover:text-red-600">Shop</Link>
+            <Link href="/shop" className="hover:text-blue-600">Shop</Link>
             <span>/</span>
             <span className="text-gray-900">{product.name}</span>
           </nav>
@@ -476,7 +524,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                       <button
                         onClick={() => handleImageSelect(index)}
                         className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
-                          ? 'border-red-500 ring-2 ring-red-200'
+                          ? 'border-blue-500 ring-2 ring-blue-200'
                           : 'border-gray-200 hover:border-gray-300'
                           }`}
                       >
@@ -520,7 +568,7 @@ export default function ProductDetail({ product, relatedProducts }) {
             <div className="space-y-6">
               {/* Product Title and Category */}
               <div>
-                <p className="text-sm text-red-600 uppercase tracking-wide font-semibold mb-2">
+                <p className="text-sm text-blue-600 uppercase tracking-wide font-semibold mb-2">
                   {product.category}
                 </p>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -542,6 +590,16 @@ export default function ProductDetail({ product, relatedProducts }) {
                   {product.bestseller && (
                     <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full">
                       {PRODUCT_DETAIL_CONFIG.badges.bestseller}
+                    </span>
+                  )}
+                  {product.stockLeft <= PRODUCT_DETAIL_CONFIG.stock.stockThreshold && product.stockLeft > 0 && (
+                    <span className="bg-orange-100 text-orange-800 text-xs font-semibold px-2 py-1 rounded-full">
+                      {PRODUCT_DETAIL_CONFIG.stock.limitedStock.replace('{count}', product.stockLeft)}
+                    </span>
+                  )}
+                  {(!product.inStock || product.stockLeft <= 0) && (
+                    <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded-full">
+                      {PRODUCT_DETAIL_CONFIG.badges.outOfStock}
                     </span>
                   )}
                 </div>
@@ -570,7 +628,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Price */}
               <div className="space-y-2">
                 <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-red-600 to-red-500 bg-clip-text">
+                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text">
                     {formatPrice(getCurrentPrice())}
                   </span>
                   {product.onSale && (
@@ -584,15 +642,32 @@ export default function ProductDetail({ product, relatedProducts }) {
                     {PRODUCT_DETAIL_CONFIG.pricing.youSave} {formatPrice(product.originalPrice - getCurrentPrice())} ({Math.round(((product.originalPrice - getCurrentPrice()) / product.originalPrice) * 100)}{PRODUCT_DETAIL_CONFIG.pricing.off})
                   </p>
                 )}
+                {/* Stock Status */}
+                <div className="flex items-center space-x-2">
+                  <div className={`w-3 h-3 rounded-full ${isProductInStock()
+                    ? product.stockLeft <= PRODUCT_DETAIL_CONFIG.stock.stockThreshold
+                      ? 'bg-orange-500'
+                      : 'bg-green-500'
+                    : 'bg-red-500'
+                    }`}></div>
+                  <span className={`text-sm font-medium ${isProductInStock()
+                    ? product.stockLeft <= PRODUCT_DETAIL_CONFIG.stock.stockThreshold
+                      ? 'text-orange-600'
+                      : 'text-green-600'
+                    : 'text-red-600'
+                    }`}>
+                    {getStockStatus()}
+                  </span>
+                </div>
               </div>
 
               {/* Color Selection */}
               {product.colors && product.colors.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.color}</h3>
-                  <div className="mb-4 p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 border border-yellow-300 rounded-lg">
-                    <p className="text-base font-semibold text-red-800">
-                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-red-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                  <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-green-100 border border-green-300 rounded-lg">
+                    <p className="text-base font-semibold text-blue-800">
+                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-blue-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                     </p>
                   </div>
                   <div className="flex items-center flex-wrap gap-2">
@@ -601,8 +676,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                         key={index}
                         onClick={() => handleColorSelect(index)}
                         className={`px-4 py-2 border-2 rounded-lg font-medium transition-all duration-300 text-sm ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
-                          ? 'border-red-500 bg-red-50 text-red-700 shadow-md transform scale-105'
-                          : 'border-gray-300 hover:border-red-300 hover:bg-red-50 text-gray-700 hover:scale-102'
+                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md transform scale-105'
+                          : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:scale-102'
                           }`}
                         title={`${color} - Image ${index + 1}`}
                       >
@@ -630,7 +705,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           key={index}
                           onClick={() => setSelectedSize(sizeLabel)}
                           className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
-                            ? 'border-red-500 bg-red-50 text-red-700'
+                            ? 'border-blue-500 bg-blue-50 text-blue-700'
                             : 'border-gray-300 hover:border-gray-400'
                             }`}
                         >
@@ -686,12 +761,12 @@ export default function ProductDetail({ product, relatedProducts }) {
               <div className="space-y-4">
                 <button
                   onClick={handleAddToCart}
-                  disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize)}
+                  disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
                   className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center space-x-2 ${addingToCart
                     ? 'bg-green-500 text-white'
-                    : (product.sizes && product.sizes.length > 0 && !selectedSize)
+                    : (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white transform hover:scale-105 shadow-lg'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white transform hover:scale-105 shadow-lg'
                     }`}
                 >
                   {addingToCart ? (
@@ -700,6 +775,13 @@ export default function ProductDetail({ product, relatedProducts }) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                       </svg>
                       <span>{PRODUCT_DETAIL_CONFIG.labels.addingToCart}</span>
+                    </>
+                  ) : !isProductInStock() ? (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                      </svg>
+                      <span>{PRODUCT_DETAIL_CONFIG.labels.outOfStock}</span>
                     </>
                   ) : (
                     <>
@@ -714,10 +796,10 @@ export default function ProductDetail({ product, relatedProducts }) {
                 {/* Product Info */}
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center space-x-2">
-                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg className={`w-5 h-5 ${isProductInStock() ? 'text-green-500' : 'text-red-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isProductInStock() ? "M5 13l4 4L19 7" : "M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"} />
                     </svg>
-                    <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.features.inStock}</span>
+                    <span className="text-gray-600">{isProductInStock() ? PRODUCT_DETAIL_CONFIG.features.inStock : PRODUCT_DETAIL_CONFIG.features.outOfStock}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -750,7 +832,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('description')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'description'
-                    ? 'border-red-500 text-red-600'
+                    ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -759,7 +841,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('faq')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'faq'
-                    ? 'border-red-500 text-red-600'
+                    ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -768,7 +850,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('reviews')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'reviews'
-                    ? 'border-red-500 text-red-600'
+                    ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -788,6 +870,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                       <p>{product.description}</p>
                     </div>
                   </div>
+
+
 
                   {product.additionalFeatures && (
                     <div>
@@ -823,6 +907,46 @@ export default function ProductDetail({ product, relatedProducts }) {
                       </div>
                     </div>
                   </div>
+
+
+                  {/* Product Features */}
+                  {product.features && product.features.length > 0 && (
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.keyFeatures}</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {product.features.map((feature, index) => (
+                          <div
+                            key={index}
+                            className="group flex items-start space-x-3 p-4 bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-xl border border-blue-200 hover:border-blue-300 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-default"
+                          >
+                            <span className="text-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
+                              {feature.split(' ')[0]}
+                            </span>
+                            <span className="text-sm font-medium text-gray-700 leading-relaxed">
+                              {feature.split(' ').slice(1).join(' ')}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Features Summary */}
+                      <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg">
+                        <div className="flex items-center space-x-2">
+                          <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="text-sm font-semibold text-green-800">
+                            {product.features.length} Premium Features Included
+                          </span>
+                        </div>
+                        <p className="text-xs text-green-700 mt-1">
+                          Each feature is designed to provide you with the best cleaning experience and value for your money.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+
                 </div>
               )}
 
@@ -843,9 +967,9 @@ export default function ProductDetail({ product, relatedProducts }) {
                     </div>
                   </div>
 
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <h4 className="font-medium text-red-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
-                    <p className="text-red-700 text-sm">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 className="font-medium text-blue-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
+                    <p className="text-blue-700 text-sm">
                       {PRODUCT_DETAIL_CONFIG.tabContent.faqContactMessage}
                     </p>
                   </div>
@@ -882,7 +1006,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           <p className="text-sm text-gray-600">{product.reviews} {PRODUCT_DETAIL_CONFIG.tabContent.totalReviews}</p>
                         </div>
 
-                        <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
+                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                           {PRODUCT_DETAIL_CONFIG.tabContent.writeReview}
                         </button>
                       </div>
@@ -910,11 +1034,11 @@ export default function ProductDetail({ product, relatedProducts }) {
           {relatedProducts && relatedProducts.length > 0 && (
             <div className="mt-16">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.subtitle}
                 </h2>
                 <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-red-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-blue-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.description}

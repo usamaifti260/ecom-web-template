@@ -1,398 +1,1286 @@
 [
-  {
-    "id": "1",
-    "name": "Sohan Halwa - Sada",
-    "description": "Traditional plain sohan halwa made with pure ghee, milk, and sugar. A classic sweet with rich taste and perfect texture.",
-    "price": 1500,
-    "originalPrice": 1800,
-    "image": "https://cafesajawal.pk/cdn/shop/files/Sohan_Halwa_kaju.webp?v=1739098565&width=990",
-    "hoverimage": "https://khawajasohanhalwa.com/cdn/shop/products/akhroti-sohan-halwa_900x.jpg?v=1667265807",
-    "gallery": [
-      "https://cafesajawal.pk/cdn/shop/files/Sohan_Halwa_kaju.webp?v=1739098565&width=990",
-      "https://khawajasohanhalwa.com/cdn/shop/products/akhroti-sohan-halwa_900x.jpg?v=1667265807"
-    ],
-    "category": "Sohan Halwa",
-    "subcategory": "Sada",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 1500
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 7000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 14000
-      }
-    ],
-    "colors": [],
-    "rating": 4.7,
-    "reviews": 156,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 17,
-    "stockLeft": 38,
-    "additionalFeatures": "Pure Desi Ghee, Traditional Recipe, No Artificial Colors, Fresh Daily, Family Recipe"
-  },
-  {
-    "id": "2",
-    "name": "Sohan Halwa - Badami",
-    "description": "Rich sohan halwa enriched with premium almonds. Perfect blend of traditional halwa with the crunch and flavor of badams.",
-    "price": 2200,
-    "originalPrice": 2600,
-    "image": "https://aljannatsweets.com/cdn/shop/files/listing-02_1.jpg?v=1744913204&width=990",
-    "hoverimage": "https://aljannatsweets.com/cdn/shop/products/badamisimple.jpg?v=1744913204",
-    "gallery": [
-      "https://aljannatsweets.com/cdn/shop/files/listing-02_1.jpg?v=1744913204&width=990",
-      "https://aljannatsweets.com/cdn/shop/products/badamisimple.jpg?v=1744913204"
-    ],
-    "category": "Sohan Halwa",
-    "subcategory": "Badami",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 2200
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 10000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 20000
-      }
-    ],
-    "colors": [],
-    "rating": 4.9,
-    "reviews": 98,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 15,
-    "stockLeft": 22,
-    "additionalFeatures": "Premium Almonds, Rich Texture, Nutritious, Traditional Taste, Perfect for Gifts"
-  },
-  {
-    "id": "3",
-    "name": "Sohan Halwa - Akhroti",
-    "description": "Delicious sohan halwa loaded with fresh walnuts. A healthy and tasty combination of traditional sweet with dry fruits.",
-    "price": 2400,
-    "originalPrice": 2800,
-    "image": "https://jallundharsweets.com/cdn/shop/files/IMG_21_1800x1800.webp?v=1741608985",
-    "hoverimage": "https://jallundharsweets.com/cdn/shop/files/0016_DSC08442copy.webp?v=1741608985&width=1200",
-    "gallery": [
-      "https://jallundharsweets.com/cdn/shop/files/IMG_21_1800x1800.webp?v=1741608985",
-      "https://jallundharsweets.com/cdn/shop/files/0016_DSC08442copy.webp?v=1741608985&width=1200"
-    ],
-    "category": "Sohan Halwa",
-    "subcategory": "Akhroti",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 2400
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 12000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 24000
-      }
-    ],
-    "colors": [],
-    "rating": 4.8,
-    "reviews": 76,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 14,
-    "stockLeft": 31,
-    "additionalFeatures": "Fresh Walnuts, Brain Food, Rich in Omega-3, Traditional Preparation, Healthy Choice"
-  },
-  {
-    "id": "4",
-    "name": "Sohan Halwa - Mix Dry Fruit",
-    "description": "Premium sohan halwa loaded with assorted dry fruits including almonds, cashews, pistachios, and raisins.",
-    "price": 2800,
-    "originalPrice": 3200,
-    "image": "https://hafizhalwa.com/cdn/shop/files/IMG_6679.jpg?v=1748549736&width=1946",
-    "hoverimage": "https://hafizhalwa.com/cdn/shop/products/IMG_9585.jpg?v=1748549383&width=1946",
-    "gallery": [
-      "https://hafizhalwa.com/cdn/shop/files/IMG_6679.jpg?v=1748549736&width=1946",
-      "https://hafizhalwa.com/cdn/shop/products/IMG_9585.jpg?v=1748549383&width=1946"
-    ],
-    "category": "Sohan Halwa",
-    "subcategory": "Mix Dry Fruit",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 2800
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 14000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 28000
-      }
-    ],
-    "colors": [],
-    "rating": 4.9,
-    "reviews": 134,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 13,
-    "stockLeft": 18,
-    "additionalFeatures": "Assorted Dry Fruits, Premium Quality, Luxury Sweet, Perfect for Festivals, Rich in Nutrients"
-  },
-  {
-    "id": "5",
-    "name": "Premium Khoya Barfi",
-    "description": "Traditional milk-based sweet made with pure khoya, sugar, and cardamom. Rich, creamy texture with authentic desi taste.",
-    "price": 1200,
-    "originalPrice": 1400,
-    "image": "https://aljannatsweets.com/cdn/shop/files/listing-07_1.jpg?v=1744913867&width=2890",
-    "hoverimage": "https://aljannatsweets.com/cdn/shop/products/alinewbarfibanner.jpg?v=1744913867",
-    "gallery": [
-      "https://aljannatsweets.com/cdn/shop/files/listing-07_1.jpg?v=1744913867&width=2890",
-      "https://aljannatsweets.com/cdn/shop/products/alinewbarfibanner.jpg?v=1744913867"
-    ],
-    "category": "Khoya Barfi",
-    "subcategory": "Plain Barfi",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": true,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 1200
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 5000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 10000
-      }
-    ],
-    "colors": [],
-    "rating": 4.9,
-    "reviews": 127,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 14,
-    "stockLeft": 45,
-    "additionalFeatures": "Fresh Daily, Pure Milk, No Preservatives, Traditional Recipe, Hygienic Packaging"
-  },
-  {
-    "id": "6",
-    "name": "Kaju Khoya Barfi",
-    "description": "Premium khoya barfi decorated with edible silver leaves (chandi ka varq). Perfect for special occasions and festivals.",
-    "price": 1800,
-    "originalPrice": 2100,
-    "image": "https://aljannatsweets.com/cdn/shop/files/listing-09_1.jpg?v=1744913959&width=2890",
-    "hoverimage": "https://aljannatsweets.com/cdn/shop/files/kajubweb.jpg?v=1744914026",
-    "gallery": [
-      "https://aljannatsweets.com/cdn/shop/files/listing-09_1.jpg?v=1744913959&width=2890",
-      "https://aljannatsweets.com/cdn/shop/files/kajubweb.jpg?v=1744914026"
-    ],
-    "category": "Khoya Barfi",
-    "subcategory": "Silver Barfi",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "1kg",
-        "pricebysize": 1800
-      },
-      {
-        "size": "5kg",
-        "pricebysize": 8000
-      },
-      {
-        "size": "10kg",
-        "pricebysize": 16000
-      }
-    ],
-    "colors": [],
-    "rating": 4.8,
-    "reviews": 89,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 14,
-    "stockLeft": 28,
-    "additionalFeatures": "Edible Silver Leaves, Premium Quality, Festive Special, Fresh Preparation, Gift Box Available"
-  },
-  {
-    "id": "7",
-    "name": "Pure Cow Desi Ghee",
-    "description": "100% pure cow ghee made using traditional bilona method. Rich aroma, golden color, and authentic taste.",
-    "price": 3200,
-    "originalPrice": 3600,
-    "image": "https://www.khalisland.com/cdn/shop/files/desighee3.jpg?v=1682559481&width=1646",
-    "hoverimage": "",
-    "gallery": [
-      "https://www.khalisland.com/cdn/shop/files/desighee3.jpg?v=1682559481&width=1646",
-      ""
-    ],
-    "category": "Desi Ghee",
-    "subcategory": "Pure Cow Ghee",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "250ml",
-        "pricebysize": 3200
-      },
-      {
-        "size": "500ml",
-        "pricebysize": 6400
-      },
-      {
-        "size": "1L",
-        "pricebysize": 12800
-      }
-    ],
-    "colors": [],
-    "rating": 4.9,
-    "reviews": 243,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 11,
-    "stockLeft": 52,
-    "additionalFeatures": "Bilona Method, A2 Cow Milk, Chemical Free, Traditional Process, Rich in Vitamins"
-  },
-  {
-    "id": "8",
-    "name": "Buffalo Desi Ghee",
-    "description": "Premium buffalo ghee with rich taste and high nutritional value. Made from fresh buffalo milk using traditional methods.",
-    "price": 2800,
-    "originalPrice": 3200,
-    "image": "https://thalnaturals.com/cdn/shop/files/cow.jpg?v=1745580407",
-    "hoverimage": "",
-    "gallery": [
-      "https://thalnaturals.com/cdn/shop/files/cow.jpg?v=1745580407",
-      ""
-    ],
-    "category": "Desi Ghee",
-    "subcategory": "Buffalo Ghee",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "250ml",
-        "pricebysize": 2800
-      },
-      {
-        "size": "500ml",
-        "pricebysize": 5600
-      },
-      {
-        "size": "1L",
-        "pricebysize": 11200
-      }
-    ],
-    "colors": [],
-    "rating": 4.7,
-    "reviews": 187,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 13,
-    "stockLeft": 34,
-    "additionalFeatures": "High Fat Content, Rich Flavor, Traditional Churning, Natural Process, Long Shelf Life"
-  },
-  {
-    "id": "9",
-    "name": "Fresh Milk (Full Cream)",
-    "description": "Farm fresh full cream milk delivered daily. Rich, creamy, and packed with natural nutrients.",
-    "price": 180,
-    "originalPrice": 200,
-    "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=60",
-    "hoverimage": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop&q=60",
-    "gallery": [
-      "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=60",
-      "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop&q=60"
-    ],
-    "category": "Milk Products",
-    "subcategory": "Fresh Milk",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "500ml",
-        "pricebysize": 1800
-      },
-      {
-        "size": "1L",
-        "pricebysize": 3600
-      }
-    ],
-    "colors": [],
-    "rating": 4.8,
-    "reviews": 324,
-    "inStock": true,
-    "bestseller": true,
-    "salepercentage": 10,
-    "stockLeft": 85,
-    "additionalFeatures": "Daily Fresh, Full Cream, Natural Taste, Hygienic Packaging, Farm to Table"
-  },
-  {
-    "id": "10",
-    "name": "Traditional Gulab Jamun",
-    "description": "Soft, spongy gulab jamuns soaked in aromatic sugar syrup. Made with khoya and flour, fried to perfection.",
-    "price": 800,
-    "originalPrice": 950,
-    "image": "https://amratsarsweets.com/cdn/shop/files/New_gulab_Jamun_pics.jpg?v=1749610481&width=900",
-    "hoverimage": "",
-    "gallery": [
-      "https://amratsarsweets.com/cdn/shop/files/New_gulab_Jamun_pics.jpg?v=1749610481&width=900",
-      ""
-    ],
-    "category": "Traditional Sweets",
-    "subcategory": "Gulab Jamun",
-    "brand": "AlHafiz Milk and Sweets",
-    "isNew": false,
-    "onSale": true,
-    "sizes": [
-      {
-        "size": "250g",
-        "pricebysize": 800
-      },
-      {
-        "size": "500g",
-        "pricebysize": 1600
-      },
-      {
-        "size": "1kg",
-        "pricebysize": 3200
-      }
-    ],
-    "colors": [],
-    "rating": 4.6,
-    "reviews": 198,
-    "inStock": true,
-    "bestseller": false,
-    "salepercentage": 16,
-    "stockLeft": 42,
-    "additionalFeatures": "Soft Texture, Aromatic Syrup, Traditional Recipe, Fresh Preparation, Perfect Sweetness"
-  }
+    {
+        "id": "1",
+        "name": "Chemical Dishwash Liquid",
+        "description": "Powerful chemical dishwash liquid that cuts through grease and grime effectively. Perfect for cleaning dishes, utensils, and cookware with superior degreasing action.",
+        "price": 250,
+        "originalPrice": 300,
+        "image": "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H966febf11edc4517a83767f5773bf9cbd.png_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H966febf11edc4517a83767f5773bf9cbd.png_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Dishwash Liquid",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 250
+            },
+            {
+                "size": "1L",
+                "pricebysize": 450
+            },
+            {
+                "size": "5L",
+                "pricebysize": 2000
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 186,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 17,
+        "stockLeft": 40,
+        "additionalFeatures": "Heavy Duty Formula, Grease Cutting, Pleasant Fragrance, Gentle on Hands, Concentrated Formula",
+        "features": [
+            "🧼 Heavy-duty degreasing formula",
+            "✨ Cuts through tough grease and grime",
+            "🌸 Pleasant fresh fragrance",
+            "👐 Gentle on hands and skin",
+            "💧 Concentrated formula - less is more",
+            "🍽️ Safe for all dishware materials",
+            "🌿 Biodegradable ingredients",
+            "💪 Professional kitchen strength",
+            "🚿 Easy rinse formula",
+            "🛡️ Anti-bacterial properties",
+            "💰 Cost-effective cleaning solution",
+            "⚡ Fast-acting grease removal",
+            "🧽 Works with all sponge types",
+            "🌊 Creates rich, lasting suds",
+            "✅ Food-safe cleaning formula"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Bathroom Cleaner Tezaab",
+        "description": "Powerful tezaab-based bathroom cleaner that removes tough stains, lime scale, and soap scum. Ideal for tiles, toilets, and bathroom fixtures.",
+        "price": 300,
+        "originalPrice": 350,
+        "image": "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Hba091f94c4cc4002ab237b7e923a1ca1z.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Hba091f94c4cc4002ab237b7e923a1ca1z.jpg_720x720q50.jpg"
+        ],
+        "category": "Bathroom Cleaners",
+        "subcategory": "Tezaab Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 300
+            },
+            {
+                "size": "1L",
+                "pricebysize": 550
+            },
+            {
+                "size": "5L",
+                "pricebysize": 2500
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 134,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 14,
+        "stockLeft": 32,
+        "additionalFeatures": "Anti-Bacterial, Stain Remover, Lime Scale Removal, Fresh Scent, Professional Strength",
+        "features": [
+            "🦠 Powerful anti-bacterial formula",
+            "🧽 Removes tough bathroom stains",
+            "🪨 Dissolves lime scale buildup",
+            "🧴 Eliminates soap scum residue",
+            "🌿 Fresh, clean bathroom scent",
+            "💪 Professional strength cleaning",
+            "🚿 Perfect for tiles and fixtures",
+            "⚡ Fast-acting stain removal",
+            "🛡️ Prevents bacterial growth",
+            "✨ Restores original shine",
+            "🧽 No scrubbing required",
+            "💧 Works on wet and dry surfaces",
+            "🌊 Penetrates deep into grime",
+            "🔒 Safe for ceramic and porcelain",
+            "💎 Crystal clear results"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Harpic Neel Bleach",
+        "description": "Premium blue bleach for powerful disinfection and whitening. Kills 99.9% germs and removes tough stains from toilets and surfaces.",
+        "price": 180,
+        "originalPrice": 220,
+        "image": "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/HTB1VjW3RpXXXXXJXFXX760XFXXXW.png_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/HTB1VjW3RpXXXXXJXFXX760XFXXXW.png_720x720q50.jpg"
+        ],
+        "category": "Bleach & Disinfectants",
+        "subcategory": "Harpic Neel Bleach",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 180
+            },
+            {
+                "size": "1L",
+                "pricebysize": 320
+            },
+            {
+                "size": "2L",
+                "pricebysize": 600
+            }
+        ],
+        "colors": [],
+        "rating": 4.9,
+        "reviews": 267,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 18,
+        "stockLeft": 58,
+        "additionalFeatures": "99.9% Germ Kill, Powerful Bleaching, Disinfectant, Toilet Bowl Cleaner, Hospital Grade",
+        "features": [
+            "🦠 Kills 99.9% of germs and bacteria",
+            "💙 Premium blue bleach formula",
+            "🏥 Hospital-grade disinfection",
+            "🚽 Specialized toilet bowl cleaner",
+            "⚪ Powerful whitening action",
+            "🛡️ Long-lasting protection",
+            "🌊 Thick clinging formula",
+            "⚡ Instant stain removal",
+            "🧼 Removes tough deposits",
+            "💎 Restores porcelain shine",
+            "🌿 Fresh clean fragrance",
+            "🔒 Safe for septic systems",
+            "💪 Professional strength formula",
+            "🧽 No scrubbing needed",
+            "✨ Sparkling clean results"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "Surf Excel Detergent",
+        "description": "Premium laundry detergent powder that removes tough stains and keeps clothes bright and fresh. Suitable for both hand wash and machine wash.",
+        "price": 450,
+        "originalPrice": 500,
+        "image": "https://s.alicdn.com/@sc04/kf/Hb27ae62fe4b04d17ab0c24b8f153ec78m.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Hb75a3ad8b49a4286b7bf7cf0d4355e5c6.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hb27ae62fe4b04d17ab0c24b8f153ec78m.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Hb75a3ad8b49a4286b7bf7cf0d4355e5c6.jpg_720x720q50.jpg"
+        ],
+        "category": "Laundry Products",
+        "subcategory": "Surf Excel",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "1kg",
+                "pricebysize": 450
+            },
+            {
+                "size": "3kg",
+                "pricebysize": 1200
+            },
+            {
+                "size": "6kg",
+                "pricebysize": 2200
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 324,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 10,
+        "stockLeft": 42,
+        "additionalFeatures": "Stain Removal, Color Protection, Fresh Fragrance, Gentle on Fabric, High Efficiency",
+        "features": [
+            "🧽 Powerful stain removal technology",
+            "🌈 Protects fabric colors",
+            "🌸 Long-lasting fresh fragrance",
+            "🧴 Gentle on all fabric types",
+            "⚡ High-efficiency cleaning",
+            "👔 Perfect for both hand & machine wash",
+            "💧 Works in hot and cold water",
+            "🌿 Biodegradable formula",
+            "✨ Brightens white clothes",
+            "🛡️ Fabric care protection",
+            "💰 Concentrated formula",
+            "🧼 Rich foam production",
+            "🌊 Easy rinse technology",
+            "👕 Safe for delicate fabrics",
+            "🏆 Professional laundry results"
+        ]
+    },
+    {
+        "id": "5",
+        "name": "Antibacterial Handwash",
+        "description": "Gentle yet effective antibacterial handwash that kills germs while keeping hands soft and moisturized. Available in refreshing fragrances.",
+        "price": 150,
+        "originalPrice": 180,
+        "image": "https://s.alicdn.com/@sc04/kf/Hae4319cb230b401397bd3f532ee9596ac.png_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H8420d36398fa4b8992b84ff23dcac060A.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hae4319cb230b401397bd3f532ee9596ac.png_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H8420d36398fa4b8992b84ff23dcac060A.jpg_720x720q50.jpg"
+        ],
+        "category": "Personal Care",
+        "subcategory": "Handwash",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "250ml",
+                "pricebysize": 150
+            },
+            {
+                "size": "500ml",
+                "pricebysize": 280
+            },
+            {
+                "size": "1L",
+                "pricebysize": 500
+            }
+        ],
+        "colors": [],
+        "rating": 4.6,
+        "reviews": 198,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 17,
+        "stockLeft": 67,
+        "additionalFeatures": "Antibacterial Formula, Moisturizing, Pleasant Fragrance, Gentle on Skin, pH Balanced",
+        "features": [
+            "🦠 Kills 99.9% of germs",
+            "💧 Moisturizing formula",
+            "🌸 Pleasant refreshing fragrance",
+            "👐 Gentle on sensitive skin",
+            "⚖️ pH balanced for skin health",
+            "🧼 Rich foaming action",
+            "💎 Crystal clear formula",
+            "🌿 Natural ingredients",
+            "🛡️ Long-lasting protection",
+            "👶 Safe for children",
+            "💧 Doesn't dry out hands",
+            "🌺 Multiple fragrance options",
+            "⚡ Quick-acting germ protection",
+            "🧴 Easy pump dispenser",
+            "✨ Leaves hands feeling soft"
+        ]
+    },
+    {
+        "id": "6",
+        "name": "Hair Care Shampoo",
+        "description": "Nourishing shampoo for all hair types that cleanses, strengthens and adds shine to hair. Enriched with natural ingredients for healthy hair.",
+        "price": 320,
+        "originalPrice": 380,
+        "image": "https://s.alicdn.com/@sc04/kf/H83590bd086634734a4138ddb2fe9de62M.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H38ee5664315c45bab9faccc8e005180f2.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H83590bd086634734a4138ddb2fe9de62M.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H38ee5664315c45bab9faccc8e005180f2.jpg_720x720q50.jpg"
+        ],
+        "category": "Personal Care",
+        "subcategory": "Shampoo",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "200ml",
+                "pricebysize": 320
+            },
+            {
+                "size": "400ml",
+                "pricebysize": 580
+            },
+            {
+                "size": "1L",
+                "pricebysize": 1300
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 156,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 16,
+        "stockLeft": 38,
+        "additionalFeatures": "Natural Ingredients, Hair Strengthening, Shine Enhancement, Sulfate Free, All Hair Types",
+        "features": [
+            "🌿 Natural ingredient formula",
+            "💪 Strengthens hair follicles",
+            "✨ Enhances natural shine",
+            "🚫 Sulfate-free formula",
+            "💇 Suitable for all hair types",
+            "🌱 Nourishes scalp health",
+            "💧 Deep cleansing action",
+            "🛡️ Prevents hair damage",
+            "🌸 Pleasant natural fragrance",
+            "💎 Adds volume and body",
+            "🧴 Gentle daily use formula",
+            "🌊 Rich lathering texture",
+            "👩 Restores hair vitality",
+            "⚡ Quick rinse formula",
+            "🏆 Professional salon quality"
+        ]
+    },
+    {
+        "id": "7",
+        "name": "Multi-Surface Floor Cleaner",
+        "description": "Versatile floor cleaner suitable for tiles, marble, wood and laminate floors. Leaves floors spotless with a fresh, long-lasting fragrance.",
+        "price": 280,
+        "originalPrice": 330,
+        "image": "https://s.alicdn.com/@sc04/kf/H1c4abe1ef58849738a2714df7d4a4ec6F.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H49726293e34f4094b06807c01b1b2eb94.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H1c4abe1ef58849738a2714df7d4a4ec6F.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H49726293e34f4094b06807c01b1b2eb94.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Floor Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 280
+            },
+            {
+                "size": "1L",
+                "pricebysize": 520
+            },
+            {
+                "size": "2L",
+                "pricebysize": 950
+            }
+        ],
+        "colors": [],
+        "rating": 4.5,
+        "reviews": 89,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 15,
+        "stockLeft": 29,
+        "additionalFeatures": "Multi-Surface Safe, Fresh Fragrance, Streak Free, Quick Drying, Non-Slip Formula",
+        "features": [
+            "🏠 Safe for all floor types",
+            "🌸 Fresh long-lasting fragrance",
+            "✨ Streak-free cleaning",
+            "⚡ Quick-drying formula",
+            "🛡️ Non-slip safety formula",
+            "🪨 Perfect for tiles and marble",
+            "🌳 Safe for wood and laminate",
+            "💧 Removes tough stains",
+            "🧽 No residue left behind",
+            "🌿 Eco-friendly ingredients",
+            "💎 Restores floor shine",
+            "🧴 Concentrated formula",
+            "🌊 Easy mop application",
+            "🏆 Professional cleaning results",
+            "💰 Cost-effective solution"
+        ]
+    },
+    {
+        "id": "8",
+        "name": "Glass & Mirror Cleaner",
+        "description": "Specialized cleaner for glass surfaces and mirrors that provides streak-free shine. Perfect for windows, mirrors, and glass tables.",
+        "price": 200,
+        "originalPrice": 240,
+        "image": "https://s.alicdn.com/@sc04/kf/Uc56cdbf14ad34d759419767860406853m.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Uc49c63cc958f4c5cbee23ef7746c4c73H.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Uc56cdbf14ad34d759419767860406853m.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Uc49c63cc958f4c5cbee23ef7746c4c73H.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Glass Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 200
+            },
+            {
+                "size": "1L",
+                "pricebysize": 380
+            }
+        ],
+        "colors": [],
+        "rating": 4.4,
+        "reviews": 76,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 17,
+        "stockLeft": 34,
+        "additionalFeatures": "Streak Free Shine, Anti-Static, Ammonia Free, Quick Drying, Crystal Clear Results",
+        "features": [
+            "✨ Perfect streak-free shine",
+            "⚡ Anti-static protection",
+            "🚫 Ammonia-free formula",
+            "💨 Quick-drying action",
+            "💎 Crystal clear results",
+            "🪟 Perfect for windows",
+            "🪞 Ideal for mirrors",
+            "🍽️ Safe for glass tables",
+            "🧽 Easy application",
+            "🌿 Non-toxic formula",
+            "💧 Removes water spots",
+            "🛡️ Prevents dust buildup",
+            "🌊 No residue formula",
+            "🏆 Professional quality",
+            "💰 Economical cleaning"
+        ]
+    },
+    {
+        "id": "9",
+        "name": "Fabric Softener",
+        "description": "Premium fabric softener that makes clothes soft, fresh, and static-free. Provides long-lasting fragrance and helps maintain fabric quality.",
+        "price": 220,
+        "originalPrice": 260,
+        "image": "https://s.alicdn.com/@sc04/kf/Hdedf5f4a4c6545f4b42aabe1e3f12a0cL.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/He496ada33f684f209d4413b85942ff742.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hdedf5f4a4c6545f4b42aabe1e3f12a0cL.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/He496ada33f684f209d4413b85942ff742.jpg_720x720q50.jpg"
+        ],
+        "category": "Laundry Products",
+        "subcategory": "Fabric Softener",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 220
+            },
+            {
+                "size": "1L",
+                "pricebysize": 420
+            },
+            {
+                "size": "2L",
+                "pricebysize": 780
+            }
+        ],
+        "colors": [],
+        "rating": 4.6,
+        "reviews": 143,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 15,
+        "stockLeft": 51,
+        "additionalFeatures": "Extra Softness, Long Lasting Fragrance, Anti-Static, Fabric Protection, Gentle Formula",
+        "features": [
+            "🧸 Extra soft fabric feel",
+            "🌸 Long-lasting fragrance",
+            "⚡ Anti-static protection",
+            "🛡️ Fabric protection formula",
+            "🌿 Gentle on all fabrics",
+            "💧 Concentrated formula",
+            "👕 Reduces wrinkles",
+            "🌊 Easy rinse technology",
+            "💎 Maintains fabric quality",
+            "🧴 Compatible with all detergents",
+            "🌈 Color protection",
+            "👶 Safe for baby clothes",
+            "⭐ Premium quality ingredients",
+            "💰 Economical usage",
+            "🏆 Professional laundry care"
+        ]
+    },
+    {
+        "id": "10",
+        "name": "Air Freshener Spray",
+        "description": "Instant air freshener spray that eliminates odors and leaves a pleasant, long-lasting fragrance. Perfect for homes, offices, and cars.",
+        "price": 180,
+        "originalPrice": 220,
+        "image": "https://s.alicdn.com/@sc04/kf/Hc98c0bebaa574ead91d7ecc2599dc876X.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Hddd810a818de4c98860c9235f50603e4L.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hc98c0bebaa574ead91d7ecc2599dc876X.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Hddd810a818de4c98860c9235f50603e4L.jpg_720x720q50.jpg"
+        ],
+        "category": "Personal Care",
+        "subcategory": "Air Freshener",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "300ml",
+                "pricebysize": 180
+            },
+            {
+                "size": "500ml",
+                "pricebysize": 290
+            }
+        ],
+        "colors": [],
+        "rating": 4.3,
+        "reviews": 92,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 18,
+        "stockLeft": 46,
+        "additionalFeatures": "Instant Freshness, Odor Elimination, Long Lasting, Natural Fragrance, Multi-Use",
+        "features": [
+            "⚡ Instant freshness boost",
+            "🚫 Eliminates tough odors",
+            "🌸 Long-lasting fragrance",
+            "🌿 Natural fragrance oils",
+            "🏠 Multi-room usage",
+            "🚗 Perfect for cars",
+            "🏢 Great for offices",
+            "💨 Fine mist spray",
+            "🛡️ Neutralizes bad smells",
+            "🌺 Multiple scent options",
+            "💎 Premium fragrance quality",
+            "🧴 Easy spray application",
+            "🌊 Non-staining formula",
+            "💰 Cost-effective freshening",
+            "⭐ Professional grade quality"
+        ]
+    },
+    {
+        "id": "11",
+        "name": "Oven & Grill Cleaner",
+        "description": "Heavy-duty oven and grill cleaner that cuts through tough, baked-on grease and food spills, leaving surfaces sparkling clean.",
+        "price": 350,
+        "originalPrice": 400,
+        "image": "https://s.alicdn.com/@sc04/kf/Hd7bb8483e9234e88a3e7f31d3066cc02z.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Ha9226900fe6f4e9596d6b6e41fbe223bl.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hd7bb8483e9234e88a3e7f31d3066cc02z.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Ha9226900fe6f4e9596d6b6e41fbe223bl.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Specialty Cleaner",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 350
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 112,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 13,
+        "stockLeft": 40,
+        "additionalFeatures": "Fume-Free Formula, Fast Acting, Removes Burnt-on Food, Safe for Oven Interiors",
+        "features": [
+            "💨 Fume-free safe formula",
+            "⚡ Fast-acting cleaning",
+            "🔥 Removes burnt-on food",
+            "🔒 Safe for oven interiors",
+            "🍳 Perfect for grills",
+            "💪 Heavy-duty degreasing",
+            "🧽 No scrubbing required",
+            "✨ Sparkling clean results",
+            "🛡️ Non-corrosive formula",
+            "🌿 Biodegradable ingredients",
+            "🧴 Easy spray application",
+            "💎 Professional strength",
+            "🌊 Penetrates tough grime",
+            "⭐ Restaurant quality",
+            "💰 Cost-effective cleaning"
+        ]
+    },
+    {
+        "id": "12",
+        "name": "Stainless Steel Cleaner & Polish",
+        "description": "Cleans, shines, and protects stainless steel surfaces. The formula removes fingerprints, smudges, and water spots, leaving a protective barrier.",
+        "price": 400,
+        "originalPrice": 450,
+        "image": "https://s.alicdn.com/@sc04/kf/Hc5103805da2148f9be46af1fb569f629A.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H185faa8889d0435a8484478f5b045b279.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hc5103805da2148f9be46af1fb569f629A.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H185faa8889d0435a8484478f5b045b279.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Appliance Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "400ml Spray",
+                "pricebysize": 400
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 95,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 11,
+        "stockLeft": 35,
+        "additionalFeatures": "Streak-Free, Fingerprint Resistant, Polishes and Protects, Works on Appliances",
+        "features": [
+            "✨ Streak-free shine",
+            "👆 Fingerprint resistant",
+            "💎 Polishes and protects",
+            "🏠 Works on all appliances",
+            "🛡️ Protective barrier coating",
+            "💧 Removes water spots",
+            "🧽 Easy wipe application",
+            "⚡ Instant results",
+            "🌿 Non-abrasive formula",
+            "💪 Professional grade",
+            "🔒 Safe for all metals",
+            "🌊 No residue left",
+            "⭐ Long-lasting protection",
+            "💰 Economical usage",
+            "🏆 Premium quality finish"
+        ]
+    },
+    {
+        "id": "13",
+        "name": "Mold & Mildew Remover",
+        "description": "Powerful bleach-based formula that eliminates stubborn mold and mildew stains without the need for scrubbing. Ideal for showers, tiles, and grout.",
+        "price": 380,
+        "originalPrice": 420,
+        "image": "https://s.alicdn.com/@sc04/kf/H5ab8e75ca3bd4882b5ac1021edcb3e3cS.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H206fc04df295457ca8e27c350b66d978Y.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H5ab8e75ca3bd4882b5ac1021edcb3e3cS.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H206fc04df295457ca8e27c350b66d978Y.jpg_720x720q50.jpg"
+        ],
+        "category": "Bathroom Cleaners",
+        "subcategory": "Specialty Cleaner",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "750ml Spray",
+                "pricebysize": 380
+            }
+        ],
+        "colors": [],
+        "rating": 4.9,
+        "reviews": 210,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 10,
+        "stockLeft": 55,
+        "additionalFeatures": "Kills 99.9% of Germs, No Scrubbing Required, Whitens Grout, Prevents Regrowth",
+        "features": [
+            "🦠 Kills 99.9% of germs",
+            "🧽 No scrubbing required",
+            "⚪ Whitens grout lines",
+            "🛡️ Prevents mold regrowth",
+            "💪 Powerful bleach formula",
+            "🚿 Perfect for showers",
+            "🧱 Safe for tiles",
+            "⚡ Fast-acting results",
+            "🌊 Penetrates deep stains",
+            "💎 Restores original color",
+            "🧴 Easy spray application",
+            "🌿 Eliminates musty odors",
+            "🔒 Safe for bathroom use",
+            "⭐ Professional strength",
+            "💰 Long-lasting effectiveness"
+        ]
+    },
+    {
+        "id": "14",
+        "name": "Toilet Bowl Freshener Blocks",
+        "description": "Convenient in-cistern blocks that clean, freshen, and prevent limescale buildup with every flush. Long-lasting ocean fresh scent.",
+        "price": 250,
+        "originalPrice": 280,
+        "image": "https://s.alicdn.com/@sc04/kf/H7ab2ccbe45b844399d9a70a35b9e5a03P.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H69665859e4784dc9b0d335358338758eh.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H7ab2ccbe45b844399d9a70a35b9e5a03P.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H69665859e4784dc9b0d335358338758eh.jpg_720x720q50.jpg"
+        ],
+        "category": "Bathroom Cleaners",
+        "subcategory": "Toilet Care",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "2-Pack",
+                "pricebysize": 250
+            }
+        ],
+        "colors": [],
+        "rating": 4.5,
+        "reviews": 88,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 11,
+        "stockLeft": 60,
+        "additionalFeatures": "Long-Lasting, Prevents Limescale, Ocean Fresh Scent, Cleans with Each Flush",
+        "features": [
+            "⏰ Long-lasting freshness",
+            "🪨 Prevents limescale buildup",
+            "🌊 Ocean fresh scent",
+            "🚽 Cleans with each flush",
+            "🧼 Automatic toilet cleaning",
+            "💎 Crystal blue color",
+            "🛡️ Protects toilet bowl",
+            "💧 Water-activated formula",
+            "🌿 Fresh bathroom atmosphere",
+            "⚡ Instant activation",
+            "🔒 Safe for plumbing",
+            "💰 Cost-effective freshening",
+            "🧴 Easy installation",
+            "⭐ Professional quality",
+            "🏠 Suitable for all toilets"
+        ]
+    },
+    {
+        "id": "15",
+        "name": "All-Purpose Disinfectant Wipes",
+        "description": "Convenient and effective disinfectant wipes that kill 99.9% of viruses and bacteria. Perfect for quick cleanups on all hard surfaces.",
+        "price": 300,
+        "originalPrice": 340,
+        "image": "https://s.alicdn.com/@sc04/kf/H98cb6561774b414886be68b4f924d9d3d.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Hb8de869390444e53939317c2e16aff21E.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H98cb6561774b414886be68b4f924d9d3d.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Hb8de869390444e53939317c2e16aff21E.jpg_720x720q50.jpg"
+        ],
+        "category": "Bleach & Disinfectants",
+        "subcategory": "Wipes",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "80 Wipes",
+                "pricebysize": 300
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 175,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 12,
+        "stockLeft": 70,
+        "additionalFeatures": "Kills 99.9% of Germs, Multi-Surface Use, Fresh Lemon Scent, Thick and Durable",
+        "features": [
+            "🦠 Kills 99.9% of germs",
+            "🏠 Multi-surface cleaning",
+            "🍋 Fresh lemon scent",
+            "💪 Thick and durable",
+            "⚡ Quick cleanup solution",
+            "🧽 Convenient wipe format",
+            "🛡️ Disinfects surfaces",
+            "🌿 Alcohol-based formula",
+            "💧 Pre-moistened wipes",
+            "🔒 Resealable packaging",
+            "⭐ Hospital-grade quality",
+            "👶 Safe around children",
+            "💰 Cost-effective cleaning",
+            "🏆 Professional strength",
+            "🌊 No rinsing required"
+        ]
+    },
+    {
+        "id": "16",
+        "name": "Thick Bleach Gel",
+        "description": "Concentrated thick bleach gel with a clinging formula for targeted cleaning, whitening, and disinfecting of toilets, drains, and tough stains.",
+        "price": 200,
+        "originalPrice": 230,
+        "image": "https://s.alicdn.com/@sc04/kf/Aec85d073a2f542aa8e66a2466c6ab4d4M.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Ad732742093164f64ae6744091c210360z.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Aec85d073a2f542aa8e66a2466c6ab4d4M.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Ad732742093164f64ae6744091c210360z.jpg_720x720q50.jpg"
+        ],
+        "category": "Bleach & Disinfectants",
+        "subcategory": "Bleach",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "750ml",
+                "pricebysize": 200
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 120,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 13,
+        "stockLeft": 50,
+        "additionalFeatures": "Thick Clinging Formula, Kills Germs, Whitens and Brightens, Unblocks Drains",
+        "features": [
+            "💪 Thick and clinging formula",
+            "🦠 Kills germs and bacteria",
+            "⚪ Whitens and brightens surfaces",
+            "🛡️ Unblocks drains and removes clogs",
+            "💧 Concentrated formula",
+            "🚿 Perfect for toilets and drains",
+            "🧱 Safe for all surfaces",
+            "💎 Crystal clear results",
+            "🌿 Fresh clean fragrance",
+            "🔒 Safe for all materials",
+            "🧴 Easy application",
+            "🌊 Penetrates deep stains",
+            "🏆 Professional strength",
+            "💰 Cost-effective solution"
+        ]
+    },
+    {
+        "id": "17",
+        "name": "Stain Remover Powder",
+        "description": "Powerful oxygen-based stain remover powder. Add to your wash or use as a pre-soak to remove tough stains like coffee, wine, and grass.",
+        "price": 500,
+        "originalPrice": 550,
+        "image": "https://s.alicdn.com/@sc04/kf/Hec1334d00d16411b93755a66c54f9056R.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/He6b81e15a8174ffca9dd5fa16eb8e185C.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hec1334d00d16411b93755a66c54f9056R.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/He6b81e15a8174ffca9dd5fa16eb8e185C.jpg_720x720q50.jpg"
+        ],
+        "category": "Laundry Products",
+        "subcategory": "Stain Remover",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "1kg",
+                "pricebysize": 500
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 250,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 9,
+        "stockLeft": 65,
+        "additionalFeatures": "Oxygen-Based Power, Removes Tough Stains, Brightens Whites, Color Safe",
+        "features": [
+            "💪 Oxygen-based power",
+            "🧽 Removes tough stains",
+            "💎 Brightens whites",
+            "🌿 Color safe formula",
+            "💧 Works in hot and cold water",
+            "👔 Perfect for laundry",
+            "🌿 Natural ingredients",
+            "🛡️ Prevents color fading",
+            "🌸 Pleasant fragrance",
+            "💰 Concentrated formula",
+            "🧴 Easy to use",
+            "🌊 Easy rinse",
+            "🏆 Professional results",
+            "💰 Cost-effective"
+        ]
+    },
+    {
+        "id": "18",
+        "name": "Liquid Laundry Detergent",
+        "description": "Concentrated liquid laundry detergent for brilliant cleaning results in both hot and cold water. Tough on stains, gentle on fabrics.",
+        "price": 650,
+        "originalPrice": 720,
+        "image": "https://s.alicdn.com/@sc04/kf/H9cb130fbc43641b988070f6c1009adadR.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H39b8adf97738473cbcf12863fbdac4e02.png_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H9cb130fbc43641b988070f6c1009adadR.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H39b8adf97738473cbcf12863fbdac4e02.png_720x720q50.jpg"
+        ],
+        "category": "Laundry Products",
+        "subcategory": "Detergent",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "1.5L",
+                "pricebysize": 650
+            },
+            {
+                "size": "3L",
+                "pricebysize": 1200
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 180,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 10,
+        "stockLeft": 45,
+        "additionalFeatures": "Concentrated Formula, Effective in Cold Water, Tough on Stains, Fresh Scent",
+        "features": [
+            "💪 Concentrated formula",
+            "🧽 Tough on stains",
+            "🌿 Fresh scent",
+            "👔 Perfect for all fabrics",
+            "💧 Works in hot and cold water",
+            "🌿 Natural ingredients",
+            "🛡️ Gentle on delicate fabrics",
+            "💰 Cost-effective",
+            "🏆 Brilliant cleaning results",
+            "💧 Works in cold water"
+        ]
+    },
+    {
+        "id": "19",
+        "name": "Moisturizing Body Wash",
+        "description": "A gentle and moisturizing body wash with a rich lather, leaving your skin feeling soft, smooth, and refreshed. Infused with natural extracts.",
+        "price": 400,
+        "originalPrice": 450,
+        "image": "https://s.alicdn.com/@sc04/kf/H3d9463ea06b246159b633eab687822f7T.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H75564aa95f274f0b8aadc39725c57610t.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H3d9463ea06b246159b633eab687822f7T.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H75564aa95f274f0b8aadc39725c57610t.jpg_720x720q50.jpg"
+        ],
+        "category": "Personal Care",
+        "subcategory": "Body Wash",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 400
+            }
+        ],
+        "colors": [],
+        "rating": 4.9,
+        "reviews": 220,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 11,
+        "stockLeft": 80,
+        "additionalFeatures": "pH Balanced, Natural Extracts, Rich Lather, Moisturizing, Gentle on Skin",
+        "features": [
+            "💧 Moisturizing formula",
+            "🌸 Rich lathering texture",
+            "👐 Gentle on sensitive skin",
+            "⚖️ pH balanced for skin health",
+            "🌿 Natural extracts",
+            "🛡️ Rich foam",
+            "💎 Crystal clear formula",
+            "🌿 Nourishing ingredients",
+            "👶 Safe for children",
+            "💧 Doesn't dry out skin",
+            "🌺 Multiple fragrance options",
+            "⚡ Quick-acting moisturizing",
+            "🧴 Easy pump dispenser",
+            "✨ Leaves skin feeling soft"
+        ]
+    },
+    {
+        "id": "20",
+        "name": "Nourishing Hair Conditioner",
+        "description": "A rich and creamy conditioner that nourishes and detangles hair, leaving it soft, shiny, and manageable. Pairs perfectly with Marakish shampoo.",
+        "price": 350,
+        "originalPrice": 400,
+        "image": "https://s.alicdn.com/@sc04/kf/Hfb91f9a0c64f4768b5f7071c9d32c60cd.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Hc8dfa58dda9043f6ac6f8a21429e8122U.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Hfb91f9a0c64f4768b5f7071c9d32c60cd.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Hc8dfa58dda9043f6ac6f8a21429e8122U.jpg_720x720q50.jpg"
+        ],
+        "category": "Personal Care",
+        "subcategory": "Hair Care",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "400ml",
+                "pricebysize": 350
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 145,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 13,
+        "stockLeft": 40,
+        "additionalFeatures": "Detangles, Adds Shine, Nourishes Hair, For All Hair Types, Pairs with Shampoo",
+        "features": [
+            "💧 Creamy and nourishing",
+            "🧴 Detangles and softens",
+            "🌸 Adds shine and manageability",
+            "💇 Suitable for all hair types",
+            "🌿 Enriched with natural ingredients",
+            "👩 Nourishes scalp health",
+            "💧 Deep conditioning action",
+            "🛡️ Prevents hair damage",
+            "🌸 Pleasant natural fragrance",
+            "💎 Adds volume and body",
+            "🧴 Gentle daily use",
+            "🌊 Rich lathering texture",
+            "👩 Restores hair vitality",
+            "⚡ Quick rinse",
+            "🏆 Professional salon quality"
+        ]
+    },
+    {
+        "id": "21",
+        "name": "Heavy Duty Degreaser Spray",
+        "description": "A powerful, fast-acting degreaser for kitchen surfaces, stovetops, and range hoods. Dissolves tough, baked-on grease on contact.",
+        "price": 320,
+        "originalPrice": 360,
+        "image": "https://s.alicdn.com/@sc04/kf/H5c0e0260414d4639842cc554387021e49.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H6b5a2d9b963b423fa064b65330e03138s.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H5c0e0260414d4639842cc554387021e49.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H6b5a2d9b963b423fa064b65330e03138s.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Degreaser",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml Spray",
+                "pricebysize": 320
+            }
+        ],
+        "colors": [],
+        "rating": 4.6,
+        "reviews": 85,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 11,
+        "stockLeft": 48,
+        "additionalFeatures": "Fast-acting, Cuts through grease, Multi-surface, Lemon scent",
+        "features": [
+            "💪 Fast-acting degreaser",
+            "🧼 Cuts through tough grease",
+            "🏠 Multi-surface application",
+            "🍋 Lemon scent",
+            "💪 Heavy-duty formula",
+            "🧽 No scrubbing required",
+            "✨ Quick results",
+            "🌊 Penetrates deep grime",
+            "🔒 Safe for all surfaces",
+            "💪 Professional strength",
+            "🌊 Easy spray application",
+            "🏆 Restaurant quality",
+            "💰 Cost-effective"
+        ]
+    },
+    {
+        "id": "22",
+        "name": "Granite & Stone Daily Cleaner",
+        "description": "Safely cleans and shines sealed stone surfaces like granite, marble, and quartz without streaking or damaging the protective seal.",
+        "price": 450,
+        "originalPrice": 500,
+        "image": "https://s.alicdn.com/@sc04/kf/H32020f07c46f49cfbaf148a6f8e33e08f.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H7b40ca7ae5234fd690c13b06ef6afae5d.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H32020f07c46f49cfbaf148a6f8e33e08f.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H7b40ca7ae5234fd690c13b06ef6afae5d.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Surface Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "700ml",
+                "pricebysize": 450
+            }
+        ],
+        "colors": [],
+        "rating": 4.8,
+        "reviews": 78,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 10,
+        "stockLeft": 30,
+        "additionalFeatures": "pH Neutral, Streak-free, Protects seal, Gentle formula",
+        "features": [
+            "💧 pH neutral formula",
+            "✨ Streak-free shine",
+            "🛡️ Protects seal",
+            "💧 Gentle on all surfaces",
+            "🌿 Non-abrasive formula",
+            "💪 Professional grade",
+            "🏠 Safe for all stone types",
+            "🌊 No residue left",
+            "⭐ Long-lasting protection",
+            "💰 Economical usage",
+            "🏆 Premium quality finish"
+        ]
+    },
+    {
+        "id": "23",
+        "name": "Cabinet & Wood Cleaner Polish",
+        "description": "Gently cleans, conditions, and protects wooden kitchen cabinets and surfaces, removing grease, grime, and fingerprints with a protective polish.",
+        "price": 420,
+        "originalPrice": 470,
+        "image": "https://s.alicdn.com/@sc04/kf/H02d0a97166cb476aa1cb59442ca90667A.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H4eb6f275dada4933b9ca43d33c79dde7r.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/H02d0a97166cb476aa1cb59442ca90667A.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H4eb6f275dada4933b9ca43d33c79dde7r.jpg_720x720q50.jpg"
+        ],
+        "category": "Kitchen Cleaners",
+        "subcategory": "Wood Cleaner",
+        "brand": "Marakish",
+        "isNew": false,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 420
+            }
+        ],
+        "colors": [],
+        "rating": 4.7,
+        "reviews": 65,
+        "inStock": true,
+        "bestseller": false,
+        "salepercentage": 11,
+        "stockLeft": 33,
+        "additionalFeatures": "Conditions wood, No-residue, Fresh almond scent, Removes grime",
+        "features": [
+            "💧 Gently cleans and conditions",
+            "🛡️ Protects surfaces",
+            "🌿 No residue left",
+            "💧 Works on all wood types",
+            "�� Fresh almond scent",
+            "🧴 No-residue formula",
+            "💪 Professional grade",
+            "🌿 Natural ingredients",
+            "👕 Reduces wrinkles",
+            "🌊 Easy application",
+            "🏆 Professional results",
+            "💰 Economical usage"
+        ]
+    },
+    {
+        "id": "24",
+        "name": "Pro-Strength Drain Unblocker Gel",
+        "description": "Heavy-duty drain unblocker gel that powers through the toughest clogs from hair, soap scum, and grease in bathroom and kitchen pipes.",
+        "price": 380,
+        "originalPrice": 430,
+        "image": "https://s.alicdn.com/@sc04/kf/He5af839ee6844120adf942feab2f5b19Z.jpg_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/H1d8b41305d354756bd897744b913febdN.jpg_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/He5af839ee6844120adf942feab2f5b19Z.jpg_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/H1d8b41305d354756bd897744b913febdN.jpg_720x720q50.jpg"
+        ],
+        "category": "Bathroom Cleaners",
+        "subcategory": "Drain Cleaner",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "1L",
+                "pricebysize": 380
+            }
+        ],
+        "colors": [],
+        "rating": 4.6,
+        "reviews": 105,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 12,
+        "stockLeft": 42,
+        "additionalFeatures": "Dissolves hair, Powers through clogs, Safe for all pipes, Fast acting",
+        "features": [
+            "💪 Powerful drain unblocker",
+            "🧽 Powers through tough clogs",
+            "💧 Safe for all pipes",
+            "🔥 Fast-acting results",
+            "💪 Heavy-duty formula",
+            "🚿 Perfect for bathrooms",
+            "🧱 Safe for all materials",
+            "💧 Water-activated formula",
+            "🌊 Penetrates deep clogs",
+            "💎 Crystal clear results",
+            "🧴 Easy application",
+            "🌿 Eliminates musty odors",
+            "🔒 Safe for plumbing",
+            "⭐ Professional strength",
+            "💰 Long-lasting effectiveness"
+        ]
+    },
+    {
+        "id": "25",
+        "name": "Multi-Surface Disinfectant Spray",
+        "description": "Kills 99.9% of bacteria and viruses on hard and soft surfaces. Deodorizes by killing odor-causing germs, leaving a crisp linen scent.",
+        "price": 330,
+        "originalPrice": 370,
+        "image": "https://s.alicdn.com/@sc04/kf/Sa18f3fc68b0740c2958c87bd19c019fdA.png_720x720q50.jpg",
+        "hoverimage": "https://s.alicdn.com/@sc04/kf/Sa18f3fc68b0740c2958c87bd19c019fdA.png_720x720q50.jpg",
+        "gallery": [
+            "https://s.alicdn.com/@sc04/kf/Sa18f3fc68b0740c2958c87bd19c019fdA.png_720x720q50.jpg",
+            "https://s.alicdn.com/@sc04/kf/Sa18f3fc68b0740c2958c87bd19c019fdA.png_720x720q50.jpg"
+        ],
+        "category": "Bleach & Disinfectants",
+        "subcategory": "Disinfectant Spray",
+        "brand": "Marakish",
+        "isNew": true,
+        "onSale": true,
+        "sizes": [
+            {
+                "size": "500ml",
+                "pricebysize": 330
+            }
+        ],
+        "colors": [],
+        "rating": 4.9,
+        "reviews": 190,
+        "inStock": true,
+        "bestseller": true,
+        "salepercentage": 11,
+        "stockLeft": 75,
+        "additionalFeatures": "Kills 99.9% of viruses, Sanitizes soft surfaces, Eliminates odors, Crisp linen scent",
+        "features": [
+            "💪 Multi-surface disinfectant",
+            "🦠 Kills 99.9% of germs",
+            "💨 Deodorizes by killing odor-causing germs",
+            "🌸 Crisp linen scent",
+            "🏠 Safe for all surfaces",
+            "🚗 Perfect for cars",
+            "🏢 Great for offices",
+            "💨 Fine mist spray",
+            "🛡️ Neutralizes bad smells",
+            "🌺 Multiple scent options",
+            "💎 Premium fragrance quality",
+            "🧴 Easy spray application",
+            "🌊 Non-staining formula",
+            "💰 Cost-effective freshening",
+            "⭐ Professional grade quality"
+        ]
+    }
 ]
