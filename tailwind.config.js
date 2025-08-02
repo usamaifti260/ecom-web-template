@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '400px',
+      },
       colors: {
         primary: {
           50: '#f0f9ff',
@@ -43,7 +46,12 @@ module.exports = {
           700: '#b91c1c',
           800: '#991b1b',
           900: '#7f1d1d',
-        }
+        },
+        'brand-primary': '#2c3949',
+        'brand-secondary': '#957679',
+        'brand-accent': '#c56d53',
+        'brand-light': '#f8f9fa',
+        'brand-dark': '#2c3949',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

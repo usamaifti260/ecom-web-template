@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import SITE_CONFIG, { getPageMeta } from '@/config/siteConfig';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useWishlist } from '@/lib/WishlistContext';
@@ -19,7 +20,7 @@ export default function Wishlist() {
 
   // Format price
   const formatPrice = (price) => {
-    return `PKR ${price.toLocaleString()}`;
+    return `${SITE_CONFIG.currencySymbol || 'Rs.'} ${price.toLocaleString()}`;
   };
 
   // Handle color selection
@@ -67,9 +68,11 @@ export default function Wishlist() {
   return (
     <>
       <Head>
-        <title>My Wishlist - Marakish</title>
-        <meta name="description" content="Your saved cleaning products at Marakish. Manage your wishlist and find your favorite items." />
+        <title>{getPageMeta('wishlist').title}</title>
+        <meta name="description" content={getPageMeta('wishlist').description} />
+        <meta name="keywords" content={getPageMeta('wishlist').keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -80,7 +83,7 @@ export default function Wishlist() {
           <div className="mb-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+                <h1 className="text-3xl sm:text-4xl font-bold text-brand-primary mb-2">
                   My Wishlist
                 </h1>
                 <p className="text-gray-600">
@@ -91,7 +94,7 @@ export default function Wishlist() {
               {wishlistItems.length > 0 && (
                 <button
                   onClick={clearWishlist}
-                  className="text-red-600 hover:text-red-700 font-medium transition-colors duration-200"
+                  className="text-brand-accent hover:text-brand-primary font-medium transition-colors duration-200"
                 >
                   Clear All
                 </button>
@@ -101,7 +104,7 @@ export default function Wishlist() {
 
           {/* Wishlist Items */}
           {wishlistItems.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 md:gap-6">
               {wishlistItems.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -124,13 +127,13 @@ export default function Wishlist() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Your wishlist is empty</h3>
+              <h3 className="text-2xl font-bold text-brand-primary mb-4">Your wishlist is empty</h3>
               <p className="text-gray-600 text-lg mb-8">
                 Save items you love to your wishlist and come back to them later!
               </p>
               <Link
                 href="/"
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-brand-accent hover:to-brand-primary text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Continue Shopping
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

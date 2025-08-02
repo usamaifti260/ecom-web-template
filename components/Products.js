@@ -35,7 +35,7 @@ const PRODUCTS_CONFIG = {
     subtitle: 'Special Offers',
     title: 'On Sale',
     titleHighlight: 'Sale',
-    description: "Don't miss out on these amazing deals on premium cleaning products",
+    description: "Don't miss out on these amazing deals on premium fashion garments",
     viewAllLink: '/category/on-sale',
     viewAllText: 'View All Sale Items'
   },
@@ -44,7 +44,7 @@ const PRODUCTS_CONFIG = {
     subtitle: 'Latest Products',
     title: 'New Arrivals',
     titleHighlight: 'Arrivals',
-    description: 'Discover our latest collection of cleaning products with advanced formulas and effective solutions',
+    description: 'Discover our latest collection of fashion garments with premium fabrics and trendy designs',
     viewAllLink: '/category/new-arrivals',
     viewAllText: 'View All New Arrivals'
   },
@@ -66,9 +66,9 @@ const PRODUCTS_CONFIG = {
 
   // Empty State
   emptyState: {
-    icon: '🧽',
+    icon: '👕',
     title: 'No Products Available',
-    message: 'Our premium cleaning products collection is being updated. Check back soon for amazing cleaning solutions!'
+    message: 'Our premium fashion collection is being updated. Check back soon for amazing garments and accessories!'
   },
 
   // Messages & Text
@@ -225,10 +225,10 @@ const Products = ({ products = [], categories = [] }) => {
     return (
       <div key={category.id} className="mb-20">
         <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold text-yellow-600 uppercase tracking-wide mb-4">
+          <h2 className="text-sm font-semibold text-brand-secondary uppercase tracking-wide mb-4">
             Shop Collection
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h3 className="text-4xl md:text-5xl font-bold text-brand-primary mb-4">
             {category.categoryname}
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -246,7 +246,7 @@ const Products = ({ products = [], categories = [] }) => {
           <div className="text-center">
             <button
               onClick={() => handleViewMore(category.id)}
-              className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-brand-primary hover:bg-brand-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               View More {category.categoryname}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,10 +289,10 @@ const Products = ({ products = [], categories = [] }) => {
           return (
             <div key={category.id} className="mb-20">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold uppercase tracking-wide mb-4 text-brand-secondary">
                   {PRODUCTS_CONFIG.shopCollectionText}
                 </h2>
-                <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                <h3 className="text-4xl md:text-5xl font-bold mb-4 text-brand-primary">
                   {category.categoryname}
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -319,7 +319,7 @@ const Products = ({ products = [], categories = [] }) => {
                 {currentVisible < categoryProducts.length ? (
                   <button
                     onClick={() => handleViewMore(category.id)}
-                    className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-brand-primary text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewMoreText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -329,7 +329,7 @@ const Products = ({ products = [], categories = [] }) => {
                 ) : (
                   <Link
                     href={`/category/${getCategorySlug(category.categoryname)}`}
-                    className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="inline-flex items-center px-8 py-3 bg-brand-primary text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     {PRODUCTS_CONFIG.viewAllText} {category.categoryname}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -344,16 +344,16 @@ const Products = ({ products = [], categories = [] }) => {
       </div>
 
       {/* On Sale Section - Full width dark background */}
-      <div className="mb-20 bg-blue-900 py-16">
+      <div className="mb-20 py-16 bg-brand-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-green-400 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold uppercase tracking-wide mb-4 text-brand-secondary">
               {PRODUCTS_CONFIG.specialOffersSection.subtitle}
             </h2>
             <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-green-400">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
+              {PRODUCTS_CONFIG.specialOffersSection.title} <span className="text-brand-accent">{PRODUCTS_CONFIG.specialOffersSection.titleHighlight}</span>
             </h3>
-            <p className="text-lg text-green-100 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-100 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.specialOffersSection.description}
             </p>
           </div>
@@ -396,13 +396,13 @@ const Products = ({ products = [], categories = [] }) => {
             </Swiper>
 
             {/* Navigation Buttons */}
-            <button className="onsale-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="onsale-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-10 h-10 bg-brand-light rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
+              <svg className="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button className="onsale-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="onsale-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-10 h-10 bg-brand-light rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
+              <svg className="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -411,7 +411,7 @@ const Products = ({ products = [], categories = [] }) => {
           <div className="text-center mt-8">
             <Link
               href={PRODUCTS_CONFIG.specialOffersSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-green-400 text-blue-900 hover:bg-green-300 font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-brand-accent text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.specialOffersSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,11 +426,11 @@ const Products = ({ products = [], categories = [] }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
+            <h2 className="text-sm font-semibold uppercase tracking-wide mb-4 text-brand-secondary">
               {PRODUCTS_CONFIG.newArrivalsSection.subtitle}
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              New <span className="text-blue-600">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 text-brand-primary">
+              New <span className="text-brand-accent">{PRODUCTS_CONFIG.newArrivalsSection.titleHighlight}</span>
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {PRODUCTS_CONFIG.newArrivalsSection.description}
@@ -474,13 +474,13 @@ const Products = ({ products = [], categories = [] }) => {
             </Swiper>
 
             {/* Navigation Buttons */}
-            <button className="newarrivals-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="newarrivals-prev absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 w-10 h-10 bg-brand-light rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
+              <svg className="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <button className="newarrivals-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="newarrivals-next absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 w-10 h-10 bg-brand-light rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 z-10">
+              <svg className="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -489,7 +489,7 @@ const Products = ({ products = [], categories = [] }) => {
           <div className="text-center mt-8">
             <Link
               href={PRODUCTS_CONFIG.newArrivalsSection.viewAllLink}
-              className="inline-flex items-center px-8 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-brand-primary text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               {PRODUCTS_CONFIG.newArrivalsSection.viewAllText}
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,7 +505,7 @@ const Products = ({ products = [], categories = [] }) => {
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">{PRODUCTS_CONFIG.emptyState.icon}</span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">{PRODUCTS_CONFIG.emptyState.title}</h3>
+            <h3 className="text-2xl font-bold mb-4 text-brand-primary">{PRODUCTS_CONFIG.emptyState.title}</h3>
             <p className="text-gray-600 text-lg">
               {PRODUCTS_CONFIG.emptyState.message}
             </p>

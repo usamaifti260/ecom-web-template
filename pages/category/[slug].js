@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { fetchClientProducts, fetchClientCategories } from '@/lib/fetchProducts';
+import SITE_CONFIG, { getPageMeta, getSchemaConfig } from '@/config/siteConfig';
 import { useCart } from '@/lib/CartContext';
 import { useWishlist } from '@/lib/WishlistContext';
 import { useNotification } from '@/lib/NotificationContext';
@@ -11,26 +12,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SizeSelectionPopup from '@/components/SizeSelectionPopup';
 import ProductCard from '@/components/ProductCard';
-import { CONFIG_FILES } from 'next/dist/shared/lib/constants';
-
-// Configuration Variables - Match index.js exactly
-const SITE_CONFIG = {
-  // Schema Slugs
-  productsSchemaSlug: 'products_marakish',
-  categoriesSchemaSlug: 'categories_marakish',
-
-  // SEO & Meta
-  // Page Meta
-  siteName: 'Marakish',
-  defaultDescription: 'Premium Quality Cleaning Products - Complete household and commercial cleaning solutions. Specializing in dishwash liquids, bathroom cleaners, bleach, detergents, and personal care products.',
-  keywords: 'chemical dishwash, bathroom cleaner, tezaab cleaner, harpic neel bleach, surf excel, handwash, shampoo, cleaning products, household cleaners, Pakistani cleaning products, marakish, quality cleaning solutions',
-  defaultTitle: 'Marakish',
-
-  faviconPath: '/assets/marakish_logo.png',
-  faviconSize: '32x32',
-
-  currency: 'PKR',
-};
 
 export default function CategoryPage({
   products = [],
@@ -81,7 +62,7 @@ export default function CategoryPage({
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-accent mx-auto mb-4"></div>
           <p className="text-gray-600">Loading category...</p>
         </div>
       </div>
@@ -99,7 +80,7 @@ export default function CategoryPage({
             <p className="text-gray-600 mb-8">The category you're looking for doesn't exist.</p>
             <Link
               href="/shop"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-brand-accent hover:to-brand-primary text-white font-semibold rounded-lg transition-all duration-300"
             >
               Browse All Products
             </Link>
@@ -128,7 +109,7 @@ export default function CategoryPage({
 
   // Format price for Pakistani Rupees
   const formatPrice = (price) => {
-    return `${SITE_CONFIG.currency} ${price.toLocaleString()}`;
+    return `${SITE_CONFIG.currencySymbol} ${price.toLocaleString()}`;
   };
 
   // Handle color selection
@@ -331,9 +312,9 @@ export default function CategoryPage({
   return (
     <>
       <Head>
-        <title>{categoryDisplayName} - {SITE_CONFIG.siteName}</title>
-        <meta name="description" content={SITE_CONFIG.defaultDescription} />
-        <meta name="keywords" content={SITE_CONFIG.keywords} />
+        <title>{categoryDisplayName} - {SITE_CONFIG.businessName}</title>
+        <meta name="description" content={getPageMeta('category').description} />
+        <meta name="keywords" content={SITE_CONFIG.seoKeywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
@@ -344,22 +325,22 @@ export default function CategoryPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
+            <Link href="/" className="hover:text-brand-accent">Home</Link>
             <span>/</span>
-            <Link href="/shop" className="hover:text-blue-600">Shop</Link>
+            <Link href="/shop" className="hover:text-brand-accent">Shop</Link>
             <span>/</span>
-            <span className="text-gray-900">{categoryDisplayName}</span>
+            <span className="text-brand-primary font-semibold">{categoryDisplayName}</span>
             {(currentSubcategory || currentSubcategoryFromUrl) && (
               <>
                 <span>/</span>
-                <span className="text-gray-900">{currentSubcategory || currentSubcategoryFromUrl}</span>
+                <span className="text-brand-primary font-semibold">{currentSubcategory || currentSubcategoryFromUrl}</span>
               </>
             )}
           </nav>
 
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-brand-primary mb-4">
               {currentSubcategory || currentSubcategoryFromUrl || categoryDisplayName}
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
@@ -372,7 +353,7 @@ export default function CategoryPage({
             <div className="flex flex-wrap justify-center gap-2 mb-6">
               <Link
                 href="/shop"
-                className="px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 text-sm font-medium"
+                className="px-4 py-2 rounded-lg border border-gray-300 hover:border-brand-accent hover:bg-brand-light transition-all duration-200 text-sm font-medium"
               >
                 All Products
               </Link>
@@ -381,8 +362,8 @@ export default function CategoryPage({
                   key={cat.slug}
                   href={`/category/${cat.slug}`}
                   className={`px-4 py-2 rounded-lg border transition-all duration-200 text-sm font-medium ${cat.slug === category
-                    ? 'bg-blue-500 text-white border-blue-500'
-                    : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50'
+                    ? 'bg-brand-primary text-white border-brand-primary'
+                    : 'border-gray-300 hover:border-brand-accent hover:bg-brand-light'
                     }`}
                 >
                   {cat.name}
@@ -398,9 +379,9 @@ export default function CategoryPage({
               <div className="lg:hidden mb-4">
                 <button
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className="w-full flex items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-300 hover:border-blue-500 transition-all duration-200"
+                  className="w-full flex items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-300 hover:border-brand-accent transition-all duration-200"
                 >
-                  <span className="font-medium">Filters</span>
+                  <span className="font-medium text-brand-primary">Filters</span>
                   <svg
                     className={`w-5 h-5 transition-transform duration-200 ${isFilterOpen ? 'rotate-180' : ''}`}
                     fill="none"
@@ -416,10 +397,10 @@ export default function CategoryPage({
               <div className={`bg-white rounded-lg border border-gray-200 overflow-hidden ${isFilterOpen ? 'block' : 'hidden lg:block'}`}>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
+                    <h3 className="text-lg font-semibold text-brand-primary">Filters</h3>
                     <button
                       onClick={resetFilters}
-                      className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                      className="text-sm text-brand-accent hover:text-brand-primary font-medium"
                     >
                       Clear All
                     </button>
@@ -427,7 +408,7 @@ export default function CategoryPage({
 
                   {/* Categories */}
                   <div className="mb-8">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-4">Categories</h4>
+                    <h4 className="text-sm font-semibold text-brand-primary mb-4">Categories</h4>
                     <div className="space-y-2">
                       {categoryHierarchy?.map((cat) => (
                         <div key={cat.slug}>
@@ -435,7 +416,7 @@ export default function CategoryPage({
                           <Link
                             href={`/category/${cat.slug}`}
                             className={`flex items-center justify-between px-3 py-2 rounded-md text-sm transition-colors duration-200 ${cat.slug === category
-                              ? 'bg-blue-100 text-blue-800 font-medium'
+                              ? 'bg-brand-light text-brand-primary font-medium'
                               : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                               }`}
                           >
@@ -453,7 +434,7 @@ export default function CategoryPage({
                                   key={subcat.slug}
                                   href={`/category/${cat.slug}?subcategory=${subcat.slug}`}
                                   className={`block px-3 py-1 rounded-md text-xs transition-colors duration-200 ${(currentSubcategory === subcat.name || currentSubcategoryFromUrl === subcat.name)
-                                    ? 'bg-blue-50 text-blue-700 font-medium'
+                                    ? 'bg-brand-light text-brand-primary font-medium'
                                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                                     }`}
                                 >
@@ -472,7 +453,7 @@ export default function CategoryPage({
                   {/* Subcategory Filters */}
                   {subcategories.length > 0 && (
                     <div className="mb-8">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-4">Subcategories</h4>
+                      <h4 className="text-sm font-semibold text-brand-primary mb-4">Subcategories</h4>
                       <div className="space-y-3">
                         {subcategories.map((subcat) => (
                           <label key={subcat.name} className="flex items-center">
@@ -480,7 +461,7 @@ export default function CategoryPage({
                               type="checkbox"
                               checked={selectedSubcategories.includes(subcat.name)}
                               onChange={() => handleSubcategoryToggle(subcat.name)}
-                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                              className="w-4 h-4 text-brand-primary bg-gray-100 border-gray-300 rounded focus:ring-brand-accent focus:ring-2"
                             />
                             <span className="ml-3 text-sm text-gray-700">
                               {subcat.name} ({subcat.count})
@@ -493,7 +474,7 @@ export default function CategoryPage({
 
                   {/* Price Range */}
                   <div className="mb-8">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-4">Price Range</h4>
+                    <h4 className="text-sm font-semibold text-brand-primary mb-4">Price Range</h4>
                     <div className="space-y-3">
                       <div>
                         <input
@@ -516,7 +497,7 @@ export default function CategoryPage({
                   {/* Brands */}
                   {brands.length > 0 && (
                     <div className="mb-8">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-4">Brands</h4>
+                      <h4 className="text-sm font-semibold text-brand-primary mb-4">Brands</h4>
                       <div className="space-y-3">
                         {brands.map((brand) => (
                           <label key={brand} className="flex items-center">
@@ -524,7 +505,7 @@ export default function CategoryPage({
                               type="checkbox"
                               checked={selectedBrands.includes(brand)}
                               onChange={() => handleBrandToggle(brand)}
-                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                              className="w-4 h-4 text-brand-primary bg-gray-100 border-gray-300 rounded focus:ring-brand-accent focus:ring-2"
                             />
                             <span className="ml-3 text-sm text-gray-700">{brand}</span>
                           </label>
@@ -535,14 +516,14 @@ export default function CategoryPage({
 
                   {/* Availability */}
                   <div className="mb-8">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-4">Availability</h4>
+                    <h4 className="text-sm font-semibold text-brand-primary mb-4">Availability</h4>
                     <div className="space-y-3">
                       <label className="flex items-center">
                         <input
                           type="checkbox"
                           checked={inStockOnly}
                           onChange={(e) => setInStockOnly(e.target.checked)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                          className="w-4 h-4 text-brand-primary bg-gray-100 border-gray-300 rounded focus:ring-brand-accent focus:ring-2"
                         />
                         <span className="ml-3 text-sm text-gray-700">In Stock Only</span>
                       </label>
@@ -551,7 +532,7 @@ export default function CategoryPage({
                           type="checkbox"
                           checked={onSaleOnly}
                           onChange={(e) => setOnSaleOnly(e.target.checked)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                          className="w-4 h-4 text-brand-primary bg-gray-100 border-gray-300 rounded focus:ring-brand-accent focus:ring-2"
                         />
                         <span className="ml-3 text-sm text-gray-700">On Sale Only</span>
                       </label>
@@ -577,7 +558,7 @@ export default function CategoryPage({
                     id="sort"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-brand-accent"
                   >
                     <option value="default">Default</option>
                     <option value="name">Name (A-Z)</option>
@@ -611,7 +592,7 @@ export default function CategoryPage({
                     <div className="text-center">
                       <button
                         onClick={handleLoadMore}
-                        className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-black text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        className="inline-flex items-center px-8 py-3 bg-brand-primary hover:bg-brand-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                       >
                         Load More Products
                         <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -626,13 +607,13 @@ export default function CategoryPage({
                   <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span className="text-4xl">⚕️</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">No Products Found</h3>
+                  <h3 className="text-2xl font-bold text-brand-primary mb-4">No Products Found</h3>
                   <p className="text-gray-600 text-lg mb-8">
                     Try adjusting your filters or browse our other categories.
                   </p>
                   <button
                     onClick={resetFilters}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-brand-accent hover:to-brand-primary text-white font-semibold rounded-lg transition-all duration-300"
                   >
                     Clear Filters
                   </button>

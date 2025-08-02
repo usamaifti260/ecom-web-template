@@ -5,7 +5,7 @@ import { useWishlist } from '@/lib/WishlistContext';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-// import alhafizLogo from '@/public/assets/Alhafiz_logo.png';
+import logo from '@/public/assets/Zoha_Attire_Logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,52 +47,46 @@ const Navbar = () => {
     setIsMobileSweetsOpen(!isMobileSweetsOpen);
   };
 
-  const cleaningCategories = [
+  const fashionCategories = [
     {
-      name: 'Kitchen Cleaners',
-      href: '/category/kitchen-cleaners',
-      image: 'https://images.unsplash.com/photo-1737372805905-be0b91ec86fb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8a2l0Y2hlbiUyMGNsZWFuZXJzfGVufDB8fDB8fHww',
-      subcategories: ['Dishwash Liquid', 'Kitchen Degreaser', 'Utensil Cleaner']
+      name: 'Baby',
+      href: '/category/baby',
+      image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      subcategories: ['Baby Shirts', 'Baby Pants', 'Baby Dresses', 'Rompers']
     },
     {
-      name: 'Bathroom Cleaners',
-      href: '/category/bathroom-cleaners',
-      image: 'https://plus.unsplash.com/premium_photo-1723568660102-33a6e9c09e08?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmF0aHJvb20lMjBjbGVhbmVyc3xlbnwwfHwwfHx8MA%3D%3D',
-      subcategories: ['Tezaab Cleaner', 'Toilet Cleaner', 'Tile Cleaner']
+      name: 'Men',
+      href: '/category/men',
+      image: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      subcategories: ['Shirts', 'T-Shirts', 'Pants', 'Formal Wear']
     },
     {
-      name: 'Bleach & Disinfectants',
-      href: '/category/bleach-disinfectants',
-      image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmxlYWNofGVufDB8fDB8fHww',
-      subcategories: ['Harpic Neel Bleach', 'Floor Disinfectant', 'Surface Sanitizer']
+      name: 'Women',
+      href: '/category/women',
+      image: 'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      subcategories: ['Dresses', 'Tops', 'Pants', 'Traditional Wear']
     },
     {
-      name: 'Laundry Products',
-      href: '/category/laundry-products',
-      image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500&auto=format&fit=crop&q=60',
-      subcategories: ['Surf Excel', 'Fabric Softener', 'Stain Remover']
-    },
-    {
-      name: 'Personal Care',
-      href: '/category/personal-care',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcnNvbmFsJTIwY2FyZXxlbnwwfHwwfHx8MA%3D%3D',
-      subcategories: ['Handwash', 'Shampoo', 'Body Wash']
+      name: 'Accessories',
+      href: '/category/accessories',
+      image: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFjY2Vzc29yaWVzfGVufDB8fDB8fHww',
+      subcategories: ['Bags', 'Jewelry', 'Belts', 'Scarves']
     }
   ];
 
   const navLinks = [
     { name: 'HOME', href: '/' },
-    { name: 'KITCHEN CLEANERS', href: '/category/kitchen-cleaners' },
-    { name: 'BATHROOM CLEANERS', href: '/category/bathroom-cleaners' },
+    { name: 'BABY', href: '/category/baby' },
+    { name: 'MEN', href: '/category/men' },
+    { name: 'WOMEN', href: '/category/women' },
     { name: 'ALL PRODUCTS', href: '/category/all-products', hasSubmenu: true },
-    { name: 'PERSONAL CARE', href: '/category/personal-care' },
     { name: 'CONTACT', href: '/contact' }
   ];
 
   return (
     <>
       {/* Header Bar with Contact Info */}
-      <div className="bg-green-400 text-gray-800 text-sm">
+      <div className="bg-brand-primary text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2">
             {/* Mobile - Show only location */}
@@ -100,7 +94,7 @@ const Navbar = () => {
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
-              <span>Lahore, Pakistan</span>
+              <span>Karachi, Sindh</span>
             </div>
 
             {/* Desktop - Show all contact info */}
@@ -109,26 +103,26 @@ const Navbar = () => {
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                <span>0343-5801011</span>
+                <span>0310-3503309</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>info@marakish.com</span>
+                <span>info@zohasattire.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <span>Lahore, Pakistan</span>
+                <span>Karachi, Sindh, Pakistan</span>
               </div>
             </div>
             <div className="hidden sm:flex items-center space-x-4">
-              <span className="text-gray-700">Follow Us:</span>
+              <span className="text-brand-secondary">Follow Us:</span>
               <div className="flex items-center space-x-3">
-                <a href="https://www.facebook.com/marakish" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">
+                <a href="https://www.facebook.com/zohasattire" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
@@ -144,14 +138,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav className="bg-blue-800 shadow-lg sticky top-0 z-50 border-b border-blue-900">
+      <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
         {/* Single Row Navigation */}
         <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Mobile Menu Button - Left side */}
             <button
               onClick={toggleMenu}
-              className="lg:hidden text-white hover:text-green-200 transition-colors duration-300"
+              className="lg:hidden text-brand-primary transition-colors duration-300"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -161,35 +155,35 @@ const Navbar = () => {
             {/* Brand Logo - Left */}
             <Link href="/" className="flex items-center">
               <div className="flex items-center justify-center text-center">
-                {/* Cleaning Icon - Always visible */}
-                <div className="relative mr-3">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                {/* Fashion Icon - Always visible */}
+                {/* <div className="relative mr-3">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-brand-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-300 rounded-full opacity-80"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-brand-accent opacity-80"></div>
                   <div className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full opacity-60"></div>
-                </div>
-                {/* Company Logo - hidden on mobile */}
-                {/* <Image src={alhafizLogo} alt="AlHafiz Logo" className='mr-2 hidden sm:block' width={72} height={72} /> */}
-                {/* Logo text - smaller on mobile */}
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold tracking-wide">
-                  <span className="text-white">
-                    MARAKISH
+                </div> */}
+                {/* Company Logo - visible on mobile, smaller size */}
+                <Image src={logo} alt="Brand Logo" className='mr-2' width={58} height={58} />
+                {/* Logo text - hidden on mobile, visible on larger screens */}
+                <div className="hidden sm:block text-lg sm:text-xl lg:text-2xl font-bold tracking-wide">
+                  <span className="text-brand-primary">
+                    ZOHA'S
                   </span>
-                  <span className="text-green-200 ml-1 sm:ml-2 font-light">CLEAN</span>
+                  <span className="ml-1 sm:ml-2 font-light text-brand-accent">ATTIRE</span>
                 </div>
               </div>
             </Link>
 
             {/* Navigation Links - Center (Desktop) */}
             <div className="hidden lg:flex items-center space-x-8">
-              {navLinks.slice(0, 4).map((link) => (
+              {navLinks.slice(0, 5).map((link) => (
                 <div key={link.name} className="relative">
                   {link.hasSubmenu ? (
                     <button
                       onMouseEnter={() => setIsSweetsSubmenuOpen(true)}
                       onMouseLeave={() => setIsSweetsSubmenuOpen(false)}
-                      className="text-white hover:text-green-200 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-blue-900 flex items-center space-x-1"
+                      className="font-medium transition-colors duration-300 px-3 py-2 rounded-md flex items-center space-x-1 hover:bg-gray-100 text-brand-primary"
                     >
                       <span>{link.name}</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,7 +193,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-white hover:text-green-200 font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-blue-900"
+                      className="font-medium transition-colors duration-300 px-3 py-2 rounded-md hover:bg-gray-100 text-brand-primary"
                     >
                       {link.name}
                     </Link>
@@ -213,13 +207,13 @@ const Navbar = () => {
               {/* Wishlist Button - Hidden on extra small mobile devices */}
               <Link
                 href="/wishlist"
-                className="relative text-white hover:text-green-200 transition-colors duration-300 p-2 hidden sm:block"
+                className="relative transition-colors duration-300 p-2 hidden sm:block hover:bg-gray-100 rounded-md text-brand-primary"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-green-400 text-blue-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                     {wishlistCount}
                   </span>
                 )}
@@ -228,14 +222,14 @@ const Navbar = () => {
               {/* Cart Button */}
               <button
                 onClick={toggleCart}
-                className="relative bg-green-400 hover:bg-green-300 text-blue-800 px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-2"
+                className="relative px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center space-x-2 bg-brand-accent text-white"
               >
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
                 </svg>
                 <span className="hidden sm:inline font-medium text-sm">Cart</span>
                 {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-white text-blue-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
+                  <span className="absolute -top-2 -right-2 bg-white text-brand-primary text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
                     {itemCount}
                   </span>
                 )}
@@ -252,12 +246,12 @@ const Navbar = () => {
           onMouseLeave={() => setIsSweetsSubmenuOpen(false)}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {cleaningCategories.map((category) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {fashionCategories.map((category) => (
                 <Link
                   key={category.name}
                   href={category.href}
-                  className="group block bg-blue-50 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+                  className="group block rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 bg-brand-light"
                 >
                   <div className="aspect-w-3 aspect-h-2 relative h-32">
                     <img
@@ -267,7 +261,7 @@ const Navbar = () => {
                     />
                   </div>
                   <div className="p-3 text-center">
-                    <h3 className="text-sm font-medium text-blue-800 group-hover:text-blue-900 transition-colors duration-300">
+                    <h3 className="text-sm font-medium group-hover:transition-colors duration-300 text-brand-primary">
                       {category.name}
                     </h3>
                   </div>
@@ -289,22 +283,22 @@ const Navbar = () => {
             <div className="flex justify-between items-center p-6 border-b border-gray-200">
               <div className="flex items-center">
                 <div className="relative mr-3">
-                  <svg className="w-8 h-8 text-blue-800" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                  <svg className="w-8 h-8 text-brand-primary" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full opacity-80"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-brand-accent opacity-80"></div>
                   <div className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full opacity-60"></div>
                 </div>
                 <div className="text-xl font-bold">
-                  <span className="text-blue-800">
-                    MARAKISH
+                  <span className="text-brand-primary">
+                    ZOHA'S
                   </span>
-                  <span className="text-gray-600 ml-2">CLEAN</span>
+                  <span className="ml-2 text-brand-secondary">ATTIRE</span>
                 </div>
               </div>
               <button
                 onClick={toggleMenu}
-                className="text-gray-500 hover:text-blue-800 transition-colors duration-200"
+                className="text-gray-500 transition-colors duration-200 hover:text-brand-primary"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -320,7 +314,7 @@ const Navbar = () => {
                     <div>
                       <button
                         onClick={toggleMobileSweetsSubmenu}
-                        className="w-full flex justify-between items-center px-4 py-3 text-blue-800 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium"
+                        className="w-full flex justify-between items-center px-4 py-3 rounded-lg transition-all duration-200 font-medium text-brand-primary"
                       >
                         <span>{link.name}</span>
                         <svg
@@ -337,11 +331,11 @@ const Navbar = () => {
                       {/* Mobile Submenu for ALL PRODUCTS */}
                       <div className={`ml-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ${isMobileSweetsOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                         }`}>
-                        {cleaningCategories.map((category) => (
+                        {fashionCategories.map((category) => (
                           <Link
                             key={category.name}
                             href={category.href}
-                            className="block px-4 py-2 text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-all duration-200"
+                            className="block px-4 py-2 text-sm rounded-lg transition-all duration-200 text-brand-secondary"
                             onClick={() => {
                               setIsMenuOpen(false);
                               setIsMobileSweetsOpen(false);
@@ -355,7 +349,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="block px-4 py-3 text-blue-800 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium"
+                      className="block px-4 py-3 rounded-lg transition-all duration-200 font-medium text-brand-primary"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.name}
@@ -366,12 +360,12 @@ const Navbar = () => {
 
               <Link
                 href="/wishlist"
-                className="block px-4 py-3 text-blue-800 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium flex items-center justify-between"
+                className="block px-4 py-3 rounded-lg transition-all duration-200 font-medium flex items-center justify-between text-brand-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>Wishlist</span>
                 {wishlistCount > 0 && (
-                  <span className="bg-green-400 text-blue-800 text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  <span className="bg-brand-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                     {wishlistCount}
                   </span>
                 )}
@@ -389,8 +383,8 @@ const Navbar = () => {
           <Link
             href="/"
             className={`flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/'
-              ? 'text-blue-800 bg-blue-50'
-              : 'text-gray-500 hover:text-blue-800 hover:bg-blue-50'
+              ? 'bg-gray-100 text-brand-primary'
+              : 'text-gray-500 hover:bg-gray-100'
               }`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -403,8 +397,8 @@ const Navbar = () => {
           <Link
             href="/shop"
             className={`flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/shop'
-              ? 'text-blue-800 bg-blue-50'
-              : 'text-gray-500 hover:text-blue-800 hover:bg-blue-50'
+              ? 'bg-gray-100 text-brand-primary'
+              : 'text-gray-500 hover:bg-gray-100'
               }`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -417,8 +411,8 @@ const Navbar = () => {
           <Link
             href="/wishlist"
             className={`relative flex flex-col items-center justify-center space-y-1 transition-colors duration-200 ${router.pathname === '/wishlist'
-              ? 'text-blue-800 bg-blue-50'
-              : 'text-gray-500 hover:text-blue-800 hover:bg-blue-50'
+              ? 'bg-gray-100 text-brand-primary'
+              : 'text-gray-500 hover:bg-gray-100'
               }`}
           >
             <div className="relative">
@@ -426,7 +420,7 @@ const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-green-400 text-blue-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                   {wishlistCount}
                 </span>
               )}
@@ -437,14 +431,14 @@ const Navbar = () => {
           {/* Cart */}
           <button
             onClick={toggleCart}
-            className="relative flex flex-col items-center justify-center space-y-1 text-gray-500 hover:text-blue-800 hover:bg-blue-50 transition-colors duration-200"
+            className="relative flex flex-col items-center justify-center space-y-1 text-gray-500 hover:bg-gray-100 transition-colors duration-200"
           >
             <div className="relative">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
               </svg>
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-green-400 text-blue-800 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-brand-accent text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold animate-pulse">
                   {itemCount}
                 </span>
               )}

@@ -292,7 +292,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
         <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-800">{SIZE_POPUP_CONFIG.title}</h2>
+            <h2 className="text-xl font-bold text-brand-primary">{SIZE_POPUP_CONFIG.title}</h2>
             <button
               onClick={onClose}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 text-gray-600 hover:text-gray-800"
@@ -382,7 +382,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                           <button
                             onClick={() => handleImageSelect(index)}
                             className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
-                              ? 'border-blue-500 ring-2 ring-blue-200'
+                              ? 'border-brand-accent ring-2 ring-brand-accent ring-opacity-50'
                               : 'border-gray-200 hover:border-gray-300'
                               }`}
                           >
@@ -396,7 +396,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                             {/* Video indicator for thumbnails */}
                             {item.isYouTube && (
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
+                                <div className="w-4 h-4 bg-brand-accent rounded-full flex items-center justify-center">
                                   <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                   </svg>
@@ -421,7 +421,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                   {/* Price */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">
+                      <span className="text-2xl font-bold text-transparent bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text">
                         {formatPrice(getCurrentPrice())}
                       </span>
                       {product.onSale && (
@@ -453,10 +453,10 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 {/* Color Selection */}
                 {product.colors && product.colors.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-700 mb-2">{SIZE_POPUP_CONFIG.labels.color}</h4>
-                    <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg">
-                      <p className="text-sm font-semibold text-blue-800">
-                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-blue-900">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                    <h4 className="text-sm font-medium mb-2 text-brand-primary">{SIZE_POPUP_CONFIG.labels.color}</h4>
+                    <div className="mb-3 p-2 rounded-lg border bg-brand-secondary bg-opacity-10 border-brand-secondary">
+                      <p className="text-sm font-semibold text-brand-primary">
+                        {SIZE_POPUP_CONFIG.labels.selectedColor} <span className="text-brand-accent">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                       </p>
                     </div>
                     <div className="flex items-center flex-wrap gap-2">
@@ -465,8 +465,8 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                           key={index}
                           onClick={() => handleColorSelect(index)}
                           className={`px-3 py-2 border-2 rounded-lg font-medium transition-all duration-200 text-xs ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
-                            ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md'
-                            : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700'
+                            ? 'border-brand-accent bg-brand-accent bg-opacity-10 text-brand-accent shadow-md'
+                            : 'border-gray-300 text-gray-700 hover:border-brand-secondary hover:bg-brand-secondary hover:bg-opacity-10'
                             }`}
                           title={`${color} - Image ${index + 1}`}
                         >
@@ -494,7 +494,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                             key={index}
                             onClick={() => setSelectedSize(sizeLabel)}
                             className={`py-2 px-3 rounded-lg border-2 text-xs font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
-                              ? 'border-blue-500 bg-blue-50 text-blue-700'
+                              ? 'border-brand-accent bg-brand-accent bg-opacity-10 text-brand-accent'
                               : 'border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-gray-50'
                               }`}
                           >
@@ -531,7 +531,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     </span>
                     <button
                       onClick={() => handleQuantityChange(quantity + 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-blue-500 hover:border-blue-500 transition-all duration-200 text-gray-600 hover:text-white"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-lg hover:bg-brand-accent hover:border-brand-accent transition-all duration-200 text-gray-600 hover:text-white"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -544,7 +544,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">{SIZE_POPUP_CONFIG.labels.totalText} ({quantity} {quantity > 1 ? SIZE_POPUP_CONFIG.messages.items : SIZE_POPUP_CONFIG.messages.item})</span>
-                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">
+                    <span className="text-lg font-bold text-transparent bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text">
                       {formatPrice(getCurrentPrice() * quantity)}
                     </span>
                   </div>
@@ -565,7 +565,7 @@ const SizeSelectionPopup = ({ product, isOpen, onClose }) => {
                     disabled={(product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
                     className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 ${(product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
                       ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-                      : 'bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white'
+                      : 'bg-gradient-to-r from-brand-primary to-brand-accent text-white'
                       }`}
                   >
                     {!isProductInStock() ? (

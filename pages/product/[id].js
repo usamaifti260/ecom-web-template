@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchClientProducts } from '@/lib/fetchProducts';
+import SITE_CONFIG, { getPageMeta, getSchemaConfig } from '@/config/siteConfig';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
 import { processGalleryItems, isYouTubeVideo, getYouTubeThumbnail } from '@/lib/mediaUtils';
@@ -22,19 +23,6 @@ import ProductCard from '@/components/ProductCard';
 
 // Configuration Variables
 const PRODUCT_DETAIL_CONFIG = {
-  // Schema Slugs
-  productsSchemaSlug: 'products_marakish',
-
-  // Currency & Pricing
-  currency: 'PKR',
-
-  // Page Meta
-  siteName: 'Marakish Cleaning Products',
-  keywords: 'chemical dishwash, bathroom cleaner, tezaab cleaner, harpic neel bleach, surf excel, handwash, shampoo, cleaning products, household cleaners, Pakistani cleaning products, marakish, quality cleaning solutions',
-  defaultTitle: 'Marakish Cleaning Products',
-
-  faviconPath: '/assets/alhafiz_logo.png',
-  faviconSize: '32x32',
 
   // Loading States
   loading: {
@@ -57,25 +45,10 @@ const PRODUCT_DETAIL_CONFIG = {
   },
 
   // Product Information
-  labels: {
-    color: 'Variety',
-    selectedColor: 'Selected Variety:',
-    size: 'Size',
-    quantity: 'Quantity',
-    yourSelection: 'Your Selection:',
-    addToCart: 'Add to Cart',
-    addingToCart: 'Adding to Cart...',
-    outOfStock: 'Out of Stock',
-    notifyWhenAvailable: 'Notify When Available'
-  },
+  labels: SITE_CONFIG.productFeatures.labels,
 
   // Badges
-  badges: {
-    new: 'NEW',
-    onSale: 'ON SALE',
-    bestseller: 'BESTSELLER',
-    outOfStock: 'OUT OF STOCK'
-  },
+  badges: SITE_CONFIG.productFeatures.badges,
 
   // Pricing
   pricing: {
@@ -119,7 +92,7 @@ const PRODUCT_DETAIL_CONFIG = {
     features: 'Features',
     faqTitle: 'Frequently Asked Questions',
     faqContact: 'Still have questions?',
-    faqContactMessage: 'Contact our customer service team at info@marakish.com or call us at 0343-5801011. We\'re here to help you find the perfect cleaning solutions for your home and office needs.',
+    faqContactMessage: 'Contact our customer service team at info@zohasattire.com or call us at 0310-3503309. We\'re here to help you find the perfect fashion garments for your style and comfort needs.',
     reviewsTitle: 'Customer Reviews',
     writeReview: 'Write a Review',
     outOfFive: 'out of 5',
@@ -133,7 +106,7 @@ const PRODUCT_DETAIL_CONFIG = {
     subtitle: 'Recommended for You',
     title: 'You May Also',
     titleHighlight: 'Like',
-    description: 'Discover more cleaning products from the same collection',
+    description: 'Discover more fashion garments from the same collection',
     viewDetails: 'View Details',
     viewProduct: 'VIEW PRODUCT'
   },
@@ -165,24 +138,24 @@ const PRODUCT_DETAIL_CONFIG = {
   // FAQ Data
   faq: [
     {
-      question: "What is the delivery time for Marakish cleaning products?",
-      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities like Lahore, Karachi, and Islamabad. For remote areas, please allow an additional 2-3 days. Our cleaning products are carefully packaged to maintain quality during transit."
+      question: "What is the delivery time for Zoha's Attire fashion products?",
+      answer: "We offer free delivery across Pakistan. Standard delivery takes 3-5 business days within major cities like Lahore, Karachi, and Islamabad. For remote areas, please allow an additional 2-3 days. Our garments are carefully packaged to maintain quality and arrive in perfect condition."
     },
     {
-      question: "Do you offer a quality guarantee on your cleaning products?",
-      answer: "Yes, all Marakish cleaning products come with a 7-day quality guarantee covering effectiveness and satisfaction. Our products are formulated with premium ingredients to ensure superior cleaning performance. We ensure the highest standards of quality control in our manufacturing process."
+      question: "Do you offer a quality guarantee on your fashion products?",
+      answer: "Yes, all Zoha's Attire fashion products come with a 7-day quality guarantee covering fabric quality and satisfaction. Our garments are made with premium fabrics and designed with attention to detail. We ensure the highest standards of quality control in our manufacturing process."
     },
     {
-      question: "Are your cleaning products safe and eco-friendly?",
-      answer: "Absolutely! All our cleaning products are formulated to be safe for family use while being effective against dirt and germs. We prioritize eco-friendly ingredients where possible and ensure all products meet safety standards for household and commercial use."
+      question: "Are your garments suitable for all occasions?",
+      answer: "Absolutely! Our fashion collection includes casual wear, formal attire, traditional clothing, and trendy accessories suitable for all occasions. We design our garments to be comfortable, stylish, and appropriate for Pakistani lifestyle and fashion preferences."
     },
     {
       question: "What payment options do you accept?",
-      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers across Pakistan. Easy installment plans are available for bulk orders over PKR 10,000 for commercial customers."
+      answer: "We accept all major credit cards, debit cards, JazzCash, EasyPaisa, and bank transfers. We also offer Cash on Delivery (COD) for customers across Pakistan. Easy installment plans are available for bulk orders over PKR 10,000 for retail customers."
     },
     {
-      question: "What is your return policy for cleaning products?",
-      answer: "We offer a 7-day quality guarantee for all our cleaning products. Items must be in original condition with original packaging. Returns are accepted for quality issues or if the product doesn't meet our effectiveness standards. Bulk orders for commercial use have special return policies."
+      question: "What is your return policy for fashion products?",
+      answer: "We offer a 7-day quality guarantee for all our fashion products. Items must be in original condition with original packaging and tags. Returns are accepted for size issues, quality concerns, or if the product doesn't meet our style standards. Custom tailored items have special return policies."
     }
   ]
 };
@@ -254,7 +227,7 @@ export default function ProductDetail({ product, relatedProducts }) {
   }
 
   const formatPrice = (price) => {
-    return `${PRODUCT_DETAIL_CONFIG.currency} ${price.toLocaleString()}`;
+    return `${SITE_CONFIG.currencySymbol} ${price.toLocaleString()}`;
   };
 
   // Check if product is in stock
@@ -426,14 +399,14 @@ export default function ProductDetail({ product, relatedProducts }) {
   return (
     <>
       <Head>
-        <title>{product.name} - {PRODUCT_DETAIL_CONFIG.siteName}</title>
+        <title>{product.name} - {SITE_CONFIG.businessName}</title>
         <meta name="description" content={product.description} />
-        <meta name="keywords" content={`${product.category}, ${product.brand}, ${PRODUCT_DETAIL_CONFIG.keywords}, ${product.name}`} />
+        <meta name="keywords" content={`${product.category}, ${product.brand}, ${SITE_CONFIG.seoKeywords}, ${product.name}`} />
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.image} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href={PRODUCT_DETAIL_CONFIG.faviconPath} type="image/png" sizes={PRODUCT_DETAIL_CONFIG.faviconSize} />
+        <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -442,9 +415,9 @@ export default function ProductDetail({ product, relatedProducts }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
+            <Link href="/" className="hover:text-brand-accent transition-colors duration-200">Home</Link>
             <span>/</span>
-            <Link href="/shop" className="hover:text-blue-600">Shop</Link>
+            <Link href="/shop" className="hover:text-brand-accent transition-colors duration-200">Shop</Link>
             <span>/</span>
             <span className="text-gray-900">{product.name}</span>
           </nav>
@@ -524,7 +497,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                       <button
                         onClick={() => handleImageSelect(index)}
                         className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-200 relative ${getCurrentImageIndex() === index
-                          ? 'border-blue-500 ring-2 ring-blue-200'
+                          ? 'border-brand-accent ring-2 ring-brand-accent ring-opacity-50'
                           : 'border-gray-200 hover:border-gray-300'
                           }`}
                       >
@@ -538,7 +511,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                         {/* Video indicator for thumbnails */}
                         {item.isYouTube && (
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
+                            <div className="w-6 h-6 bg-brand-accent rounded-full flex items-center justify-center">
                               <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z" />
                               </svg>
@@ -568,10 +541,10 @@ export default function ProductDetail({ product, relatedProducts }) {
             <div className="space-y-6">
               {/* Product Title and Category */}
               <div>
-                <p className="text-sm text-blue-600 uppercase tracking-wide font-semibold mb-2">
+                <p className="text-sm uppercase tracking-wide font-semibold mb-2 text-brand-secondary">
                   {product.category}
                 </p>
-                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-brand-primary">
                   {product.name}
                 </h1>
 
@@ -628,7 +601,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Price */}
               <div className="space-y-2">
                 <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text">
+                  <span className="text-3xl font-bold text-brand-primary">
                     {formatPrice(getCurrentPrice())}
                   </span>
                   {product.onSale && (
@@ -638,7 +611,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                   )}
                 </div>
                 {product.onSale && (
-                  <p className="text-sm text-green-600 font-semibold">
+                  <p className="text-sm font-semibold text-brand-accent">
                     {PRODUCT_DETAIL_CONFIG.pricing.youSave} {formatPrice(product.originalPrice - getCurrentPrice())} ({Math.round(((product.originalPrice - getCurrentPrice()) / product.originalPrice) * 100)}{PRODUCT_DETAIL_CONFIG.pricing.off})
                   </p>
                 )}
@@ -664,10 +637,10 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Color Selection */}
               {product.colors && product.colors.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.color}</h3>
-                  <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-green-100 border border-green-300 rounded-lg">
-                    <p className="text-base font-semibold text-blue-800">
-                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="text-blue-900 font-bold">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
+                  <h3 className="text-lg font-semibold mb-3 text-brand-primary">{PRODUCT_DETAIL_CONFIG.labels.color}</h3>
+                  <div className="mb-4 p-3 rounded-lg border bg-brand-secondary bg-opacity-10 border-brand-secondary">
+                    <p className="text-base font-semibold text-brand-primary">
+                      {PRODUCT_DETAIL_CONFIG.labels.selectedColor} <span className="font-bold text-brand-accent">{product.colors[selectedColorIndex !== null ? selectedColorIndex : 0]}</span>
                     </p>
                   </div>
                   <div className="flex items-center flex-wrap gap-2">
@@ -676,8 +649,8 @@ export default function ProductDetail({ product, relatedProducts }) {
                         key={index}
                         onClick={() => handleColorSelect(index)}
                         className={`px-4 py-2 border-2 rounded-lg font-medium transition-all duration-300 text-sm ${(selectedColorIndex !== null ? selectedColorIndex : 0) === index
-                          ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md transform scale-105'
-                          : 'border-gray-300 hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:scale-102'
+                          ? 'border-brand-accent bg-brand-accent bg-opacity-10 text-brand-accent shadow-md transform scale-105'
+                          : 'border-gray-300 text-gray-700 hover:border-brand-secondary hover:bg-brand-secondary hover:bg-opacity-10'
                           }`}
                         title={`${color} - Image ${index + 1}`}
                       >
@@ -694,7 +667,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Size Selection */}
               {product.sizes && product.sizes.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.size}</h3>
+                  <h3 className="text-lg font-semibold mb-3 text-brand-primary">{PRODUCT_DETAIL_CONFIG.labels.size}</h3>
                   <div className="grid grid-cols-4 gap-2">
                     {product.sizes.map((sizeItem, index) => {
                       const sizeLabel = typeof sizeItem === 'object' ? sizeItem.size : sizeItem;
@@ -705,7 +678,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           key={index}
                           onClick={() => setSelectedSize(sizeLabel)}
                           className={`py-2 px-4 border rounded-lg font-medium transition-all duration-200 text-center ${selectedSize === sizeLabel
-                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            ? 'border-brand-accent bg-brand-accent bg-opacity-10 text-brand-accent'
                             : 'border-gray-300 hover:border-gray-400'
                             }`}
                         >
@@ -724,7 +697,7 @@ export default function ProductDetail({ product, relatedProducts }) {
 
               {/* Quantity Selection */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{PRODUCT_DETAIL_CONFIG.labels.quantity}</h3>
+                <h3 className="text-lg font-semibold mb-3 text-brand-primary">{PRODUCT_DETAIL_CONFIG.labels.quantity}</h3>
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => handleQuantityChange(-1)}
@@ -749,7 +722,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {/* Configuration Summary */}
               {(selectedColorIndex !== null || selectedSize) && (
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.labels.yourSelection}</h4>
+                  <h4 className="text-sm font-semibold mb-2 text-brand-primary">{PRODUCT_DETAIL_CONFIG.labels.yourSelection}</h4>
                   <div className="space-y-1 text-sm text-gray-600">
                     {selectedColorIndex !== null && <p>• Finish: {product.colors[selectedColorIndex]}</p>}
                     {selectedSize && <p>• Size: {selectedSize}</p>}
@@ -763,10 +736,10 @@ export default function ProductDetail({ product, relatedProducts }) {
                   onClick={handleAddToCart}
                   disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
                   className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-200 flex items-center justify-center space-x-2 ${addingToCart
-                    ? 'bg-green-500 text-white'
+                    ? 'bg-brand-accent text-white'
                     : (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white transform hover:scale-105 shadow-lg'
+                      : 'bg-gradient-to-r from-brand-primary to-brand-accent text-white transform hover:scale-105 shadow-lg'
                     }`}
                 >
                   {addingToCart ? (
@@ -832,7 +805,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('description')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'description'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-brand-accent text-brand-accent'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -841,7 +814,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('faq')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'faq'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-brand-accent text-brand-accent'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -850,7 +823,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                 <button
                   onClick={() => setActiveTab('reviews')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${activeTab === 'reviews'
-                    ? 'border-blue-500 text-blue-600'
+                    ? 'border-brand-accent text-brand-accent'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                 >
@@ -865,7 +838,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'description' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.productDescription}</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-brand-primary">{PRODUCT_DETAIL_CONFIG.tabContent.productDescription}</h3>
                     <div className="prose max-w-none text-gray-600 leading-relaxed">
                       <p>{product.description}</p>
                     </div>
@@ -875,7 +848,7 @@ export default function ProductDetail({ product, relatedProducts }) {
 
                   {product.additionalFeatures && (
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.additionalFeatures}</h3>
+                      <h3 className="text-xl font-semibold mb-4 text-brand-primary">{PRODUCT_DETAIL_CONFIG.tabContent.additionalFeatures}</h3>
                       <div className="prose max-w-none text-gray-600 leading-relaxed">
                         <p className="whitespace-pre-line">{product.additionalFeatures}</p>
                       </div>
@@ -884,10 +857,10 @@ export default function ProductDetail({ product, relatedProducts }) {
 
                   {/* Product Specifications */}
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.specifications}</h3>
+                    <h3 className="text-xl font-semibold text-brand-primary mb-4">{PRODUCT_DETAIL_CONFIG.tabContent.specifications}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.generalInformation}</h4>
+                        <h4 className="font-medium text-brand-primary mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.generalInformation}</h4>
                         <ul className="space-y-1 text-sm text-gray-600">
                           <li><strong>Brand:</strong> {product.brand}</li>
                           <li><strong>Category:</strong> {product.category}</li>
@@ -897,7 +870,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                       </div>
 
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.features}</h4>
+                        <h4 className="font-medium text-brand-primary mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.features}</h4>
                         <ul className="space-y-1 text-sm text-gray-600">
                           {product.isNew && <li>✓ New Arrival</li>}
                           {product.bestseller && <li>✓ Bestseller</li>}
@@ -912,12 +885,12 @@ export default function ProductDetail({ product, relatedProducts }) {
                   {/* Product Features */}
                   {product.features && product.features.length > 0 && (
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.keyFeatures}</h3>
+                      <h3 className="text-xl font-semibold text-brand-primary mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.keyFeatures}</h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {product.features.map((feature, index) => (
                           <div
                             key={index}
-                            className="group flex items-start space-x-3 p-4 bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-xl border border-blue-200 hover:border-blue-300 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-default"
+                            className="group flex items-start space-x-3 p-4 bg-gradient-to-br from-brand-light via-white to-brand-light rounded-xl border border-brand-secondary hover:border-brand-accent hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-default"
                           >
                             <span className="text-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
                               {feature.split(' ')[0]}
@@ -954,12 +927,12 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'faq' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.faqTitle}</h3>
+                    <h3 className="text-xl font-semibold text-brand-primary mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.faqTitle}</h3>
                     <div className="space-y-4">
                       {faqData.map((faq, index) => (
                         <div key={index} className="border border-gray-200 rounded-lg">
                           <div className="p-4">
-                            <h4 className="font-medium text-gray-900 mb-2">{faq.question}</h4>
+                            <h4 className="font-medium text-brand-primary mb-2">{faq.question}</h4>
                             <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                           </div>
                         </div>
@@ -967,9 +940,9 @@ export default function ProductDetail({ product, relatedProducts }) {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-medium text-blue-800 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
-                    <p className="text-blue-700 text-sm">
+                  <div className="bg-brand-light border border-brand-secondary rounded-lg p-4">
+                    <h4 className="font-medium text-brand-primary mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.faqContact}</h4>
+                    <p className="text-brand-dark text-sm">
                       {PRODUCT_DETAIL_CONFIG.tabContent.faqContactMessage}
                     </p>
                   </div>
@@ -980,7 +953,7 @@ export default function ProductDetail({ product, relatedProducts }) {
               {activeTab === 'reviews' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsTitle}</h3>
+                    <h3 className="text-xl font-semibold text-brand-primary mb-6">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsTitle}</h3>
 
                     {/* Reviews Summary */}
                     <div className="bg-gray-50 rounded-lg p-6 mb-8">
@@ -1000,13 +973,13 @@ export default function ProductDetail({ product, relatedProducts }) {
                                 </svg>
                               ))}
                             </div>
-                            <span className="text-lg font-semibold text-gray-900">{product.rating}</span>
+                            <span className="text-lg font-semibold text-brand-primary">{product.rating}</span>
                             <span className="text-gray-600">{PRODUCT_DETAIL_CONFIG.tabContent.outOfFive}</span>
                           </div>
                           <p className="text-sm text-gray-600">{product.reviews} {PRODUCT_DETAIL_CONFIG.tabContent.totalReviews}</p>
                         </div>
 
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
+                        <button className="bg-brand-accent hover:bg-brand-primary text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                           {PRODUCT_DETAIL_CONFIG.tabContent.writeReview}
                         </button>
                       </div>
@@ -1019,7 +992,7 @@ export default function ProductDetail({ product, relatedProducts }) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.013 8.013 0 01-7.93-6.44c-.214-1.028-.214-2.088 0-3.116A8.013 8.013 0 013 4c0-4.418 3.582-8 8-8s8 3.582 8 8z" />
                         </svg>
                       </div>
-                      <h4 className="text-lg font-medium text-gray-900 mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsComingSoon}</h4>
+                      <h4 className="text-lg font-medium text-brand-primary mb-2">{PRODUCT_DETAIL_CONFIG.tabContent.reviewsComingSoon}</h4>
                       <p className="text-gray-600 max-w-md mx-auto">
                         {PRODUCT_DETAIL_CONFIG.tabContent.reviewsComingSoonMessage}
                       </p>
@@ -1034,11 +1007,11 @@ export default function ProductDetail({ product, relatedProducts }) {
           {relatedProducts && relatedProducts.length > 0 && (
             <div className="mt-16">
               <div className="text-center mb-12">
-                <h2 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold uppercase tracking-wide mb-4 text-brand-secondary">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.subtitle}
                 </h2>
-                <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-blue-600">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
+                <h3 className="text-4xl md:text-5xl font-bold mb-4 text-brand-primary">
+                  {PRODUCT_DETAIL_CONFIG.relatedProducts.title} <span className="text-brand-accent">{PRODUCT_DETAIL_CONFIG.relatedProducts.titleHighlight}</span>
                 </h3>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   {PRODUCT_DETAIL_CONFIG.relatedProducts.description}
@@ -1061,6 +1034,160 @@ export default function ProductDetail({ product, relatedProducts }) {
         </div>
 
         <Footer />
+
+        {/* Sticky Bottom Bar for Mobile/Tablet */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-lg">
+          {/* Desktop/Tablet Layout (400px and above) */}
+          <div className="hidden xs:block px-3 py-2">
+            <div className="flex items-center justify-between space-x-3">
+              {/* Quantity Controls */}
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={() => handleQuantityChange(-1)}
+                  className="w-6 h-6 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                  </svg>
+                </button>
+                <span className="w-6 text-center font-semibold text-xs">{quantity}</span>
+                <button
+                  onClick={() => handleQuantityChange(1)}
+                  className="w-6 h-6 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Price Display */}
+              <div className="text-center">
+                <div className="text-sm font-bold text-brand-primary">
+                  {formatPrice(getCurrentPrice())}
+                </div>
+                {product.onSale && (
+                  <div className="text-xs text-gray-500 line-through">
+                    {formatPrice(product.originalPrice)}
+                  </div>
+                )}
+              </div>
+
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCart}
+                disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
+                className={`flex-1 py-2 px-3 rounded font-medium text-xs transition-all duration-200 flex items-center justify-center space-x-1 ${addingToCart
+                  ? 'bg-brand-accent text-white'
+                  : (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-brand-primary to-brand-accent text-white shadow-lg'
+                  }`}
+              >
+                {addingToCart ? (
+                  <>
+                    <svg className="w-3 h-3 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span>Adding...</span>
+                  </>
+                ) : !isProductInStock() ? (
+                  <>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                    </svg>
+                    <span>Out of Stock</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                    </svg>
+                    <span>Add to Cart</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Small Mobile Layout (under 400px) */}
+          <div className="xs:hidden px-2 py-1.5 space-y-2">
+            {/* Top Row: Quantity Controls */}
+            <div className="flex items-center justify-center space-x-2">
+              <span className="text-xs font-medium text-gray-600">Qty:</span>
+              <button
+                onClick={() => handleQuantityChange(-1)}
+                className="w-6 h-6 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50 transition-colors duration-200"
+              >
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                </svg>
+              </button>
+              <span className="w-6 text-center font-semibold text-xs">{quantity}</span>
+              <button
+                onClick={() => handleQuantityChange(1)}
+                className="w-6 h-6 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50 transition-colors duration-200"
+              >
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Bottom Row: Price and Add to Cart */}
+            <div className="flex items-center justify-between space-x-2">
+              {/* Price Display */}
+              <div className="text-left">
+                <div className="text-sm font-bold text-brand-primary">
+                  {formatPrice(getCurrentPrice())}
+                </div>
+                {product.onSale && (
+                  <div className="text-xs text-gray-500 line-through">
+                    {formatPrice(product.originalPrice)}
+                  </div>
+                )}
+              </div>
+
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCart}
+                disabled={addingToCart || (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()}
+                className={`flex-1 py-1.5 px-2 rounded font-medium text-xs transition-all duration-200 flex items-center justify-center space-x-1 ${addingToCart
+                  ? 'bg-brand-accent text-white'
+                  : (product.sizes && product.sizes.length > 0 && !selectedSize) || !isProductInStock()
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-brand-primary to-brand-accent text-white shadow-lg'
+                  }`}
+              >
+                {addingToCart ? (
+                  <>
+                    <svg className="w-3 h-3 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span>Adding...</span>
+                  </>
+                ) : !isProductInStock() ? (
+                  <>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                    </svg>
+                    <span>Out of Stock</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                    </svg>
+                    <span>Add to Cart</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom padding for mobile sticky bar */}
+        <div className="lg:hidden h-12"></div>
       </div>
     </>
   );
@@ -1068,7 +1195,8 @@ export default function ProductDetail({ product, relatedProducts }) {
 
 export async function getStaticPaths() {
   try {
-    const products = await fetchClientProducts(PRODUCT_DETAIL_CONFIG.productsSchemaSlug);
+    const schemaConfig = getSchemaConfig();
+    const products = await fetchClientProducts(schemaConfig.productsSchemaSlug);
 
     const paths = products.map((product) => ({
       params: { id: product.id.toString() }
@@ -1089,7 +1217,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   try {
-    const products = await fetchClientProducts(PRODUCT_DETAIL_CONFIG.productsSchemaSlug);
+    const schemaConfig = getSchemaConfig();
+    const products = await fetchClientProducts(schemaConfig.productsSchemaSlug);
     const product = products.find(p => p.id.toString() === params.id);
 
     if (!product) {

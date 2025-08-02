@@ -29,7 +29,7 @@ const Notification = () => {
     switch (type) {
       case 'cart':
         return (
-          <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-brand-secondary rounded-full flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
             </svg>
@@ -37,7 +37,7 @@ const Notification = () => {
         );
       case 'wishlist':
         return (
-          <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-brand-accent rounded-full flex items-center justify-center">
             <svg className="w-4 h-4 text-white" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
@@ -116,8 +116,8 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
   return (
     <div
       className={`transform transition-all duration-300 ease-in-out ${isVisible && !isRemoving
-          ? 'translate-x-0 opacity-100'
-          : 'translate-x-full opacity-0'
+        ? 'translate-x-0 opacity-100'
+        : 'translate-x-full opacity-0'
         }`}
     >
       <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-80 max-w-sm">
@@ -183,7 +183,7 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
               {notification.type === 'cart' && (
                 <button
                   onClick={handleViewCart}
-                  className="flex-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                  className="flex-1 bg-brand-secondary hover:bg-brand-primary text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
                 >
                   View Cart
                 </button>
@@ -192,7 +192,7 @@ const NotificationItem = ({ notification, onRemove, onViewCart, onViewWishlist, 
                 <Link
                   href="/wishlist"
                   onClick={() => onViewWishlist(notification.id)}
-                  className="flex-1 bg-red-500 hover:bg-red-600 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 text-center"
+                  className="flex-1 bg-brand-accent hover:bg-brand-primary text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 text-center"
                 >
                   View Wishlist
                 </Link>

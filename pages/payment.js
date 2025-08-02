@@ -7,30 +7,14 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useCart } from '@/lib/CartContext';
 import { useNotification } from '@/lib/NotificationContext';
+import SITE_CONFIG, { getPageMeta, getApiConfig } from '@/config/siteConfig';
 
 // Configuration Variables
 const PAYMENT_CONFIG = {
-  // Business Information
-  businessName: 'MARAKISH',
-  defaultBrand: 'MARAKISH',
-
-  // Currency & Pricing
-  currency: 'PKR',
-
-  // SEO & Meta
-  pageTitle: 'Payment - Marakish',
-  pageDescription: 'Complete your payment for premium cleaning products',
-  faviconPath: '/assets/alhafiz_logo.png',
-  faviconSize: '32x32',
-
   // API Configuration
-  siteId: process.env.NEXT_PUBLIC_SITE_ID || 'marakishstore',
-  apiBaseUrl: 'https://web-portal-backend-production.up.railway.app/api/orders/submit',
-  apiTimeout: 30000,
-
-  // Contact Information
-  supportPhone: '0343-5801011',
-  supportHours: '9 AM - 6 PM (Mon-Sat)',
+  siteId: SITE_CONFIG.siteId,
+  apiBaseUrl: SITE_CONFIG.payment.apiBaseUrl,
+  apiTimeout: getApiConfig().timeout,
 
   // UI Text
   loadingText: 'Loading order details...',
@@ -43,7 +27,7 @@ const PAYMENT_CONFIG = {
   codDescription: 'Pay when you receive your order',
   codHowItWorksTitle: 'How it works:',
   codSteps: [
-    'Your cleaning products will be carefully packaged',
+    'Your fashion items will be carefully packaged',
     'Pay the delivery person when your order arrives',
     'Inspect your products before payment',
     'Cash payment only at delivery'
@@ -105,7 +89,7 @@ export default function PaymentPage() {
   }, [router]);
 
   const formatPrice = (price) => {
-    return `${PAYMENT_CONFIG.currency} ${price.toFixed(0)}`;
+    return `${SITE_CONFIG.currency} ${price.toFixed(0)}`;
   };
 
   const generateOrderId = () => {
@@ -277,15 +261,15 @@ export default function PaymentPage() {
     return (
       <>
         <Head>
-          <title>{PAYMENT_CONFIG.pageTitle}</title>
-          <meta name="description" content={PAYMENT_CONFIG.pageDescription} />
+          <title>{getPageMeta('payment').title}</title>
+          <meta name="description" content={getPageMeta('payment').description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href={PAYMENT_CONFIG.faviconPath} type="image/png" sizes={PAYMENT_CONFIG.faviconSize} />
+          <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-accent mx-auto mb-4"></div>
             <p className="text-gray-600">{PAYMENT_CONFIG.loadingText}</p>
           </div>
         </div>
@@ -296,10 +280,10 @@ export default function PaymentPage() {
   return (
     <>
       <Head>
-        <title>{PAYMENT_CONFIG.pageTitle}</title>
-        <meta name="description" content={PAYMENT_CONFIG.pageDescription} />
+        <title>{getPageMeta('payment').title}</title>
+        <meta name="description" content={getPageMeta('payment').description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href={PAYMENT_CONFIG.faviconPath} type="image/png" sizes={PAYMENT_CONFIG.faviconSize} />
+        <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -307,17 +291,17 @@ export default function PaymentPage() {
           {/* Header */}
           <div className="mb-8">
             <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-              <Link href={PAYMENT_CONFIG.shopRoute} className="hover:text-blue-600 transition-colors">🧼 Shop</Link>
+              <Link href={PAYMENT_CONFIG.shopRoute} className="hover:text-brand-accent transition-colors">👗 Shop</Link>
               <span>→</span>
-              <Link href={PAYMENT_CONFIG.checkoutRoute} className="hover:text-blue-600 transition-colors">Checkout</Link>
+              <Link href={PAYMENT_CONFIG.checkoutRoute} className="hover:text-brand-accent transition-colors">Checkout</Link>
               <span>→</span>
-              <span className="text-blue-600 font-medium">Payment</span>
+              <span className="text-brand-primary font-medium">Payment</span>
             </nav>
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">MARAKISH</span>
+                <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">{getPageMeta('payment').title}</span>
               </h1>
-              <p className="text-gray-600">{PAYMENT_CONFIG.pageDescription}</p>
+              <p className="text-gray-600">{getPageMeta('payment').description}</p>
             </div>
           </div>
 
@@ -325,14 +309,14 @@ export default function PaymentPage() {
             {/* Payment Method */}
             <div className="space-y-6">
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <h3 className="text-xl font-bold text-brand-primary mb-6 flex items-center">
                   <span className="text-2xl mr-2">{PAYMENT_CONFIG.paymentIcon}</span>
                   Payment Method
                 </h3>
 
                 <div className="space-y-4">
                   {/* Cash on Delivery */}
-                  <div className="border border-blue-400 rounded-lg p-4 bg-gradient-to-r from-blue-500 to-blue-700">
+                  <div className="border border-brand-accent rounded-lg p-4 bg-gradient-to-r from-brand-primary to-brand-accent">
                     <label className="flex items-start space-x-3 cursor-pointer">
                       <input
                         type="radio"
@@ -340,7 +324,7 @@ export default function PaymentPage() {
                         value="COD"
                         checked={paymentMethod === 'COD'}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="mt-1 w-4 h-4 text-blue-600 border-white focus:ring-blue-500"
+                        className="mt-1 w-4 h-4 text-brand-primary border-white focus:ring-brand-accent"
                       />
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
@@ -383,7 +367,7 @@ export default function PaymentPage() {
 
               {/* Return Policy Section */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <h3 className="text-xl font-bold text-brand-primary mb-6 flex items-center">
                   <span className="text-2xl mr-2">{PAYMENT_CONFIG.returnIcon}</span>
                   Quality Guarantee & Return Policy
                 </h3>
@@ -408,8 +392,8 @@ export default function PaymentPage() {
                   <div className="text-center">
                     <p className="text-sm text-gray-600">
                       Questions about returns?
-                      <a href={`tel:${PAYMENT_CONFIG.supportPhone}`} className="text-blue-600 hover:text-blue-700 font-medium ml-1">
-                        Call us at {PAYMENT_CONFIG.supportPhone}
+                      <a href={`tel:${SITE_CONFIG.businessContact}`} className="text-brand-accent hover:text-brand-primary font-medium ml-1">
+                        Call us at {SITE_CONFIG.businessContact}
                       </a>
                     </p>
                   </div>
@@ -418,27 +402,27 @@ export default function PaymentPage() {
 
               {/* Delivery Information */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <h3 className="text-xl font-bold text-brand-primary mb-6 flex items-center">
                   <span className="text-2xl mr-2">{PAYMENT_CONFIG.deliveryIcon}</span>
                   Delivery Information
                 </h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm font-medium text-blue-600">Customer</p>
+                    <p className="text-sm font-medium text-brand-primary">Customer</p>
                     <p className="text-sm text-gray-800">
                       {orderData.customer.firstName} {orderData.customer.lastName}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-blue-600">Email</p>
+                    <p className="text-sm font-medium text-brand-primary">Email</p>
                     <p className="text-sm text-gray-800">{orderData.customer.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-blue-600">Phone</p>
+                    <p className="text-sm font-medium text-brand-primary">Phone</p>
                     <p className="text-sm text-gray-800">{orderData.customer.phone}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-blue-600">Delivery Address</p>
+                    <p className="text-sm font-medium text-brand-primary">Delivery Address</p>
                     <p className="text-sm text-gray-800">
                       {orderData.customer.address}<br />
                       {orderData.customer.city}, {orderData.customer.area} {orderData.customer.zipCode}
@@ -446,7 +430,7 @@ export default function PaymentPage() {
                   </div>
                   {orderData.customer.notes && (
                     <div>
-                      <p className="text-sm font-medium text-blue-600">Order Notes</p>
+                      <p className="text-sm font-medium text-brand-primary">Order Notes</p>
                       <p className="text-sm text-gray-800">{orderData.customer.notes}</p>
                     </div>
                   )}
@@ -456,7 +440,7 @@ export default function PaymentPage() {
 
             {/* Order Summary */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-fit">
-              <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+              <h3 className="text-xl font-bold text-brand-primary mb-6 flex items-center">
                 <span className="text-2xl mr-2">{PAYMENT_CONFIG.summaryIcon}</span>
                 Order Summary
               </h3>
@@ -497,7 +481,7 @@ export default function PaymentPage() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
+                      <p className="text-sm font-semibold bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
                         {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
@@ -520,7 +504,7 @@ export default function PaymentPage() {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-800">Total</span>
-                    <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
+                    <span className="text-base font-semibold bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">{formatPrice(orderData.summary.total)}</span>
                   </div>
                 </div>
               </div>
@@ -545,7 +529,7 @@ export default function PaymentPage() {
                   disabled={isProcessing}
                   className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-200 ${isProcessing
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 transform hover:scale-105'
+                    : 'bg-gradient-to-r from-brand-primary to-brand-accent hover:from-brand-accent hover:to-brand-primary transform hover:scale-105'
                     } text-white`}
                 >
                   {isProcessing ? (

@@ -27,12 +27,12 @@ const Categories = ({ categories }) => {
               </div>
 
               {/* Category Name */}
-              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-gray-800 group-hover:text-amber-600 transition-colors duration-300">
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold transition-colors duration-300 text-brand-primary">
                 {category.categoryname}
               </h3>
 
               {/* Decorative Line */}
-              <div className="w-8 sm:w-12 md:w-16 h-0.5 bg-gray-300 group-hover:bg-amber-500 mx-auto mt-2 sm:mt-3 md:mt-4 transition-colors duration-300"></div>
+              <div className="w-8 sm:w-12 md:w-16 h-0.5 mx-auto mt-2 sm:mt-3 md:mt-4 bg-brand-secondary transition-colors duration-300"></div>
             </Link>
           ))}
         </div>

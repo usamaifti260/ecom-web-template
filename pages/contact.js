@@ -1,16 +1,20 @@
 import Head from 'next/head';
+import SITE_CONFIG, { getPageMeta } from '@/config/siteConfig';
 import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function ContactPage() {
+  const pageMeta = getPageMeta('contact');
+
   return (
     <>
       <Head>
-        <title>Contact Us - Marakish</title>
-        <meta name="description" content="Get in touch with Marakish for all your cleaning product needs. Contact us for orders, bulk inquiries, and support." />
+        <title>{pageMeta.title}</title>
+        <meta name="description" content={pageMeta.description} />
+        <meta name="keywords" content={pageMeta.keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/alhafiz_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">

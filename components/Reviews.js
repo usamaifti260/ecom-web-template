@@ -7,39 +7,41 @@ const Reviews = () => {
   const [sortBy, setSortBy] = useState('most-recent');
   const [reviewsToShow, setReviewsToShow] = useState(4);
 
-  // Product reviews data for Marakish cleaning products (27 reviews for 4.8 rating)
+  // Product reviews data for Zoha's Attire fashion products (27 reviews for 4.8 rating)
   const reviews = [
     {
       id: 1,
       customerName: "Fatima A.",
+      customerImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Best Chemical Dishwash Liquid!",
-      review: "This Chemical Dishwash Liquid exceeded my expectations. Cuts through grease like magic and the freshness lasts for hours. Perfect for heavy-duty cleaning and daily use. The concentrated formula means a little goes a long way. Highly recommend for busy kitchens.",
+      title: "Absolutely stunning traditional outfit!",
+      review: "This traditional embroidered suit exceeded my expectations. The fabric quality is exceptional and the embroidery work is absolutely beautiful. Perfect for special occasions and the fit is very comfortable. The colors are vibrant and exactly as shown in pictures. Highly recommend Zoha's Attire!",
       date: "December 15, 2024",
-      productName: "Chemical Dishwash Liquid",
-      productImage: "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_150x150.jpg",
-      size: "1L",
-      color: "Green",
+      productName: "Embroidered Traditional Suit",
+      productImage: "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
+      color: "Royal Blue",
       helpfulVotes: 12,
       totalVotes: 14,
       images: [
-        "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_387x387.jpg",
-        "https://s.alicdn.com/@sc04/kf/H966febf11edc4517a83767f5773bf9cbd.png_388x388.jpg"
+        "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=400&h=400&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 2,
       customerName: "Ahmad H.",
+      customerImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Outstanding Bathroom Cleaner Tezaab!",
-      review: "The Bathroom Cleaner Tezaab is absolutely outstanding! Removes tough stains and lime scale effortlessly. The quality is excellent and the cleaning power is unmatched. Perfect for deep cleaning bathrooms and tiles. Great value for money!",
+      title: "Perfect formal shirt for office!",
+      review: "This formal shirt is absolutely outstanding! The fabric quality is excellent and the fit is perfect. Great for office wear and business meetings. The collar stays crisp all day and the material doesn't wrinkle easily. Excellent value for money!",
       date: "December 14, 2024",
-      productName: "Bathroom Cleaner Tezaab",
-      productImage: "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_150x150.jpg",
-      size: "500ml",
-      color: "Blue",
+      productName: "Premium Formal Shirt",
+      productImage: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
+      color: "White",
       helpfulVotes: 18,
       totalVotes: 20,
       images: []
@@ -47,33 +49,35 @@ const Reviews = () => {
     {
       id: 3,
       customerName: "Ayesha M.",
+      customerImage: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Harpic Neel Bleach is amazing!",
-      review: "This Harpic Neel Bleach is exactly what I was looking for. The disinfection power is incredible and kills 99.9% germs as promised. Perfect for toilet cleaning and sanitizing surfaces. The blue color indicator shows where it's working. Fast delivery too!",
+      title: "Beautiful designer lawn suit!",
+      review: "This designer lawn suit is exactly what I was looking for. The print quality is incredible and the colors are so vibrant as promised. Perfect for summer wear and casual occasions. The fabric is soft and breathable. Fast delivery too!",
       date: "December 12, 2024",
-      productName: "Harpic Neel Bleach",
-      productImage: "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_150x150.jpg",
-      size: "1L",
-      color: "Blue",
+      productName: "Designer Lawn Suit",
+      productImage: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
+      color: "Floral Print",
       helpfulVotes: 15,
       totalVotes: 16,
       images: [
-        "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_435x435.jpg"
+        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 4,
       customerName: "Maria K.",
+      customerImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent Surf Excel Detergent!",
-      review: "This Surf Excel Detergent is perfect for my family's laundry needs. Removes tough stains and keeps clothes bright and fresh. The powder dissolves completely and works great for both hand wash and machine wash. Excellent quality from Marakish.",
+      title: "Excellent winter collection jacket!",
+      review: "This winter jacket is perfect for the cold season. Keeps me warm and looks stylish at the same time. The material is high quality and the stitching is excellent. Great for both casual and semi-formal occasions. Excellent quality from Zoha's Attire.",
       date: "December 10, 2024",
-      productName: "Surf Excel Detergent",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hb27ae62fe4b04d17ab0c24b8f153ec78m.jpg_150x150.jpg",
-      size: "3kg",
-      color: "Blue",
+      productName: "Winter Collection Jacket",
+      productImage: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5c?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
+      color: "Navy Blue",
       helpfulVotes: 22,
       totalVotes: 24,
       images: []
@@ -81,15 +85,16 @@ const Reviews = () => {
     {
       id: 5,
       customerName: "Zara L.",
+      customerImage: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Antibacterial Handwash is excellent!",
-      review: "This Antibacterial Handwash is so gentle yet effective! Kills germs while keeping hands soft and moisturized. The fragrance is pleasant and not overpowering. Great for daily use and family hygiene. Will definitely order more from Marakish.",
+      title: "Elegant party dress is excellent!",
+      review: "This party dress is so elegant yet comfortable! The fabric feels luxurious and the design is stunning. The fit is perfect and not too tight. Great for special occasions and wedding functions. Will definitely order more from Zoha's Attire.",
       date: "December 8, 2024",
-      productName: "Antibacterial Handwash",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hae4319cb230b401397bd3f532ee9596ac.png_150x150.jpg",
-      size: "300ml",
-      color: "Clear",
+      productName: "Elegant Party Dress",
+      productImage: "https://images.unsplash.com/photo-1566479179817-c0e1a5f96ffa?w=150&h=150&fit=crop&crop=center",
+      size: "Small",
+      color: "Maroon",
       helpfulVotes: 19,
       totalVotes: 21,
       images: []
@@ -97,14 +102,15 @@ const Reviews = () => {
     {
       id: 6,
       customerName: "Hina R.",
+      customerImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality, fast delivery",
-      review: "The product quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The shampoo works effectively and leaves hair clean and fresh. Satisfied with my purchase.",
+      title: "Good quality casual wear, fast delivery",
+      review: "The casual wear quality is very good for the price. Delivery was faster than expected and the packaging was excellent. The fabric is comfortable and perfect for daily wear. The colors are nice and vibrant. Satisfied with my purchase.",
       date: "December 6, 2024",
-      productName: "Hair Care Shampoo",
-      productImage: "https://s.alicdn.com/@sc04/kf/H8420d36398fa4b8992b84ff23dcac060A.jpg_150x150.jpg",
-      size: "400ml",
+      productName: "Casual Wear Collection",
+      productImage: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
       color: "Pink",
       helpfulVotes: 14,
       totalVotes: 16,
@@ -113,33 +119,35 @@ const Reviews = () => {
     {
       id: 7,
       customerName: "Sadia S.",
+      customerImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Powerful Floor Cleaner!",
-      review: "The Floor Cleaner is absolutely stunning! The cleaning power and fresh scent are remarkable. Perfect for all types of flooring. Removes dirt and grime effectively while leaving a pleasant fragrance. Highly recommend for household cleaning!",
+      title: "Beautiful ethnic wear collection!",
+      review: "This ethnic wear collection is absolutely stunning! The embroidery work and fabric quality are remarkable. Perfect for all types of cultural events. The design is elegant and fits perfectly while maintaining traditional appeal. Highly recommend for festive occasions!",
       date: "December 4, 2024",
-      productName: "Multi-Surface Floor Cleaner",
-      productImage: "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_150x150.jpg",
-      size: "1L",
+      productName: "Ethnic Wear Collection",
+      productImage: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
       color: "Green",
       helpfulVotes: 25,
       totalVotes: 27,
       images: [
-        "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_387x387.jpg",
-        "https://s.alicdn.com/@sc04/kf/Hba091f94c4cc4002ab237b7e923a1ca1z.jpg_388x388.jpg"
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&h=400&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 8,
       customerName: "Rabia K.",
+      customerImage: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
       title: "Exceeded expectations!",
-      review: "This Fabric Softener is even better than I expected. Clothes come out soft and smell fresh for days. Perfect for sensitive skin and all fabric types. The concentrated formula works efficiently. Great customer service from Marakish too!",
+      review: "This premium kurta is even better than I expected. The fabric feels soft and comfortable all day. Perfect for both casual and formal occasions. The fit is excellent and the design is very elegant. Great customer service from Zoha's Attire too!",
       date: "December 2, 2024",
-      productName: "Premium Fabric Softener",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hb75a3ad8b49a4286b7bf7cf0d4355e5c6.jpg_150x150.jpg",
-      size: "2L",
+      productName: "Premium Kurta Collection",
+      productImage: "https://images.unsplash.com/photo-1583391733947-34e1b3f31f32?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
       color: "Purple",
       helpfulVotes: 16,
       totalVotes: 18,
@@ -148,15 +156,16 @@ const Reviews = () => {
     {
       id: 9,
       customerName: "Amina T.",
+      customerImage: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Premium quality toilet cleaner",
-      review: "The toilet cleaner quality is outstanding! This sanitizing gel is perfect for deep cleaning and disinfection. The thick formula clings to surfaces and eliminates odors completely. Received many compliments on how fresh the bathroom smells.",
+      title: "Premium quality baby collection",
+      review: "The baby clothing quality is outstanding! These soft cotton outfits are perfect for delicate baby skin. The fabric is gentle and breathable, keeping baby comfortable all day. Received many compliments on how adorable the designs look.",
       date: "November 30, 2024",
-      productName: "Toilet Bowl Sanitizing Gel",
-      productImage: "https://s.alicdn.com/@sc04/kf/HTB1VjW3RpXXXXXJXFXX760XFXXXW.png_150x150.jpg",
-      size: "750ml",
-      color: "Blue",
+      productName: "Baby Cotton Collection",
+      productImage: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=150&h=150&fit=crop&crop=center",
+      size: "6-12 months",
+      color: "Pastel Blue",
       helpfulVotes: 21,
       totalVotes: 23,
       images: []
@@ -164,15 +173,16 @@ const Reviews = () => {
     {
       id: 10,
       customerName: "Khadija M.",
+      customerImage: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality and effective",
-      review: "This Glass Cleaner works perfectly for windows and mirrors and is very convenient. The spray bottle design is practical and the cleaning power is good. Only minor issue is that it leaves slight streaks on very dirty surfaces, but still effective.",
+      title: "Good quality and stylish",
+      review: "This formal trouser works perfectly for office wear and is very comfortable. The fabric quality is good and the fit is excellent. Only minor issue is that it needs careful ironing to maintain the crisp look, but overall very effective for professional settings.",
       date: "November 28, 2024",
-      productName: "Glass & Mirror Cleaner",
-      productImage: "https://s.alicdn.com/@sc04/kf/H8420d36398fa4b8992b84ff23dcac060A.jpg_150x150.jpg",
-      size: "500ml",
-      color: "Blue",
+      productName: "Formal Trouser Collection",
+      productImage: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=150&h=150&fit=crop&crop=center",
+      size: "32",
+      color: "Navy Blue",
       helpfulVotes: 11,
       totalVotes: 13,
       images: []
@@ -180,15 +190,16 @@ const Reviews = () => {
     {
       id: 11,
       customerName: "Saira A.",
+      customerImage: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent kitchen degreaser",
-      review: "This Kitchen Degreaser is so effective and powerful. Perfect for both daily cleaning and heavy-duty degreasing. Removes oil and grease stains effortlessly from stoves and countertops. Great value for money!",
+      title: "Excellent designer scarf collection",
+      review: "This Designer Scarf Collection is so beautiful and versatile. Perfect for both casual and formal styling. Adds elegance to any outfit effortlessly and the fabric quality is amazing. Great value for money!",
       date: "November 26, 2024",
-      productName: "Heavy Duty Kitchen Degreaser",
-      productImage: "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_150x150.jpg",
-      size: "500ml",
-      color: "Yellow",
+      productName: "Designer Scarf Collection",
+      productImage: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=150&h=150&fit=crop&crop=center",
+      size: "One Size",
+      color: "Golden Yellow",
       helpfulVotes: 17,
       totalVotes: 19,
       images: []
@@ -196,32 +207,34 @@ const Reviews = () => {
     {
       id: 12,
       customerName: "Farah B.",
+      customerImage: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
       title: "Professional quality at great price",
-      review: "This All-Purpose Cleaner is absolutely fantastic! The cleaning power is professional-grade and works on multiple surfaces. Perfect for household and commercial use. The packaging was also very secure and hygienic.",
+      review: "This Handbag Collection is absolutely fantastic! The leather quality is professional-grade and works for multiple occasions. Perfect for office and formal use. The packaging was also very secure and elegant.",
       date: "November 24, 2024",
-      productName: "All-Purpose Multi-Surface Cleaner",
-      productImage: "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_150x150.jpg",
-      size: "1L",
-      color: "Green",
+      productName: "Premium Handbag Collection",
+      productImage: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
+      color: "Black",
       helpfulVotes: 23,
       totalVotes: 25,
       images: [
-        "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_387x387.jpg"
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 13,
       customerName: "Uzma H.",
+      customerImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Modern and effective formula",
-      review: "This Carpet Cleaner is perfect for modern homes. The stain removal power is amazing and the fresh scent lasts for days. Great for high-traffic areas and pet stains. Highly satisfied with Marakish quality!",
+      title: "Modern and stylish footwear",
+      review: "This Footwear Collection is perfect for modern fashion. The comfort and style are amazing and the quality lasts for years. Great for daily wear and special occasions. Highly satisfied with Zoha's Attire quality!",
       date: "November 22, 2024",
-      productName: "Carpet & Upholstery Cleaner",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hb27ae62fe4b04d17ab0c24b8f153ec78m.jpg_150x150.jpg",
-      size: "750ml",
+      productName: "Modern Footwear Collection",
+      productImage: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=150&h=150&fit=crop&crop=center",
+      size: "Size 7",
       color: "Blue",
       helpfulVotes: 13,
       totalVotes: 15,
@@ -230,13 +243,14 @@ const Reviews = () => {
     {
       id: 14,
       customerName: "Mehreen K.",
+      customerImage: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Complete cleaning solution kit",
-      review: "This cleaning product bundle is absolutely perfect! The variety and quality are amazing for complete household cleaning. Perfect for deep cleaning during festivals and special occasions. Worth every penny!",
+      title: "Complete fashion accessory kit",
+      review: "This fashion accessory bundle is absolutely perfect! The variety and quality are amazing for complete outfit styling. Perfect for special occasions and festivals. Worth every penny!",
       date: "November 20, 2024",
-      productName: "Complete Household Cleaning Kit",
-      productImage: "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_150x150.jpg",
+      productName: "Complete Fashion Accessory Kit",
+      productImage: "https://images.unsplash.com/photo-1581024601875-1c0e1e1b3ad6?w=150&h=150&fit=crop&crop=center",
       size: "5-piece set",
       color: "Mixed",
       helpfulVotes: 28,
@@ -246,14 +260,15 @@ const Reviews = () => {
     {
       id: 15,
       customerName: "Rubina S.",
+      customerImage: "https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 4,
       title: "Effective and convenient",
-      review: "This Drain Cleaner is perfect for regular maintenance and blockage removal. Works effectively on hair and soap buildup. The packaging is good and easy to use. Good quality for the price.",
+      review: "This Hair Accessory Set is perfect for regular styling and hair management. Works effectively for different hairstyles and occasions. The packaging is good and easy to use. Good quality for the price.",
       date: "November 18, 2024",
-      productName: "Drain Unblocker Gel",
-      productImage: "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_150x150.jpg",
-      size: "500ml",
+      productName: "Hair Accessory Set",
+      productImage: "https://images.unsplash.com/photo-1583391733956-6c78276477e5?w=150&h=150&fit=crop&crop=center",
+      size: "Multi-pack",
       color: "Clear",
       helpfulVotes: 9,
       totalVotes: 11,
@@ -262,15 +277,16 @@ const Reviews = () => {
     {
       id: 16,
       customerName: "Shazia R.",
+      customerImage: "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Excellent stain remover quality",
-      review: "This Stain Remover Spray is perfect for treating tough stains on clothes and fabrics. The pre-treatment formula works like magic on oil, food, and ink stains. Great for everyday use. Fast delivery from Marakish too!",
+      title: "Excellent sportswear quality",
+      review: "This Sportswear Collection is perfect for fitness and active lifestyle. The moisture-wicking fabric works like magic for workouts and outdoor activities. Great for everyday exercise. Fast delivery from Zoha's Attire too!",
       date: "November 16, 2024",
-      productName: "Pre-Treatment Stain Remover",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hb75a3ad8b49a4286b7bf7cf0d4355e5c6.jpg_150x150.jpg",
-      size: "400ml",
-      color: "Clear",
+      productName: "Active Sportswear Collection",
+      productImage: "https://images.unsplash.com/photo-1506629905607-d9db33eb2439?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
+      color: "Black",
       helpfulVotes: 12,
       totalVotes: 14,
       images: []
@@ -278,32 +294,34 @@ const Reviews = () => {
     {
       id: 17,
       customerName: "Tahira M.",
+      customerImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for commercial use!",
-      review: "This Industrial Strength Degreaser is absolutely outstanding! Perfect for heavy-duty commercial cleaning and tough grease removal. Works excellently in restaurant kitchens and workshops. Received excellent results every time!",
+      title: "Perfect for formal occasions!",
+      review: "This Formal Evening Wear is absolutely outstanding! Perfect for special events and elegant occasions. Works excellently for weddings and corporate functions. Received excellent compliments every time!",
       date: "November 14, 2024",
-      productName: "Industrial Strength Degreaser",
-      productImage: "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_150x150.jpg",
-      size: "5L",
-      color: "Yellow",
+      productName: "Formal Evening Wear",
+      productImage: "https://images.unsplash.com/photo-1566479179817-c0e1a5f96ffa?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
+      color: "Black",
       helpfulVotes: 20,
       totalVotes: 22,
       images: [
-        "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_387x387.jpg"
+        "https://images.unsplash.com/photo-1566479179817-c0e1a5f96ffa?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 18,
       customerName: "Yasmin A.",
+      customerImage: "https://images.unsplash.com/photo-1541823709867-1b206113eafd?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Ultra fresh air freshener",
-      review: "This Air Freshener is incredibly effective and long-lasting! Perfect for eliminating odors and maintaining fresh indoor air. The scent is pleasant and not overwhelming. Great for bathrooms and living areas.",
+      title: "Ultra stylish perfume collection",
+      review: "This Perfume Collection is incredibly effective and long-lasting! Perfect for special occasions and maintaining fresh fragrance all day. The scent is pleasant and not overwhelming. Great for daily wear and special events.",
       date: "November 12, 2024",
-      productName: "Long-Lasting Air Freshener",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hae4319cb230b401397bd3f532ee9596ac.png_150x150.jpg",
-      size: "300ml",
+      productName: "Signature Perfume Collection",
+      productImage: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=150&h=150&fit=crop&crop=center",
+      size: "50ml",
       color: "Purple",
       helpfulVotes: 8,
       totalVotes: 10,
@@ -312,15 +330,16 @@ const Reviews = () => {
     {
       id: 19,
       customerName: "Samina K.",
+      customerImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good for daily use",
-      review: "This Multi-Purpose Disinfectant is suitable for daily cleaning and sanitizing. The formula is effective and the price is reasonable. The antimicrobial action is good for regular household hygiene maintenance.",
+      title: "Good for daily wear",
+      review: "This Multi-Purpose Casual Wear is suitable for daily styling and comfort. The fabric is effective and the price is reasonable. The versatile design is good for regular wardrobe maintenance.",
       date: "November 10, 2024",
-      productName: "Multi-Purpose Disinfectant",
-      productImage: "https://s.alicdn.com/@sc04/kf/HTB1VjW3RpXXXXXJXFXX760XFXXXW.png_150x150.jpg",
-      size: "1L",
-      color: "Clear",
+      productName: "Multi-Purpose Casual Wear",
+      productImage: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
+      color: "Navy Blue",
       helpfulVotes: 7,
       totalVotes: 9,
       images: []
@@ -328,14 +347,15 @@ const Reviews = () => {
     {
       id: 20,
       customerName: "Naila H.",
+      customerImage: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Classic Washing Powder is excellent",
-      review: "This Classic Washing Powder is absolutely reliable! The traditional cleaning power is unique and the stain removal is outstanding. Great authentic cleaning action and fast shipping from Marakish. Love it!",
+      title: "Classic Denim Collection is excellent",
+      review: "This Classic Denim Collection is absolutely reliable! The traditional style is unique and the quality is outstanding. Great authentic fashion and fast shipping from Zoha's Attire. Love it!",
       date: "November 8, 2024",
-      productName: "Classic Washing Powder",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hb27ae62fe4b04d17ab0c24b8f153ec78m.jpg_150x150.jpg",
-      size: "2kg",
+      productName: "Classic Denim Collection",
+      productImage: "https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=150&h=150&fit=crop&crop=center",
+      size: "Large",
       color: "White",
       helpfulVotes: 15,
       totalVotes: 17,
@@ -344,14 +364,15 @@ const Reviews = () => {
     {
       id: 21,
       customerName: "Bushra S.",
+      customerImage: "https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Simple and effective",
-      review: "This Simple Dish Soap is perfect for those who love gentle yet effective cleaning. The formulation is clean and efficient. Great quality ingredients and comfortable on hands. Exactly what I was looking for!",
+      title: "Simple and elegant",
+      review: "This Simple Jewelry Collection is perfect for those who love gentle yet elegant accessories. The design is clean and efficient. Great quality materials and comfortable to wear. Exactly what I was looking for!",
       date: "November 6, 2024",
-      productName: "Gentle Dish Soap",
-      productImage: "https://s.alicdn.com/@sc04/kf/H966febf11edc4517a83767f5773bf9cbd.png_150x150.jpg",
-      size: "500ml",
+      productName: "Simple Jewelry Collection",
+      productImage: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=150&h=150&fit=crop&crop=center",
+      size: "Adjustable",
       color: "Clear",
       helpfulVotes: 10,
       totalVotes: 12,
@@ -360,32 +381,34 @@ const Reviews = () => {
     {
       id: 22,
       customerName: "Fouzia R.",
+      customerImage: "https://images.unsplash.com/photo-1465485512101-4c502f3b9e67?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Premium cleaning kit stunning!",
-      review: "This Premium Professional Cleaning Kit is absolutely exquisite! The variety of cleaners and perfect packaging are amazing for comprehensive cleaning and professional use. The quality is outstanding. Worth the investment!",
+      title: "Premium formal wear stunning!",
+      review: "This Premium Formal Wear Collection is absolutely exquisite! The variety of outfits and perfect tailoring are amazing for comprehensive wardrobe and professional use. The quality is outstanding. Worth the investment!",
       date: "November 4, 2024",
-      productName: "Premium Professional Cleaning Kit",
-      productImage: "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_150x150.jpg",
-      size: "10-piece kit",
+      productName: "Premium Formal Wear Collection",
+      productImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=center",
+      size: "10-piece set",
       color: "Mixed",
       helpfulVotes: 32,
       totalVotes: 34,
       images: [
-        "https://s.alicdn.com/@sc04/kf/H2582b15b162d4a718fc68c5e7522acc2J.png_387x387.jpg",
-        "https://s.alicdn.com/@sc04/kf/Hba091f94c4cc4002ab237b7e923a1ca1z.jpg_388x388.jpg"
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop&crop=center"
       ]
     },
     {
       id: 23,
       customerName: "Riffat M.",
+      customerImage: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Perfect for office cleaning",
-      review: "This Office Cleaning Pack is efficient yet thorough, perfect for workplace cleaning and maintenance. The variety is practical and the effectiveness is excellent. Great for corporate environments. Highly recommend Marakish!",
+      title: "Perfect for office wear",
+      review: "This Office Wear Collection is efficient yet stylish, perfect for workplace fashion and professional look. The variety is practical and the style is excellent. Great for corporate environments. Highly recommend Zoha's Attire!",
       date: "November 2, 2024",
-      productName: "Office Cleaning Essentials Pack",
-      productImage: "https://s.alicdn.com/@sc04/kf/H6d78604ad37b486396900db69d6801a4J.jpg_150x150.jpg",
+      productName: "Office Wear Collection",
+      productImage: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=150&h=150&fit=crop&crop=center",
       size: "6-piece set",
       color: "Blue",
       helpfulVotes: 14,
@@ -395,14 +418,15 @@ const Reviews = () => {
     {
       id: 24,
       customerName: "Shaista K.",
+      customerImage: "https://images.unsplash.com/photo-1484588168347-9d835bb09939?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Traditional and effective",
-      review: "This Traditional Soap Bar collection with natural ingredients is effective and authentic. The quality is excellent and the cleaning power is timeless. Perfect for maintaining traditional cleaning methods and eco-friendly practices.",
+      title: "Traditional and elegant",
+      review: "This Traditional Jewelry collection with authentic designs is beautiful and timeless. The quality is excellent and the craftsmanship is outstanding. Perfect for maintaining traditional style and cultural heritage.",
       date: "October 31, 2024",
-      productName: "Natural Soap Bar Collection",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hae4319cb230b401397bd3f532ee9596ac.png_150x150.jpg",
-      size: "4-bar pack",
+      productName: "Traditional Jewelry Collection",
+      productImage: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=150&h=150&fit=crop&crop=center",
+      size: "4-piece set",
       color: "Natural",
       helpfulVotes: 18,
       totalVotes: 20,
@@ -411,15 +435,16 @@ const Reviews = () => {
     {
       id: 25,
       customerName: "Nayab A.",
+      customerImage: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Commercial grade cleaning perfect",
-      review: "This Commercial Grade Cleaning Kit is perfect for business facilities and industrial cleaning. The concentration is professional and the quality is high. Great variety and excellent customer service from Marakish. Very satisfied!",
+      title: "Commercial business wear perfect",
+      review: "This Business Formal Collection is perfect for corporate facilities and professional settings. The tailoring is professional and the quality is high. Great variety and excellent customer service from Zoha's Attire. Very satisfied!",
       date: "October 29, 2024",
-      productName: "Commercial Grade Cleaning Kit",
-      productImage: "https://s.alicdn.com/@sc04/kf/HTB16VbPKeuSBuNjSsplq6ze8pXaD.jpg_150x150.jpg",
-      size: "15L total",
-      color: "Industrial",
+      productName: "Business Formal Collection",
+      productImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=center",
+      size: "Complete Set",
+      color: "Navy Blue",
       helpfulVotes: 16,
       totalVotes: 18,
       images: []
@@ -427,14 +452,15 @@ const Reviews = () => {
     {
       id: 26,
       customerName: "Ghazala S.",
+      customerImage: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 4,
-      title: "Good quality, minor scent preference",
-      review: "The quality is good and the cleaning power is effective. However, the fragrance was slightly stronger for my preference. Overall satisfied with the purchase. The cleaning results are perfect and the consistency is good.",
+      title: "Good quality, minor color preference",
+      review: "The quality is good and the style is effective. However, the color was slightly different than my preference. Overall satisfied with the purchase. The design results are perfect and the fit is good.",
       date: "October 27, 2024",
-      productName: "Scented Bathroom Cleaner",
-      productImage: "https://s.alicdn.com/@sc04/kf/Hba091f94c4cc4002ab237b7e923a1ca1z.jpg_150x150.jpg",
-      size: "750ml",
+      productName: "Designer Top Collection",
+      productImage: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=150&h=150&fit=crop&crop=center",
+      size: "Medium",
       color: "Pink",
       helpfulVotes: 6,
       totalVotes: 8,
@@ -443,14 +469,15 @@ const Reviews = () => {
     {
       id: 27,
       customerName: "Lubna R.",
+      customerImage: "https://images.unsplash.com/photo-1548372290-8d01b6c8e78c?w=150&h=150&fit=crop&crop=face",
       isVerifiedPurchase: true,
       rating: 5,
-      title: "Amazing quality and effectiveness",
-      review: "The quality of these eco-friendly cleaning products is absolutely amazing! The attention to environmental safety is incredible. Perfect for households with children and pets. The cleaning effectiveness is exceptional. Highly recommend Marakish!",
+      title: "Amazing quality and style",
+      review: "The quality of these eco-friendly fashion products is absolutely amazing! The attention to sustainable materials is incredible. Perfect for conscious fashion lovers and daily wear. The style effectiveness is exceptional. Highly recommend Zoha's Attire!",
       date: "October 25, 2024",
-      productName: "Eco-Friendly Cleaning Products",
-      productImage: "https://s.alicdn.com/@sc04/kf/H8420d36398fa4b8992b84ff23dcac060A.jpg_150x150.jpg",
-      size: "5-product set",
+      productName: "Eco-Friendly Fashion Collection",
+      productImage: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=150&h=150&fit=crop&crop=center",
+      size: "5-piece set",
       color: "Green",
       helpfulVotes: 24,
       totalVotes: 26,
@@ -535,7 +562,7 @@ const Reviews = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Customer Reviews</h2>
+          <h2 className="text-3xl font-bold text-brand-primary mb-8">Customer Reviews</h2>
 
           {/* Rating Summary */}
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
@@ -545,7 +572,7 @@ const Reviews = () => {
               <div className="text-center lg:text-left">
                 <div className="flex items-center justify-center lg:justify-start space-x-2 mb-2">
                   {renderStars(Math.round(averageRating), 'w-6 h-6')}
-                  <span className="text-2xl font-bold text-gray-900 ml-2">
+                  <span className="text-2xl font-bold text-brand-primary ml-2">
                     {averageRating.toFixed(1)} out of 5
                   </span>
                 </div>
@@ -562,7 +589,7 @@ const Reviews = () => {
                           setSelectedFilter(star.toString());
                           setReviewsToShow(4);
                         }}
-                        className="flex items-center space-x-1 text-sm text-red-600 hover:text-red-800 transition-colors duration-200"
+                        className="flex items-center space-x-1 text-sm text-brand-accent hover:text-brand-primary transition-colors duration-200"
                       >
                         <span>{star} star</span>
                       </button>
@@ -593,7 +620,7 @@ const Reviews = () => {
                   setReviewsToShow(4);
                 }}
                 className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === 'all'
-                  ? 'bg-red-600 text-white border-red-600'
+                  ? 'bg-brand-accent text-white border-brand-accent'
                   : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                   }`}
               >
@@ -607,7 +634,7 @@ const Reviews = () => {
                     setReviewsToShow(4);
                   }}
                   className={`px-4 py-2 rounded-lg border transition-colors duration-200 ${selectedFilter === star.toString()
-                    ? 'bg-red-600 text-white border-red-600'
+                    ? 'bg-brand-accent text-white border-brand-accent'
                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                     }`}
                 >
@@ -621,7 +648,7 @@ const Reviews = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:border-brand-accent"
               >
                 <option value="most-recent">Most recent</option>
                 <option value="oldest">Oldest</option>
@@ -644,7 +671,7 @@ const Reviews = () => {
                   <Link href={`/product/${review.id}`}>
                     <div className="w-16 h-16 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:shadow-md transition-shadow duration-200">
                       <Image
-                        src={review.productImage}
+                        src={review.customerImage}
                         alt={review.productName}
                         width={64}
                         height={64}
@@ -674,17 +701,17 @@ const Reviews = () => {
 
                   {/* Product Info */}
                   <div className="mb-3">
-                    <Link href={`/product/${review.id}`} className="text-red-600 hover:text-red-800 text-sm">
+                    <Link href={`/product/${review.id}`} className="text-brand-accent hover:text-brand-primary text-sm">
                       {review.productName}
                     </Link>
                     <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                       <span>Size: {review.size}</span>
-                      <span>Finish: {review.color}</span>
+                      <span>Color: {review.color}</span>
                     </div>
                   </div>
 
                   {/* Review Title */}
-                  <h5 className="font-semibold text-gray-900 mb-2">{review.title}</h5>
+                  <h5 className="font-semibold text-brand-primary mb-2">{review.title}</h5>
 
                   {/* Review Text */}
                   <p className="text-gray-700 mb-4 leading-relaxed">{review.review}</p>
@@ -712,11 +739,11 @@ const Reviews = () => {
                       {review.helpfulVotes} of {review.totalVotes} people found this helpful
                     </span>
                     <div className="flex space-x-2">
-                      <button className="text-red-600 hover:text-red-800 transition-colors duration-200">
+                      <button className="text-brand-accent hover:text-brand-primary transition-colors duration-200">
                         Helpful
                       </button>
                       <span className="text-gray-400">|</span>
-                      <button className="text-red-600 hover:text-red-800 transition-colors duration-200">
+                      <button className="text-brand-accent hover:text-brand-primary transition-colors duration-200">
                         Report
                       </button>
                     </div>
@@ -732,7 +759,7 @@ const Reviews = () => {
           <div className="text-center mt-8">
             <button
               onClick={loadMoreReviews}
-              className="px-8 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="px-8 py-3 bg-brand-accent text-white rounded-lg font-semibold hover:bg-brand-primary transition-colors duration-200 shadow-md hover:shadow-lg"
             >
               Load More Reviews ({allFilteredReviews.length - reviewsToShow} remaining)
             </button>
@@ -743,25 +770,25 @@ const Reviews = () => {
         <div className="mt-12 bg-gray-50 rounded-lg p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="text-2xl font-bold text-brand-primary mb-1">
                 {Math.round((ratingBreakdown[5] / totalReviews) * 100)}%
               </div>
               <p className="text-gray-600 text-sm">5-star reviews</p>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="text-2xl font-bold text-brand-primary mb-1">
                 {reviews.filter(r => r.isVerifiedPurchase).length}
               </div>
               <p className="text-gray-600 text-sm">Verified purchases</p>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="text-2xl font-bold text-brand-primary mb-1">
                 {averageRating.toFixed(1)}
               </div>
               <p className="text-gray-600 text-sm">Average rating</p>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900 mb-1">
+              <div className="text-2xl font-bold text-brand-primary mb-1">
                 {reviews.filter(r => r.images && r.images.length > 0).length}
               </div>
               <p className="text-gray-600 text-sm">Reviews with photos</p>

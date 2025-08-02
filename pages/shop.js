@@ -1,22 +1,21 @@
 import { fetchClientProducts, fetchClientCategories } from '@/lib/fetchProducts';
+import SITE_CONFIG, { getPageMeta, getBusinessInfo, getSchemaConfig, isDevelopment } from '@/config/siteConfig';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 
-const SITE_CONFIG = {
-  productsSchemaSlug: 'products_marakish',
-  categoriesSchemaSlug: 'categories_marakish',
-};
-
 export default function ShopPage({ products, categories, clientInfo }) {
+  const pageMeta = getPageMeta('shop');
+
   return (
     <>
       <Head>
-        <title>Shop - Marakish</title>
-        <meta name="description" content="Browse our complete collection of premium cleaning products. Find the perfect solutions for your home and business." />
+        <title>{pageMeta.title}</title>
+        <meta name="description" content={pageMeta.description} />
+        <meta name="keywords" content={pageMeta.keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/alhafiz_logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
       </Head>
 
       <div className="min-h-screen bg-gray-50">
@@ -32,19 +31,17 @@ export async function getStaticProps() {
   try {
     console.log('Fetching products and categories for shop page...');
 
-    // Fetch products and categories at build time
+    const schemaConfig = getSchemaConfig();
+    const businessInfo = getBusinessInfo();
 
+    // Fetch products and categories at build time
     const [products, categories] = await Promise.all([
-      fetchClientProducts(SITE_CONFIG.productsSchemaSlug),
-      fetchClientCategories(SITE_CONFIG.categoriesSchemaSlug)
+      fetchClientProducts(schemaConfig.productsSchemaSlug),
+      fetchClientCategories(schemaConfig.categoriesSchemaSlug)
     ]);
 
-    // Client info from environment variables
-    const clientInfo = {
-      businessName: process.env.BUSINESS_NAME || 'Marakish',
-      description: process.env.BUSINESS_DESCRIPTION || 'Premium Quality Cleaning Products - Complete household and commercial cleaning solutions.',
-      contact: process.env.BUSINESS_CONTACT || '0343-5801011'
-    };
+    // Client info from configuration
+    const clientInfo = businessInfo;
 
     console.log(`Shop page: Successfully fetched ${products.length} products and ${categories.length} categories`);
 
@@ -61,17 +58,17 @@ export async function getStaticProps() {
 
     // In development, this might be expected if using local JSON
     // In production, this indicates an API issue
-    const isDevelopment = process.env.NODE_ENV === 'development';
+    const isDevMode = isDevelopment();
 
     return {
       props: {
         products: [],
         categories: [],
         clientInfo: {
-          businessName: process.env.BUSINESS_NAME || 'Marakish',
-          description: isDevelopment
-            ? 'Development mode - check your data/products.json and data/categories.json files'
-            : 'Product catalog temporarily unavailable'
+          ...getBusinessInfo(),
+          description: isDevMode
+            ? SITE_CONFIG.development.fallbackMessage + ' - check your data/products.json and data/categories.json files'
+            : SITE_CONFIG.production.fallbackMessage
         }
       },
       // Pure SSG - no revalidation

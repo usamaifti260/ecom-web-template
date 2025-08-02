@@ -5,26 +5,15 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useNotification } from '@/lib/NotificationContext';
+import SITE_CONFIG, { getPageMeta } from '@/config/siteConfig';
 
 // Configuration Variables
 const ORDER_FAILED_CONFIG = {
-  // Business Information
-  businessName: 'MARAKISH',
-
   // Currency & Formatting
-  currency: 'PKR',
   locale: 'en-PK',
 
-  // SEO & Meta
-  pageTitle: 'Order Failed - Marakish',
-  pageDescription: 'Order processing failed for your cleaning products order',
-  faviconPath: '/assets/alhafiz_logo.png',
-  faviconSize: '32x32',
-
   // Contact Information
-  supportEmail: 'support@marakish.com',
-  supportPhone: '0343-5801011',
-  supportHours: '9 AM - 6 PM (Mon-Sat)',
+  supportEmail: SITE_CONFIG.businessEmail,
 
   // UI Text
   loadingText: 'Loading...',
@@ -47,7 +36,7 @@ const ORDER_FAILED_CONFIG = {
     },
     inventory_unavailable: {
       title: 'Item Unavailable',
-      description: 'One or more products in your cart are currently out of stock.',
+      description: 'One or more fashion items in your cart are currently out of stock.',
       suggestions: ['Remove out-of-stock items and try again', 'Check for similar available products', 'Contact us for restock information']
     },
     system_error: {
@@ -167,15 +156,15 @@ export default function OrderFailedPage() {
     return (
       <>
         <Head>
-          <title>{ORDER_FAILED_CONFIG.pageTitle}</title>
-          <meta name="description" content={ORDER_FAILED_CONFIG.pageDescription} />
+          <title>{getPageMeta('orderFailed').title}</title>
+          <meta name="description" content={getPageMeta('orderFailed').description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href={ORDER_FAILED_CONFIG.faviconPath} type="image/png" sizes={ORDER_FAILED_CONFIG.faviconSize} />
+          <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-accent mx-auto mb-4"></div>
             <p className="text-gray-600">{ORDER_FAILED_CONFIG.loadingText}</p>
           </div>
         </div>
@@ -202,7 +191,7 @@ export default function OrderFailedPage() {
               <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">{ORDER_FAILED_CONFIG.errorIcon}</span>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{ORDER_FAILED_CONFIG.mainTitle}</h1>
+              <h1 className="text-3xl font-bold text-brand-primary mb-2">{ORDER_FAILED_CONFIG.mainTitle}</h1>
               <p className="text-lg text-gray-600 mb-4">
                 {ORDER_FAILED_CONFIG.mainSubtitle}
               </p>
@@ -211,7 +200,7 @@ export default function OrderFailedPage() {
                 <p className="text-sm text-red-700">{errorDetails.description}</p>
               </div>
               {retryCount > 0 && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 inline-block mt-4">
+                <div className="bg-brand-light border border-brand-secondary rounded-lg p-3 inline-block mt-4">
                   <p className="text-sm text-gray-800">
                     Retry attempts: {retryCount}
                   </p>
@@ -261,15 +250,15 @@ export default function OrderFailedPage() {
 
             {/* Error Details and Solutions */}
             <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-brand-primary mb-4 flex items-center">
                 <span className="text-xl mr-2">{ORDER_FAILED_CONFIG.suggestionIcon}</span>
                 What can you do?
               </h3>
               <div className="space-y-3">
                 {errorDetails.suggestions.map((suggestion, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-xs font-bold text-blue-600">{index + 1}</span>
+                    <div className="w-6 h-6 bg-brand-light rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-xs font-bold text-brand-primary">{index + 1}</span>
                     </div>
                     <p className="text-sm text-gray-700">{suggestion}</p>
                   </div>
@@ -282,7 +271,7 @@ export default function OrderFailedPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button
                   onClick={handleRetryOrder}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+                  className="w-full bg-brand-primary hover:bg-brand-dark text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -302,19 +291,19 @@ export default function OrderFailedPage() {
               </div>
 
               <div className="text-center">
-                <Link href={ORDER_FAILED_CONFIG.shopRoute} className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link href={ORDER_FAILED_CONFIG.shopRoute} className="text-brand-accent hover:text-brand-primary font-medium">
                   ← {ORDER_FAILED_CONFIG.backToShopText}
                 </Link>
               </div>
             </div>
 
             {/* Additional Help */}
-            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-800 mb-4">{ORDER_FAILED_CONFIG.helpTitle}</h3>
-              <p className="text-sm text-blue-700 mb-4">{ORDER_FAILED_CONFIG.helpDescription}</p>
+            <div className="mt-8 bg-brand-light border border-brand-secondary rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-brand-primary mb-4">{ORDER_FAILED_CONFIG.helpTitle}</h3>
+              <p className="text-sm text-brand-dark mb-4">{ORDER_FAILED_CONFIG.helpDescription}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-lg">{ORDER_FAILED_CONFIG.emailIcon}</span>
                   </div>
                   <div>
@@ -341,7 +330,7 @@ export default function OrderFailedPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Visit our{' '}
-                <Link href={ORDER_FAILED_CONFIG.contactRoute} className="text-blue-600 hover:text-blue-700 font-medium">
+                <Link href={ORDER_FAILED_CONFIG.contactRoute} className="text-brand-accent hover:text-brand-primary font-medium">
                   Contact Page
                 </Link>
                 {' '}for more support options or check our delivery areas.

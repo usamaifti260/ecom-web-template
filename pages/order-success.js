@@ -4,26 +4,17 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import SITE_CONFIG, { getPageMeta } from '@/config/siteConfig';
 
 // Configuration Variables
 const ORDER_SUCCESS_CONFIG = {
-  // Business Information
-  businessName: 'MARAKISH',
-
   // Currency & Formatting
-  currency: 'PKR',
   locale: 'en-PK',
-
-  // SEO & Meta
-  pageTitle: 'Order Confirmation - Marakish',
-  pageDescription: 'Your order for premium cleaning products has been confirmed',
-  faviconPath: '/assets/alhafiz_logo.png',
-  faviconSize: '32x32',
 
   // UI Text
   loadingText: 'Loading order details...',
   successTitle: 'Order Confirmed!',
-  successMessage: 'Thank you for choosing Marakish! Your premium cleaning products are being prepared for dispatch.',
+  successMessage: 'Thank you for choosing Zohas Attire! Your premium fashion items are being prepared for dispatch.',
   orderNotFoundTitle: 'Order Not Found',
   orderNotFoundMessage: 'The order you\'re looking for could not be found.',
 
@@ -43,7 +34,7 @@ const ORDER_SUCCESS_CONFIG = {
     {
       step: 2,
       title: 'Quality Check & Packaging',
-      description: 'Your cleaning products are being quality checked and carefully packaged',
+      description: 'Your fashion items are being quality checked and carefully packaged',
       bgColor: 'bg-blue-400',
       textColor: 'text-white'
     },
@@ -116,11 +107,7 @@ export default function OrderSuccessPage() {
   }, [orderId, router]);
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat(ORDER_SUCCESS_CONFIG.locale, {
-      style: 'currency',
-      currency: ORDER_SUCCESS_CONFIG.currency,
-      minimumFractionDigits: 0
-    }).format(price);
+    return `${SITE_CONFIG.currencySymbol} ${price.toLocaleString()}`;
   };
 
   const formatDate = (dateString) => {
@@ -149,15 +136,15 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>{ORDER_SUCCESS_CONFIG.pageTitle}</title>
-          <meta name="description" content={ORDER_SUCCESS_CONFIG.pageDescription} />
+          <title>{getPageMeta('orderSuccess').title}</title>
+          <meta name="description" content={getPageMeta('orderSuccess').description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href={ORDER_SUCCESS_CONFIG.faviconPath} type="image/png" sizes={ORDER_SUCCESS_CONFIG.faviconSize} />
+          <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-accent mx-auto mb-4"></div>
             <p className="text-gray-600">{ORDER_SUCCESS_CONFIG.loadingText}</p>
           </div>
         </div>
@@ -169,10 +156,10 @@ export default function OrderSuccessPage() {
     return (
       <>
         <Head>
-          <title>{ORDER_SUCCESS_CONFIG.pageTitle}</title>
-          <meta name="description" content={ORDER_SUCCESS_CONFIG.pageDescription} />
+          <title>{getPageMeta('orderSuccess').title}</title>
+          <meta name="description" content={getPageMeta('orderSuccess').description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href={ORDER_SUCCESS_CONFIG.faviconPath} type="image/png" sizes={ORDER_SUCCESS_CONFIG.faviconSize} />
+          <link rel="icon" href={SITE_CONFIG.faviconPath} type="image/png" sizes={SITE_CONFIG.faviconSize} />
         </Head>
 
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -184,7 +171,7 @@ export default function OrderSuccessPage() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">{ORDER_SUCCESS_CONFIG.orderNotFoundTitle}</h1>
             <p className="text-gray-600 mb-6">{ORDER_SUCCESS_CONFIG.orderNotFoundMessage}</p>
-            <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+            <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="bg-brand-accent hover:bg-brand-primary text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
               Continue Shopping
             </Link>
           </div>
@@ -211,11 +198,11 @@ export default function OrderSuccessPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{ORDER_SUCCESS_CONFIG.successTitle}</h1>
+            <h1 className="text-3xl font-bold text-brand-primary mb-2">{ORDER_SUCCESS_CONFIG.successTitle}</h1>
             <p className="text-lg text-gray-600 mb-4">
               {ORDER_SUCCESS_CONFIG.successMessage}
             </p>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 inline-block">
+            <div className="bg-brand-light border border-brand-secondary rounded-lg p-4 inline-block">
               <p className="text-sm text-gray-800">
                 <strong>Order ID:</strong> {orderData.orderId}
               </p>
@@ -235,11 +222,11 @@ export default function OrderSuccessPage() {
             <div className="space-y-6">
               {/* Delivery Information */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Information</h3>
+                <h3 className="text-lg font-semibold text-brand-primary mb-4">Delivery Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-brand-light rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -255,8 +242,8 @@ export default function OrderSuccessPage() {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-brand-light rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -292,7 +279,7 @@ export default function OrderSuccessPage() {
 
               {/* Contact Information */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
+                <h3 className="text-lg font-semibold text-brand-primary mb-4">Contact Information</h3>
                 <div className="space-y-3">
                   <div>
                     <p className="text-sm font-medium text-gray-700">Email</p>
@@ -312,8 +299,8 @@ export default function OrderSuccessPage() {
               </div>
 
               {/* What's Next */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">What happens next?</h3>
+              <div className="bg-brand-light border border-brand-secondary rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-brand-primary mb-4">What happens next?</h3>
                 <div className="space-y-3">
                   {ORDER_SUCCESS_CONFIG.deliverySteps.map((deliveryStep, index) => (
                     <div key={index} className="flex items-start space-x-3">
@@ -332,7 +319,7 @@ export default function OrderSuccessPage() {
 
             {/* Order Summary */}
             <div className="bg-white rounded-lg shadow-sm p-6 h-fit">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
+              <h3 className="text-lg font-semibold text-brand-primary mb-4">Order Summary</h3>
 
               {/* Items */}
               <div className="space-y-4 mb-6">
@@ -401,14 +388,14 @@ export default function OrderSuccessPage() {
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between">
                     <span className="text-base font-semibold text-gray-900">Total (COD)</span>
-                    <span className="text-base font-semibold text-gray-900">{formatPrice(orderData.summary.total)}</span>
+                    <span className="text-base font-semibold text-brand-primary">{formatPrice(orderData.summary.total)}</span>
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="mt-6 space-y-3">
-                <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="w-full bg-blue-600 hover:bg-blue-700 text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
+                <Link href={ORDER_SUCCESS_CONFIG.shopRoute} className="w-full bg-brand-primary hover:bg-brand-dark text-white block text-center py-3 rounded-lg font-medium transition-colors duration-200">
                   {ORDER_SUCCESS_CONFIG.shopMoreButtonText}
                 </Link>
                 <button

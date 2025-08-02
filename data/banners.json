@@ -1,23 +1,23 @@
 [
     {
         "id": 1,
-        "image": "https://i.ibb.co/dCtpHmn/Copy-of-red-yellow-food-menu-banner.jpg",
-        "mobileImage": "https://i.ibb.co/dCtpHmn/Copy-of-red-yellow-food-menu-banner.jpg",
-        "title": "Premium Cleaning Products & Household Solutions",
-        "subtitle": "Quality You Can Trust - Marakish Cleaning Products"
+        "image": "https://i.ibb.co/VccpkP8Z/Copy-of-red-yellow-food-menu-banner-1.jpg",
+        "mobileImage": "https://i.ibb.co/VccpkP8Z/Copy-of-red-yellow-food-menu-banner-1.jpg",
+        "title": "Premium Fashion & Garments Collection",
+        "subtitle": "Quality You Can Trust - Zoha's Attire"
     },
     {
         "id": 2,
-        "image": "https://i.ibb.co/24R1qHx/Orange-and-Brown-Modern-Fall-Cleanup-Banner.jpg",
-        "mobileImage": "https://i.ibb.co/24R1qHx/Orange-and-Brown-Modern-Fall-Cleanup-Banner.jpg",
-        "title": "Kitchen & Bathroom Cleaners",
-        "subtitle": "Dishwash, Tezaab Cleaner & Harpic Neel Bleach"
+        "image": "https://i.ibb.co/q3ZsCb0m/Black-and-White-Modern-Grunge-Plastic-Texture-Streetwear-Landscape-Banner-1.jpg",
+        "mobileImage": "https://i.ibb.co/q3ZsCb0m/Black-and-White-Modern-Grunge-Plastic-Texture-Streetwear-Landscape-Banner-1.jpg",
+        "title": "Trending Fashion for Everyone",
+        "subtitle": "Men, Women, Baby & Accessories Collection"
     },
     {
         "id": 3,
-        "image": "https://i.ibb.co/WpYWFbpS/White-and-Blue-Modern-Cleaning-Service-Banner-Landscape.jpg",
-        "mobileImage": "https://i.ibb.co/WpYWFbpS/White-and-Blue-Modern-Cleaning-Service-Banner-Landscape.jpg",
-        "title": "Laundry & Personal Care",
-        "subtitle": "Surf Excel, Handwash, Shampoo & Complete Care Solutions"
+        "image": "https://i.ibb.co/Lz1zmfR6/Neutral-Modern-Fashion-Collection-Banner.jpg",
+        "mobileImage": "https://i.ibb.co/Lz1zmfR6/Neutral-Modern-Fashion-Collection-Banner.jpg",
+        "title": "Latest Trends & Styles",
+        "subtitle": "Affordable Fashion with Premium Quality"
     }
 ]
