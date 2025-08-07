@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # or 'master' if your default branch is 'master'
+  repository_dispatch:
+    types: [redeploy]
 
 permissions:
   contents: write
