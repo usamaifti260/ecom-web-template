@@ -3,12 +3,14 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   distDir: 'out',
-  
+  basePath: '/ecom-web-template',
+  assetPrefix: '/ecom-web-template/',
+
   // Image optimization settings (disabled for static export)
   images: {
     unoptimized: true, // Required for static export
   },
-  
+
   // Environment variables available to the client
   env: {
     CLIENT_ID: process.env.CLIENT_ID,
@@ -16,7 +18,7 @@ const nextConfig = {
     BUSINESS_DESCRIPTION: process.env.BUSINESS_DESCRIPTION,
     BUSINESS_CONTACT: process.env.BUSINESS_CONTACT,
   },
-  
+
   // Webpack configuration for better compatibility
   webpack: (config, { isServer }) => {
     // Ensure proper handling of CSS in production
