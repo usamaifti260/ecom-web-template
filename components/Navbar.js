@@ -138,7 +138,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
+      <nav className="bg-pink-500 shadow-lg sticky top-0 z-50 border-b border-gray-200">
         {/* Single Row Navigation */}
         <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
