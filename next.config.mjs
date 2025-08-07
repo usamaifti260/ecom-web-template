@@ -3,8 +3,8 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   distDir: 'out',
-  basePath: '/ecom-web-template',
-  assetPrefix: '/ecom-web-template/',
+  // basePath: '/ecom-web-template',
+  // assetPrefix: '/ecom-web-template/',
 
   // Image optimization settings (disabled for static export)
   images: {
